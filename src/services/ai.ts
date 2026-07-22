@@ -23,8 +23,12 @@ ${jobDescription}
 
 TAREA:
 1. Analiza los requerimientos de la oferta laboral.
-2. Reescribe el "summary", las descripciones de la "experience" y selecciona las "skills" más relevantes del CV BASE para que hagan un match perfecto con la oferta laboral. No inventes experiencia que el candidato no tiene, solo resalta y adapta lo que ya está en el CV BASE.
-3. Redacta una carta de presentación ejecutiva, persuasiva y profesional, dirigida a los reclutadores de esta oferta, utilizando los datos del CV BASE.
+2. Reescribe el "summary", las descripciones de la "experience" y selecciona las "skills" más relevantes del CV BASE para que hagan un match perfecto con la oferta. 
+3. REGLAS DE ORO PARA EL TONO Y ESTILO:
+   - Usa un lenguaje MUY HUMANO, cercano y directo. Evita la jerga excesivamente técnica, robótica o palabras demasiado sofisticadas ("apalancar", "sinergia", "orquestar", etc.).
+   - ADAPTA EL NIVEL: El candidato no debe sonar "sobrecalificado" (no asustes al reclutador), pero sí debe quedar claro que destaca y es altamente resolutivo y capaz. Muestra que tiene gran experiencia pero que está dispuesto a arremangarse y ejecutar.
+   - No inventes experiencia que el candidato no tiene, solo resalta y adapta lo que ya está en el CV BASE hacia las necesidades específicas de la oferta.
+4. Redacta una carta de presentación persuasiva, humana y empática, dirigida a los reclutadores de esta oferta, utilizando los datos adaptados del CV BASE.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
