@@ -25,8 +25,8 @@ TAREA:
 1. Analiza a fondo los requerimientos de la oferta laboral (dolores, necesidades, keywords).
 2. ADAPTACIÓN DEL CV (EL CORAZÓN DE LA TAREA): 
    - Debes ADECUAR Y REESCRIBIR TODO EL CONTENIDO del CV BASE al puesto al que postula.
-   - OBLIGATORIO: No copies y pegues las descripciones de la experiencia. Debes REESCRIBIR cada viñeta (bullet point) de la experiencia integrando naturalmente las palabras clave de la oferta laboral. Cambia el enfoque y la narrativa para que encaje 100% con la oferta.
-   - SELECCIÓN DE PORTAFOLIO (CASOS DE USO): El candidato tiene aplicaciones y herramientas creadas por él. NO las presentes como "proyectos personales" o "aplicaciones de uso propio" porque resta valor corporativo. Re-enfócalas como "Implementaciones de Conocimiento", "Casos de Aplicación Práctica" o "Automatizaciones Operativas" que demuestran su capacidad de resolver problemas de negocio. Selecciona ÚNICAMENTE 3 a 5 casos que más sentido hagan para la oferta laboral y reescribe su descripción para destacar cómo esa tecnología optimiza procesos (si el rol es operativo) o cómo innova (si es técnico).
+   - OBLIGATORIO: Debes INCLUIR TODAS las experiencias laborales del CV Base, no recortes la lista. Sin embargo, debes REESCRIBIR profunda y extensamente el "summary" (Acerca de mi) y cada viñeta de cada experiencia integrando naturalmente las palabras clave de la oferta.
+   - SELECCIÓN DE PORTAFOLIO (CASOS DE USO): Selecciona ÚNICAMENTE 3 a 5 casos. OBLIGATORIO: NO INVENTES números, métricas o resultados que no existan en la descripción original del portafolio. Re-enfoca la descripción estrictamente con los hechos reales, pero enfocándolo como "Casos de Aplicación Práctica" o "Implementaciones de Conocimiento" en lugar de proyectos personales.
    - TÍTULO DE PORTAFOLIO ADAPTADO: Renombra la sección del portafolio (portfolioTitle) para que haga sentido con el puesto y oculte la palabra "proyecto". Por ejemplo: "Aplicación Práctica de Tecnologías", "Optimización y Automatización de Procesos", etc.
    - DOMINIOS TÉCNICOS Y OPERATIVOS: Filtra y selecciona los dominios que hagan match con la vacante. Puedes renombrar los títulos de los dominios (ej. de "Desarrollo Comercial" a "Estrategia B2B") y selecciona solo las skills internas más relevantes de cada dominio.
    - CERTIFICACIONES: El CV base tiene muchísimas certificaciones. Selecciona ÚNICAMENTE las 6 a 8 certificaciones más críticas y relevantes para la oferta.
@@ -46,6 +46,7 @@ TAREA:
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
   "tailoredCV": {
+    "tailoredTitle": "...",
     "summary": "...",
     "experience": [
       {
@@ -53,7 +54,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         "company": "...",
         "period": "...",
         "location": "...",
-        "description": ["...", "..."]
+        "description": ["..."]
       }
     ],
     "skills": ["...", "..."],

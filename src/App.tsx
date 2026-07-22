@@ -493,12 +493,19 @@ function App() {
         
         {/* ROW 1: Name (Dark) / Title (Light) */}
         <div style={{ display: 'flex', minHeight: '160px' }}>
-          <div style={{ width: '40%', backgroundColor: '#1F1F1F', borderBottomRightRadius: '70px', padding: '30px 25px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <h1 style={{ fontSize: '32pt', margin: 0, color: '#FFFFFF', fontWeight: '900', lineHeight: '1.1', letterSpacing: '-1px' }}>{baseCV.name.split(' ')[0]}<br/>{baseCV.name.split(' ').slice(1).join(' ')}</h1>
+          <div style={{ width: '40%', backgroundColor: '#1F1F1F', borderBottomRightRadius: '70px', padding: '30px 25px', display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <img src={baseCV.contact?.photoUrl} alt="Hjalmar Meza" style={{ width: '80px', height: '80px', borderRadius: '50%', border: '2px solid #F4F1EB', objectFit: 'cover' }} />
+            <div>
+              <h1 style={{ fontSize: '26pt', margin: 0, color: '#FFFFFF', fontWeight: '900', lineHeight: '1.1', letterSpacing: '-0.5px' }}>{baseCV.name.split(' ')[0]}<br/>{baseCV.name.split(' ').slice(1).join(' ')}</h1>
+            </div>
           </div>
           <div style={{ width: '60%', padding: '30px 25px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <h2 style={{ fontSize: '20pt', margin: 0, color: '#1F1F1F', fontWeight: '900', lineHeight: '1.2' }}>{baseCV.title}</h2>
-            <p style={{ fontSize: '10pt', marginTop: '8px', color: '#444', fontWeight: '600' }}>linkedin.com/in/hjalmar-meza</p>
+            <h2 style={{ fontSize: '20pt', margin: '0 0 10px', color: '#1F1F1F', fontWeight: '900', lineHeight: '1.2' }}>{tailoredData?.tailoredCV?.tailoredTitle || baseCV.title}</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', fontSize: '9pt', color: '#444', fontWeight: '600' }}>
+              <span>{baseCV.contact?.email}</span>
+              <span>{baseCV.contact?.phone}</span>
+              <span>{baseCV.contact?.location}</span>
+            </div>
           </div>
         </div>
 
@@ -595,8 +602,8 @@ function App() {
           </div>
           <div style={{ width: '40%', backgroundColor: '#1F1F1F', borderTopLeftRadius: '70px', padding: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
              <h3 style={{ fontSize: '13pt', margin: '0 0 8px', color: '#F4F1EB', fontWeight: '900' }}>Contacto</h3>
-             <p style={{ fontSize: '9pt', margin: '0 0 4px', color: '#DDD' }}>linkedin.com/in/hjalmar-meza</p>
-             <p style={{ fontSize: '9pt', margin: 0, color: '#DDD' }}>Perú</p>
+             <p style={{ fontSize: '9pt', margin: '0 0 4px', color: '#DDD' }}>{baseCV.contact?.linkedin}</p>
+             <p style={{ fontSize: '9pt', margin: 0, color: '#DDD' }}>{baseCV.contact?.location}</p>
           </div>
         </div>
 

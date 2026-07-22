@@ -2,6 +2,13 @@ export interface BaseCV {
   name: string;
   title: string;
   summary: string;
+  contact: {
+    email: string;
+    phone: string;
+    location: string;
+    linkedin: string;
+    photoUrl: string;
+  };
   experience: {
     title: string;
     company: string;
@@ -25,6 +32,13 @@ export interface BaseCV {
 export const defaultBaseCV: BaseCV = {
   name: "Hjalmar Meza Cortez",
   title: "Ejecutivo de Operaciones y Transformación Digital",
+  contact: {
+    email: "correo@ejemplo.com",
+    phone: "+34 600 000 000",
+    location: "Salamanca (España)",
+    linkedin: "linkedin.com/in/hjalmar-meza",
+    photoUrl: "https://ui-avatars.com/api/?name=Hjalmar+Meza&background=1F1F1F&color=F4F1EB&size=200"
+  },
   summary: "Líder de Operaciones con 18 años de trayectoria en el sector Telecomunicaciones, especializado en la transformación digital de canales de atención masiva y la optimización de la Experiencia del Cliente (CX). Experto en orquestar equipos de alto rendimiento y liderar la transición de entornos físicos a digitales, logrando eficiencias operativas demostradas. Actualmente, fusiono mi sólido background corporativo con la implementación estratégica de Inteligencia Artificial Generativa y automatización de procesos para escalar la rentabilidad empresarial de manera ágil y estructurada.\n\nMI REGLA DE ORO:\n\"Lo que funciona, NO se toca; pero lo que puede optimizarse, lo transformo mediante flujos de trabajo autónomos y soluciones de IA que generan valor inmediato.\"",
   experience: [
     {
@@ -111,7 +125,7 @@ export const defaultBaseCV: BaseCV = {
   ],
   certifications: [
     "Liderazgo en la Era Digital - Tec. de Monterrey",
-    "Certificado profesional Microsoft Azure AI Essentials - Microsoft",
+    "Experto RGPD - Universidad Nebrija",
     "Desarrolla tus habilidades de productividad con IA generativa - Microsoft",
     "Habilidades humanas en la era de la IA - Microsoft",
     "Domina el marketing digital - LinkedIn",
