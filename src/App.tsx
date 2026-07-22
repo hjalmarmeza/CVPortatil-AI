@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Briefcase, FileText, Settings, Loader2, Download, Upload } from 'lucide-react';
-import { defaultBaseCV, BaseCV } from './data/baseCV';
+import { defaultBaseCV } from './data/baseCV';
+import type { BaseCV } from './data/baseCV';
 import { generateTailoredCV } from './services/ai';
 // @ts-ignore
 import html2pdf from 'html2pdf.js';
@@ -37,9 +38,9 @@ function App() {
     const opt = {
       margin: 10,
       filename: `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
+      image: { type: 'jpeg' as const, quality: 0.98 },
       html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
     html2pdf().from(element).set(opt).save().then(() => {
@@ -211,7 +212,7 @@ function App() {
             <p style={{ fontSize: '14pt', margin: '5px 0 0', color: '#475569' }}>{baseCV.title}</p>
           </div>
           <div style={{ width: '40mm', height: '40mm', borderRadius: '50%', overflow: 'hidden', border: '3px solid #f59e0b' }}>
-            <img src="/icon.jpg" alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src="/profile.png" alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
         

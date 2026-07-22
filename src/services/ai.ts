@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BaseCV } from '../data/baseCV';
+import type { BaseCV } from '../data/baseCV';
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
 const MODEL = 'meta-llama/Meta-Llama-3-70B-Instruct'; // You can change this to another model available in DeepInfra
