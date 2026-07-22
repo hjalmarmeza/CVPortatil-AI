@@ -46,7 +46,6 @@ TAREA:
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
   "tailoredCV": {
-    "tailoredTitle": "...",
     "summary": "...",
     "experience": [
       {

@@ -515,7 +515,7 @@ function App() {
       {/* Renderizado Oculto para el PDF */}
       <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: '#F4F1EB', color: '#1F1F1F', fontFamily: '"Arial", sans-serif', margin: 0, padding: 0, boxSizing: 'border-box' }}>
         
-        {/* ROW 1: Name (Dark) / Title (Light) */}
+        {/* ROW 1: Name (Dark) / Contact (Light) */}
         <div style={{ display: 'flex', minHeight: '160px' }}>
           <div style={{ width: '40%', backgroundColor: '#1F1F1F', borderBottomRightRadius: '70px', padding: '30px 25px', display: 'flex', alignItems: 'center', gap: '20px' }}>
             <img src={baseCV.contact?.photoUrl} alt="Hjalmar Meza" style={{ width: '80px', height: '80px', borderRadius: '50%', border: '2px solid #F4F1EB', objectFit: 'cover' }} />
@@ -524,11 +524,10 @@ function App() {
             </div>
           </div>
           <div style={{ width: '60%', padding: '30px 25px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <h2 style={{ fontSize: '20pt', margin: '0 0 10px', color: '#1F1F1F', fontWeight: '900', lineHeight: '1.2' }}>{tailoredData?.tailoredCV?.tailoredTitle || baseCV.title}</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', fontSize: '9pt', color: '#444', fontWeight: '600' }}>
-              <span>{baseCV.contact?.email}</span>
-              <span>{baseCV.contact?.phone}</span>
-              <span>{baseCV.contact?.location}</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '10.5pt', color: '#444', fontWeight: '600' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>✉️ {baseCV.contact?.email}</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>📱 {baseCV.contact?.phone}</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>📍 {baseCV.contact?.location}</span>
             </div>
           </div>
         </div>
@@ -636,8 +635,7 @@ function App() {
       {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
       <div id="cover-letter-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#1F1F1F', fontFamily: '"Arial", sans-serif', margin: 0, padding: '40px', boxSizing: 'border-box' }}>
         <div style={{ borderBottom: '2px solid #EAE6DD', paddingBottom: '20px', marginBottom: '40px' }}>
-          <h1 style={{ fontSize: '24pt', margin: '0 0 10px', color: '#1F1F1F', fontWeight: '900', letterSpacing: '-0.5px' }}>{baseCV.name}</h1>
-          <h2 style={{ fontSize: '14pt', margin: '0 0 15px', color: '#444', fontWeight: '700' }}>{tailoredData?.tailoredCV?.tailoredTitle || baseCV.title}</h2>
+          <h1 style={{ fontSize: '24pt', margin: '0 0 15px', color: '#1F1F1F', fontWeight: '900', letterSpacing: '-0.5px' }}>{baseCV.name}</h1>
           <div style={{ display: 'flex', gap: '20px', fontSize: '10pt', color: '#666' }}>
             <span>{baseCV.contact?.email}</span>
             <span>{baseCV.contact?.phone}</span>
