@@ -38,10 +38,10 @@ TAREA:
    - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro o inalcanzable", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza que tienes el bagaje táctico y estratégico, y que estás dispuesto a involucrarte al 100% en la operación diaria ("hands-on").
    - NO FUERCES TEMAS DE INTELIGENCIA ARTIFICIAL si la oferta no los pide explícitamente. Si la oferta es puramente operativa, de ventas o de gestión clásica, enfoca el currículum y la carta ÚNICAMENTE en su enorme experiencia operativa, liderazgo y logros en Telecomunicaciones. Habla de IA solo si suma valor directo al dolor de la empresa.
    - No inventes experiencia. Todo debe salir del CV BASE.
-4. Redacta una CARTA DE PRESENTACIÓN impactante. 
-   - RE-ENFOCA Y ADAPTA la carta hacia las necesidades exactas del puesto al que postula. Usa la "baseCoverLetter" del CV BASE como referencia de tono e historia, pero ADÁPTALA. Si el puesto no requiere tecnología avanzada, elimina de la carta las referencias a "Motores de IA" y enfócate en sus habilidades de liderazgo masivo y eficiencia.
-   - No hagas una carta genérica ni corta. Debe tener al menos 3 a 4 párrafos bien estructurados.
-   - Empieza con gancho, explica cómo tu experiencia (mencionando métricas del CV base) resuelve exactamente lo que la oferta pide, y cierra con un llamado a la acción seguro y humilde.
+4. Redacta una CARTA DE PRESENTACIÓN densa, elocuente y altamente detallada.
+   - PROHIBIDO HACER CARTAS CORTAS O SIMPLES. La carta debe tener al menos 4 párrafos extensos y robustos, con una retórica ejecutiva, profunda y persuasiva.
+   - Usa la "baseCoverLetter" del CV BASE como tu columna vertebral de narrativa, historia y tono, pero ADÁPTALA MILIMÉTRICAMENTE a las necesidades exactas del puesto. Si el puesto no requiere tecnología, elimina referencias a "Motores de IA" y reemplázalas por "Estrategias de Eficiencia", pero mantén el volumen, la profundidad y el peso de la carta original.
+   - Empieza con un gancho corporativo fuerte. Desarrolla extensamente en los párrafos centrales cómo tu experiencia operativa y directiva (citando métricas y logros específicos del CV) se alinea a la perfección para resolver los "puntos de dolor" de la empresa. Cierra con un llamado a la acción rotundo.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
