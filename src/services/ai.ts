@@ -26,8 +26,8 @@ TAREA:
 2. ADAPTACIÓN DEL CV (EL CORAZÓN DE LA TAREA): 
    - Debes ADECUAR Y REESCRIBIR TODO EL CONTENIDO del CV BASE al puesto al que postula.
    - OBLIGATORIO: Debes INCLUIR TODAS las experiencias laborales del CV Base, no recortes la lista. Sin embargo, debes REESCRIBIR profunda y extensamente el "summary" (Acerca de mi) y cada viñeta de cada experiencia integrando naturalmente las palabras clave de la oferta.
-   - SELECCIÓN DE PORTAFOLIO (CASOS DE USO): Selecciona ÚNICAMENTE 3 a 5 casos. OBLIGATORIO: NO INVENTES números, métricas o resultados que no existan en la descripción original del portafolio. Re-enfoca la descripción estrictamente con los hechos reales, pero enfocándolo como "Casos de Aplicación Práctica" o "Implementaciones de Conocimiento" en lugar de proyectos personales.
-   - TÍTULO DE PORTAFOLIO ADAPTADO: Renombra la sección del portafolio (portfolioTitle) para que haga sentido con el puesto y oculte la palabra "proyecto". Por ejemplo: "Aplicación Práctica de Tecnologías", "Optimización y Automatización de Procesos", etc.
+   - CONOCIMIENTOS ADICIONALES (Portafolio): En lugar de 'portafolio', renombra la sección a "Conocimientos Adicionales". Hazlo de forma muy simple y modesta, sin exagerar ni usar un tono rimbombante. Si la oferta no amerita estos conocimientos técnicos, omítelos o incluye solo 1 relevante.
+   - TÍTULO DE PORTAFOLIO ADAPTADO: OBLIGATORIO usar "Conocimientos Adicionales" (o similar muy sencillo) en portfolioTitle.
    - DOMINIOS TÉCNICOS Y OPERATIVOS: Filtra y selecciona los dominios que hagan match con la vacante. Puedes renombrar los títulos de los dominios (ej. de "Desarrollo Comercial" a "Estrategia B2B") y selecciona solo las skills internas más relevantes de cada dominio.
    - CERTIFICACIONES: El CV base tiene muchísimas certificaciones. Selecciona ÚNICAMENTE las 6 a 8 certificaciones más críticas y relevantes para la oferta.
    - NO INVENTES NADA NUEVO. Re-enfoca lo que ya existe. Si la oferta pide "gestión ágil", reescribe sus logros pasados resaltando cómo aplicó agilidad.
@@ -39,6 +39,7 @@ TAREA:
    - NO FUERCES TEMAS DE INTELIGENCIA ARTIFICIAL si la oferta no los pide explícitamente. Si la oferta es puramente operativa, de ventas o de gestión clásica, enfoca el currículum y la carta ÚNICAMENTE en su enorme experiencia operativa, liderazgo y logros en Telecomunicaciones. Habla de IA solo si suma valor directo al dolor de la empresa.
    - No inventes experiencia. Todo debe salir del CV BASE.
 4. Redacta una CARTA DE PRESENTACIÓN densa, elocuente y altamente detallada.
+   - OBLIGATORIO: DEBES USAR SALTOS DE LÍNEA DOBLES (`\n\n`) para separar los párrafos. La carta NO PUEDE SER un solo bloque de texto continuo. Debe tener al menos 3 o 4 párrafos visualmente separados.
    - PROHIBIDO HACER CARTAS CORTAS O SIMPLES. La carta debe tener al menos 4 párrafos extensos y robustos, con una retórica ejecutiva, profunda y persuasiva.
    - Usa la "baseCoverLetter" del CV BASE como tu columna vertebral de narrativa, historia y tono, pero ADÁPTALA MILIMÉTRICAMENTE a las necesidades exactas del puesto. Si el puesto no requiere tecnología, elimina referencias a "Motores de IA" y reemplázalas por "Estrategias de Eficiencia", pero mantén el volumen, la profundidad y el peso de la carta original.
    - Empieza con un gancho corporativo fuerte. Desarrolla extensamente en los párrafos centrales cómo tu experiencia operativa y directiva (citando métricas y logros específicos del CV) se alinea a la perfección para resolver los "puntos de dolor" de la empresa. Cierra con un llamado a la acción rotundo.

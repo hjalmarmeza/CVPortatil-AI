@@ -113,6 +113,10 @@ export const defaultBaseCV: BaseCV = {
       period: ""
     }
   ],
+  languages: [
+    { language: "Español", level: "Nativo" },
+    { language: "Inglés", level: "Básico 1" }
+  ],
   skills: [
     "GEMINI / CLAUDE",
     "AZURE AI",
