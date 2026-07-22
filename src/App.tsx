@@ -530,10 +530,10 @@ function App() {
         </div>
 
         {/* ROW 3: Experience (Full Width) */}
-        <div style={{ padding: '20px 25px 10px' }}>
+        <div style={{ padding: '20px 25px 10px', pageBreakInside: 'avoid' }}>
           <h3 style={{ fontSize: '14pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '15px' }}>Experiencia Destacada</h3>
           {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => (
-            <div key={idx} style={{ marginBottom: '15px' }}>
+            <div key={idx} style={{ marginBottom: '15px', pageBreakInside: 'avoid' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px' }}>
                 <h4 style={{ fontSize: '11pt', margin: 0, color: '#1F1F1F', fontWeight: '800' }}>{exp.title} en {exp.company}</h4>
                 <span style={{ fontSize: '9pt', color: '#666', fontWeight: '600', fontStyle: 'italic' }}>{exp.period}</span>
@@ -548,11 +548,11 @@ function App() {
         </div>
 
         {/* ROW 4: Portfolio (Full Width) */}
-        <div style={{ padding: '10px 25px' }}>
+        <div style={{ padding: '10px 25px', pageBreakInside: 'avoid' }}>
           <h3 style={{ fontSize: '13pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '12px' }}>{tailoredData?.tailoredCV?.portfolioTitle || "Proyectos Destacados"}</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             {(tailoredData?.tailoredCV?.portfolio || baseCV.portfolio.slice(0, 4)).map((item, idx) => (
-              <div key={idx} style={{ padding: '10px', backgroundColor: '#EAE6DD', borderRadius: '8px' }}>
+              <div key={idx} style={{ padding: '10px', backgroundColor: '#EAE6DD', borderRadius: '8px', pageBreakInside: 'avoid' }}>
                 <h4 style={{ fontSize: '9.5pt', margin: '0 0 4px', color: '#1F1F1F', fontWeight: '800' }}>{item.title}</h4>
                 <p style={{ fontSize: '8.5pt', margin: 0, color: '#444', lineHeight: '1.4' }}>{item.description}</p>
               </div>
@@ -561,11 +561,11 @@ function App() {
         </div>
 
         {/* ROW 5: Dominios & Certificaciones */}
-        <div style={{ display: 'flex', padding: '15px 25px', gap: '25px' }}>
+        <div style={{ display: 'flex', padding: '15px 25px', gap: '25px', pageBreakInside: 'avoid' }}>
           <div style={{ flex: 1 }}>
             <h3 style={{ fontSize: '12pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '10px' }}>Dominios Técnicos</h3>
             {(tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas).map((domain, idx) => (
-              <div key={idx} style={{ marginBottom: '8px' }}>
+              <div key={idx} style={{ marginBottom: '8px', pageBreakInside: 'avoid' }}>
                 <h4 style={{ fontSize: '9.5pt', margin: '0 0 2px', color: '#1F1F1F', fontWeight: '800' }}>{domain.title}</h4>
                 <p style={{ fontSize: '8.5pt', margin: 0, color: '#444', lineHeight: '1.4' }}>{domain.skills.join(', ')}</p>
               </div>
@@ -575,7 +575,7 @@ function App() {
             <h3 style={{ fontSize: '12pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '10px' }}>Certificaciones</h3>
             <ul style={{ margin: 0, paddingLeft: '15px', fontSize: '8.5pt', color: '#444', lineHeight: '1.4' }}>
               {(tailoredData?.tailoredCV?.certifications || baseCV.certifications.slice(0, 6)).map((cert, i) => (
-                <li key={i} style={{ marginBottom: '3px' }}>{cert}</li>
+                <li key={i} style={{ marginBottom: '3px', pageBreakInside: 'avoid' }}>{cert}</li>
               ))}
             </ul>
           </div>
