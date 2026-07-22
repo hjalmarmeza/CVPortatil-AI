@@ -39,7 +39,7 @@ TAREA:
    - NO FUERCES TEMAS DE INTELIGENCIA ARTIFICIAL si la oferta no los pide explícitamente. Si la oferta es puramente operativa, de ventas o de gestión clásica, enfoca el currículum y la carta ÚNICAMENTE en su enorme experiencia operativa, liderazgo y logros en Telecomunicaciones. Habla de IA solo si suma valor directo al dolor de la empresa.
    - No inventes experiencia. Todo debe salir del CV BASE.
 4. Redacta una CARTA DE PRESENTACIÓN densa, elocuente y altamente detallada.
-   - OBLIGATORIO: DEBES USAR SALTOS DE LÍNEA DOBLES (`\n\n`) para separar los párrafos. La carta NO PUEDE SER un solo bloque de texto continuo. Debe tener al menos 3 o 4 párrafos visualmente separados.
+   - OBLIGATORIO: DEBES USAR SALTOS DE LÍNEA DOBLES ('\\n\\n') para separar los párrafos. La carta NO PUEDE SER un solo bloque de texto continuo. Debe tener al menos 3 o 4 párrafos visualmente separados.
    - PROHIBIDO HACER CARTAS CORTAS O SIMPLES. La carta debe tener al menos 4 párrafos extensos y robustos, con una retórica ejecutiva, profunda y persuasiva.
    - Usa la "baseCoverLetter" del CV BASE como tu columna vertebral de narrativa, historia y tono, pero ADÁPTALA MILIMÉTRICAMENTE a las necesidades exactas del puesto. Si el puesto no requiere tecnología, elimina referencias a "Motores de IA" y reemplázalas por "Estrategias de Eficiencia", pero mantén el volumen, la profundidad y el peso de la carta original.
    - Empieza con un gancho corporativo fuerte. Desarrolla extensamente en los párrafos centrales cómo tu experiencia operativa y directiva (citando métricas y logros específicos del CV) se alinea a la perfección para resolver los "puntos de dolor" de la empresa. Cierra con un llamado a la acción rotundo.
