@@ -250,21 +250,78 @@ function App() {
               </p>
             </div>
             
-            <div className="bg-[#0f172a] border border-slate-800 rounded-3xl p-10 shadow-2xl space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Nombre Completo</label>
-                  <input type="text" value={baseCV.name} onChange={(e) => setBaseCV({...baseCV, name: e.target.value})} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner" />
+            <div className="bg-[#0f172a] border border-slate-800 rounded-3xl p-10 shadow-2xl space-y-10">
+              {/* Basic Info */}
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Información Principal</h3>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Nombre Completo</label>
+                    <input type="text" value={baseCV.name} onChange={(e) => setBaseCV({...baseCV, name: e.target.value})} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Título Ejecutivo</label>
+                    <input type="text" value={baseCV.title} onChange={(e) => setBaseCV({...baseCV, title: e.target.value})} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner" />
+                  </div>
                 </div>
+                
                 <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Título Ejecutivo</label>
-                  <input type="text" value={baseCV.title} onChange={(e) => setBaseCV({...baseCV, title: e.target.value})} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner" />
+                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Resumen Profesional Master</label>
+                  <textarea value={baseCV.summary} onChange={(e) => setBaseCV({...baseCV, summary: e.target.value})} className="w-full h-32 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner resize-none leading-relaxed custom-scrollbar" />
                 </div>
               </div>
-              
-              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Resumen Profesional Master</label>
-                <textarea value={baseCV.summary} onChange={(e) => setBaseCV({...baseCV, summary: e.target.value})} className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner resize-none leading-relaxed" />
+
+              {/* Experience */}
+              <div className="space-y-6">
+                <div className="flex justify-between items-center border-b border-slate-800 pb-2">
+                  <h3 className="text-lg font-bold text-slate-200">Experiencia Laboral</h3>
+                  <button onClick={() => setBaseCV({...baseCV, experience: [...baseCV.experience, {title: '', company: '', period: '', location: '', description: ['']}]})} className="text-xs font-bold text-amber-500 hover:text-amber-400">
+                    + Añadir Experiencia
+                  </button>
+                </div>
+                <div className="space-y-6">
+                  {baseCV.experience.map((exp, idx) => (
+                    <div key={idx} className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 space-y-4 relative group">
+                      <button onClick={() => setBaseCV({...baseCV, experience: baseCV.experience.filter((_, i) => i !== idx)})} className="absolute top-4 right-4 text-slate-500 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                        &times; Quitar
+                      </button>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Cargo</label>
+                          <input type="text" value={exp.title} onChange={(e) => { const newExp = [...baseCV.experience]; newExp[idx].title = e.target.value; setBaseCV({...baseCV, experience: newExp}); }} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Empresa</label>
+                          <input type="text" value={exp.company} onChange={(e) => { const newExp = [...baseCV.experience]; newExp[idx].company = e.target.value; setBaseCV({...baseCV, experience: newExp}); }} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Periodo</label>
+                          <input type="text" value={exp.period} onChange={(e) => { const newExp = [...baseCV.experience]; newExp[idx].period = e.target.value; setBaseCV({...baseCV, experience: newExp}); }} placeholder="Ej: 2018 - Presente" className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Ubicación</label>
+                          <input type="text" value={exp.location} onChange={(e) => { const newExp = [...baseCV.experience]; newExp[idx].location = e.target.value; setBaseCV({...baseCV, experience: newExp}); }} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Logros / Funciones (separados por nueva línea)</label>
+                        <textarea value={exp.description.join('\n')} onChange={(e) => { const newExp = [...baseCV.experience]; newExp[idx].description = e.target.value.split('\n').filter(Boolean); setBaseCV({...baseCV, experience: newExp}); }} className="w-full h-24 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 resize-none custom-scrollbar" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Arrays: Skills & Certs */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Habilidades Clave</h3>
+                  <textarea value={baseCV.skills.join('\n')} onChange={(e) => setBaseCV({...baseCV, skills: e.target.value.split('\n').filter(Boolean)})} placeholder="Una habilidad por línea..." className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 resize-none custom-scrollbar leading-relaxed" />
+                </div>
+                <div className="space-y-6">
+                  <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Certificaciones</h3>
+                  <textarea value={baseCV.certifications.join('\n')} onChange={(e) => setBaseCV({...baseCV, certifications: e.target.value.split('\n').filter(Boolean)})} placeholder="Una certificación por línea..." className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 resize-none custom-scrollbar leading-relaxed" />
+                </div>
               </div>
 
               <div className="pt-8 border-t border-slate-800/50 flex justify-end">
