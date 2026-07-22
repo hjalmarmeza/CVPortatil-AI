@@ -22,13 +22,17 @@ OFERTA LABORAL:
 ${jobDescription}
 
 TAREA:
-1. Analiza los requerimientos de la oferta laboral.
-2. Reescribe el "summary", las descripciones de la "experience" y selecciona las "skills" más relevantes del CV BASE para que hagan un match perfecto con la oferta. 
+1. Analiza a fondo los requerimientos de la oferta laboral (dolores, necesidades, keywords).
+2. Reescribe el "summary" y las descripciones de la "experience" del CV BASE. 
+   - CRÍTICO: NO RESUMAS EN EXCESO. Debes mantener el impacto numérico y los logros clave (ej. 20M de clientes, 110.000€, 50 certificaciones, 25 proyectos de IA). El CV debe verse contundente, robusto y muy profesional.
+   - Selecciona las "skills" más relevantes que conecten la experiencia del candidato con lo que pide la oferta.
 3. REGLAS DE ORO PARA EL TONO Y ESTILO:
-   - Usa un lenguaje MUY HUMANO, cercano y directo. Evita la jerga excesivamente técnica, robótica o palabras demasiado sofisticadas ("apalancar", "sinergia", "orquestar", etc.).
-   - ADAPTA EL NIVEL: El candidato no debe sonar "sobrecalificado" (no asustes al reclutador), pero sí debe quedar claro que destaca y es altamente resolutivo y capaz. Muestra que tiene gran experiencia pero que está dispuesto a arremangarse y ejecutar.
-   - No inventes experiencia que el candidato no tiene, solo resalta y adapta lo que ya está en el CV BASE hacia las necesidades específicas de la oferta.
-4. Redacta una carta de presentación persuasiva, humana y empática, dirigida a los reclutadores de esta oferta, utilizando los datos adaptados del CV BASE.
+   - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. No uses un lenguaje demasiado básico o informal; debes sonar como un experto maduro y seguro de sí mismo.
+   - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro o inalcanzable", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza que tienes el bagaje táctico y estratégico, y que estás dispuesto a involucrarte al 100% en la operación diaria ("hands-on").
+   - No inventes experiencia. Todo debe salir del CV BASE.
+4. Redacta una CARTA DE PRESENTACIÓN impactante. 
+   - No hagas una carta genérica ni corta. Debe tener al menos 3 a 4 párrafos bien estructurados.
+   - Empieza con gancho, explica cómo tu experiencia (mencionando métricas del CV base) resuelve exactamente lo que la oferta pide, y cierra con un llamado a la acción seguro y humilde.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
