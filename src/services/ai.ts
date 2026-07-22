@@ -33,6 +33,7 @@ TAREA:
    - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro o inalcanzable", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza que tienes el bagaje táctico y estratégico, y que estás dispuesto a involucrarte al 100% en la operación diaria ("hands-on").
    - No inventes experiencia. Todo debe salir del CV BASE.
 4. Redacta una CARTA DE PRESENTACIÓN impactante. 
+   - RE-ENFOCA Y ADAPTA la carta hacia las necesidades exactas del puesto al que postula. Usa la "baseCoverLetter" del CV BASE como referencia de tono e historia, pero escribe una carta hecha a medida para resolver los dolores específicos de esta oferta en particular.
    - No hagas una carta genérica ni corta. Debe tener al menos 3 a 4 párrafos bien estructurados.
    - Empieza con gancho, explica cómo tu experiencia (mencionando métricas del CV base) resuelve exactamente lo que la oferta pide, y cierra con un llamado a la acción seguro y humilde.
 
