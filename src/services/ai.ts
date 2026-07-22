@@ -31,9 +31,10 @@ TAREA:
 3. REGLAS DE ORO PARA EL TONO Y ESTILO:
    - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. No uses un lenguaje demasiado básico o informal; debes sonar como un experto maduro y seguro de sí mismo.
    - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro o inalcanzable", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza que tienes el bagaje táctico y estratégico, y que estás dispuesto a involucrarte al 100% en la operación diaria ("hands-on").
+   - NO FUERCES TEMAS DE INTELIGENCIA ARTIFICIAL si la oferta no los pide explícitamente. Si la oferta es puramente operativa, de ventas o de gestión clásica, enfoca el currículum y la carta ÚNICAMENTE en su enorme experiencia operativa, liderazgo y logros en Telecomunicaciones. Habla de IA solo si suma valor directo al dolor de la empresa.
    - No inventes experiencia. Todo debe salir del CV BASE.
 4. Redacta una CARTA DE PRESENTACIÓN impactante. 
-   - RE-ENFOCA Y ADAPTA la carta hacia las necesidades exactas del puesto al que postula. Usa la "baseCoverLetter" del CV BASE como referencia de tono e historia, pero escribe una carta hecha a medida para resolver los dolores específicos de esta oferta en particular.
+   - RE-ENFOCA Y ADAPTA la carta hacia las necesidades exactas del puesto al que postula. Usa la "baseCoverLetter" del CV BASE como referencia de tono e historia, pero ADÁPTALA. Si el puesto no requiere tecnología avanzada, elimina de la carta las referencias a "Motores de IA" y enfócate en sus habilidades de liderazgo masivo y eficiencia.
    - No hagas una carta genérica ni corta. Debe tener al menos 3 a 4 párrafos bien estructurados.
    - Empieza con gancho, explica cómo tu experiencia (mencionando métricas del CV base) resuelve exactamente lo que la oferta pide, y cierra con un llamado a la acción seguro y humilde.
 

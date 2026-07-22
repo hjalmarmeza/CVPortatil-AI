@@ -434,6 +434,67 @@ function App() {
              ))}
           </div>
         </div>
+
+        <div style={{ display: 'flex', gap: '30px', marginBottom: '20px' }}>
+          <div style={{ flex: 1 }}>
+            <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Educación</h2>
+            {baseCV.education.map((edu, idx) => (
+              <div key={idx} style={{ marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '10pt', margin: '0 0 2px', color: '#0f172a', fontWeight: '800' }}>{edu.degree}</h3>
+                <p style={{ fontSize: '9pt', margin: 0, color: '#475569' }}>{edu.institution} <span style={{ color: '#b45309', fontWeight: 'bold', marginLeft: '5px' }}>{edu.period}</span></p>
+              </div>
+            ))}
+          </div>
+          
+          <div style={{ flex: 1 }}>
+            <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Idiomas</h2>
+            {baseCV.languages.map((lang, idx) => (
+              <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px dashed #e2e8f0', paddingBottom: '4px' }}>
+                <span style={{ fontSize: '10pt', color: '#0f172a', fontWeight: '700' }}>{lang.language}</span>
+                <span style={{ fontSize: '10pt', color: '#475569' }}>{lang.level}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Dominios Técnicos y Operativos</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+            {baseCV.domainAreas.map((domain, idx) => (
+              <div key={idx}>
+                <h3 style={{ fontSize: '10pt', margin: '0 0 4px', color: '#0f172a', fontWeight: '800' }}>{domain.title}</h3>
+                <p style={{ fontSize: '9pt', margin: 0, color: '#475569', lineHeight: '1.4' }}>{domain.skills.join(', ')}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Certificaciones</h2>
+          <ul style={{ margin: '0', paddingLeft: '18px', fontSize: '9pt', color: '#334155', lineHeight: '1.5', columnCount: 2, columnGap: '20px' }}>
+            {baseCV.certifications.map((cert, i) => (
+              <li key={i} style={{ marginBottom: '4px' }}>{cert}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Portafolio de Innovación Tecnológica</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+            {baseCV.portfolio.slice(0, 6).map((item, idx) => (
+              <div key={idx} style={{ padding: '10px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
+                <h3 style={{ fontSize: '9.5pt', margin: '0 0 4px', color: '#0f172a', fontWeight: '800' }}>{item.title}</h3>
+                <p style={{ fontSize: '8.5pt', margin: 0, color: '#475569', lineHeight: '1.4' }}>{item.description}</p>
+              </div>
+            ))}
+          </div>
+          {baseCV.portfolio.length > 6 && (
+            <p style={{ fontSize: '8.5pt', color: '#64748b', marginTop: '10px', fontStyle: 'italic' }}>
+              * Y {baseCV.portfolio.length - 6} proyectos adicionales en el portafolio completo.
+            </p>
+          )}
+        </div>
+
       </div>
     </div>
   );
