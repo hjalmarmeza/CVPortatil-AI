@@ -132,9 +132,84 @@ export const defaultBaseCV: BaseCV = {
   ],
   portfolio: [
     {
-      title: "Desarrollo de Arquitectura de Software",
-      description: "Desarrollo de una arquitectura de software diversificada con más de 25 proyectos integrales, incluyendo Sistemas de Telemetría, Motores de IA y la nueva división de Motion Comics Ministeriales.",
-      tags: ["IA", "Software", "Telemetría"]
+      title: "Logística y Entregas Rápidas",
+      description: "Arquitecturas de comercio digital y reservas (Alacena). Ecosistemas alojados en Firebase gestionando reglas de horarios nocturnos en tiempo real, integrados nativamente.",
+      tags: ["Comercio Digital", "Bases NoSQL"]
+    },
+    {
+      title: "Sistemas de Gestión Comercial",
+      description: "Planificación de recursos de bases de datos serverless (Kopilot) y gestión del sector de restaurantes (Restaurante360). Consolidación de inventarios y atención.",
+      tags: ["Puntos de Venta", "Planificación"]
+    },
+    {
+      title: "Telemetría y Operaciones Geo",
+      description: "Sistemas Web Progresivos de radares geolocalizados para control y prevención comunitaria (Alerta Vecinal, ChrisLocation), emitiendo alertas de emergencia al instante.",
+      tags: ["Mapas Digitales", "Tiempo Real"]
+    },
+    {
+      title: "Minería de Datos y Autopilotos",
+      description: "Agentes de extracción empresarial y OCR (OptiCompra, Scripto), y sistemas autónomos Text-to-Image para el despliegue de contenido de Marketing en redes (Linkedinmatic V2).",
+      tags: ["Minería Web", "Reconocimiento Óptico"]
+    },
+    {
+      title: "Ingeniería de Emisión & Cloud",
+      description: "Implementación de estaciones de radio 24/7 de alta disponibilidad (MusiChris Live Station, GeoRadio, Musichris App) sobre infraestructura de bajos recursos, mediante arquitectura de transmisión optimizada y auditorías perimetrales (WiFiSentinel).",
+      tags: ["Infraestructura", "Broadcast"]
+    },
+    {
+      title: "Tecnología de Salud e Inclusión",
+      description: "Prevención mediante algoritmos predictivos (MoodWeather), interfaces inclusivas (CHART_LESS) y controles de nutrición médica (Mediclock, AlliMentate).",
+      tags: ["Salud Integral", "Inclusión Digital"]
+    },
+    {
+      title: "Interfaces de Teleoperación",
+      description: "Integración de sistemas de reconocimiento gestual a manos libres (HandRacer) y controladores virtuales asíncronos (Allivision, MediPresenter) para teleoperación física.",
+      tags: ["Sensores Ópticos", "Mandos a Distancia"]
+    },
+    {
+      title: "Asesoría de Modas Computarizada",
+      description: "Modelos predictivos de geometría facial y asesoría visual de indumentaria mediante probadores sintéticos (FaceCut, Style TARA) procesados analíticamente con el motor MLLM.",
+      tags: ["Generación Gráfica", "Análisis Predictivo"]
+    },
+    {
+      title: "Procesadores Lingüísticos",
+      description: "Arquitecturas de interacción avanzadas conectadas a hojas de cálculo. Asistentes estructurales de redacción y comprensión semántica profunda (SELAH, Biblia-Cool, Lírica Celestial).",
+      tags: ["Razonamiento Lógico", "Asistencia Cognitiva"]
+    },
+    {
+      title: "Automatización de Contenido & IA",
+      description: "Motores de procesamiento multimedia, audio inmersivo y despliegue autónomo (MusiChris Atmos, Studio, SOUL, Shorts Engine). Orquestación desatendida mediante Inteligencia Artificial para la creación masiva de activos digitales y control de flujos en tiempo real.",
+      tags: ["Producción Digital", "Workflows IA"]
+    },
+    {
+      title: "Ingeniería de Voz y Comunicaciones",
+      description: "Interfaces de traducción fluida en tiempo real y baja latencia (Talk.Me) orquestadas junto a sistemas de dictado asincrónico para automatizar mapas mentales y resúmenes de gestión directiva (VoxMind AI).",
+      tags: ["Voice-to-Action", "Conversación IA"]
+    },
+    {
+      title: "Experiencias Narrativas con IA",
+      description: "Aplicaciones de bienestar y entretenimiento familiar generadas dinamicamente. Cuentos inmersivos narrados por voz en portugues, disenados para entrenar el oido al idioma y aprender de forma natural. Traduccion interactiva palabra por palabra (Jardin de Historias), sobre arquitectura serverless con proxy Cloudflare.",
+      tags: ["Inmersion Linguistica", "Aprendizaje Activo"]
+    },
+    {
+      title: "Agentes Inteligentes de Monitoreo",
+      description: "Estructuración de bots asíncronos para detección de oportunidades en Real Estate y Finanzas (Vigilante AI). Soluciones integradas para la supervisión proactiva y alertamiento en tiempo real.",
+      tags: ["Automatización Proactiva", "Ecosistemas IA"]
+    },
+    {
+      title: "Sistemas de Mando & Telemetría",
+      description: "Arquitecturas conversacionales de ultra-rápida acción para el control ejecutivo y monitoreo corporativo en tiempo real (Sentry Mezabot). Orquestación serverless conectada a LLMs (Gemini) y canalizaciones Cloud desde la palma de la mano.",
+      tags: ["Interfaces IA", "Control Remoto"]
+    },
+    {
+      title: "Producción Cloud Ministerial & IA",
+      description: "Arquitecturas de alta densidad espiritual para la transformación de temáticas contemporáneas en reflexiones bíblicas (MusiChris Themes, Devocional) y la generación autónoma de contenido ministerial de alto impacto (MusiChris Breath). Orquestación integral en la nube.",
+      tags: ["Cloud Ministerial", "IA Profética"]
+    },
+    {
+      title: "Motion Comic Autónomo & IA Ministerial",
+      description: "Motor de generación de cómics en movimiento con narrativa bíblica (MusiChris Comic). Pipeline automatizado de imagen, texto y audio con filtros de integridad ministerial.",
+      tags: ["IA Generativa", "Narrativa Digital"]
     }
   ],
   baseCoverLetter: `Estimado/a Director/a de Selección,
