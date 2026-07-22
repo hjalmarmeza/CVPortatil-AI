@@ -24,9 +24,10 @@ ${jobDescription}
 TAREA:
 1. Analiza a fondo los requerimientos de la oferta laboral (dolores, necesidades, keywords).
 2. ADAPTACIÓN DEL CV (EL CORAZÓN DE LA TAREA): 
-   - Debes ADECUAR TODO EL CONTENIDO del CV BASE al puesto al que postula. 
-   - NO INVENTES NADA NUEVO, pero RE-ENFOCA, RE-REDACTA y ADAPTA cada logro, viñeta y experiencia para que encaje perfectamente con lo que busca la empresa. Si la oferta pide "gestión ágil", enfoca sus logros pasados en cómo aplicó agilidad. 
-   - El CV resultante no debe ser simple. Debe mantener el mismo nivel de profundidad, impacto y detalle (conservando cifras como 20M de clientes, ahorros, etc.), pero toda la narrativa debe sentirse hecha a medida para la vacante.
+   - Debes ADECUAR Y REESCRIBIR TODO EL CONTENIDO del CV BASE al puesto al que postula.
+   - OBLIGATORIO: No copies y pegues las descripciones de la experiencia. Debes REESCRIBIR cada viñeta (bullet point) de la experiencia integrando naturalmente las palabras clave de la oferta laboral. Cambia el enfoque y la narrativa para que encaje 100% con la oferta.
+   - NO INVENTES NADA NUEVO. Re-enfoca lo que ya existe. Si la oferta pide "gestión ágil", reescribe sus logros pasados resaltando cómo aplicó agilidad.
+   - El CV resultante DEBE SER EXTENSO y detallado (al menos la misma cantidad de viñetas originales por cada cargo), manteniendo OBLIGATORIAMENTE todas las cifras de impacto (20M de clientes, ahorros, certificaciones).
    - Selecciona y destaca solo las "skills" más relevantes que conecten su experiencia real con la oferta.
 3. REGLAS DE ORO PARA EL TONO Y ESTILO:
    - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. No uses un lenguaje demasiado básico o informal; debes sonar como un experto maduro y seguro de sí mismo.

@@ -224,6 +224,102 @@ function App() {
                           ))}
                         </div>
                       </section>
+                      
+                      {/* Technical & Operational Domains */}
+                      <section className="bg-[#0f172a] rounded-3xl p-8 border border-slate-800 shadow-xl">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
+                            <Settings size={16} className="text-amber-500" />
+                          </div>
+                          <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Dominios Técnicos y Operativos</h4>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          {baseCV.domainAreas.map((domain, idx) => (
+                            <div key={idx} className="bg-slate-800/20 rounded-xl p-4 border border-slate-700/30">
+                              <h5 className="font-bold text-slate-100 text-sm mb-2 text-amber-500">{domain.title}</h5>
+                              <p className="text-xs text-slate-300 leading-relaxed">{domain.skills.join(', ')}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </section>
+
+                      {/* Certifications */}
+                      <section className="bg-[#0f172a] rounded-3xl p-8 border border-slate-800 shadow-xl">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
+                            <FileText size={16} className="text-amber-500" />
+                          </div>
+                          <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Certificaciones Destacadas</h4>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-3">
+                          {baseCV.certifications.map((cert, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div> 
+                              <span className="text-xs text-slate-300 leading-relaxed">{cert}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </section>
+
+                      {/* Education and Languages */}
+                      <div className="grid md:grid-cols-2 gap-8">
+                        <section className="bg-[#0f172a] rounded-3xl p-8 border border-slate-800 shadow-xl">
+                          <div className="flex items-center gap-3 mb-6">
+                            <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
+                              <Settings size={16} className="text-amber-500" />
+                            </div>
+                            <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Educación</h4>
+                          </div>
+                          <div className="space-y-4">
+                            {baseCV.education.map((edu, idx) => (
+                              <div key={idx}>
+                                <h5 className="font-bold text-slate-100 text-sm">{edu.degree}</h5>
+                                <p className="text-xs text-slate-400 mt-1">{edu.institution} <span className="text-amber-500 ml-2">{edu.period}</span></p>
+                              </div>
+                            ))}
+                          </div>
+                        </section>
+                        
+                        <section className="bg-[#0f172a] rounded-3xl p-8 border border-slate-800 shadow-xl">
+                          <div className="flex items-center gap-3 mb-6">
+                            <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
+                              <Settings size={16} className="text-amber-500" />
+                            </div>
+                            <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Idiomas</h4>
+                          </div>
+                          <div className="space-y-3">
+                            {baseCV.languages.map((lang, idx) => (
+                              <div key={idx} className="flex justify-between items-center border-b border-slate-800/50 pb-2">
+                                <span className="text-sm text-slate-200">{lang.language}</span>
+                                <span className="text-xs text-amber-500 font-medium bg-amber-500/10 px-2 py-1 rounded">{lang.level}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </section>
+                      </div>
+
+                      {/* Portfolio */}
+                      <section className="bg-[#0f172a] rounded-3xl p-8 border border-slate-800 shadow-xl">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
+                            <Sparkles size={16} className="text-amber-500" />
+                          </div>
+                          <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Portafolio de Innovación Tecnológica</h4>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          {baseCV.portfolio.slice(0, 6).map((item, idx) => (
+                            <div key={idx} className="bg-slate-800/20 rounded-xl p-4 border border-slate-700/30">
+                              <h5 className="font-bold text-slate-100 text-sm mb-2">{item.title}</h5>
+                              <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                        {baseCV.portfolio.length > 6 && (
+                          <p className="text-xs text-slate-500 mt-4 text-center italic">
+                            * Y {baseCV.portfolio.length - 6} proyectos adicionales en el portafolio completo.
+                          </p>
+                        )}
+                      </section>
                     </div>
                   ) : (
                     <div className="h-full flex flex-col items-center justify-center text-slate-500 space-y-6">
