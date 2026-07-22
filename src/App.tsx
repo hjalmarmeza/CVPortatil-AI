@@ -47,6 +47,25 @@ function App() {
     });
   };
 
+  const handleDownloadCoverLetterPDF = () => {
+    const element = document.getElementById('cover-letter-pdf-content');
+    if (!element) return;
+    
+    element.style.display = 'block';
+
+    const opt = {
+      margin: 15,
+      filename: `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`,
+      image: { type: 'jpeg' as const, quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+    };
+
+    html2pdf().from(element).set(opt).save().then(() => {
+      element.style.display = 'none';
+    });
+  };
+
   return (
     <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-amber-500/30">
       {/* Premium Header */}
@@ -157,9 +176,14 @@ function App() {
                   </div>
                   
                   {tailoredData && (
-                    <button onClick={handleDownloadPDF} className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-slate-100 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-slate-600 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
-                      <Download size={16} className="text-amber-500" /> Exportar a PDF
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button onClick={handleDownloadCoverLetterPDF} className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-slate-100 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-slate-600 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                        <Download size={16} className="text-amber-500" /> PDF Carta
+                      </button>
+                      <button onClick={handleDownloadPDF} className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-slate-100 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-slate-600 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                        <Download size={16} className="text-amber-500" /> PDF CV
+                      </button>
+                    </div>
                   )}
                 </div>
 
@@ -608,6 +632,26 @@ function App() {
         </div>
 
       </div>
+
+      {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
+      <div id="cover-letter-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#1F1F1F', fontFamily: '"Arial", sans-serif', margin: 0, padding: '40px', boxSizing: 'border-box' }}>
+        <div style={{ borderBottom: '2px solid #EAE6DD', paddingBottom: '20px', marginBottom: '40px' }}>
+          <h1 style={{ fontSize: '24pt', margin: '0 0 10px', color: '#1F1F1F', fontWeight: '900', letterSpacing: '-0.5px' }}>{baseCV.name}</h1>
+          <h2 style={{ fontSize: '14pt', margin: '0 0 15px', color: '#444', fontWeight: '700' }}>{tailoredData?.tailoredCV?.tailoredTitle || baseCV.title}</h2>
+          <div style={{ display: 'flex', gap: '20px', fontSize: '10pt', color: '#666' }}>
+            <span>{baseCV.contact?.email}</span>
+            <span>{baseCV.contact?.phone}</span>
+            <span>{baseCV.contact?.location}</span>
+          </div>
+        </div>
+        
+        <h3 style={{ fontSize: '12pt', fontWeight: '800', marginBottom: '25px', color: '#1F1F1F' }}>CARTA DE PRESENTACIÓN</h3>
+        
+        <div style={{ fontSize: '11pt', color: '#333', lineHeight: '1.6', whiteSpace: 'pre-line' }}>
+          {tailoredData?.coverLetter}
+        </div>
+      </div>
+
     </div>
   );
 }
