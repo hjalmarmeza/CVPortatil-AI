@@ -23,8 +23,10 @@ ${jobDescription}
 
 TAREA:
 1. Analiza a fondo los requerimientos de la oferta laboral (dolores, necesidades, keywords).
-2. Reescribe el "summary" y las descripciones de la "experience" del CV BASE. 
-   - CRÍTICO: NO RESUMAS EN EXCESO. Debes mantener el impacto numérico y los logros clave (ej. 20M de clientes, 110.000€, 50 certificaciones, 25 proyectos de IA). El CV debe verse contundente, robusto y muy profesional.
+2. ADAPTACIÓN DEL CV (MUY IMPORTANTE): 
+   - NO RESUMAS ni recortes la experiencia. Debes MANTENER todos los logros, viñetas y descripciones del CV BASE casi intactos porque demuestran la capacidad del candidato.
+   - Tu única tarea con la "experience" es agregar sutilmente palabras clave de la oferta laboral dentro de los textos existentes, o reordenar los logros para que lo más relevante quede primero. 
+   - MANTÉN ESTRICTAMENTE todos los números, métricas e hitos clave (ej. 20M de clientes, 110.000€, 50 certificaciones, 25 proyectos de IA). El CV de salida debe ser igual de largo, detallado y robusto que el de entrada.
    - Selecciona las "skills" más relevantes que conecten la experiencia del candidato con lo que pide la oferta.
 3. REGLAS DE ORO PARA EL TONO Y ESTILO:
    - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. No uses un lenguaje demasiado básico o informal; debes sonar como un experto maduro y seguro de sí mismo.
