@@ -242,7 +242,7 @@ function App() {
           </div>
         ) : (
           /* Base CV Editor Tab */
-          <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500">
+          <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500 pb-20">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-slate-100 tracking-tight">Tu Perfil Base</h2>
               <p className="text-slate-400 text-sm mt-3 max-w-xl mx-auto leading-relaxed">
@@ -250,7 +250,7 @@ function App() {
               </p>
             </div>
             
-            <div className="bg-[#0f172a] border border-slate-800 rounded-3xl p-10 shadow-2xl space-y-10">
+            <div className="bg-[#0f172a] border border-slate-800 rounded-3xl p-10 shadow-2xl space-y-12">
               {/* Basic Info */}
               <div className="space-y-6">
                 <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Información Principal</h3>
@@ -267,7 +267,7 @@ function App() {
                 
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Resumen Profesional Master</label>
-                  <textarea value={baseCV.summary} onChange={(e) => setBaseCV({...baseCV, summary: e.target.value})} className="w-full h-32 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner resize-none leading-relaxed custom-scrollbar" />
+                  <textarea value={baseCV.summary} onChange={(e) => setBaseCV({...baseCV, summary: e.target.value})} className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner resize-none leading-relaxed custom-scrollbar" />
                 </div>
               </div>
 
@@ -312,16 +312,69 @@ function App() {
                 </div>
               </div>
 
+              {/* Education & Languages */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center border-b border-slate-800 pb-2">
+                    <h3 className="text-lg font-bold text-slate-200">Educación</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {baseCV.education.map((edu, idx) => (
+                      <div key={idx} className="bg-slate-900/50 border border-slate-800 rounded-lg p-4 space-y-2">
+                        <input type="text" value={edu.degree} onChange={(e) => { const newEdu = [...baseCV.education]; newEdu[idx].degree = e.target.value; setBaseCV({...baseCV, education: newEdu}); }} placeholder="Título" className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                        <div className="flex gap-2">
+                          <input type="text" value={edu.institution} onChange={(e) => { const newEdu = [...baseCV.education]; newEdu[idx].institution = e.target.value; setBaseCV({...baseCV, education: newEdu}); }} placeholder="Institución" className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                          <input type="text" value={edu.period} onChange={(e) => { const newEdu = [...baseCV.education]; newEdu[idx].period = e.target.value; setBaseCV({...baseCV, education: newEdu}); }} placeholder="Periodo" className="w-32 bg-slate-900 border border-slate-700 rounded px-2 py-1 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center border-b border-slate-800 pb-2">
+                    <h3 className="text-lg font-bold text-slate-200">Idiomas</h3>
+                  </div>
+                  <div className="space-y-4">
+                    {baseCV.languages.map((lang, idx) => (
+                      <div key={idx} className="flex gap-4">
+                        <input type="text" value={lang.language} onChange={(e) => { const newL = [...baseCV.languages]; newL[idx].language = e.target.value; setBaseCV({...baseCV, languages: newL}); }} placeholder="Idioma" className="flex-1 bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                        <input type="text" value={lang.level} onChange={(e) => { const newL = [...baseCV.languages]; newL[idx].level = e.target.value; setBaseCV({...baseCV, languages: newL}); }} placeholder="Nivel" className="flex-1 bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Dominio y Portafolio */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Dominios Técnicos</h3>
+                  <textarea value={baseCV.domainAreas.map(d => \`\${d.title}: \${d.skills.join(', ')}\`).join('\n\n')} readOnly className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-xs text-slate-400 focus:outline-none resize-none custom-scrollbar leading-relaxed" />
+                  <p className="text-[10px] text-slate-500 mt-1">Representación de solo lectura en la UI (editar en baseCV.ts directamente).</p>
+                </div>
+                <div className="space-y-6">
+                  <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Portafolio de Innovación</h3>
+                  <textarea value={baseCV.portfolio.map(p => \`\${p.title} - \${p.description}\`).join('\n\n')} readOnly className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-xs text-slate-400 focus:outline-none resize-none custom-scrollbar leading-relaxed" />
+                </div>
+              </div>
+
               {/* Arrays: Skills & Certs */}
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-6">
-                  <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Habilidades Clave</h3>
+                  <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Ecosistema Tech (Skills)</h3>
                   <textarea value={baseCV.skills.join('\n')} onChange={(e) => setBaseCV({...baseCV, skills: e.target.value.split('\n').filter(Boolean)})} placeholder="Una habilidad por línea..." className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 resize-none custom-scrollbar leading-relaxed" />
                 </div>
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Certificaciones</h3>
                   <textarea value={baseCV.certifications.join('\n')} onChange={(e) => setBaseCV({...baseCV, certifications: e.target.value.split('\n').filter(Boolean)})} placeholder="Una certificación por línea..." className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 resize-none custom-scrollbar leading-relaxed" />
                 </div>
+              </div>
+
+              {/* Base Cover Letter */}
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Carta de Presentación Base</h3>
+                <textarea value={baseCV.baseCoverLetter} onChange={(e) => setBaseCV({...baseCV, baseCoverLetter: e.target.value})} className="w-full h-64 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 resize-none custom-scrollbar leading-relaxed" />
               </div>
 
               <div className="pt-8 border-t border-slate-800/50 flex justify-end">
