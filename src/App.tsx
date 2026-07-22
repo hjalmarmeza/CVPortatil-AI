@@ -350,12 +350,12 @@ function App() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Dominios Técnicos</h3>
-                  <textarea value={baseCV.domainAreas.map(d => \`\${d.title}: \${d.skills.join(', ')}\`).join('\n\n')} readOnly className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-xs text-slate-400 focus:outline-none resize-none custom-scrollbar leading-relaxed" />
+                  <textarea value={baseCV.domainAreas.map(d => `${d.title}: ${d.skills.join(', ')}`).join('\n\n')} readOnly className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-xs text-slate-400 focus:outline-none resize-none custom-scrollbar leading-relaxed" />
                   <p className="text-[10px] text-slate-500 mt-1">Representación de solo lectura en la UI (editar en baseCV.ts directamente).</p>
                 </div>
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-2">Portafolio de Innovación</h3>
-                  <textarea value={baseCV.portfolio.map(p => \`\${p.title} - \${p.description}\`).join('\n\n')} readOnly className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-xs text-slate-400 focus:outline-none resize-none custom-scrollbar leading-relaxed" />
+                  <textarea value={baseCV.portfolio.map(p => `${p.title} - ${p.description}`).join('\n\n')} readOnly className="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl px-4 py-4 text-xs text-slate-400 focus:outline-none resize-none custom-scrollbar leading-relaxed" />
                 </div>
               </div>
 
