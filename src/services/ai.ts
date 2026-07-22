@@ -23,11 +23,11 @@ ${jobDescription}
 
 TAREA:
 1. Analiza a fondo los requerimientos de la oferta laboral (dolores, necesidades, keywords).
-2. ADAPTACIÓN DEL CV (MUY IMPORTANTE): 
-   - NO RESUMAS ni recortes la experiencia. Debes MANTENER todos los logros, viñetas y descripciones del CV BASE casi intactos porque demuestran la capacidad del candidato.
-   - Tu única tarea con la "experience" es agregar sutilmente palabras clave de la oferta laboral dentro de los textos existentes, o reordenar los logros para que lo más relevante quede primero. 
-   - MANTÉN ESTRICTAMENTE todos los números, métricas e hitos clave (ej. 20M de clientes, 110.000€, 50 certificaciones, 25 proyectos de IA). El CV de salida debe ser igual de largo, detallado y robusto que el de entrada.
-   - Selecciona las "skills" más relevantes que conecten la experiencia del candidato con lo que pide la oferta.
+2. ADAPTACIÓN DEL CV (EL CORAZÓN DE LA TAREA): 
+   - Debes ADECUAR TODO EL CONTENIDO del CV BASE al puesto al que postula. 
+   - NO INVENTES NADA NUEVO, pero RE-ENFOCA, RE-REDACTA y ADAPTA cada logro, viñeta y experiencia para que encaje perfectamente con lo que busca la empresa. Si la oferta pide "gestión ágil", enfoca sus logros pasados en cómo aplicó agilidad. 
+   - El CV resultante no debe ser simple. Debe mantener el mismo nivel de profundidad, impacto y detalle (conservando cifras como 20M de clientes, ahorros, etc.), pero toda la narrativa debe sentirse hecha a medida para la vacante.
+   - Selecciona y destaca solo las "skills" más relevantes que conecten su experiencia real con la oferta.
 3. REGLAS DE ORO PARA EL TONO Y ESTILO:
    - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. No uses un lenguaje demasiado básico o informal; debes sonar como un experto maduro y seguro de sí mismo.
    - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro o inalcanzable", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza que tienes el bagaje táctico y estratégico, y que estás dispuesto a involucrarte al 100% en la operación diaria ("hands-on").
