@@ -234,7 +234,7 @@ function App() {
                           <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Dominios Técnicos y Operativos</h4>
                         </div>
                         <div className="grid md:grid-cols-2 gap-6">
-                          {baseCV.domainAreas.map((domain, idx) => (
+                          {(tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas).map((domain, idx) => (
                             <div key={idx} className="bg-slate-800/20 rounded-xl p-4 border border-slate-700/30">
                               <h5 className="font-bold text-slate-100 text-sm mb-2 text-amber-500">{domain.title}</h5>
                               <p className="text-xs text-slate-300 leading-relaxed">{domain.skills.join(', ')}</p>
@@ -252,13 +252,18 @@ function App() {
                           <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Certificaciones Destacadas</h4>
                         </div>
                         <div className="grid md:grid-cols-2 gap-3">
-                          {baseCV.certifications.map((cert, idx) => (
+                          {(tailoredData?.tailoredCV?.certifications || baseCV.certifications.slice(0, 8)).map((cert, idx) => (
                             <div key={idx} className="flex items-start gap-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div> 
                               <span className="text-xs text-slate-300 leading-relaxed">{cert}</span>
                             </div>
                           ))}
                         </div>
+                        {(!tailoredData?.tailoredCV?.certifications && baseCV.certifications.length > 8) && (
+                          <p className="text-xs text-slate-500 mt-4 text-center italic">
+                            * Y {baseCV.certifications.length - 8} certificaciones adicionales en el perfil base.
+                          </p>
+                        )}
                       </section>
 
                       {/* Education and Languages */}
@@ -484,34 +489,56 @@ function App() {
       </main>
 
       {/* Renderizado Oculto para el PDF */}
-      <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: 'white', color: 'black', padding: '15mm 15mm', fontFamily: 'Arial, sans-serif' }}>
-        <div style={{ display: 'flex', borderBottom: '3px solid #f59e0b', paddingBottom: '20px', marginBottom: '25px' }}>
-          <div style={{ flex: 1 }}>
-            <h1 style={{ fontSize: '26pt', margin: 0, color: '#0f172a', fontWeight: '900', letterSpacing: '-0.5px' }}>{baseCV.name}</h1>
-            <p style={{ fontSize: '14pt', margin: '8px 0 0', color: '#475569', fontWeight: '600' }}>{baseCV.title}</p>
-          </div>
-          <div style={{ width: '45mm', height: '45mm', borderRadius: '50%', overflow: 'hidden', border: '3px solid #f59e0b', flexShrink: 0 }}>
-            <img src="/profile.png" alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
-        </div>
+      <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: '#F4F1EB', color: '#1F1F1F', fontFamily: '"Arial", sans-serif', margin: 0, padding: 0, boxSizing: 'border-box' }}>
         
-        <div style={{ marginBottom: '25px' }}>
-          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '12px' }}>Perfil Ejecutivo Adaptado</h2>
-          <p style={{ fontSize: '10.5pt', lineHeight: '1.6', color: '#334155' }}>
-            {tailoredData?.tailoredCV?.summary || baseCV.summary}
-          </p>
+        {/* ROW 1: Name (Dark) / Title (Light) */}
+        <div style={{ display: 'flex', minHeight: '160px' }}>
+          <div style={{ width: '40%', backgroundColor: '#1F1F1F', borderBottomRightRadius: '70px', padding: '30px 25px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <h1 style={{ fontSize: '32pt', margin: 0, color: '#FFFFFF', fontWeight: '900', lineHeight: '1.1', letterSpacing: '-1px' }}>{baseCV.name.split(' ')[0]}<br/>{baseCV.name.split(' ').slice(1).join(' ')}</h1>
+          </div>
+          <div style={{ width: '60%', padding: '30px 25px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <h2 style={{ fontSize: '20pt', margin: 0, color: '#1F1F1F', fontWeight: '900', lineHeight: '1.2' }}>{baseCV.title}</h2>
+            <p style={{ fontSize: '10pt', marginTop: '8px', color: '#444', fontWeight: '600' }}>linkedin.com/in/hjalmar-meza</p>
+          </div>
         </div>
 
-        <div style={{ marginBottom: '25px' }}>
-          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Experiencia Destacada</h2>
-          {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => (
-            <div key={idx} style={{ marginBottom: '18px', borderLeft: '2px solid #cbd5e1', paddingLeft: '15px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <h3 style={{ fontSize: '12pt', margin: '0 0 4px', color: '#0f172a', fontWeight: '800' }}>{exp.title}</h3>
-                <span style={{ fontSize: '9pt', color: '#b45309', fontWeight: 'bold' }}>{exp.period}</span>
+        {/* ROW 2: Education (Light) / Summary (Dark) */}
+        <div style={{ display: 'flex', marginTop: '15px' }}>
+          <div style={{ width: '40%', padding: '15px 25px' }}>
+            <h3 style={{ fontSize: '12pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '12px' }}>Educación</h3>
+            {baseCV.education.map((edu, idx) => (
+              <div key={idx} style={{ marginBottom: '10px' }}>
+                <p style={{ fontSize: '9pt', margin: '0 0 2px', color: '#1F1F1F', fontWeight: '800' }}>{edu.degree}</p>
+                <p style={{ fontSize: '8.5pt', margin: 0, color: '#444' }}>{edu.institution}</p>
               </div>
-              <p style={{ fontSize: '10pt', margin: '0 0 8px', color: '#475569', fontWeight: '700' }}>{exp.company} | {exp.location}</p>
-              <ul style={{ margin: '0', paddingLeft: '18px', fontSize: '10pt', color: '#334155', lineHeight: '1.5' }}>
+            ))}
+
+            <h3 style={{ fontSize: '12pt', color: '#1F1F1F', fontWeight: '900', marginTop: '20px', marginBottom: '12px' }}>Idiomas</h3>
+            {baseCV.languages.map((lang, idx) => (
+              <div key={idx} style={{ marginBottom: '6px', display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: '9pt', color: '#1F1F1F', fontWeight: '800' }}>{lang.language}</span>
+                <span style={{ fontSize: '9pt', color: '#666' }}>{lang.level}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ width: '60%', backgroundColor: '#1F1F1F', borderTopLeftRadius: '70px', borderBottomLeftRadius: '70px', padding: '30px 30px 30px 40px', display: 'flex', alignItems: 'center' }}>
+            <p style={{ fontSize: '10pt', lineHeight: '1.6', color: '#F4F1EB', fontWeight: '400' }}>
+              {tailoredData?.tailoredCV?.summary || baseCV.summary}
+            </p>
+          </div>
+        </div>
+
+        {/* ROW 3: Experience (Full Width) */}
+        <div style={{ padding: '20px 25px 10px' }}>
+          <h3 style={{ fontSize: '14pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '15px' }}>Experiencia Destacada</h3>
+          {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => (
+            <div key={idx} style={{ marginBottom: '15px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px' }}>
+                <h4 style={{ fontSize: '11pt', margin: 0, color: '#1F1F1F', fontWeight: '800' }}>{exp.title} en {exp.company}</h4>
+                <span style={{ fontSize: '9pt', color: '#666', fontWeight: '600', fontStyle: 'italic' }}>{exp.period}</span>
+              </div>
+              <ul style={{ margin: '6px 0 0', paddingLeft: '18px', fontSize: '9.5pt', color: '#222', lineHeight: '1.5' }}>
                 {exp.description.map((desc, i) => (
                   <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
                 ))}
@@ -520,75 +547,57 @@ function App() {
           ))}
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Habilidades Clave</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-             {(tailoredData?.tailoredCV?.skills || baseCV.skills).map((skill, idx) => (
-               <span key={idx} style={{ fontSize: '9pt', padding: '5px 10px', backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontWeight: '600' }}>
-                 {skill}
-               </span>
-             ))}
+        {/* ROW 4: Portfolio (Full Width) */}
+        <div style={{ padding: '10px 25px' }}>
+          <h3 style={{ fontSize: '13pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '12px' }}>{tailoredData?.tailoredCV?.portfolioTitle || "Proyectos Destacados"}</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            {(tailoredData?.tailoredCV?.portfolio || baseCV.portfolio.slice(0, 4)).map((item, idx) => (
+              <div key={idx} style={{ padding: '10px', backgroundColor: '#EAE6DD', borderRadius: '8px' }}>
+                <h4 style={{ fontSize: '9.5pt', margin: '0 0 4px', color: '#1F1F1F', fontWeight: '800' }}>{item.title}</h4>
+                <p style={{ fontSize: '8.5pt', margin: 0, color: '#444', lineHeight: '1.4' }}>{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '30px', marginBottom: '20px' }}>
+        {/* ROW 5: Dominios & Certificaciones */}
+        <div style={{ display: 'flex', padding: '15px 25px', gap: '25px' }}>
           <div style={{ flex: 1 }}>
-            <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Educación</h2>
-            {baseCV.education.map((edu, idx) => (
-              <div key={idx} style={{ marginBottom: '10px' }}>
-                <h3 style={{ fontSize: '10pt', margin: '0 0 2px', color: '#0f172a', fontWeight: '800' }}>{edu.degree}</h3>
-                <p style={{ fontSize: '9pt', margin: 0, color: '#475569' }}>{edu.institution} <span style={{ color: '#b45309', fontWeight: 'bold', marginLeft: '5px' }}>{edu.period}</span></p>
+            <h3 style={{ fontSize: '12pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '10px' }}>Dominios Técnicos</h3>
+            {(tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas).map((domain, idx) => (
+              <div key={idx} style={{ marginBottom: '8px' }}>
+                <h4 style={{ fontSize: '9.5pt', margin: '0 0 2px', color: '#1F1F1F', fontWeight: '800' }}>{domain.title}</h4>
+                <p style={{ fontSize: '8.5pt', margin: 0, color: '#444', lineHeight: '1.4' }}>{domain.skills.join(', ')}</p>
               </div>
             ))}
           </div>
-          
           <div style={{ flex: 1 }}>
-            <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Idiomas</h2>
-            {baseCV.languages.map((lang, idx) => (
-              <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px dashed #e2e8f0', paddingBottom: '4px' }}>
-                <span style={{ fontSize: '10pt', color: '#0f172a', fontWeight: '700' }}>{lang.language}</span>
-                <span style={{ fontSize: '10pt', color: '#475569' }}>{lang.level}</span>
-              </div>
-            ))}
+            <h3 style={{ fontSize: '12pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '10px' }}>Certificaciones</h3>
+            <ul style={{ margin: 0, paddingLeft: '15px', fontSize: '8.5pt', color: '#444', lineHeight: '1.4' }}>
+              {(tailoredData?.tailoredCV?.certifications || baseCV.certifications.slice(0, 6)).map((cert, i) => (
+                <li key={i} style={{ marginBottom: '3px' }}>{cert}</li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Dominios Técnicos y Operativos</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
-            {baseCV.domainAreas.map((domain, idx) => (
-              <div key={idx}>
-                <h3 style={{ fontSize: '10pt', margin: '0 0 4px', color: '#0f172a', fontWeight: '800' }}>{domain.title}</h3>
-                <p style={{ fontSize: '9pt', margin: 0, color: '#475569', lineHeight: '1.4' }}>{domain.skills.join(', ')}</p>
-              </div>
-            ))}
+        {/* ROW 6: Footer (Skills on left / Contact on right dark block) */}
+        <div style={{ display: 'flex', marginTop: '10px' }}>
+          <div style={{ width: '60%', padding: '20px 25px' }}>
+            <h3 style={{ fontSize: '12pt', color: '#1F1F1F', fontWeight: '900', marginBottom: '12px' }}>Habilidades Clave</h3>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+               {(tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 10).map((skill, idx) => (
+                 <span key={idx} style={{ fontSize: '8.5pt', padding: '5px 12px', backgroundColor: '#1F1F1F', color: '#F4F1EB', borderRadius: '15px', fontWeight: '700' }}>
+                   {skill}
+                 </span>
+               ))}
+            </div>
           </div>
-        </div>
-
-        <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Certificaciones</h2>
-          <ul style={{ margin: '0', paddingLeft: '18px', fontSize: '9pt', color: '#334155', lineHeight: '1.5', columnCount: 2, columnGap: '20px' }}>
-            {baseCV.certifications.map((cert, i) => (
-              <li key={i} style={{ marginBottom: '4px' }}>{cert}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>{tailoredData?.tailoredCV?.portfolioTitle || "Portafolio de Innovación Tecnológica"}</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
-            {(tailoredData?.tailoredCV?.portfolio || baseCV.portfolio.slice(0, 6)).map((item, idx) => (
-              <div key={idx} style={{ padding: '10px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
-                <h3 style={{ fontSize: '9.5pt', margin: '0 0 4px', color: '#0f172a', fontWeight: '800' }}>{item.title}</h3>
-                <p style={{ fontSize: '8.5pt', margin: 0, color: '#475569', lineHeight: '1.4' }}>{item.description}</p>
-              </div>
-            ))}
+          <div style={{ width: '40%', backgroundColor: '#1F1F1F', borderTopLeftRadius: '70px', padding: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+             <h3 style={{ fontSize: '13pt', margin: '0 0 8px', color: '#F4F1EB', fontWeight: '900' }}>Contacto</h3>
+             <p style={{ fontSize: '9pt', margin: '0 0 4px', color: '#DDD' }}>linkedin.com/in/hjalmar-meza</p>
+             <p style={{ fontSize: '9pt', margin: 0, color: '#DDD' }}>Perú</p>
           </div>
-          {(!tailoredData?.tailoredCV?.portfolio && baseCV.portfolio.length > 6) && (
-            <p style={{ fontSize: '8.5pt', color: '#64748b', marginTop: '10px', fontStyle: 'italic' }}>
-              * Y {baseCV.portfolio.length - 6} proyectos adicionales en el portafolio completo.
-            </p>
-          )}
         </div>
 
       </div>

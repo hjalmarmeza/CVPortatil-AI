@@ -28,6 +28,8 @@ TAREA:
    - OBLIGATORIO: No copies y pegues las descripciones de la experiencia. Debes REESCRIBIR cada viñeta (bullet point) de la experiencia integrando naturalmente las palabras clave de la oferta laboral. Cambia el enfoque y la narrativa para que encaje 100% con la oferta.
    - SELECCIÓN DE PORTAFOLIO: El candidato tiene un "Portafolio de Innovación Tecnológica" muy amplio. NO incluyas todos los proyectos. Selecciona ÚNICAMENTE los 3 a 5 proyectos que más sentido hagan para la oferta laboral. Reescribe la descripción de esos proyectos para conectar con la vacante.
    - TÍTULO DE PORTAFOLIO ADAPTADO: Renombra la sección del portafolio (portfolioTitle) para que haga sentido con el puesto. Por ejemplo, si es un puesto de operaciones, llámalo "Proyectos Destacados de Eficiencia Operativa" en lugar de "Innovación Tecnológica".
+   - DOMINIOS TÉCNICOS Y OPERATIVOS: Filtra y selecciona los dominios que hagan match con la vacante. Puedes renombrar los títulos de los dominios (ej. de "Desarrollo Comercial" a "Estrategia B2B") y selecciona solo las skills internas más relevantes de cada dominio.
+   - CERTIFICACIONES: El CV base tiene muchísimas certificaciones. Selecciona ÚNICAMENTE las 6 a 8 certificaciones más críticas y relevantes para la oferta.
    - NO INVENTES NADA NUEVO. Re-enfoca lo que ya existe. Si la oferta pide "gestión ágil", reescribe sus logros pasados resaltando cómo aplicó agilidad.
    - El CV resultante DEBE SER EXTENSO y detallado (al menos la misma cantidad de viñetas originales por cada cargo), manteniendo OBLIGATORIAMENTE todas las cifras de impacto (20M de clientes, ahorros, certificaciones).
    - Selecciona y destaca solo las "skills" más relevantes que conecten su experiencia real con la oferta.
@@ -55,6 +57,13 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       }
     ],
     "skills": ["...", "..."],
+    "domainAreas": [
+      {
+        "title": "...",
+        "skills": ["...", "..."]
+      }
+    ],
+    "certifications": ["...", "..."],
     "portfolioTitle": "Nombre adaptado de la sección del portafolio",
     "portfolio": [
       {
