@@ -304,17 +304,17 @@ function App() {
                           <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
                             <Sparkles size={16} className="text-amber-500" />
                           </div>
-                          <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Portafolio de Innovación Tecnológica</h4>
+                          <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">{tailoredData?.tailoredCV?.portfolioTitle || "Portafolio de Innovación Tecnológica"}</h4>
                         </div>
                         <div className="grid md:grid-cols-2 gap-4">
-                          {baseCV.portfolio.slice(0, 6).map((item, idx) => (
+                          {(tailoredData?.tailoredCV?.portfolio || baseCV.portfolio.slice(0, 6)).map((item, idx) => (
                             <div key={idx} className="bg-slate-800/20 rounded-xl p-4 border border-slate-700/30">
                               <h5 className="font-bold text-slate-100 text-sm mb-2">{item.title}</h5>
                               <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
                             </div>
                           ))}
                         </div>
-                        {baseCV.portfolio.length > 6 && (
+                        {(!tailoredData?.tailoredCV?.portfolio && baseCV.portfolio.length > 6) && (
                           <p className="text-xs text-slate-500 mt-4 text-center italic">
                             * Y {baseCV.portfolio.length - 6} proyectos adicionales en el portafolio completo.
                           </p>
@@ -575,16 +575,16 @@ function App() {
         </div>
 
         <div>
-          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>Portafolio de Innovación Tecnológica</h2>
+          <h2 style={{ fontSize: '15pt', borderBottom: '2px solid #e2e8f0', paddingBottom: '6px', color: '#0f172a', fontWeight: '800', marginBottom: '15px' }}>{tailoredData?.tailoredCV?.portfolioTitle || "Portafolio de Innovación Tecnológica"}</h2>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
-            {baseCV.portfolio.slice(0, 6).map((item, idx) => (
+            {(tailoredData?.tailoredCV?.portfolio || baseCV.portfolio.slice(0, 6)).map((item, idx) => (
               <div key={idx} style={{ padding: '10px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
                 <h3 style={{ fontSize: '9.5pt', margin: '0 0 4px', color: '#0f172a', fontWeight: '800' }}>{item.title}</h3>
                 <p style={{ fontSize: '8.5pt', margin: 0, color: '#475569', lineHeight: '1.4' }}>{item.description}</p>
               </div>
             ))}
           </div>
-          {baseCV.portfolio.length > 6 && (
+          {(!tailoredData?.tailoredCV?.portfolio && baseCV.portfolio.length > 6) && (
             <p style={{ fontSize: '8.5pt', color: '#64748b', marginTop: '10px', fontStyle: 'italic' }}>
               * Y {baseCV.portfolio.length - 6} proyectos adicionales en el portafolio completo.
             </p>
