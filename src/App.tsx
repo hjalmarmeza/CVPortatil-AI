@@ -70,50 +70,50 @@ function App() {
     <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-amber-500/30">
       {/* Premium Header */}
       <header className="sticky top-0 z-50 bg-[#020617]/80 backdrop-blur-xl border-b border-slate-800/80 shadow-lg shadow-black/20">
-        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 flex items-center justify-center shadow-inner overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 min-h-16 sm:h-20 flex items-center justify-between py-2 sm:py-0">
+          <div className="flex items-center gap-2.5 sm:gap-4">
+            <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 flex items-center justify-center shadow-inner overflow-hidden shrink-0">
               <img src={`${import.meta.env.BASE_URL}icon.jpg`} alt="Logo" className="w-full h-full object-cover" />
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight text-slate-100 flex items-center gap-2">
-                CV Portátil <span className="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 text-sm font-semibold border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.2)]">AI</span>
+              <h1 className="text-base sm:text-xl font-bold tracking-tight text-slate-100 flex items-center gap-1.5 sm:gap-2">
+                CV Portátil <span className="px-1.5 sm:px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 text-xs sm:text-sm font-semibold border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.2)]">AI</span>
               </h1>
-              <p className="text-xs text-slate-500 font-medium mt-0.5">Generador Ejecutivo Inteligente</p>
+              <p className="text-[10px] sm:text-xs text-slate-500 font-medium hidden sm:block">Generador Ejecutivo Inteligente</p>
             </div>
           </div>
           
-          <nav className="flex items-center gap-1 bg-[#0f172a] p-1.5 rounded-xl border border-slate-800/80 shadow-inner">
+          <nav className="flex items-center gap-1 bg-[#0f172a] p-1 sm:p-1.5 rounded-xl border border-slate-800/80 shadow-inner">
             <button 
               onClick={() => setActiveTab('generator')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${activeTab === 'generator' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
+              className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === 'generator' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
             >
-              <Briefcase size={16} />
-              Analizador
+              <Briefcase size={15} />
+              <span>Analizador</span>
             </button>
             <button 
               onClick={() => setActiveTab('base')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${activeTab === 'base' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
+              className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === 'base' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
             >
-              <Settings size={16} />
-              Datos Base
+              <Settings size={15} />
+              <span>Datos Base</span>
             </button>
           </nav>
         </div>
       </header>
 
       {/* Main Content Area */}
-      <main className="max-w-6xl mx-auto px-6 py-12">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {activeTab === 'generator' ? (
-          <div className="grid lg:grid-cols-12 gap-10">
+          <div className="grid lg:grid-cols-12 gap-6 sm:gap-10">
             {/* Left Column: Input (5 cols) */}
-            <div className="lg:col-span-5 space-y-8">
+            <div className="lg:col-span-5 space-y-6 sm:space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-slate-100 tracking-tight flex items-center gap-2">
-                  <Sparkles className="text-amber-500" size={24} />
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight flex items-center gap-2">
+                  <Sparkles className="text-amber-500" size={22} />
                   Adaptación Inteligente
                 </h2>
-                <p className="text-slate-400 text-sm mt-2 leading-relaxed">
+                <p className="text-slate-400 text-xs sm:text-sm mt-1.5 sm:mt-2 leading-relaxed">
                   Pega el requerimiento del puesto. Nuestra IA analizará las palabras clave, adaptará tu experiencia y redactará una carta persuasiva.
                 </p>
               </div>
@@ -133,7 +133,7 @@ function App() {
                     value={jobDescription}
                     onChange={(e) => setJobDescription(e.target.value)}
                     placeholder="Ej: Buscamos un Gerente de Operaciones con 5 años de experiencia en el sector tecnológico..."
-                    className="w-full h-80 bg-transparent text-slate-200 placeholder-slate-600 p-5 focus:outline-none resize-none text-sm leading-relaxed custom-scrollbar"
+                    className="w-full h-56 sm:h-80 bg-transparent text-slate-200 placeholder-slate-600 p-4 sm:p-5 focus:outline-none resize-none text-sm leading-relaxed custom-scrollbar"
                   />
                 </div>
               </div>
@@ -141,25 +141,25 @@ function App() {
               <button 
                 onClick={handleGenerate}
                 disabled={isGenerating || !jobDescription.trim()}
-                className="w-full group relative inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-slate-950 bg-amber-500 rounded-xl overflow-hidden transition-all duration-300 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_40px_-10px_rgba(245,158,11,0.5)]"
+                className="w-full group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-slate-950 bg-amber-500 rounded-xl overflow-hidden transition-all duration-300 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_40px_-10px_rgba(245,158,11,0.5)] text-sm sm:text-base"
               >
                 {isGenerating ? (
-                  <><Loader2 className="animate-spin" size={20} /> Procesando con IA...</>
+                  <><Loader2 className="animate-spin" size={18} /> Procesando con IA...</>
                 ) : (
-                  <><FileText size={20} className="transition-transform group-hover:scale-110" /> Generar Perfil Adaptado</>
+                  <><FileText size={18} className="transition-transform group-hover:scale-110" /> Generar Perfil Adaptado</>
                 )}
               </button>
             </div>
 
             {/* Right Column: Preview (7 cols) */}
             <div className="lg:col-span-7">
-              <div className="bg-[#0f172a] border border-slate-800 rounded-3xl p-8 shadow-2xl flex flex-col h-[800px] relative overflow-hidden">
+              <div className="bg-[#0f172a] border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-2xl flex flex-col h-[550px] sm:h-[800px] relative overflow-hidden">
                 {/* Decorative background glow */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
 
-                <div className="flex items-center justify-between mb-8 pb-6 border-b border-slate-800 relative z-10">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-slate-800 relative z-10">
                   <div>
-                    <h3 className="text-xl font-bold text-slate-100 flex items-center gap-3">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-100 flex items-center gap-3">
                       <div className="relative flex h-3 w-3">
                         {tailoredData ? (
                           <>
@@ -176,12 +176,12 @@ function App() {
                   </div>
                   
                   {tailoredData && (
-                    <div className="flex items-center gap-3">
-                      <button onClick={handleDownloadCoverLetterPDF} className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-slate-100 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-slate-600 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
-                        <Download size={16} className="text-amber-500" /> PDF Carta
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <button onClick={handleDownloadCoverLetterPDF} className="flex-1 sm:flex-none justify-center flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-slate-100 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-slate-600 transition-all shadow-sm hover:shadow-md">
+                        <Download size={15} className="text-amber-500" /> PDF Carta
                       </button>
-                      <button onClick={handleDownloadPDF} className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-slate-100 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-slate-600 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5">
-                        <Download size={16} className="text-amber-500" /> PDF CV
+                      <button onClick={handleDownloadPDF} className="flex-1 sm:flex-none justify-center flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-slate-100 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-slate-600 transition-all shadow-sm hover:shadow-md">
+                        <Download size={15} className="text-amber-500" /> PDF CV
                       </button>
                     </div>
                   )}
