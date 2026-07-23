@@ -69,31 +69,33 @@ function App() {
   return (
     <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-amber-500/30">
       {/* Premium Header */}
-      <header className="sticky top-0 z-50 bg-[#020617]/80 backdrop-blur-xl border-b border-slate-800/80 shadow-lg shadow-black/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 min-h-16 sm:h-20 flex items-center justify-between py-2 sm:py-0">
-          <div className="flex items-center gap-2.5 sm:gap-4">
-            <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 flex items-center justify-center shadow-inner overflow-hidden shrink-0">
-              <img src={`${import.meta.env.BASE_URL}icon.jpg`} alt="Logo" className="w-full h-full object-cover" />
-            </div>
-            <div>
-              <h1 className="text-base sm:text-xl font-bold tracking-tight text-slate-100 flex items-center gap-1.5 sm:gap-2">
-                CV Portátil <span className="px-1.5 sm:px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 text-xs sm:text-sm font-semibold border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.2)]">AI</span>
-              </h1>
-              <p className="text-[10px] sm:text-xs text-slate-500 font-medium hidden sm:block">Generador Ejecutivo Inteligente</p>
+      <header className="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-slate-800/80 shadow-lg shadow-black/20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-0 sm:h-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
+          <div className="flex items-center justify-between sm:justify-start gap-3 w-full sm:w-auto">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 flex items-center justify-center shadow-inner overflow-hidden shrink-0">
+                <img src={`${import.meta.env.BASE_URL}icon.jpg`} alt="Logo" className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h1 className="text-base sm:text-xl font-bold tracking-tight text-slate-100 flex items-center gap-1.5 sm:gap-2">
+                  CV Portátil <span className="px-1.5 sm:px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 text-xs sm:text-sm font-semibold border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.2)]">AI</span>
+                </h1>
+                <p className="text-[10px] sm:text-xs text-slate-500 font-medium hidden sm:block">Generador Ejecutivo Inteligente</p>
+              </div>
             </div>
           </div>
           
-          <nav className="flex items-center gap-1 bg-[#0f172a] p-1 sm:p-1.5 rounded-xl border border-slate-800/80 shadow-inner">
+          <nav className="flex items-center gap-1 bg-[#0f172a] p-1 rounded-xl border border-slate-800/80 shadow-inner w-full sm:w-auto">
             <button 
               onClick={() => setActiveTab('generator')}
-              className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === 'generator' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === 'generator' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
             >
               <Briefcase size={15} />
               <span>Analizador</span>
             </button>
             <button 
               onClick={() => setActiveTab('base')}
-              className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === 'base' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === 'base' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
             >
               <Settings size={15} />
               <span>Datos Base</span>
