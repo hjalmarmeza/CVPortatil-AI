@@ -73,7 +73,7 @@ function App() {
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 flex items-center justify-center shadow-inner overflow-hidden">
-              <img src="/icon.jpg" alt="Logo" className="w-full h-full object-cover" />
+              <img src={`${import.meta.env.BASE_URL}icon.jpg`} alt="Logo" className="w-full h-full object-cover" />
             </div>
             <div>
               <h1 className="text-xl font-bold tracking-tight text-slate-100 flex items-center gap-2">
