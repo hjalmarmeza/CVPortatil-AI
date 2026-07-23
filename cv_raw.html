@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PWA Manifest & iOS Home Screen -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CV Hjalmar">
+  <meta name="theme-color" content="#f59e0b">
+  <!-- Preconnect para acelerar CDNs -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <title>Hjalmar Meza Cortez | Executive Profile</title>
+  <!-- Tailwind CSS compilado (Performance) -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- FontAwesome para los íconos ejecutivos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fuentes de Google (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- React y Babel para que el código funcione directamente en el navegador -->
+
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #020617;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Estilos para la ventana de impresión (PDF) */
+    @media print {
+      @page {
+        size: A4;
+        margin: 12mm 10mm;
+      }
+
+      /* Reseteo Global y Legibilidad */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        text-shadow: none !important;
+        filter: none !important;
+        backdrop-filter: none !important;
+      }
+      
+      header *, main *, aside *, section *, div *, p, span, li, h1, h2, h3, h4 {
+        background-image: none !important;
+      }
+
+      body, html {
+        background: white !important;
+        color: #0f172a !important; /* Azul muy oscuro, casi negro */
+        font-size: 9pt;
+        line-height: 1.25;
+      }
+
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      
+      /* Utilidades de Tailwind missing en el CSS compilado */
+      .print\:block { display: block !important; }
+      .print\:flex { display: flex !important; }
+      .print\:hidden { display: none !important; }
+      .print\:grid { display: grid !important; }
+      .print\:inline { display: inline !important; }
+
+      /* Fix flexbox and overflow clipping para PDFs multipágina */
+      .min-h-screen {
+        min-height: 0 !important;
+        height: auto !important;
+        display: block !important;
+      }
+      .max-w-6xl {
+        overflow: visible !important;
+        height: auto !important;
+        display: block !important;
+      }
+
+      /* Forzar fondos blancos y contraste máximo */
+      .max-w-6xl, #root, body, main, aside, section, div[class*="bg-slate"], div[class*="bg-[#0f172a]"], div[class*="bg-slate-950"] {
+        background-color: white !important;
+        background: white !important;
+        border-color: #cbd5e1 !important; /* Gris medio para bordes */
+        color: #0f172a !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
+
+      /* CORRECCIÓN DE CONTRASTE PARA TEXTO RESALTADO */
+      strong, b, .font-semibold, .font-bold {
+        color: #000000 !important;
+        font-weight: 800 !important;
+      }
+
+      .text-white, .text-slate-50, .text-slate-100, .text-slate-200, .text-slate-300, .text-slate-400 {
+        color: #0f172a !important;
+      }
+
+      .text-amber-500, .text-amber-400, .text-amber-600 {
+        color: #92400e !important; /* Ámbar tostado para máximo contraste en papel */
+      }
+
+      /* Bloque de URLs para impresión */
+      .print-url-label { display: none !important; }
+      @media print {
+        .print-url-label { 
+          display: inline !important; 
+          font-size: 8pt !important;
+          color: #1e293b !important;
+          margin-left: 4px;
+        }
+      }
+
+      /* Header Ejecutivo (Página 1) */
+      header {
+        border-bottom: 3px solid #f59e0b !important;
+        padding-bottom: 15px !important;
+        margin-bottom: 20px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        background: white !important;
+      }
+
+      header h1 { color: #000000 !important; font-size: 24pt !important; margin-bottom: 0 !important; }
+      header p { color: #1e293b !important; font-size: 11pt !important; line-height: 1.2 !important; font-weight: 500 !important; }
+
+      /* Ajuste de Foto en Print - Sin empujar contenido */
+      .print-photo-container {
+        width: 40mm !important;
+        height: 40mm !important;
+        border-width: 3px !important;
+        position: absolute !important;
+        right: 0 !important;
+        top: 5mm !important;
+        z-index: 50 !important;
+      }
+
+      header {
+        position: relative !important;
+        min-height: 42mm !important; /* Asegurar espacio para el texto sin que la foto lo estire más */
+      }
+
+      /* Dashboard de Estadísticas */
+      div[class*="bg-slate-950/40"] {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+        border: 1px solid #94a3b8 !important;
+        padding: 10px 0 !important;
+        margin-bottom: 15px !important;
+        break-inside: avoid;
+      }
+
+      div[class*="bg-slate-900/60"] {
+        border: 1.5px solid #cbd5e1 !important;
+        padding: 8px !important;
+        background: #f8faf9 !important;
+      }
+      
+      div[class*="bg-slate-900/60"] span { color: #64748b !important; font-weight: 700 !important; }
+      div[class*="bg-slate-900/60"] div { color: #000000 !important; font-weight: 900 !important; font-size: 15pt !important; }
+      div[class*="bg-slate-900/60"] .text-slate-400 { color: #64748b !important; font-weight: 600 !important; }
+      div[class*="bg-slate-900/60"] i { color: #f59e0b !important; }
+
+      /* Layout de Columnas */
+      .flex-col.lg-flex-row {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 15px !important;
+      }
+
+      main {
+        flex: 2 !important;
+        border-right: 1px solid #e2e8f0 !important;
+        padding-right: 15px !important;
+      }
+
+      aside { flex: 1 !important; padding-left: 5px !important; }
+
+      /* Títulos de Sección */
+      h2 { 
+        font-size: 13pt !important; 
+        color: #0f172a !important;
+        font-weight: 800 !important;
+        border-bottom: 2px solid #f59e0b !important; 
+        display: block !important;
+        width: 100% !important;
+        padding-bottom: 4px !important; 
+        margin-bottom: 12px !important;
+        page-break-after: avoid;
+      }
+      
+      h2 i { color: #92400e !important; margin-right: 8px !important; }
+      
+      /* Asegurar contraste en etiquetas de acento */
+      .text-amber-500, .text-amber-400, .text-amber-600, .fa-amber-500 {
+        color: #92400e !important;
+      }
+
+      /* Ajuste de Experiencia Laboral (Máximo Contraste) */
+      .experience-item {
+        break-inside: avoid !important;
+        margin-bottom: 12px !important;
+        padding-bottom: 0 !important;
+        border-left: 2px solid #cbd5e1 !important;
+        padding-left: 15px !important;
+      }
+      
+      .experience-item h3 { font-size: 9.5pt !important; color: #000000 !important; margin-bottom: 1px !important; font-weight: 800 !important; }
+      .experience-item span.period-badge { font-size: 7.5pt !important; color: #854d0e !important; background: transparent !important; border: none !important; padding: 0 !important; font-weight: 700 !important; }
+      .experience-item .company-info { color: #1e293b !important; font-size: 8pt !important; margin-bottom: 2px !important; font-weight: 700 !important; }
+      .experience-item li { margin-bottom: 1.5px !important; font-size: 7.5pt !important; line-height: 1.1 !important; color: #334155 !important; }
+      .experience-item i { color: #f59e0b !important; }
+      /* Regla de Oro e Info */
+      .print-no-break, .bg-gradient-to-br {
+        break-inside: avoid !important;
+        padding: 10px !important;
+        margin-bottom: 20px !important;
+        border: 1px solid #f59e0b !important;
+        background: #fffbeb !important;
+      }
+
+      /* Rediseño de Competencias (Página 2) */
+      div[class*="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr !important;
+        gap: 8px !important;
+        margin-top: 5px !important;
+      }
+
+      div[class*="bg-gradient-to-b from-slate-900/80"] {
+        background: white !important;
+        border: 1px solid #e2e8f0 !important;
+        border-top: 4px solid #f59e0b !important;
+        border-radius: 4px !important;
+        padding: 0 !important;
+        break-inside: avoid !important;
+      }
+
+      div[class*="bg-slate-900/50"] { 
+        background: #f1f5f9 !important; 
+        border-bottom: 1.5px solid #cbd5e1 !important; 
+        padding: 5px !important; 
+      }
+      div[class*="bg-slate-900/50"] h3 { font-size: 8pt !important; color: #000000 !important; font-weight: 900 !important; margin-bottom: 0 !important; }
+      div[class*="bg-slate-900/50"] i { font-size: 11pt !important; color: #92400e !important; margin-bottom: 2px !important; }
+
+      div[class*="skills-tags"], div[class*="p-6 w-full flex flex-wrap"] { padding: 5px 6px !important; gap: 3px !important; }
+      span[class*="px-2.5 py-1"] { 
+        background: #f1f5f9 !important; 
+        color: #000000 !important; 
+        font-size: 7.5pt !important; 
+        border: 1px solid #cbd5e1 !important;
+        padding: 1px 4px !important;
+        font-weight: 700 !important;
+      }
+      
+      /* Habilidades (Aptitudes) - Estética Ámbar en PDF */
+      span[class*="bg-amber-500/10"] {
+        border: 1.5px solid #f59e0b !important;
+        background: #fffbeb !important;
+      }
+      span[class*="bg-amber-500/10"] i { color: #d97706 !important; }
+
+      /* Portafolio (Contraste Portafolio) */
+      #innovacion-section { page-break-before: always; padding-top: 15px !important; }
+      #innovacion-section h1 { color: #000000 !important; }
+      #innovacion-section p { color: #1e293b !important; font-weight: 500 !important; }
+      #innovacion-section .group { 
+        padding: 10px !important; 
+        border: 1px solid #94a3b8 !important; 
+        background: white !important;
+        break-inside: avoid !important;
+      }
+      #innovacion-section h3 { color: #000000 !important; font-size: 9pt !important; margin-bottom: 3px !important; font-weight: 900 !important; }
+      #innovacion-section p.text-slate-400 { color: #334155 !important; font-size: 7.5pt !important; line-height: 1.15 !important; font-weight: 500 !important; }
+      #innovacion-section .border-t { border-color: #cbd5e1 !important; padding-top: 5px !important; margin-top: 5px !important; }
+      #innovacion-section .flex-wrap span { font-size: 7pt !important; color: #854d0e !important; background: #fff7ed !important; border: 1px solid #fed7aa !important; font-weight: 700 !important; }
+
+      /* FORZAR SALTO DE PÁGINA antes de secciones estratégicas */
+      .page-break-experience { page-break-before: always !important; break-before: page !important; }
+      .page-break-formacion { page-break-before: always !important; break-before: page !important; }
+      .page-break-skills { 
+        page-break-before: always !important; 
+        break-before: page !important;
+        padding-top: 5mm !important;
+        padding-bottom: 5mm !important;
+      }
+      .page-break-portfolio-end { 
+        page-break-before: always !important; 
+        break-before: page !important;
+        display: block !important;
+        width: 100% !important;
+        height: 1pt !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /* Corregir solapamientos y truncado */
+      h2, h3, span, div, p { letter-spacing: -0.01em !important; }
+      .truncate { overflow: visible !important; text-overflow: clip !important; white-space: normal !important; }
+      
+      /* Ajuste de márgenes para que quepan las certificaciones en Pág 1 */
+      header { margin-bottom: 10px !important; }
+      .space-y-16 > :not([hidden]) ~ :not([hidden]) { margin-top: 25px !important; }
+      .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 15px !important; }
+      .experience-item { margin-bottom: 8px !important; }
+
+      /* Estilos para bloques de Sidebar en Print */
+      .print-sidebar-block {
+        break-inside: avoid !important;
+        margin-bottom: 20px !important;
+      }
+      .print-sidebar-title {
+        font-size: 10pt !important;
+        color: #0f172a !important;
+        font-weight: 800 !important;
+        border-bottom: 1.5px solid #f59e0b !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding-bottom: 3px !important;
+        margin-bottom: 10px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+      }
+      .print-cert-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+      }
+      .print-cert-item {
+        border: 1px solid #e2e8f0 !important;
+        padding: 5px !important;
+        background: #f8fafc !important;
+        border-radius: 4px !important;
+        break-inside: avoid !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      .print-cert-item h4 {
+        font-size: 8.5pt !important;
+        font-weight: 800 !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        line-height: 1.1 !important;
+      }
+      .print-cert-item p {
+        font-size: 7.5pt !important;
+        color: #475569 !important;
+        margin: 2px 0 0 0 !important;
+      }
+
+      /* Footer */
+      .print-footer { position: fixed; bottom: 0; width: 100%; font-size: 7pt; color: #64748b; text-align: center; }
+    }
+
+    /* Clases de control para pantalla */
+    @media screen {
+      .print-only {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TDPLLGYXYB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-TDPLLGYXYB');
+  </script>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+</head>
+
+
+<body>
+  <div id="root"></div>
+
+
+  <script>function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+const {
+  useState
+} = React;
+const StatCard = ({
+  iconClass,
+  label,
+  value,
+  subtext
+}) => /*#__PURE__*/React.createElement("div", {
+  className: "bg-slate-900/60 border border-amber-500/20 p-3 md:p-4 rounded-xl backdrop-blur-md hover:border-amber-500/50 transition-all duration-300 overflow-hidden flex flex-col justify-between print:border-slate-300 print:bg-slate-50"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "flex flex-col sm:flex-row sm:items-center gap-1.5 md:gap-3 mb-2 w-full"
+}, /*#__PURE__*/React.createElement("i", {
+  className: `${iconClass} text-amber-500 text-xs md:text-sm shrink-0 print:text-amber-800`
+}), /*#__PURE__*/React.createElement("span", {
+  className: "text-[8.5px] md:text-[10px] font-black uppercase tracking-wider md:tracking-widest text-slate-500 truncate print:text-slate-700 w-full",
+  title: label
+}, label)), /*#__PURE__*/React.createElement("div", {
+  className: "text-xl md:text-2xl font-bold text-white print:text-black mb-1"
+}, value), /*#__PURE__*/React.createElement("div", {
+  className: "text-[8px] md:text-[9px] leading-tight text-slate-400 uppercase tracking-widest print:text-slate-600"
+}, subtext));
+const ExperienceItem = ({
+  title,
+  period,
+  company,
+  location,
+  items,
+  isLast,
+  customButton
+}) => /*#__PURE__*/React.createElement("div", {
+  className: `relative pl-8 experience-item ${isLast ? '' : 'border-l border-slate-800 pb-10'}`
+}, /*#__PURE__*/React.createElement("div", {
+  className: "absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.6)] no-print"
+}), /*#__PURE__*/React.createElement("div", {
+  className: "flex flex-col md:flex-row md:justify-between md:items-start mb-2 gap-1"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "text-lg font-bold text-white uppercase tracking-tight leading-tight"
+}, title), /*#__PURE__*/React.createElement("div", {
+  className: "flex flex-col md:items-end items-start gap-1 mt-2 md:mt-0 shrink-0"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "text-xs font-mono text-amber-500/70 bg-amber-500/5 px-2 py-1 rounded border border-amber-500/10 whitespace-nowrap period-badge w-fit"
+}, period), customButton)), /*#__PURE__*/React.createElement("div", {
+  className: "text-slate-400 text-sm font-semibold mb-4 company-info"
+}, company, " | ", location), /*#__PURE__*/React.createElement("ul", {
+  className: "space-y-3 experience-list"
+}, items.map((item, idx) => /*#__PURE__*/React.createElement("li", {
+  key: idx,
+  className: "flex gap-3 text-sm text-slate-400 leading-relaxed"
+}, /*#__PURE__*/React.createElement("i", {
+  className: "fas fa-chevron-right text-amber-500 text-[10px] shrink-0 mt-1.5"
+}), /*#__PURE__*/React.createElement("span", null, item)))));
+const App = () => {
+  const [showToast, setShowToast] = useState(false);
+  const [activeTab, setActiveTab] = useState('perfil');
+  const [activeNav, setActiveNav] = useState('perfil');
+
+  const handleTabChange = (tab) => {
+    if (activeNav === tab) return;
+    setActiveNav(tab);
+    // Pequeño timeout para no bloquear el renderizado del nav
+    setTimeout(() => {
+      setActiveTab(tab);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, 10);
+  };
+
+  const infografiaURL = "https://hjalmarmeza.github.io/cv/carta_presentacion.html";
+  const miFotoURL = "https://lh3.googleusercontent.com/d/1deuM9cErfKSgeUM777akFZ0htDdMzwH7";
+  const backupFotoURL = "https://media.licdn.com/dms/image/v2/D4D03AQE-3z7U3v5u4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706634358178?e=1746057600&v=beta&t=o1n46L9z_B07Y7iY0K1G_Y9B5Xf0u8-6S7K2Z8J9wY8";
+  const qrCodeImg = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(infografiaURL)}&color=D4AF37&bgcolor=0a1120`;
+  const handleDownloadPDF = () => {
+    window.print();
+  };
+  const stats = [{
+    iconClass: "fas fa-award",
+    label: "Experiencia",
+    value: "18 Años",
+    subtext: "Liderazgo en Sector Telco"
+  }, {
+    iconClass: "fas fa-users",
+    label: "Escalabilidad",
+    value: "20M+",
+    subtext: "Migración de Clientes"
+  }, {
+    iconClass: "fas fa-chart-line",
+    label: "Rentabilidad",
+    value: "110K €",
+    subtext: "Ahorro en Modernización"
+  }, {
+    iconClass: "fas fa-store",
+    label: "Infraestructura",
+    value: "52",
+    subtext: "Tiendas Gestionadas"
+  }];
+  const certCategories = [{
+    category: "IA & Estrategia Digital",
+    iconClass: "fas fa-brain",
+    items: [{
+      title: "Habilidades Humanas en la Era de IA",
+      org: "Microsoft"
+    }, {
+      title: "Productividad con Agentes de IA",
+      org: "Microsoft"
+    }, {
+      title: "Estrategia de IA Generativa",
+      org: "Microsoft"
+    }, {
+      title: "Ingeniería de Prompts",
+      org: "LinkedIn"
+    }, {
+      title: "Fundamentos de IA en Azure",
+      org: "Microsoft"
+    }, {
+      title: "Mentalidad Digital",
+      org: "LinkedIn"
+    }]
+  }, {
+    category: "Transformación & CX",
+    iconClass: "fas fa-chart-bar",
+    items: [{
+      title: "Estrategia de Experiencia del Cliente",
+      org: "LinkedIn"
+    }, {
+      title: "Transformación Digital",
+      org: "LinkedIn"
+    }, {
+      title: "NPS y Lealtad del Cliente",
+      org: "Telefónica"
+    }, {
+      title: "Pensamiento Estratégico",
+      org: "LinkedIn"
+    }, {
+      title: "Diseño de Servicios",
+      org: "LinkedIn"
+    }, {
+      title: "Experiencia Omnicanal",
+      org: "LinkedIn"
+    }]
+  }, {
+    category: "Liderazgo Exponencial",
+    iconClass: "fas fa-users-cog",
+    items: [{
+      title: "Liderazgo en la Era Digital",
+      org: "Tec. de Monterrey"
+    }, {
+      title: "Liderazgo Transformador",
+      org: "LinkedIn"
+    }, {
+      title: "Culturas de Alto Rendimiento",
+      org: "LinkedIn"
+    }, {
+      title: "Habilidades de Innovación",
+      org: "LinkedIn"
+    }, {
+      title: "Inteligencia Emocional",
+      org: "LinkedIn"
+    }, {
+      title: "Coaching Directivo",
+      org: "CENTRUM"
+    }, {
+      title: "Gestión del Cambio",
+      org: "LinkedIn"
+    }]
+  }, {
+    category: "Eficiencia & Comunicación",
+    iconClass: "fas fa-comments",
+    items: [{
+      title: "Gestión del Tiempo",
+      org: "LinkedIn"
+    }, {
+      title: "Comunicación Empresarial",
+      org: "LinkedIn"
+    }, {
+      title: "Comunicación Consciente",
+      org: "LinkedIn"
+    }, {
+      title: "Presencia Ejecutiva",
+      org: "LinkedIn"
+    }, {
+      title: "Optimización de Productividad",
+      org: "LinkedIn"
+    }, {
+      title: "Oratoria y Hablar en Público",
+      org: "LinkedIn"
+    }]
+  }, {
+    category: "Gestión & Compliance",
+    iconClass: "fas fa-shield-alt",
+    items: [{
+      title: "Experto en RGPD (UE)",
+      org: "LinkedIn"
+    }, {
+      title: "Gestión Ágil",
+      org: "LinkedIn"
+    }, {
+      title: "Pensamiento de Diseño (Design Thinking)",
+      org: "LinkedIn"
+    }, {
+      title: "Mitigación de Riesgos",
+      org: "Telefónica"
+    }, {
+      title: "Gestión de Proyectos",
+      org: "LinkedIn"
+    }, {
+      title: "Ética Empresarial",
+      org: "LinkedIn"
+    }]
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "min-h-screen text-slate-300 font-sans p-0 md:p-10 bg-slate-950 flex justify-center selection:bg-amber-500/30 relative pb-20 md:pb-10"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "max-w-6xl w-full bg-[#0a1120] md:border border-slate-800 md:shadow-2xl md:rounded-3xl overflow-hidden relative"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute top-[-100px] right-[-100px] w-[500px] h-[500px] pointer-events-none no-print",
+    style: { background: "radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 70%)" }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] pointer-events-none no-print",
+    style: { background: "radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)" }
+  }), /*#__PURE__*/React.createElement("header", {
+    className: `relative p-6 md:p-12 border-b border-slate-800/50 ${activeTab === 'perfil' ? 'flex' : 'hidden md:flex'} flex-col md:flex-row justify-between items-center md:items-start gap-10`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex-1 text-center md:text-left"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "inline-block px-3 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[10px] font-black uppercase tracking-[0.2em] mb-4"
+  }, "Perfil Ejecutivo / Senior Management"), /*#__PURE__*/React.createElement("h1", {
+    className: "text-4xl md:text-6xl font-black text-white tracking-tighter mb-4"
+  }, "HJALMAR ", /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500"
+  }, "MEZA CORTEZ")), /*#__PURE__*/React.createElement("p", {
+    className: "text-lg md:text-xl font-medium text-slate-400 max-w-2xl leading-snug mb-8"
+  }, "L\xEDder de Operaciones & Transformaci\xF3n Digital | Estratega en Automatizaci\xF3n de Procesos e IA Generativa"), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col md:flex-row items-center md:items-start gap-6"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap justify-center md:justify-start gap-3"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://www.linkedin.com/in/hjalmar-meza",
+    target: "_blank",
+    rel: "noreferrer",
+    className: "flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-700 transition-all text-sm font-bold print:border-slate-300 print:bg-white"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fab fa-linkedin text-amber-500"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "no-print"
+  }, "Perfil LinkedIn"), /*#__PURE__*/React.createElement("span", {
+    className: "hidden print:inline text-[8pt]"
+  }, "linkedin.com/in/hjalmar-meza")), /*#__PURE__*/React.createElement("div", {
+    className: "hidden print:flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 bg-white text-sm font-bold"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-globe text-amber-600"
+  }), " hjalmarmeza.github.io/cv"), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-800 bg-slate-900/40 text-sm print:border-slate-200 print:bg-white"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-envelope text-amber-500"
+  }), " hjalmar.meza@gmail.com"), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-800 bg-slate-900/40 text-sm"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-map-marker-alt text-amber-500"
+  }), " Salamanca, Espa\xF1a")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap justify-center md:justify-start gap-3 no-print mt-2"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: handleDownloadPDF,
+    className: "flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-2 rounded-xl font-black text-sm transition-all shadow-[0_0_15px_rgba(245,158,11,0.3)] cursor-pointer"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-download"
+  }), " Descargar CV"), /*#__PURE__*/React.createElement("a", {
+    href: "https://calendar.app.google/MWMTrJf3pKRLHb3H6",
+    target: "_blank",
+    rel: "noreferrer",
+    className: "flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-2 rounded-xl font-black text-sm transition-all shadow-[0_0_15px_rgba(245,158,11,0.3)] cursor-pointer"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "far fa-calendar-alt"
+  }), " Agendar Cita")))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row md:flex-col items-center gap-4 md:gap-6 shrink-0 bg-slate-900/30 p-4 rounded-3xl border border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "relative group no-print"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute -inset-1 bg-gradient-to-tr from-amber-500 to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-700"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "relative w-32 h-32 md:w-52 md:h-52 rounded-xl border border-amber-500/30 overflow-hidden bg-slate-900"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: miFotoURL,
+    alt: "Hjalmar Meza Cortez",
+    className: "w-full h-full object-cover transition-all duration-700 scale-100 group-hover:scale-105",
+    onError: e => {
+      e.target.src = backupFotoURL;
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "hidden print:block mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-24 h-24 rounded-full border-4 border-amber-500 overflow-hidden bg-slate-800 print-photo-container"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: miFotoURL,
+    alt: "Hjalmar Meza Cortez",
+    className: "w-full h-full object-cover"
+  }))), /*#__PURE__*/React.createElement("a", {
+    href: infografiaURL,
+    target: "_blank",
+    rel: "noreferrer",
+    className: "flex flex-col items-center gap-2 bg-slate-950/80 p-2 md:p-3 rounded-2xl border border-amber-500/30 shadow-lg group hover:border-amber-500 transition-all cursor-pointer hover:-translate-y-1 no-print"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bg-white p-1 rounded-lg"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: qrCodeImg,
+    alt: "QR Code Dashboard",
+    className: "w-14 h-14 md:w-20 md:h-20"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "text-center"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "text-[7px] md:text-[8px] font-black text-amber-500 uppercase tracking-widest"
+  }, "\uD83D\uDCCC Escanea o Click aqu\xED"), /*#__PURE__*/React.createElement("p", {
+    className: "text-[9px] md:text-[10px] font-black text-white uppercase tracking-tighter flex items-center gap-1 justify-center"
+  }, "Carta de Presentaci\xF3n ", /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-external-link-alt text-[8px] ml-1"
+  })))))), /*#__PURE__*/React.createElement("div", {
+    className: `gap-4 p-6 md:p-12 bg-slate-950/40 grid-cols-2 md:grid-cols-4 print:bg-white print:border-b-2 print:border-slate-100 ${activeTab === 'perfil' ? 'grid' : 'hidden md:grid'}`
+  }, stats.map((stat, idx) => /*#__PURE__*/React.createElement(StatCard, _extends({
+    key: idx
+  }, stat)))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col lg:flex-row print:flex-row"
+  }, /*#__PURE__*/React.createElement("main", {
+    className: `flex-[1.2] p-6 md:p-12 md:border-r border-slate-800/50 print:block ${activeTab === 'perfil' ? 'block' : 'hidden md:block'}`
+  }, /*#__PURE__*/React.createElement("section", {
+    className: "mb-14"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-4 mb-6"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "h-[2px] w-8 bg-amber-500"
+  }), /*#__PURE__*/React.createElement("h2", {
+    className: "text-2xl font-black text-white uppercase tracking-tighter flex items-center gap-3"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-user-circle text-amber-500"
+  }), " Acerca de M\xED")), /*#__PURE__*/React.createElement("p", {
+    className: "text-sm md:text-base text-slate-400 leading-relaxed mb-14 text-justify print:text-slate-800"
+  }, "L\xEDder de Operaciones con 18 a\xF1os de trayectoria en el sector Telecomunicaciones, especializado en la transformaci\xF3n digital de canales de atenci\xF3n masiva y la optimizaci\xF3n de la Experiencia del Cliente (CX). Experto en orquestar equipos de alto rendimiento y liderar la transici\xF3n de entornos f\xEDsicos a digitales, logrando eficiencias operativas demostradas. Actualmente, fusiono mi s\xF3lido background corporativo con la implementaci\xF3n estrat\xE9gica de ", /*#__PURE__*/React.createElement("strong", {
+    className: "text-slate-200 font-semibold print:text-black"
+  }, "Inteligencia Artificial Generativa y automatizaci\xF3n de procesos"), " para escalar la rentabilidad empresarial de manera \xE1gil y estructurada."), /*#__PURE__*/React.createElement("div", {
+    className: "relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-slate-900/50 to-transparent border border-amber-500/30 shadow-[0_0_20px_rgba(245,158,11,0.05)] group hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] transition-all duration-500 print-no-break"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute top-[-10px] left-6 px-4 py-1 bg-[#0a1120] border border-amber-500/50 rounded-lg text-amber-500 text-[10px] font-black uppercase tracking-widest no-print"
+  }, "Mi Regla de Oro"), /*#__PURE__*/React.createElement("div", {
+    className: "hidden print:block text-[10px] font-black text-amber-600 uppercase tracking-widest mb-2"
+  }, "MI REGLA DE ORO"), /*#__PURE__*/React.createElement("p", {
+    className: "text-lg md:text-xl font-bold text-slate-300 italic leading-snug print:text-slate-800 print:text-base"
+  }, "\"", /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500 font-black"
+  }, "Lo que funciona, NO se toca"), "; pero lo que puede optimizarse, lo transformo mediante flujos de trabajo aut\xF3nomos y soluciones de IA que generan valor inmediato.\""))), /*#__PURE__*/React.createElement("section", {
+    className: "page-break-experience"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-4 mb-10 print:mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "h-[2px] w-8 bg-amber-500"
+  }), /*#__PURE__*/React.createElement("h2", {
+    className: "text-xl md:text-2xl font-black text-white uppercase tracking-tighter flex items-center gap-3 print:text-lg"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-briefcase text-amber-500"
+  }), " Experiencia & Legado")), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-12"
+  }, /*#__PURE__*/React.createElement(ExperienceItem, {
+    title: "Gestor de Negocio Familiar & Consultor IA",
+    period: "2021 \u2014 Actualidad",
+    company: "Emprendimiento & Advisory",
+    location: "Espa\xF1a / Remoto",
+    items: [/*#__PURE__*/React.createElement(React.Fragment, {
+      key: "item1"
+    }, "Direcci\xF3n y administraci\xF3n integral de un ", /*#__PURE__*/React.createElement("strong", null, "negocio familiar"), ", liderando las operaciones diarias, rentabilidad y estrategias de fidelizaci\xF3n de clientes."), /*#__PURE__*/React.createElement(React.Fragment, {
+      key: "item2"
+    }, "En paralelo, inmersi\xF3n intensiva en tecnolog\xEDas de vanguardia, logrando m\xE1s de 50 certificaciones globales (IA, Cloud, CX, Agile)."), /*#__PURE__*/React.createElement(React.Fragment, {
+      key: "item3"
+    }, "Implementaci\xF3n estrat\xE9gica de herramientas de ", /*#__PURE__*/React.createElement("strong", null, "IA Generativa (Gemini, Claude, ChatGPT)"), " aplicadas a la rentabilidad y eficiencia de procesos operativos."), /*#__PURE__*/React.createElement(React.Fragment, {
+      key: "item4"
+    }, /*#__PURE__*/React.createElement("strong", null, "Entorno Tecnológico:"), " Google Workspace, Trello, Make.com, Herramientas de IA Generativa.")]
+  }), /*#__PURE__*/React.createElement(ExperienceItem, {
+    title: "Supervisor de Operaciones",
+    period: "2021 \u2014 2021",
+    company: "Telef\xF3nica",
+    location: "Lima, Per\xFA",
+    items: ["Dirección de 48 gestores de Call Center con foco en cumplimiento de SLAs y excelencia en atención masiva.", "Supervisión de logística de instalaciones fijas y gestión estratégica de cobranzas corporativas.", "Optimización de KPIs críticos elevando la productividad del personal mediante sesiones de coaching.", /*#__PURE__*/React.createElement(React.Fragment, { key: "item_op1" }, /*#__PURE__*/React.createElement("strong", null, "KPIs Gestionados:"), " NPS, IRP (Resolución de Problemas), Churn Rate, ARPU."), /*#__PURE__*/React.createElement(React.Fragment, { key: "item_op2" }, /*#__PURE__*/React.createElement("strong", null, "Entorno Tecnológico:"), " Amdocs, ISC, SAP, Microsoft Teams.")]
+  }), /*#__PURE__*/React.createElement(ExperienceItem, {
+    title: "Supervisor de Control de Calidad",
+    period: "2017 \u2014 2021",
+    company: "Telef\xF3nica",
+    location: "Lima, Per\xFA",
+    items: [/*#__PURE__*/React.createElement(React.Fragment, {
+      key: "qa1"
+    }, "Ejecuci\xF3n de pruebas t\xE9cnicas y estabilizaci\xF3n de sistemas para garantizar la ", /*#__PURE__*/React.createElement("strong", {
+      className: "text-amber-500 font-black"
+    }, "migraci\xF3n masiva y exitosa de m\xE1s de 20 MILLONES de clientes"), "."), /*#__PURE__*/React.createElement(React.Fragment, {
+      key: "qa2"
+    }, "Identificaci\xF3n proactiva de incidencias y testing exhaustivo, asegurando que la nueva plataforma igualara y superara las funciones del sistema anterior."), /*#__PURE__*/React.createElement(React.Fragment, {
+      key: "qa3"
+    }, "Mitigaci\xF3n de riesgos y gesti\xF3n de la fase 'Marcha Blanca', certificando la estabilidad operativa de productos fijos y m\xF3viles previo a la liberaci\xF3n masiva.")]
+  }), /*#__PURE__*/React.createElement(ExperienceItem, {
+    title: "Supervisor Regional (Norte, Centro y Oriente)",
+    period: "2009 \u2014 2017",
+    company: "Telef\xF3nica",
+    location: "Lima, Per\xFA",
+    isLast: true,
+    customButton: /*#__PURE__*/React.createElement("a", {
+      href: "mapa_demo.html",
+      className: "inline-flex items-center justify-center gap-1.5 px-3 py-1 mt-1 text-[10px] font-bold text-white uppercase tracking-widest bg-slate-800/80 border border-slate-700 hover:border-amber-500 hover:text-amber-500 rounded-lg transition-all shadow-[0_4px_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_12px_rgba(245,158,11,0.25)] no-print",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fas fa-map-marked-alt text-amber-500"
+    }), " MAPA"),
+    items: ["Dirección estratégica de 52 Centros de Atención gestionando ~160.000 clientes mensuales.", "Ahorro de 110.000 € liderando el proyecto de remodelación y modernización integral de tiendas de atención y venta.", "Reducción del 15% en la carga de atención física presencial mediante virtualización estratégica.", /*#__PURE__*/React.createElement(React.Fragment, { key: "item_reg1" }, /*#__PURE__*/React.createElement("strong", null, "Métricas de Retail y Sucursales:"), " Tráfico de Tienda (Footfall), Tasa de Convertibilidad, Venta Cruzada, TMO, TME, Tasa de Abandono, ARPU."), /*#__PURE__*/React.createElement(React.Fragment, { key: "item_reg2" }, /*#__PURE__*/React.createElement("strong", null, "Entorno Tecnológico:"), " Qmatic, Bmatic (Flujo de Clientes), Amdocs, SAP, Microsoft Teams.")]
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-800/50 no-print"
+  }, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("h3", {
+    className: "text-xs font-black text-white uppercase tracking-[0.3em] mb-6 flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-graduation-cap text-amber-500"
+  }), " Formaci\xF3n"), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "relative pl-5 border-l-2 border-amber-500/30"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-white text-xs md:text-sm font-bold uppercase tracking-tight"
+  }, "Grado en Administraci\xF3n"), /*#__PURE__*/React.createElement("div", {
+    className: "text-amber-500/80 text-[10px] md:text-[11px] font-bold mt-1.5"
+  }, "Univ. C\xE9sar Vallejo | 2011-2014")), /*#__PURE__*/React.createElement("div", {
+    className: "relative pl-5 border-l-2 border-slate-800"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-white text-xs md:text-sm font-bold uppercase tracking-tight"
+  }, "Liderazgo en la Era Digital"), /*#__PURE__*/React.createElement("div", {
+    className: "text-slate-500 text-[10px] md:text-[11px] mt-1.5 font-medium uppercase"
+  }, "Tecnol\xF3gico de Monterrey | 2026")), /*#__PURE__*/React.createElement("div", {
+    className: "relative pl-5 border-l-2 border-slate-800"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-white text-xs md:text-sm font-bold uppercase tracking-tight"
+  }, "Coaching Directivo"), /*#__PURE__*/React.createElement("div", {
+    className: "text-slate-500 text-[10px] md:text-[11px] mt-1.5 font-medium"
+  }, "CENTRUM PUCP")), /*#__PURE__*/React.createElement("div", {
+    className: "relative pl-5 border-l-2 border-slate-800"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-white text-xs md:text-sm font-bold uppercase tracking-tight"
+  }, "Gesti\xF3n del Logro"), /*#__PURE__*/React.createElement("div", {
+    className: "text-slate-500 text-[10px] md:text-[11px] mt-1.5 font-medium"
+  }, "CENTRUM PUCP")))), /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("h3", {
+    className: "text-xs font-black text-white uppercase tracking-[0.3em] mb-6 flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-language text-amber-500"
+  }), " Idiomas"), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "relative pl-5 border-l-2 border-amber-500/30"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-white text-xs md:text-sm font-bold uppercase tracking-tight"
+  }, "Espa\xF1ol"), /*#__PURE__*/React.createElement("div", {
+    className: "text-amber-500/80 text-[10px] md:text-[11px] font-bold mt-1.5 uppercase"
+  }, "Nativo")), /*#__PURE__*/React.createElement("div", {
+className: "relative pl-5 border-l-2 border-slate-800"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-white text-xs md:text-sm font-bold uppercase tracking-tight"
+  }, "Ingl\xE9s"), /*#__PURE__*/React.createElement("div", {
+    className: "text-slate-500 text-[10px] md:text-[11px] mt-1.5 font-medium uppercase"
+  }, "B\xE1sico (A2)")))))), /*#__PURE__*/React.createElement("aside", {
+    className: `flex-1 bg-slate-950/20 p-6 md:p-12 space-y-16 overflow-hidden print:block ${activeTab === 'skills' ? 'block' : 'hidden md:block'}`
+  }, /*#__PURE__*/React.createElement("section", {
+    className: "print-only print-sidebar-block"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "print-sidebar-title"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-trophy"
+  }), " Logros Corporativos"), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase leading-tight"
+  }, "Migraci\xF3n Masiva 20M"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-600 leading-tight"
+  }, "Estabilizaci\xF3n de sistemas cr\xEDticos en el hito m\xE1s grande de Telef\xF3nica Per\xFA.")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase leading-tight"
+  }, "Eficiencia de Reducci\xF3n (15%)"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-600 leading-tight"
+  }, "Virtualizaci\xF3n exitosa de la atenci\xF3n f\xEDsica a canales digitales.")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase leading-tight"
+  }, "Gesti\xF3n Senior Multi-Sede"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-600 leading-tight"
+  }, "Direcci\xF3n de 52 centros de atenci\xF3n a nivel nacional.")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase leading-tight"
+  }, "Ahorro OpEx (110k \u20AC)"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-600 leading-tight"
+  }, "Optimizaci\xF3n mediante remodelaci\xF3n estrat\xE9gica de infraestructura.")))), /*#__PURE__*/React.createElement("section", {
+    className: "print-only print-sidebar-block"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "print-sidebar-title"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-language"
+  }), " Idiomas"), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-1.5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex justify-between items-center px-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase"
+  }, "Espa\xF1ol"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-amber-600 font-bold uppercase"
+  }, "Nativo")), /*#__PURE__*/React.createElement("div", {
+    className: "lang-bar-bg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "lang-bar-fill",
+    style: {
+      width: '100%'
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col gap-1.5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex justify-between items-center px-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase"
+  }, "Ingl\xE9s"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-500 font-bold uppercase"
+  }, "B\xE1sico (A2)")), /*#__PURE__*/React.createElement("div", {
+    className: "lang-bar-bg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "lang-bar-fill",
+    style: {
+      width: '35%'
+    }
+  }))))), /*#__PURE__*/React.createElement("section", {
+    className: "print-only print-sidebar-block page-break-formacion"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "print-sidebar-title"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-graduation-cap"
+  }), " Formaci\xF3n"), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col border-l-2 border-amber-500/20 pl-3"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase leading-tight"
+  }, "Grado en Administraci\xF3n"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-500"
+  }, "Univ. C\xE9sar Vallejo | 2011-2014")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col border-l-2 border-slate-200 pl-3"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase leading-tight"
+  }, "Liderazgo en la Era Digital"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-500 uppercase"
+  }, "Tecnol\xF3gico de Monterrey | 2026")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col border-l-2 border-slate-200 pl-3"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase leading-tight"
+  }, "Coaching Directivo"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-500"
+  }, "CENTRUM PUCP")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col border-l-2 border-slate-200 pl-3"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] font-black text-slate-800 uppercase leading-tight"
+  }, "Gesti\xF3n del Logro"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] text-slate-500"
+  }, "CENTRUM PUCP")))), /*#__PURE__*/React.createElement("section", {
+    className: "print-only print-sidebar-block"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "print-sidebar-title"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-shield-alt"
+  }), " Top Certificaciones"), /*#__PURE__*/React.createElement("div", {
+    className: "print-cert-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "print-cert-item"
+  }, /*#__PURE__*/React.createElement("h4", null, "IA Generativa"), /*#__PURE__*/React.createElement("p", null, "Microsoft / LinkedIn")), /*#__PURE__*/React.createElement("div", {
+    className: "print-cert-item"
+  }, /*#__PURE__*/React.createElement("h4", null, "Productividad IA"), /*#__PURE__*/React.createElement("p", null, "Microsoft / LinkedIn")), /*#__PURE__*/React.createElement("div", {
+    className: "print-cert-item"
+  }, /*#__PURE__*/React.createElement("h4", null, "Azure AI Studio"), /*#__PURE__*/React.createElement("p", null, "Microsoft")), /*#__PURE__*/React.createElement("div", {
+    className: "print-cert-item"
+  }, /*#__PURE__*/React.createElement("h4", null, "Liderazgo Digital"), /*#__PURE__*/React.createElement("p", null, "Tec. de Monterrey")), /*#__PURE__*/React.createElement("div", {
+    className: "print-cert-item"
+  }, /*#__PURE__*/React.createElement("h4", null, "CX Strategy"), /*#__PURE__*/React.createElement("p", null, "LinkedIn")), /*#__PURE__*/React.createElement("div", {
+    className: "print-cert-item"
+  }, /*#__PURE__*/React.createElement("h4", null, "Experto RGPD"), /*#__PURE__*/React.createElement("p", null, "LinkedIn (UE)")), /*#__PURE__*/React.createElement("div", {
+    className: "print-cert-item"
+  }, /*#__PURE__*/React.createElement("h4", null, "Agile & Design Thinking"), /*#__PURE__*/React.createElement("p", null, "LinkedIn")))), /*#__PURE__*/React.createElement("section", {
+    className: "no-print"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "text-xs font-black text-white uppercase tracking-[0.3em] mb-10 flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-shield-alt text-amber-500"
+  }), " Evoluci\xF3n de Certificaciones"), /*#__PURE__*/React.createElement("div", {
+    className: "relative cert-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute left-[20px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-amber-500/80 via-amber-500/20 to-transparent cert-line-p"
+  }), certCategories.map((cat, idx) => /*#__PURE__*/React.createElement("div", {
+    key: idx,
+    className: "relative flex flex-col pl-16 mb-8 group cert-container-p"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute left-0 top-3 w-11 h-11 rounded-full bg-slate-950 border-2 border-slate-800 group-hover:border-amber-500 flex items-center justify-center text-slate-500 group-hover:text-amber-500 z-10 shadow-[0_0_10px_rgba(245,158,11,0)] group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-500 cert-icon-p"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: `${cat.iconClass} text-base`
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "bg-slate-900/40 p-5 rounded-2xl border border-slate-800 group-hover:border-amber-500/30 transition-all duration-500 cert-item-p"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "text-amber-500 font-black uppercase text-[11px] md:text-xs tracking-widest mb-4"
+  }, cat.category), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2"
+  }, cat.items.map((item, i) => /*#__PURE__*/React.createElement("span", {
+    key: i,
+    className: "px-2.5 py-1.5 bg-slate-950 border border-slate-800/80 text-[10px] md:text-[11px] font-bold text-slate-300 uppercase rounded hover:border-amber-500/50 transition-colors"
+  }, item.title, " ", /*#__PURE__*/React.createElement("span", {
+    className: "opacity-40 ml-1 font-black"
+  }, "(", item.org, ")")))))))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-8 p-4 bg-amber-500/5 border border-amber-500/10 rounded-2xl text-center"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "text-[10px] text-slate-500 italic uppercase tracking-widest"
+  }, "+50 Certificaciones Adicionales Vigentes en Gesti\xF3n y Tecnolog\xEDa"))), /*#__PURE__*/React.createElement("section", {
+    className: "print-only print-sidebar-block"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "print-sidebar-title"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-microchip"
+  }), " Ecosistema Tech"), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2"
+  }, ["GEMINI / CLAUDE", "AZURE AI", "MAKE.COM", "FIREBASE", "OCR / MLLM", "SERVERLESS", "AGILE MGMT", "CX STRATEGY"].map(tool => /*#__PURE__*/React.createElement("span", {
+    key: tool,
+    className: "px-2 py-1 bg-slate-50 border border-slate-200 text-[8px] font-black uppercase text-slate-900 rounded"
+  }, tool)))))), /*#__PURE__*/React.createElement("div", {
+    className: `${activeTab === 'innovacion' ? 'block' : 'hidden md:block'} print:block`
+  }, /*#__PURE__*/React.createElement("section", {
+    className: "p-6 md:p-12 border-t border-slate-800/50 bg-[#0a1120] relative z-20 print:bg-white print:border-slate-100 page-break-skills"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-center mb-10 print:mb-6"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mb-3 border border-slate-800 bg-slate-900 shadow-[0_0_15px_rgba(245,158,11,0.1)] inline-flex items-center px-4 py-1.5 rounded-full print:bg-white print:text-amber-600 print:border-amber-500 no-print"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-bolt text-amber-500 mr-2"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "text-white mr-1.5 print:text-amber-600"
+  }, "Competencias"), " ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 mr-1.5 print:text-slate-400"
+  }, "&"), " ", /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500"
+  }, "Aptitudes")), /*#__PURE__*/React.createElement("div", {
+    className: "hidden print:block text-[10px] font-black text-amber-600 uppercase tracking-widest mb-4"
+  }, "\u26A1 COMPETENCIAS & APTITUDES"), /*#__PURE__*/React.createElement("h2", {
+    className: "text-2xl md:text-3xl font-black text-white uppercase tracking-tighter print:text-slate-900 print:text-xl print:mb-2"
+  }, "\xC1reas de Dominio T\xE9cnico y Operativo"), /*#__PURE__*/React.createElement("div", {
+    className: "flex justify-center gap-6 mt-6 mb-6 flex-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2 text-[9px] uppercase font-bold text-slate-400 print:text-slate-600"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-check-circle text-slate-500"
+  }), " Competencias (Executive)"), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2 text-[9px] uppercase font-bold text-amber-500 print:text-amber-700"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-star text-amber-500"
+  }), " Habilidades (Aptitudes)"))), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 print:gap-x-14 print:gap-y-20 relative z-10 print:mt-10"
+  }, [{
+    icon: "fas fa-users-cog",
+    title: "Liderazgo Organizacional",
+    skills: [{
+      name: "Liderazgo Transformador",
+      type: "comp"
+    }, {
+      name: "Dirección de Equipos",
+      type: "comp"
+    }, {
+      name: "Culturas de Alto Desempeño",
+      type: "comp"
+    }, {
+      name: "Resolución de Problemas",
+      type: "apt"
+    }, {
+      name: "Toma de Decisiones",
+      type: "apt"
+    }, {
+      name: "Conflictología",
+      type: "comp"
+    }]
+  }, {
+    icon: "fas fa-microchip",
+    title: "Transformación & IA",
+    skills: [{
+      name: "Transformación Digital",
+      type: "comp"
+    }, {
+      name: "IA Generativa & Agentes",
+      type: "comp"
+    }, {
+      name: "Ingeniería de Prompts",
+      type: "comp"
+    }, {
+      name: "Ecosistemas Cloud (Azure)",
+      type: "comp"
+    }, {
+      name: "Análisis y Decisión Técnica",
+      type: "apt"
+    }, {
+      name: "Productividad de IA",
+      type: "apt"
+    }]
+  }, {
+    icon: "fas fa-cogs",
+    title: "Gestión de Operaciones",
+    skills: [{
+      name: "Rentabilidad de Negocios",
+      type: "comp"
+    }, {
+      name: "Optimización de KPIs",
+      type: "comp"
+    }, {
+      name: "Mitigación de Riesgos",
+      type: "comp"
+    }, {
+      name: "Gestión de Proyectos",
+      type: "comp"
+    }, {
+      name: "Coordinación Logística",
+      type: "comp"
+    }, {
+      name: "Agilidad Estratégica",
+      type: "apt"
+    }]
+  }, {
+    icon: "fas fa-chart-line",
+    title: "Desarrollo Comercial",
+    skills: [{
+      name: "Estrategia Comercial",
+      type: "comp"
+    }, {
+      name: "Negociación",
+      type: "comp"
+    }, {
+      name: "Prospección de Ventas",
+      type: "comp"
+    }, {
+      name: "Marketing Digital",
+      type: "comp"
+    }, {
+      name: "Eficacia de Ventas",
+      type: "comp"
+    }, {
+      name: "Análisis de Tendencias",
+      type: "apt"
+    }]
+  }, {
+    icon: "fas fa-handshake",
+    title: "Experiencia del Cliente (CX)",
+    skills: [{
+      name: "Satisfacción del Cliente",
+      type: "comp"
+    }, {
+      name: "Relaciones CRM",
+      type: "comp"
+    }, {
+      name: "Gestión de Conflictos",
+      type: "comp"
+    }, {
+      name: "Comunicación Profesional",
+      type: "comp"
+    }, {
+      name: "Atención al Cliente",
+      type: "comp"
+    }, {
+      name: "Empatía",
+      type: "apt"
+    }]
+  }, {
+    icon: "fas fa-brain",
+    title: "Habilidades Humanas",
+    skills: [{
+      name: "Inteligencia Emocional",
+      type: "comp"
+    }, {
+      name: "Pensamiento Crítico",
+      type: "comp"
+    }, {
+      name: "Creatividad e Innovación",
+      type: "apt"
+    }, {
+      name: "Comunicación Interpersonal",
+      type: "comp"
+    }, {
+      name: "Gestión del Tiempo",
+      type: "comp"
+    }, {
+      name: "Adaptabilidad",
+      type: "apt"
+    }]
+  }, {
+    icon: "fas fa-scroll",
+    title: "IA Ministerial & Narrativa",
+    skills: [{
+      name: "Motion Comic Autónomo",
+      type: "comp"
+    }, {
+      name: "Narrativa Profética IA",
+      type: "comp"
+    }, {
+      name: "Dirección Cinematográfica",
+      type: "comp"
+    }, {
+      name: "Orquestación de Media",
+      type: "apt"
+    }, {
+      name: "Filtros de Integridad IA",
+      type: "apt"
+    }, {
+      name: "Despliegue Cloud Forge",
+      type: "comp"
+    }]
+  }].map((grupo, idx) => /*#__PURE__*/React.createElement("div", {
+    key: idx,
+    className: "relative flex flex-col items-center bg-gradient-to-b from-slate-900/80 to-transparent border-t-4 border-amber-500 rounded-b-2xl overflow-hidden group hover:shadow-[0_0_30px_rgba(245,158,11,0.08)] transition-all duration-500 print:bg-white print:border-2 print:border-slate-200"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col items-center justify-center p-6 bg-slate-900/50 w-full border-b border-slate-800 relative overflow-hidden print:bg-slate-50 print:border-slate-200"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-amber-500/5 rounded-full blur-xl group-hover:bg-amber-500/10 transition-colors print:hidden"
+  }), /*#__PURE__*/React.createElement("i", {
+    className: `${grupo.icon} text-3xl md:text-4xl text-amber-500 opacity-60 group-hover:opacity-100 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 relative z-10 print:text-amber-800 print:opacity-100`
+  }), /*#__PURE__*/React.createElement("h3", {
+    className: "mt-4 text-[10px] md:text-[11px] font-black tracking-[0.2em] uppercase text-white text-center leading-tight relative z-10 print:text-black"
+  }, grupo.title)), /*#__PURE__*/React.createElement("div", {
+    className: "p-6 w-full flex flex-wrap justify-center gap-2.5"
+  }, grupo.skills.map((skill, i) => /*#__PURE__*/React.createElement("span", {
+    key: i,
+    className: `px-2.5 py-1 md:px-3 md:py-1.5 text-[8px] md:text-[9px] font-bold uppercase tracking-wide rounded-lg backdrop-blur-md transition-all duration-300 border flex items-center gap-1.5
+                          ${skill.type === 'apt' ? 'bg-amber-500/10 text-amber-500 border-amber-500/30 hover:bg-amber-500/30 hover:-translate-y-1' : 'bg-slate-800/50 text-slate-300 border-slate-700 hover:border-slate-500 hover:-translate-y-1'}`
+  }, /*#__PURE__*/React.createElement("i", {
+    className: skill.type === 'apt' ? 'fas fa-star text-[7px]' : 'fas fa-check-circle text-[7px]'
+  }), skill.name))))))), /*#__PURE__*/React.createElement("section", {
+    id: "innovacion-section",
+    className: "p-8 md:p-12 mb-8 mt-8 border-t border-slate-800/50 bg-slate-950/20 print:bg-white"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mb-12 text-center relative z-10 w-full col-span-full print:mb-8"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "text-[10px] md:text-xs font-black text-amber-500 uppercase tracking-[0.3em] mb-4 border border-amber-500/20 bg-amber-500/10 inline-block px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.1)] print:border-amber-500 print:text-amber-600 print:tracking-normal"
+  }, "Centro de Innovaci\xF3n y Desarrollo"), /*#__PURE__*/React.createElement("h1", {
+    className: "text-3xl md:text-5xl font-black text-white uppercase tracking-tighter print:text-slate-900"
+  }, "Portafolio de ", /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500"
+  }, "Innovaci\xF3n Tecnol\xF3gica")), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-sm md:text-base max-w-4xl mx-auto mt-5 leading-relaxed font-medium print:text-slate-600"
+  }, "Desarrollo de una arquitectura de software diversificada con m\xE1s de 25 proyectos integrales, incluyendo Sistemas de Telemetr\xEDa, Motores de IA y la nueva divisi\xF3n de Motion Comics Ministeriales.")), /*#__PURE__*/React.createElement("div", {
+    className: "relative w-full overflow-hidden mb-16 py-12 no-print group"
+  }, /*#__PURE__*/React.createElement("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+                    @keyframes slide-infinite {
+                      0% { transform: translateX(0); }
+                      100% { transform: translateX(-50%); }
+                    }
+                    .glass-rail {
+                      position: absolute;
+                      top: 50%;
+                      left: 0;
+                      right: 0;
+                      height: 1px;
+                      background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
+                      transform: translateY(-50%);
+                      z-index: 0;
+                    }
+                    .carousel-track {
+                      display: flex;
+                      width: calc(262px * 34); /* (250px + 12px margin) * 34 */
+                      animation: slide-infinite 60s linear infinite;
+                      position: relative;
+                      z-index: 10;
+                    }
+                    /* ELIMINADO: Ya no se detiene al pasar el mouse */
+                    .frame-container {
+                      width: 250px;
+                      height: 150px;
+                      flex-shrink: 0;
+                      margin-right: 12px;
+                      overflow: visible;
+                      position: relative;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      z-index: 10;
+                    }
+                    .frame-container:hover {
+                      z-index: 50;
+                    }
+                    .frame-img {
+                      width: 100%;
+                      height: 100%;
+                      object-fit: contain; 
+                      border-radius: 12px; /* ESQUINAS REDONDEADAS COMO SOLICITADO */
+                      filter: saturate(0.8) drop-shadow(0 8px 15px rgba(0,0,0,0.4));
+                      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                      cursor: pointer;
+                    }
+                    .frame-container:hover .frame-img {
+                      filter: saturate(1.1) drop-shadow(0 15px 30px rgba(245, 158, 11, 0.25));
+                      transform: translateY(-8px) scale(1.05);
+                    }
+                    .frame-indicator {
+                      position: absolute;
+                      top: -30px; /* Un poco más de espacio */
+                      left: 0;
+                      right: 0;
+                      text-align: center;
+                      opacity: 0;
+                      transform: translateY(10px);
+                      transition: all 0.3s ease;
+                      pointer-events: none;
+                      z-index: 100 !important; /* ASEGURAR QUE SALGA SIEMPRE POR DELANTE */
+                    }
+                    .frame-container:hover .frame-indicator {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                    .cat-label {
+                      display: inline-block;
+                      background: rgba(245, 158, 11, 0.25);
+                      color: #fff;
+                      border: 1px solid rgba(245, 158, 11, 0.5);
+                      padding: 4px 12px;
+                      border-radius: 6px;
+                      font-size: 8px;
+                      font-weight: 900;
+                      text-transform: uppercase;
+                      letter-spacing: 0.15em;
+                      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+                      backdrop-filter: blur(8px);
+                    }
+                    .frame-name {
+                      position: absolute;
+                      bottom: -30px;
+                      left: 0;
+                      right: 0;
+                      color: white;
+                      font-size: 10px;
+                      font-weight: 900;
+                      text-transform: uppercase;
+                      letter-spacing: 0.1em;
+                      opacity: 0;
+                      transition: all 0.3s ease;
+                      text-align: center;
+                      z-index: 100;
+                    }
+                    .frame-container:hover .frame-name {
+                      opacity: 1;
+                      bottom: -22px;
+                    }
+                  `
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "glass-rail"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "carousel-track"
+  }, (() => {
+    const appData = [{
+      file: "Alerta vecinal.jpg",
+      cat: "Telemetría y Operaciones Geo",
+      name: "Alerta Vecinal"
+    }, {
+      file: "Allimentate.jpg",
+      cat: "Tecnología de Salud e Inclusión",
+      name: "Allimentate"
+    }, {
+      file: "Allivision.jpg",
+      cat: "Interfaces de Teleoperación",
+      name: "Allivision"
+    }, {
+      file: "chartless.jpg",
+      cat: "Tecnología de Salud e Inclusión",
+      name: "Chart Less"
+    }, {
+      file: "Facecut.jpg",
+      cat: "Asesoría de Modas Computarizada",
+      name: "FaceCut"
+    }, {
+      file: "Georadio.jpg",
+      cat: "Auditoría de Redes y Medios",
+      name: "GeoRadio"
+    }, {
+      file: "Handracer.jpg",
+      cat: "Interfaces de Teleoperación",
+      name: "HandRacer"
+    }, {
+      file: "Jardim de historia.jpg",
+      cat: "Experiencias Narrativas con IA",
+      name: "Jardim de Historia"
+    }, {
+      file: "Kopilot.jpg",
+      cat: "Sistemas de Gestión Comercial",
+      name: "Kopilot"
+    }, {
+      file: "Linkedinmatic.jpg",
+      cat: "Minería de Datos y Autopilotos",
+      name: "Linkedinmatic"
+    }, {
+      file: "Moodweather.jpg",
+      cat: "Tecnología de Salud e Inclusión",
+      name: "MoodWeather"
+    }, {
+      file: "musichris_themes_v.png",
+      cat: "Producción Cloud Ministerial & IA",
+      name: "MusiChris Themes"
+    }, {
+      file: "musichris_breath_v.png",
+      cat: "Producción Cloud Ministerial & IA",
+      name: "MusiChris Breath"
+    }, {
+      file: "musichris_devocional_v.png",
+      cat: "Producción Cloud Ministerial & IA",
+      name: "MusiChris Devocional"
+    }, {
+      file: "musichris_radio_v.png",
+      cat: "Auditoría de Redes y Medios",
+      name: "MusiChris Radio"
+    }, {
+      file: "musichris_atmos_v.png",
+      cat: "Automatización de Contenido & IA",
+      name: "MusiChris Atmos"
+    }, {
+      file: "musichris_studio_v.png",
+      cat: "Automatización de Contenido & IA",
+      name: "MusiChris Studio"
+    }, {
+      file: "musichris_shorts_v.png",
+      cat: "Producción Cloud Animada & IA",
+      name: "MusiChris Shorts Engine"
+    }, {
+      file: "Restaurant.jpg",
+      cat: "Sistemas de Gestión Comercial",
+      name: "Restaurante360"
+    }, {
+      file: "Talkme.jpg",
+      cat: "Ingeniería de Voz y Comunicaciones",
+      name: "Talk.Me"
+    }, {
+      file: "Tara.jpg",
+      cat: "Asesoría de Modas Computarizada",
+      name: "Style TARA"
+    }, {
+      file: "Vigilante Ai.jpg",
+      cat: "Agentes Inteligentes de Monitoreo",
+      name: "Vigilante AI"
+    }, {
+      file: "voxmind.jpg",
+      cat: "Ingeniería de Voz y Comunicaciones",
+      name: "VoxMind AI"
+    }, {
+      file: "musichris_verse_v.png",
+      cat: "Motion Comic Autónomo & IA Ministerial",
+      name: "MusiChris Comic"
+    }];
+    const allApps = [...appData, ...appData]; // Double for seamless loop
+
+    return allApps.map((app, idx) => /*#__PURE__*/React.createElement("div", {
+      key: idx,
+      className: "frame-container"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "frame-indicator"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "cat-label"
+    }, app.cat)), /*#__PURE__*/React.createElement("img", {
+      src: app.url || `fotogramas/fotogramas_hjal/optimized/${app.file.replace(/ /g, '%20')}`,
+      alt: app.name,
+      className: "frame-img",
+      loading: "lazy"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "frame-name"
+    }, app.name)));
+  })())), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 mb-8"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-motorcycle text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Log\xEDstica y Entregas R\xE1pidas"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Arquitecturas de comercio digital y reservas ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Alacena)"), ". Ecosistemas alojados en ", /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500/80 font-bold"
+  }, "Firebase"), " gestionando reglas de horarios nocturnos en tiempo real, integrados nativamente."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Comercio Digital"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Bases NoSQL"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-store text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Sistemas de Gesti\xF3n Comercial"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Planificaci\xF3n de recursos de bases de datos serverless ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Kopilot)"), " y gesti\xF3n del sector de restaurantes ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Restaurante360)"), ". Consolidaci\xF3n de inventarios y atenci\xF3n."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Puntos de Venta"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Planificaci\xF3n"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-map-marked-alt text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Telemetr\xEDa y Operaciones Geo"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Sistemas Web Progresivos de radares geolocalizados para control y prevenci\xF3n comunitaria ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Alerta Vecinal, ChrisLocation)"), ", emitiendo alertas de emergencia al instante."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Mapas Digitales"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Tiempo Real"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-database text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Miner\xEDa de Datos y Autopilotos"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Agentes de extracci\xF3n empresarial y OCR ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(OptiCompra, Scripto)"), ", y sistemas aut\xF3nomos Text-to-Image para el despliegue de contenido de Marketing en redes ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Linkedinmatic V2)"), "."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Miner\xEDa Web"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Reconocimiento \xD3ptico"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-tower-broadcast text-amber-500 text-lg"
+  })), /*#__PURE__*/React.createElement("a", {
+    href: "https://hjalmarmeza.github.io/Musichristudio_radio/",
+    target: "_blank",
+    title: "Sintonizar MusiChris Studio Radio Live",
+    className: "musichris-radio-widget no-print"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "widget-logo-container"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "assets/musichris_logo.png",
+    alt: "Logo"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "widget-shine"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "widget-text-container"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "widget-label"
+  }, "Live Station"), /*#__PURE__*/React.createElement("span", {
+    className: "widget-title"
+  }, "MusiChris Radio")))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "INGENIER\xCDA DE EMISI\xD3N & CLOUD"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Implementaci\xF3n de estaciones de radio 24/7 de alta disponibilidad ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(MusiChris Live Station, GeoRadio, Musichris App)"), " sobre infraestructura de bajos recursos, mediante ", /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500/80 font-bold"
+  }, "arquitectura de transmisi\xF3n optimizada"), " y auditor\xEDas perimetrales ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(WiFiSentinel)"), "."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "INFRAESTRUCTURA"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "BROADCAST"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-heartbeat text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Tecnolog\xEDa de Salud e Inclusi\xF3n"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Prevenci\xF3n mediante algoritmos predictivos ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(MoodWeather)"), ", interfaces inclusivas ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(CHART_LESS)"), " y controles de nutrici\xF3n m\xE9dica ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Mediclock, AlliMentate)"), "."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Salud Integral"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Inclusi\xF3n Digital"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-hand-paper text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Interfaces de Teleoperaci\xF3n"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Integraci\xF3n de sistemas de reconocimiento gestual a manos libres ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(HandRacer)"), " y controladores virtuales as\xEDncronos ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Allivision, MediPresenter)"), " para teleoperaci\xF3n f\xEDsica."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Sensores \xD3pticos"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Mandos a Distancia"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-camera-retro text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Asesor\xEDa de Modas Computarizada"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Modelos predictivos de geometr\xEDa facial y asesor\xEDa visual de indumentaria mediante probadores sint\xE9ticos ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(FaceCut, Style TARA)"), " procesados anal\xEDticamente con el motor MLLM."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Generaci\xF3n Gr\xE1fica"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "An\xE1lisis Predictivo"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col md:col-span-2 lg:col-span-1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-brain text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Procesadores Ling\xFC\xEDsticos"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Arquitecturas de interacci\xF3n avanzadas conectadas a hojas de c\xE1lculo. Asistentes estructurales de redacci\xF3n y comprensi\xF3n sem\xE1ntica profunda ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(SELAH, Biblia-Cool, L\xEDrica Celestial)"), "."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Razonamiento L\xF3gico"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Asistencia Cognitiva")))), /*#__PURE__*/React.createElement("div", {
+    className: "hidden print:block page-break-portfolio-end"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 print:mt-12"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-clapperboard text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "AUTOMATIZACI\xD3N DE CONTENIDO & IA"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Motores de procesamiento multimedia, audio inmersivo y despliegue aut\xF3nomo ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(MusiChris Atmos, Studio, SOUL, Shorts Engine)"), ". Orquestaci\xF3n desatendida mediante ", /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500/80 font-bold"
+  }, "Inteligencia Artificial"), " para la creaci\xF3n masiva de activos digitales y control de flujos en tiempo real."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "PRODUCCI\xD3N DIGITAL"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "WORKFLOWS IA"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-microphone-lines text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Ingenier\xEDa de Voz y Comunicaciones"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Interfaces de traducci\xF3n fluida en tiempo real y baja latencia ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Talk.Me)"), " orquestadas junto a sistemas de dictado asincr\xF3nico para automatizar mapas mentales y res\xFAmenes de gesti\xF3n directiva ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(VoxMind AI)"), "."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Voice-to-Action"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Conversaci\xF3n IA"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-book-open text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Experiencias Narrativas con IA"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Aplicaciones de bienestar y entretenimiento familiar generadas dinamicamente. Cuentos inmersivos narrados por voz en portugues, disenados para entrenar el oido al idioma y aprender de forma natural. Traduccion interactiva palabra por palabra ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Jardin de Historias)"), ", sobre arquitectura serverless con proxy Cloudflare."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Inmersion Linguistica"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Aprendizaje Activo"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-robot text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Agentes Inteligentes de Monitoreo"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Estructuraci\xF3n de bots as\xEDncronos para detecci\xF3n de oportunidades en Real Estate y Finanzas ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Vigilante AI)"), ". Soluciones integradas para la supervisi\xF3n proactiva y alertamiento en tiempo real."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Automatizaci\xF3n Proactiva"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Ecosistemas IA"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-mobile-screen-button text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Sistemas de Mando & Telemetr\xEDa"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Arquitecturas conversacionales de ultra-r\xE1pida acci\xF3n para el control ejecutivo y monitoreo corporativo en tiempo real ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(Sentry Mezabot)"), ". Orquestaci\xF3n serverless conectada a LLMs (Gemini) y canalizaciones Cloud desde la palma de la mano."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Interfaces IA"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Control Remoto"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-cloud-sun text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "PRODUCCI\xD3N CLOUD MINISTERIAL & IA"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Arquitecturas de alta densidad espiritual para la transformaci\xF3n de tem\xE1ticas contempor\xE1neas en reflexiones b\xEDblicas ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(MusiChris Themes, Devocional)"), " y la generaci\xF3n aut\xF3noma de contenido ministerial de alto impacto ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(MusiChris Breath)"), ". Orquestaci\xF3n integral en la nube."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "Cloud Ministerial"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "IA Prof\xE9tica"))), /*#__PURE__*/React.createElement("div", {
+    className: "group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between mb-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 transition-all"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-film text-amber-500 text-lg"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    className: "text-white text-[13px] font-black uppercase tracking-tight mb-2"
+  }, "Motion Comic Aut\xF3nomo & IA Ministerial"), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-[11px] leading-relaxed flex-grow"
+  }, "Motor de generaci\xF3n de c\xF3mics en movimiento con narrativa b\xEDblica ", /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-300 font-bold"
+  }, "(MusiChris Comic)"), ". Pipeline automatizado de imagen, texto y audio con filtros de integridad ministerial."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-800/50"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-amber-500/80 px-2 py-0.5 bg-amber-500/10 rounded-md"
+  }, "IA Generativa"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md"
+  }, "Narrativa Digital")))), /*#__PURE__*/React.createElement("section", {
+    className: "cta-section p-8 md:p-16 border-t border-slate-800/50 bg-gradient-to-br from-[#0a1120] to-[#040812] relative z-20 flex flex-col md:flex-row items-center justify-between gap-10 no-print"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute inset-0 bg-amber-500/5 opacity-50 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "relative z-10 flex-1 text-center md:text-left"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "text-[10px] md:text-xs font-black text-amber-500 uppercase tracking-[0.3em] mb-3"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-satellite-dish mr-2 animate-pulse"
+  }), " Sincronizaci\xF3n Directa"), /*#__PURE__*/React.createElement("h2", {
+    className: "text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4"
+  }, "Liderazgo & ", /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500"
+  }, "Operaciones")), /*#__PURE__*/React.createElement("p", {
+    className: "text-slate-400 text-sm md:text-base max-w-xl leading-relaxed font-medium mb-6"
+  }, "Mi mayor fortaleza es administrar operaciones a gran escala, formar equipos y potenciar grandes redes de tiendas. Si tu empresa busca escalar su rentabilidad comercial y estructurar sus centros de negocios f\xEDsicos y digitales, este es el momento de hablar."), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-4 justify-center md:justify-start"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://www.linkedin.com/in/hjalmar-meza",
+    target: "_blank",
+    rel: "noreferrer",
+    className: "px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-black uppercase text-xs md:text-sm tracking-widest rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:-translate-y-1 flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fab fa-linkedin-in text-lg"
+  }), " Conectar en LinkedIn"), /*#__PURE__*/React.createElement("a", {
+    href: "https://calendar.app.google/MWMTrJf3pKRLHb3H6",
+    target: "_blank",
+    rel: "noreferrer",
+    className: "no-print px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-black uppercase text-xs md:text-sm tracking-widest rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:-translate-y-1 flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "far fa-calendar-alt text-lg"
+  }), " Agendar Cita"))), /*#__PURE__*/React.createElement("div", {
+    className: "relative z-10 w-full md:w-auto flex justify-center perspective-[1000px]"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "mailto:Hjalmar.meza@gmail.com",
+    className: "block relative w-48 h-48 md:w-64 md:h-64 bg-slate-900/80 rounded-3xl border border-slate-700 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform rotate-y-[-5deg] rotate-x-[5deg] hover:rotate-y-0 hover:rotate-x-0 transition-all duration-700 group cursor-pointer"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "w-full h-full bg-[#0a1120] rounded-2xl border border-slate-800 flex flex-col items-center justify-center p-6 relative overflow-hidden"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "absolute top-0 left-0 right-0 h-1 bg-amber-500 shadow-[0_0_15px_#f59e0b] animate-[scan_3s_ease-in-out_infinite]"
+  }), /*#__PURE__*/React.createElement("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+                      @keyframes scan {
+                        0%, 100% { top: 0; opacity: 0; }
+                        50% { top: 100%; opacity: 1; }
+                      }
+                    `
+    }
+  }), /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-qrcode text-6xl md:text-8xl text-slate-400 group-hover:text-amber-500 transition-colors duration-500 mb-4"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "text-[9px] font-black uppercase tracking-[0.2em] text-center text-slate-300 flex flex-col gap-1"
+  }, /*#__PURE__*/React.createElement("span", null, "Clickea Aqu\xED"), /*#__PURE__*/React.createElement("span", {
+    className: "text-amber-500"
+  }, "Para Enviar Correo"))))))), /*#__PURE__*/React.createElement("footer", {
+    className: "bg-slate-950 border-t border-slate-800 p-6 flex flex-col md:flex-row justify-between items-center gap-4 no-print"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "h-[1px] w-12 bg-amber-500"
+  }), /*#__PURE__*/React.createElement("p", {
+    className: "text-[10px] uppercase tracking-[0.3em] text-slate-500 font-black"
+  }, "Hjalmar Meza Cortez \u2022 2026")), /*#__PURE__*/React.createElement("p", {
+    className: "text-[9px] text-slate-600 font-mono text-center md:text-right max-w-sm"
+  }, "Maximizando rentabilidad corporativa mediante Operaciones y Arquitectura de IA")), /*#__PURE__*/React.createElement("div", {
+    className: "hidden print:block border-t border-slate-200 mt-10 pt-6 text-center"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "text-[10px] text-slate-500 uppercase tracking-[0.2em] font-black mb-2"
+  }, "HJALMAR MEZA CORTEZ \u2022 Senior Management & AI Strategy"), /*#__PURE__*/React.createElement("p", {
+    className: "text-[8px] text-slate-400 uppercase tracking-widest"
+  }, "Documento generado digitalmente para fines ejecutivos \u2022 2026"))), /*#__PURE__*/React.createElement("nav", {
+    className: "md:hidden fixed bottom-0 left-0 w-full bg-[#020617] border-t border-slate-800 z-50 flex justify-around items-center px-1 pb-1 pt-2 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] no-print"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => handleTabChange('perfil'),
+    className: `flex-1 flex flex-col items-center gap-1.5 py-2 transition-colors duration-200 ${activeNav === 'perfil' ? 'text-amber-500' : 'text-slate-500 hover:text-slate-300'}`
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-user-tie text-[1.3rem]"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-wider"
+  }, "Perfil & Exp")), /*#__PURE__*/React.createElement("button", {
+    onClick: () => handleTabChange('skills'),
+    className: `flex-1 flex flex-col items-center gap-1.5 py-2 transition-colors duration-200 ${activeNav === 'skills' ? 'text-amber-500' : 'text-slate-500 hover:text-slate-300'}`
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-certificate text-[1.3rem]"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-wider"
+  }, "Skills")), /*#__PURE__*/React.createElement("button", {
+    onClick: () => handleTabChange('innovacion'),
+    className: `flex-1 flex flex-col items-center gap-1.5 py-2 transition-colors duration-200 ${activeNav === 'innovacion' ? 'text-amber-500' : 'text-slate-500 hover:text-slate-300'}`
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fas fa-microchip text-[1.3rem]"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "text-[9px] font-black uppercase tracking-wider"
+  }, "Innovaci\xF3n")))));
+};
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(/*#__PURE__*/React.createElement(App, null));
+</script>
+  <script type="text/javascript">
+    (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          window.voiceflow.chat.load({
+            verify: { projectID: '69c08d57a25a54e79a7e95c0' },
+            url: 'https://general-runtime.voiceflow.com',
+            versionID: '69c08d57a25a54e79a7e95c1',
+            user: { name: 'Hjalmar Meza' },
+            render: {
+              mode: 'overlay',
+              showLauncher: false
+            },
+            autostart: true
+          }).then(() => {
+            const btn = document.getElementById('custom-ia-btn');
+            
+            const killAll = (vfHost) => {
+              if (!vfHost || !vfHost.shadowRoot) return;
+              
+              // Solo eliminamos botones y launchers, NUNCA la ventana principal
+              const selectors = ['.vfrc-launcher', '.vfrc-proactive-message', '.vfrc-button--message', '[class*="launcher"]', '[class*="proactive"]', '[class*="test-your-agent"]'];
+              selectors.forEach(sel => {
+                try {
+                  const els = vfHost.shadowRoot.querySelectorAll(sel);
+                  els.forEach(el => {
+                    el.style.setProperty('display', 'none', 'important');
+                    el.style.setProperty('visibility', 'hidden', 'important');
+                  });
+                } catch(e) {}
+              });
+
+              if (!vfHost.shadowRoot.querySelector('#ag-stable-v10-1')) {
+                const style = document.createElement('style');
+                style.id = 'ag-stable-v10-1';
+                style.textContent = `
+                  .vfrc-launcher, .vfrc-proactive-message, [class*="launcher"] { 
+                    display: none !important; 
+                    visibility: hidden !important; 
+                  }
+                `;
+                vfHost.shadowRoot.appendChild(style);
+              }
+            };
+
+            const showBtn = () => {
+              if (btn) btn.style.setProperty('display', 'flex', 'important');
+              const vfHost = document.querySelector('#voiceflow-chat');
+              if (vfHost) {
+                 vfHost.style.setProperty('opacity', '0', 'important');
+                 vfHost.style.setProperty('pointer-events', 'none', 'important');
+                 vfHost.style.setProperty('z-index', '-1', 'important');
+              }
+            };
+
+            const hideBtn = () => {
+              if (btn) btn.style.setProperty('display', 'none', 'important');
+              const vfHost = document.querySelector('#voiceflow-chat');
+              if (vfHost) {
+                 vfHost.style.setProperty('opacity', '1', 'important');
+                 vfHost.style.setProperty('pointer-events', 'auto', 'important');
+                 vfHost.style.setProperty('z-index', '2147483647', 'important');
+              }
+            };
+
+            // Heartbeat de Limpieza Interna (Sin afectar la ventana)
+            setInterval(() => {
+              const vfHost = document.querySelector('#voiceflow-chat');
+              if (vfHost) {
+                killAll(vfHost);
+                // Mantenemos el host vivo, solo oculto/visible según eventos
+              }
+            }, 100);
+
+            const initVF = () => {
+              if (window.voiceflow && window.voiceflow.chat && typeof window.voiceflow.chat.on === 'function') {
+                window.voiceflow.chat.on('open', hideBtn);
+                window.voiceflow.chat.on('close', showBtn);
+                window.voiceflow.chat.on('hide', showBtn);
+              } else {
+                setTimeout(initVF, 200);
+              }
+            };
+            initVF();
+
+            const findVF = () => {
+              const vfHost = document.querySelector('#voiceflow-chat');
+              if (vfHost && vfHost.shadowRoot) {
+                const obs = new MutationObserver(() => killAll(vfHost));
+                obs.observe(vfHost.shadowRoot, { childList: true, subtree: true, attributes: true });
+                killAll(vfHost);
+                // Estado inicial: Oculto pero vivo
+                if (btn && btn.style.display !== 'none') showBtn();
+              } else {
+                setTimeout(findVF, 300);
+              }
+            };
+            findVF();
+          });
+
+          window.openChat = function() {
+            if (window.voiceflow && window.voiceflow.chat) {
+              const vfHost = document.querySelector('#voiceflow-chat');
+              if(vfHost) {
+                vfHost.style.setProperty('opacity', '1', 'important');
+                vfHost.style.setProperty('pointer-events', 'auto', 'important');
+              }
+              window.voiceflow.chat.open();
+            } else {
+              setTimeout(window.openChat, 300);
+            }
+          };
+        }
+        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+
+  <!-- BOTÓN IA CUSTOM (MOBILE) - Cuadrado pequeño con icono y letras IA -->
+  <style>
+    /* Widget de MusiChris Studio Radio dentro de la tarjeta de la Categoría */
+    .musichris-radio-widget {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .musichris-radio-widget:hover {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+    }
+    .musichris-radio-widget:active {
+      transform: scale(0.95);
+    }
+    .musichris-radio-widget .widget-logo-container {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: border-color 0.3s ease;
+    }
+    .musichris-radio-widget:hover .widget-logo-container {
+      border-color: rgba(245, 158, 11, 0.5);
+    }
+    .musichris-radio-widget .widget-logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .musichris-radio-widget:hover .widget-logo-container img {
+      transform: scale(1.1) rotate(3deg);
+    }
+    .musichris-radio-widget .widget-logo-container .widget-shine {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top right, rgba(245, 158, 11, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .musichris-radio-widget:hover .widget-logo-container .widget-shine {
+      opacity: 1;
+    }
+    .musichris-radio-widget .widget-text-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.1;
+    }
+    .musichris-radio-widget .widget-label {
+      font-size: 8px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: color 0.3s ease;
+    }
+    .musichris-radio-widget:hover .widget-label {
+      color: rgba(245, 158, 11, 0.8);
+    }
+    .musichris-radio-widget .widget-title {
+      font-size: 10px;
+      font-weight: 900;
+      color: #cbd5e1;
+      margin-top: 2px;
+      transition: color 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .musichris-radio-widget:hover .widget-title {
+      color: #fbbf24;
+    }
+
+    #custom-ia-btn {
+      position: fixed;
+      bottom: 140px; /* Altura optimizada para móvil (despeja la pestaña Innovación) */
+      right: 20px;
+      width: 52px; /* Tamaño reducido y más estilizado */
+      height: 52px;
+      background: #f59e0b;
+      border-radius: 14px; /* Proporción ajustada al tamaño */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2147483647;
+      cursor: pointer;
+      border: 2px solid #020617;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3), 0 5px 15px rgba(0,0,0,0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      pointer-events: auto !important;
+    }
+    /* Reposicionamiento para PC (Encima del campo Infraestructura) */
+    @media (min-width: 1024px) {
+      #custom-ia-btn {
+        bottom: 155px; /* Altura ideal para quedar sobre el campo Infraestructura */
+        right: 45px;   /* Alineado con la última tarjeta del grid */
+        width: 48px;
+        height: 48px;
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+      }
+    }
+    #custom-ia-btn .ia-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #020617;
+    }
+    #custom-ia-btn .ia-bubble {
+      font-size: 32px; /* Tamaño del icono escalado */
+    }
+    #custom-ia-btn .ia-text {
+      position: absolute;
+      top: 41%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 10px; /* Letras más pequeñas y elegantes */
+      font-weight: 900;
+      color: #f59e0b;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: -0.2px;
+    }
+    /* El botón ahora es visible en TODAS las plataformas para consistencia visual */
+    #custom-ia-btn:active {
+      transform: scale(0.88) !important;
+      background: #d97706;
+    }
+    #custom-ia-btn i {
+      color: #020617;
+      pointer-events: none;
+    }
+    @media print {
+      #custom-ia-btn, .ia-icon-wrapper, .ia-bubble, .ia-text {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        transform: scale(0) !important;
+      }
+    }
+  </style>
+  
+
+
+  <div id="custom-ia-btn" class="no-print" onclick="window.openChat()">
+    <div class="ia-icon-wrapper">
+      <i class="fas fa-comment ia-bubble"></i>
+      <span class="ia-text">IA</span>
+    </div>
+  </div>
+
+
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then(reg => {
+          console.log('SW Registrado', reg.scope);
+        }).catch(err => console.log('SW Fallo', err));
+      });
+    }
+  </script>
+</body>
+</html>

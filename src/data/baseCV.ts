@@ -26,6 +26,7 @@ export interface BaseCV {
   languages: { language: string; level: string }[];
   domainAreas: { title: string; skills: string[] }[];
   portfolio: { title: string; description: string; tags: string[] }[];
+  portfolioTitle?: string;
   baseCoverLetter: string;
 }
 
@@ -33,11 +34,11 @@ export const defaultBaseCV: BaseCV = {
   name: "Hjalmar Meza Cortez",
   title: "Ejecutivo de Operaciones y Transformación Digital",
   contact: {
-    email: "correo@ejemplo.com",
-    phone: "+34 600 000 000",
+    email: "hjalmar.meza@gmail.com",
+    phone: "+34 634655522",
     location: "Salamanca (España)",
     linkedin: "linkedin.com/in/hjalmar-meza",
-    photoUrl: "https://ui-avatars.com/api/?name=Hjalmar+Meza&background=1F1F1F&color=F4F1EB&size=200"
+    photoUrl: "/profile.png"
   },
   summary: "Líder de Operaciones con 18 años de trayectoria en el sector Telecomunicaciones, especializado en la transformación digital de canales de atención masiva y la optimización de la Experiencia del Cliente (CX). Experto en orquestar equipos de alto rendimiento y liderar la transición de entornos físicos a digitales, logrando eficiencias operativas demostradas. Actualmente, fusiono mi sólido background corporativo con la implementación estratégica de Inteligencia Artificial Generativa y automatización de procesos para escalar la rentabilidad empresarial de manera ágil y estructurada.\n\nMI REGLA DE ORO:\n\"Lo que funciona, NO se toca; pero lo que puede optimizarse, lo transformo mediante flujos de trabajo autónomos y soluciones de IA que generan valor inmediato.\"",
   experience: [
@@ -115,21 +116,24 @@ export const defaultBaseCV: BaseCV = {
   ],
   languages: [
     { language: "Español", level: "Nativo" },
-    { language: "Inglés", level: "Básico 1" }
+    { language: "Inglés", level: "B1" }
   ],
   skills: [
-    "GEMINI / CLAUDE",
-    "AZURE AI",
-    "MAKE.COM",
-    "FIREBASE",
-    "OCR / MLLM",
-    "SERVERLESS",
-    "AGILE MGMT",
-    "CX STRATEGY"
+    "Resolución de Problemas",
+    "Toma de Decisiones",
+    "Análisis y Decisión Técnica",
+    "Productividad de IA",
+    "Agilidad Estratégica",
+    "Análisis de Tendencias",
+    "Empatía / CX",
+    "Creatividad e Innovación",
+    "Adaptabilidad",
+    "Pensamiento Crítico",
+    "Orquestación de Media",
+    "Filtros de Integridad IA"
   ],
   certifications: [
     "Liderazgo en la Era Digital - Tec. de Monterrey",
-    "Experto RGPD - Universidad Nebrija",
     "Desarrolla tus habilidades de productividad con IA generativa - Microsoft",
     "Habilidades humanas en la era de la IA - Microsoft",
     "Domina el marketing digital - LinkedIn",
@@ -163,16 +167,36 @@ export const defaultBaseCV: BaseCV = {
     "Prompt Engineering: IA generativa - LinkedIn",
     "Técnicas avanzadas de resolución de conflictos - LinkedIn"
   ],
-  languages: [
-    { language: "Español", level: "Nativo" },
-    { language: "Inglés", level: "Básico (A2)" }
-  ],
+
   domainAreas: [
-    { title: "Liderazgo Organizacional", skills: ["Liderazgo Transformador", "Dirección de Equipos", "Culturas de Alto Desempeño", "Resolución de Problemas", "Toma de Decisiones", "Conflictología"] },
-    { title: "Transformación & IA", skills: ["Transformación Digital", "IA Generativa & Agentes", "Ingeniería de Prompts", "Ecosistemas Cloud (Azure)", "Análisis y Decisión Técnica", "Productividad de IA"] },
-    { title: "Gestión de Operaciones", skills: ["Rentabilidad de Negocios", "Optimización de KPIs", "Mitigación de Riesgos", "Gestión de Proyectos", "Coordinación Logística", "Agilidad Estratégica"] },
-    { title: "Desarrollo Comercial", skills: ["Estrategia Comercial", "Negociación", "Prospección de Ventas", "Marketing Digital", "Eficacia de Ventas", "Análisis de Tendencias"] },
-    { title: "Experiencia del Cliente (CX)", skills: ["Diseño de CX", "Voice of Customer (VoC)", "Mapeo de Customer Journey", "Resolución en Primer Contacto (FCR)", "Satisfacción del Cliente (CSAT)"] }
+    {
+      title: "Liderazgo Organizacional",
+      skills: ["Liderazgo Transformador", "Dirección de Equipos", "Culturas de Alto Desempeño", "Conflictología"]
+    },
+    {
+      title: "Transformación & IA",
+      skills: ["Transformación Digital", "IA Generativa & Agentes", "Ingeniería de Prompts", "Ecosistemas Cloud (Azure)"]
+    },
+    {
+      title: "Gestión de Operaciones",
+      skills: ["Rentabilidad de Negocios", "Optimización de KPIs", "Mitigación de Riesgos", "Gestión de Proyectos", "Coordinación Logística"]
+    },
+    {
+      title: "Desarrollo Comercial",
+      skills: ["Estrategia Comercial", "Negociación", "Prospección de Ventas", "Marketing Digital", "Eficacia de Ventas"]
+    },
+    {
+      title: "Experiencia del Cliente (CX)",
+      skills: ["Satisfacción del Cliente", "Relaciones CRM", "Gestión de Conflictos", "Comunicación Profesional", "Atención al Cliente"]
+    },
+    {
+      title: "Habilidades Humanas",
+      skills: ["Inteligencia Emocional", "Pensamiento Crítico", "Comunicación Interpersonal", "Gestión del Tiempo"]
+    },
+    {
+      title: "IA Ministerial & Narrativa",
+      skills: ["Motion Comic Autónomo", "Narrativa Profética IA", "Dirección Cinematográfica", "Despliegue Cloud Forge"]
+    }
   ],
   portfolio: [
     {

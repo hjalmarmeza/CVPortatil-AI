@@ -24,25 +24,29 @@ ${jobDescription}
 TAREA:
 1. Analiza a fondo los requerimientos de la oferta laboral (dolores, necesidades, keywords).
 2. ADAPTACIÓN DEL CV (EL CORAZÓN DE LA TAREA): 
-   - Debes ADECUAR Y REESCRIBIR TODO EL CONTENIDO del CV BASE al puesto al que postula.
-   - OBLIGATORIO: Debes INCLUIR TODAS las experiencias laborales del CV Base, no recortes la lista. Sin embargo, debes REESCRIBIR profunda y extensamente el "summary" (Acerca de mi) y cada viñeta de cada experiencia integrando naturalmente las palabras clave de la oferta.
-   - CONOCIMIENTOS ADICIONALES (Portafolio): En lugar de 'portafolio', renombra la sección a "Conocimientos Adicionales". Hazlo de forma muy simple y modesta, sin exagerar ni usar un tono rimbombante. Si la oferta no amerita estos conocimientos técnicos, omítelos o incluye solo 1 relevante.
-   - TÍTULO DE PORTAFOLIO ADAPTADO: OBLIGATORIO usar "Conocimientos Adicionales" (o similar muy sencillo) en portfolioTitle.
-   - DOMINIOS TÉCNICOS Y OPERATIVOS: Filtra y selecciona los dominios que hagan match con la vacante. Puedes renombrar los títulos de los dominios (ej. de "Desarrollo Comercial" a "Estrategia B2B") y selecciona solo las skills internas más relevantes de cada dominio.
-   - CERTIFICACIONES: El CV base tiene muchísimas certificaciones. Selecciona ÚNICAMENTE las 6 a 8 certificaciones más críticas y relevantes para la oferta.
-   - NO INVENTES NADA NUEVO. Re-enfoca lo que ya existe. Si la oferta pide "gestión ágil", reescribe sus logros pasados resaltando cómo aplicó agilidad.
-   - El CV resultante DEBE SER EXTENSO y detallado (al menos la misma cantidad de viñetas originales por cada cargo), manteniendo OBLIGATORIAMENTE todas las cifras de impacto (20M de clientes, ahorros, certificaciones).
-   - Selecciona y destaca solo las "skills" más relevantes que conecten su experiencia real con la oferta.
+   - ACTÚA COMO UN HEADHUNTER EXPERTO Y DIRECTIVO. Tu objetivo es "vender" a este candidato a la empresa demostrando su valor.
+   - OBLIGATORIO - EXPERIENCIA LABORAL: DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO RECORTAR, RESUMIR, ELIMINAR O DUPLICAR CARGOS. Debes devolver la lista original de experiencias, re-escribiendo el 'summary' y las viñetas (description) de cada cargo para resaltar las habilidades de la oferta.
+   - CONOCIMIENTOS ADICIONALES (Portafolio): Transforma cualquier mención a "aplicaciones creadas" en "Proyectos Personales". Genera EXACTAMENTE entre 3 y 4 proyectos personales adaptados al puesto (ESTÁ STRICTAMENTE PROHIBIDO devolver más de 4). Usa frases literales como "Diseño y desarrollo de aplicaciones para..." o "Implementación de sistemas en el ámbito de...". Explica claramente qué tipo de apps has creado y cómo aportan un inmenso valor estratégico y tecnológico al puesto que solicitas.
+   - TÍTULO DE PORTAFOLIO ADAPTADO: OBLIGATORIO usar "Proyectos Personales" o "Proyectos de Innovación Tecnológica".
+   - DOMINIOS EJECUTIVOS Y COMPETENCIAS (domainAreas): Selecciona entre 4 y 6 áreas de dominio del CV base que sean más relevantes para el puesto. Cada área tiene su lista de competencias (skills) de gestión y blandas. Los títulos son áreas ejecutivas: "Liderazgo Organizacional", "Transformación & IA", "Gestión de Operaciones", "Experiencia del Cliente (CX)", "Desarrollo Comercial", "Habilidades Humanas". PROHIBIDO poner herramientas tecnológicas aquí.
+   - HABILIDADES / APTITUDES DESTACADAS (skills): Selecciona EXACTAMENTE entre 6 y 8 aptitudes destacadas del candidato que sean MÁS RELEVANTES para el puesto (ESTÁ ESTRICTAMENTE PROHIBIDO devolver más de 8 habilidades). Elige de la lista base: Resolución de Problemas, Toma de Decisiones, Análisis y Decisión Técnica, Productividad de IA, Agilidad Estratégica, Análisis de Tendencias, Empatía / CX, Creatividad e Innovación, Adaptabilidad, Pensamiento Crítico.
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones relevantes al puesto. ESTÁ ESTRICTAMENTE PROHIBIDO devolver menos de 6 o más de 8 certificaciones.
+   - NO INVENTES NADA NUEVO. Re-enfoca lo que ya existe. MANTÉN TODAS LAS CIFRAS de impacto intactas.
 3. REGLAS DE ORO PARA EL TONO Y ESTILO:
-   - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. No uses un lenguaje demasiado básico o informal; debes sonar como un experto maduro y seguro de sí mismo.
-   - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro o inalcanzable", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza que tienes el bagaje táctico y estratégico, y que estás dispuesto a involucrarte al 100% en la operación diaria ("hands-on").
-   - NO FUERCES TEMAS DE INTELIGENCIA ARTIFICIAL si la oferta no los pide explícitamente. Si la oferta es puramente operativa, de ventas o de gestión clásica, enfoca el currículum y la carta ÚNICAMENTE en su enorme experiencia operativa, liderazgo y logros en Telecomunicaciones. Habla de IA solo si suma valor directo al dolor de la empresa.
-   - No inventes experiencia. Todo debe salir del CV BASE.
-4. Redacta una CARTA DE PRESENTACIÓN densa, elocuente y altamente detallada.
-   - OBLIGATORIO: DEBES USAR SALTOS DE LÍNEA DOBLES ('\\n\\n') para separar los párrafos. La carta NO PUEDE SER un solo bloque de texto continuo. Debe tener al menos 3 o 4 párrafos visualmente separados.
-   - PROHIBIDO HACER CARTAS CORTAS O SIMPLES. La carta debe tener al menos 4 párrafos extensos y robustos, con una retórica ejecutiva, profunda y persuasiva.
-   - Usa la "baseCoverLetter" del CV BASE como tu columna vertebral de narrativa, historia y tono, pero ADÁPTALA MILIMÉTRICAMENTE a las necesidades exactas del puesto. Si el puesto no requiere tecnología, elimina referencias a "Motores de IA" y reemplázalas por "Estrategias de Eficiencia", pero mantén el volumen, la profundidad y el peso de la carta original.
-   - Empieza con un gancho corporativo fuerte. Desarrolla extensamente en los párrafos centrales cómo tu experiencia operativa y directiva (citando métricas y logros específicos del CV) se alinea a la perfección para resolver los "puntos de dolor" de la empresa. Cierra con un llamado a la acción rotundo.
+   - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. Debes sonar como un experto maduro, directivo y seguro de sí mismo.
+   - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza tu bagaje táctico y estratégico ("hands-on").
+4. CARTA DE PRESENTACIÓN (¡SIGUE ESTAS REGLAS AL PIE DE LA LETRA!):
+   - LONGITUD OBLIGATORIA: La carta debe ser EXTENSA, PROFUNDA Y SUSTANCIOSA (Entre 320 y 380 palabras en total en el cuerpo). PROHIBIDO hacer cartas cortas de menos de 300 palabras o de un solo párrafo.
+   - ESTRUCTURA OBLIGATORIA (Exactamente 4 párrafos ÚNICOS y bien desarrollados, separados por \\n\\n, PROHIBIDO DUPLICAR O REPETIR PÁRRAFOS):
+     1. Párrafo de apertura (4-5 oraciones): Empieza con una filosofía directiva y de pasión por el sector Retail y la Atención al Cliente (CX), conectando de inmediato tu liderazgo con la misión de gestionar y elevar la experiencia en tienda. PROHIBIDO saludos genéricos tipo "Estimado/a", "Me dirijo a usted" o "Tengo el agrado".
+     2. Párrafo de trayectoria y gestión de tienda (5-6 oraciones): Describe tu experiencia liderando equipos de alto rendimiento, formando nuevos talentos, organizando operativamente la tienda y garantizando una experiencia de compra única. Explica cómo la transformación digital y las herramientas modernas han optimizado la rentabilidad y la fidelización sin mencionar nombres de empresas ni cargos previos fríos.
+     3. Párrafo de análisis de KPIs y objetivos (5-6 oraciones): Conecta directamente con las responsabilidades clave del puesto solicitado: análisis continuo de KPIs para diseñar planes de acción comerciales, control visual, stock y rotación, y capacidad de ser un referente motivador e inspirador para el equipo de ventas.
+     4. Párrafo de cierre (3-4 oraciones): Conclusión confiada y entusiasta, expresando tu motivación por aportar liderazgo estable y resultados a la organización en una entrevista personal.
+   - TONO: Inspirador, humano, fresco, apasionado y con aplomo directivo en Retail y CX.
+   - PROHIBICIONES ABSOLUTAS:
+     • PROHIBIDO REPETIR O DUPLICAR PÁRRAFOS. Cada párrafo debe tratar un tema diferente.
+     • NO menciones nombres de empresas (Telefónica, etc.) ni cargos previos.
+     • NO incluyas firma ni datos de contacto al final (el sistema los renderiza dinámicamente).
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
