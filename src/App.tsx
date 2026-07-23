@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-amber-500/30">
+    <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-amber-500/30 overflow-x-hidden w-full max-w-full">
       {/* Premium Header */}
       <header className="sticky top-0 z-50 bg-[#020617]/95 backdrop-blur-xl border-b border-slate-800/80 shadow-lg shadow-black/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-0 sm:h-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
