@@ -2,7 +2,46 @@ import axios from 'axios';
 import type { BaseCV } from '../data/baseCV';
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
-const MODEL = 'meta-llama/Meta-Llama-3-70B-Instruct'; // You can change this to another model available in DeepInfra
+const MODEL = 'meta-llama/Meta-Llama-3-70B-Instruct';
+
+// Función sanitizadora de gramática española para corregir cacofonías (ej. "y implementé" -> "e implementé")
+const fixSpanishCacophony = (text: string): string => {
+  if (typeof text !== 'string') return text;
+  
+  return text
+    // Reemplaza "y" por "e" antes de palabras que inician con i- o hi- (salvo si le sigue diptongo como "hie-")
+    .replace(/\b([Yy])\s+([iI]|hi|hI|Hi|HI)([a-zA-ZáéíóúÁÉÍÓÚñÑ]+)/g, (match, yChar, prefix, rest) => {
+      const fullWord = prefix + rest;
+      if (/^hie/i.test(fullWord)) {
+        return match;
+      }
+      const eChar = yChar === 'Y' ? 'E' : 'e';
+      return `${eChar} ${fullWord}`;
+    })
+    // Reemplaza "o" por "u" antes de palabras que inician con o- u ho-
+    .replace(/\b([Oo])\s+([oO]|ho|hO|Ho|HO)([a-zA-ZáéíóúÁÉÍÓÚñÑ]+)/g, (_match, oChar, prefix, rest) => {
+      const fullWord = prefix + rest;
+      const uChar = oChar === 'O' ? 'U' : 'u';
+      return `${uChar} ${fullWord}`;
+    });
+};
+
+const sanitizeObjectGrammar = (obj: any): any => {
+  if (typeof obj === 'string') {
+    return fixSpanishCacophony(obj);
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(sanitizeObjectGrammar);
+  }
+  if (obj && typeof obj === 'object') {
+    const sanitized: any = {};
+    for (const key of Object.keys(obj)) {
+      sanitized[key] = sanitizeObjectGrammar(obj[key]);
+    }
+    return sanitized;
+  }
+  return obj;
+};
 
 export const generateTailoredCV = async (jobDescription: string, baseCV: BaseCV) => {
   const apiKey = import.meta.env.VITE_DEEPINFRA_API_KEY;
@@ -32,7 +71,8 @@ TAREA:
    - HABILIDADES / APTITUDES DESTACADAS (skills): Selecciona EXACTAMENTE entre 6 y 8 aptitudes destacadas del candidato que sean MÁS RELEVANTES para el puesto (ESTÁ ESTRICTAMENTE PROHIBIDO devolver más de 8 habilidades). Elige de la lista base: Resolución de Problemas, Toma de Decisiones, Análisis y Decisión Técnica, Productividad de IA, Agilidad Estratégica, Análisis de Tendencias, Empatía / CX, Creatividad e Innovación, Adaptabilidad, Pensamiento Crítico.
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones relevantes al puesto. ESTÁ ESTRICTAMENTE PROHIBIDO devolver menos de 6 o más de 8 certificaciones.
    - NO INVENTES NADA NUEVO. Re-enfoca lo que ya existe. MANTÉN TODAS LAS CIFRAS de impacto intactas.
-3. REGLAS DE ORO PARA EL TONO Y ESTILO:
+3. REGLAS DE ORO GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
+   - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
    - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. Debes sonar como un experto maduro, directivo y seguro de sí mismo.
    - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza tu bagaje táctico y estratégico ("hands-on").
 4. CARTA DE PRESENTACIÓN (¡SIGUE ESTAS REGLAS AL PIE DE LA LETRA!):
@@ -98,7 +138,10 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     );
 
     const content = response.data.choices[0].message.content;
-    return JSON.parse(content);
+    const parsedData = JSON.parse(content);
+    
+    // Sanitización automática de gramática y cacofonías (ej. "y implementé" -> "e implementé")
+    return sanitizeObjectGrammar(parsedData);
   } catch (error) {
     console.error('Error llamando a DeepInfra:', error);
     throw new Error('Hubo un error al generar el CV. Por favor, intenta nuevamente.');
