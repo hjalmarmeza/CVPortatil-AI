@@ -390,6 +390,10 @@ function App() {
                     <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Título Ejecutivo</label>
                     <input type="text" value={baseCV.title} onChange={(e) => setBaseCV({...baseCV, title: e.target.value})} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner" />
                   </div>
+                  <div className="space-y-2 md:col-span-2">
+                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest pl-1">Foto de Perfil (Ruta o URL)</label>
+                    <input type="text" value={baseCV.contact?.photoUrl || ''} onChange={(e) => setBaseCV({...baseCV, contact: {...baseCV.contact, photoUrl: e.target.value}})} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner" placeholder="profile.png o URL de imagen" />
+                  </div>
                 </div>
                 
                 <div className="space-y-2">
@@ -613,7 +617,7 @@ function App() {
                   {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '35px', width: '100%', textAlign: 'center' }}>
                     <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block' }}>
-                      <img src={baseCV.contact?.photoUrl} alt="Foto" style={{ width: '140px', height: '140px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+                      <img src={baseCV.contact?.photoUrl ? (baseCV.contact.photoUrl.startsWith('http') || baseCV.contact.photoUrl.startsWith('data:') ? baseCV.contact.photoUrl : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`) : ''} alt="Foto" style={{ width: '140px', height: '140px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
                     </div>
                   </div>
 

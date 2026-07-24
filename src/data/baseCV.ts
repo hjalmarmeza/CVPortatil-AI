@@ -38,7 +38,7 @@ export const defaultBaseCV: BaseCV = {
     phone: "+34 634655522",
     location: "Salamanca (España)",
     linkedin: "linkedin.com/in/hjalmar-meza",
-    photoUrl: "/profile.png"
+    photoUrl: "profile.png"
   },
   summary: "Líder de Operaciones con 18 años de trayectoria en el sector Telecomunicaciones, especializado en la transformación digital de canales de atención masiva y la optimización de la Experiencia del Cliente (CX). Experto en orquestar equipos de alto rendimiento y liderar la transición de entornos físicos a digitales, logrando eficiencias operativas demostradas. Actualmente, fusiono mi sólido background corporativo con la implementación estratégica de Inteligencia Artificial Generativa y automatización de procesos para escalar la rentabilidad empresarial de manera ágil y estructurada.\n\nMI REGLA DE ORO:\n\"Lo que funciona, NO se toca; pero lo que puede optimizarse, lo transformo mediante flujos de trabajo autónomos y soluciones de IA que generan valor inmediato.\"",
   experience: [
