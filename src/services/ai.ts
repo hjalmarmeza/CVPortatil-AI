@@ -43,7 +43,12 @@ const sanitizeObjectGrammar = (obj: any): any => {
   return obj;
 };
 
-export const generateTailoredCV = async (jobDescription: string, baseCV: BaseCV) => {
+export const generateTailoredCV = async (
+  jobDescription: string,
+  baseCV: BaseCV,
+  companyName: string = '',
+  seniorityLevel: 'auto' | 'operational' | 'middle' | 'executive' = 'auto'
+) => {
   const apiKey = import.meta.env.VITE_DEEPINFRA_API_KEY;
 
   if (!apiKey) {
@@ -52,7 +57,7 @@ export const generateTailoredCV = async (jobDescription: string, baseCV: BaseCV)
 
   const prompt = `
 Eres un experto redactor de CVs y cartas de presentación ejecutivas.
-A continuación te proporciono el CV base de un candidato y la descripción de una oferta laboral a la que quiere aplicar.
+A continuación te proporciono el CV base de un candidato, la descripción de una oferta laboral y la información de la empresa objetivo.
 
 CV BASE:
 ${JSON.stringify(baseCV, null, 2)}
@@ -60,33 +65,56 @@ ${JSON.stringify(baseCV, null, 2)}
 OFERTA LABORAL:
 ${jobDescription}
 
+EMPRESA A LA QUE SE POSTULA:
+${companyName.trim() ? companyName : 'Extraer e inferir el nombre, valores y cultura de la empresa directamente del texto de la Oferta LaborAL.'}
+
+CALIBRACIÓN DE SENIORIDAD Y NIVEL REQUERIDO:
+${seniorityLevel === 'operational' 
+  ? 'OBLIGATORIO: NIVEL OPERATIVO / TIENDA (Dependiente/a, Cajero/a, Reponedor/a, Auxiliar). Re-enfocar el CV y la carta para evitar sobrecualificación.' 
+  : seniorityLevel === 'middle' 
+  ? 'NIVEL MANDO MEDIO / ENCARGADO DE TIENDA (Liderazgo de equipo, gestión operativa, KPIs, turno).' 
+  : seniorityLevel === 'executive' 
+  ? 'NIVEL EJECUTIVO / DIRECTIVO (Estrategia, Transformación Digital, Dirección Regional, Presupuestos).' 
+  : 'AUTO-DETECTAR NIVEL SEGÚN LA OFERTA LABORAL: Analizar si el puesto es operativo/tienda, mando medio o ejecutivo, y calibrar la experiencia en consecuencia.'}
+
 TAREA:
-1. Analiza a fondo los requerimientos de la oferta laboral (dolores, necesidades, keywords).
-2. ADAPTACIÓN DEL CV (EL CORAZÓN DE LA TAREA): 
-   - ACTÚA COMO UN HEADHUNTER EXPERTO Y DIRECTIVO. Tu objetivo es "vender" a este candidato a la empresa demostrando su valor.
-   - OBLIGATORIO - EXPERIENCIA LABORAL: DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO RECORTAR, RESUMIR, ELIMINAR O DUPLICAR CARGOS. Debes devolver la lista original de experiencias, re-escribiendo el 'summary' y las viñetas (description) de cada cargo para resaltar las habilidades de la oferta.
-   - CONOCIMIENTOS ADICIONALES (Portafolio): Transforma cualquier mención a "aplicaciones creadas" en "Proyectos Personales". Genera EXACTAMENTE entre 3 y 4 proyectos personales adaptados al puesto (ESTÁ STRICTAMENTE PROHIBIDO devolver más de 4). Usa frases literales como "Diseño y desarrollo de aplicaciones para..." o "Implementación de sistemas en el ámbito de...". Explica claramente qué tipo de apps has creado y cómo aportan un inmenso valor estratégico y tecnológico al puesto que solicitas.
-   - TÍTULO DE PORTAFOLIO ADAPTADO: OBLIGATORIO usar "Proyectos Personales" o "Proyectos de Innovación Tecnológica".
-   - DOMINIOS EJECUTIVOS Y COMPETENCIAS (domainAreas): Selecciona entre 4 y 6 áreas de dominio del CV base que sean más relevantes para el puesto. Cada área tiene su lista de competencias (skills) de gestión y blandas. Los títulos son áreas ejecutivas: "Liderazgo Organizacional", "Transformación & IA", "Gestión de Operaciones", "Experiencia del Cliente (CX)", "Desarrollo Comercial", "Habilidades Humanas". PROHIBIDO poner herramientas tecnológicas aquí.
-   - HABILIDADES / APTITUDES DESTACADAS (skills): Selecciona EXACTAMENTE entre 6 y 8 aptitudes destacadas del candidato que sean MÁS RELEVANTES para el puesto (ESTÁ ESTRICTAMENTE PROHIBIDO devolver más de 8 habilidades). Elige de la lista base: Resolución de Problemas, Toma de Decisiones, Análisis y Decisión Técnica, Productividad de IA, Agilidad Estratégica, Análisis de Tendencias, Empatía / CX, Creatividad e Innovación, Adaptabilidad, Pensamiento Crítico.
-   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones relevantes al puesto. ESTÁ ESTRICTAMENTE PROHIBIDO devolver menos de 6 o más de 8 certificaciones.
-   - NO INVENTES NADA NUEVO. Re-enfoca lo que ya existe. MANTÉN TODAS LAS CIFRAS de impacto intactas.
-3. REGLAS DE ORO GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
+1. INVESTIGACIÓN DE EMPRESA Y CULTURA:
+   - Analiza e integra la visión, valores, tono de marca y cultura de la empresa solicitante.
+   - En la CARTA DE PRESENTACIÓN, conecta de forma auténtica en el 1er y 3er párrafo con la misión de la empresa y por qué tu perfil encaja con su cultura.
+   - En el CV, utiliza palabras clave propias del sector y de la cultura de dicha empresa.
+
+2. ADAPTACIÓN Y CALIBRACIÓN DE SENIORIDAD DEL CV (REGLA CRÍTICA ANTI-SOBRECUALIFICACIÓN):
+   - DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO ELIMINAR O DUPLICAR CARGOS.
+   - REGLA DE CALIBRACIÓN DE SENIORIDAD:
+     * SI EL PUESTO ES DE NIVEL OPERATIVO / TIENDA (ej: Dependiente/a, Reponedor/a, Cajero/a, Auxiliar, Atención al Cliente):
+       • RESUMEN EJECUTIVO: DEBE SER OPERATIVO Y CERCANO AL ROL. Presenta al candidato como un profesional apasionado por el servicio al cliente de excelencia, asesoramiento personalizado, manejo ágil de TPV/caja, reposición cuidadosa y trabajo en equipo. PROHIBIDO sonar como un directivo costoso de nivel regional o corporativo que asuste al reclutador.
+       • EXPERIENCIA LABORAL: Reescribe las funciones y logros enfocándolos hacia la ejecución táctica diaria: atención directa, resolución de dudas en tienda, arqueo de caja, reposición de producto, escaparatismo y colaboración. Suaviza o contextualiza las métricas ejecutivas gigantes para no parecer inaccesible.
+       • DOMINIOS Y COMPETENCIAS (domainAreas): Adapta las competencias a: "Atención al Cliente & Venta", "Operaciones de Tienda & TPV", "Reposición & Control de Stock", "Escaparatismo & Visual Merchandising", "Trabajo en Equipo", "Comunicación & Proactividad".
+       • HABILIDADES DESTACADAS (skills): Selecciona EXACTAMENTE entre 6 y 8 habilidades operativas clave (ej: Atención al Cliente, Manejo de TPV / Caja, Venta Personalizada, Reposición de Productos, Escaparatismo, Trabajo en Equipo, Proactividad, Resolución de Problemas).
+       • PROYECTOS PERSONALES: Redáctalos como iniciativas prácticas de gestión comercial, atención al cliente u organización de tienda, evitando mencionar lenguajes de programación complejos (React, Node, MongoDB) que estén fuera del alcance de un puesto de dependiente.
+     * SI EL PUESTO ES MANDO MEDIO / ENCARGADO:
+       • Equilibra la atención al cliente y ejecución operativa con liderazgo de tienda, control de KPIs y gestión de equipo.
+     * SI EL PUESTO ES EJECUTIVO / DIRECTIVO:
+       • Mantén el tono de alto nivel, visión estratégica, transformación digital, IA e impacto financiero.
+
+3. REGLAS GENERALES Y CANTIDADES ESTRICTAS:
+   - CONOCIMIENTOS ADICIONALES (Portafolio): Genera EXACTAMENTE entre 3 y 4 proyectos personales adaptados al puesto. Usa el título "Proyectos Personales" o "Proyectos de Innovación Tecnológica".
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones relevantes.
+   - NO INVENTES NADA NUEVO. Re-enfoca la experiencia real del candidato.
+
+4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
-   - Usa un lenguaje HUMANO pero ALTAMENTE PERSUASIVO Y PROFESIONAL. Debes sonar como un experto maduro, directivo y seguro de sí mismo.
-   - EQUILIBRIO PERFECTO: No asustes al reclutador pareciendo "demasiado caro", pero DEMUESTRA sin lugar a dudas que eres el mejor candidato. Enfatiza tu bagaje táctico y estratégico ("hands-on").
-4. CARTA DE PRESENTACIÓN (¡SIGUE ESTAS REGLAS AL PIE DE LA LETRA!):
-   - LONGITUD OBLIGATORIA: La carta debe ser EXTENSA, PROFUNDA Y SUSTANCIOSA (Entre 320 y 380 palabras en total en el cuerpo). PROHIBIDO hacer cartas cortas de menos de 300 palabras o de un solo párrafo.
-   - ESTRUCTURA OBLIGATORIA (Exactamente 4 párrafos ÚNICOS y bien desarrollados, separados por \\n\\n, PROHIBIDO DUPLICAR O REPETIR PÁRRAFOS):
-     1. Párrafo de apertura (4-5 oraciones): Empieza con una filosofía directiva y de pasión por el sector Retail y la Atención al Cliente (CX), conectando de inmediato tu liderazgo con la misión de gestionar y elevar la experiencia en tienda. PROHIBIDO saludos genéricos tipo "Estimado/a", "Me dirijo a usted" o "Tengo el agrado".
-     2. Párrafo de trayectoria y gestión de tienda (5-6 oraciones): Describe tu experiencia liderando equipos de alto rendimiento, formando nuevos talentos, organizando operativamente la tienda y garantizando una experiencia de compra única. Explica cómo la transformación digital y las herramientas modernas han optimizado la rentabilidad y la fidelización sin mencionar nombres de empresas ni cargos previos fríos.
-     3. Párrafo de análisis de KPIs y objetivos (5-6 oraciones): Conecta directamente con las responsabilidades clave del puesto solicitado: análisis continuo de KPIs para diseñar planes de acción comerciales, control visual, stock y rotación, y capacidad de ser un referente motivador e inspirador para el equipo de ventas.
-     4. Párrafo de cierre (3-4 oraciones): Conclusión confiada y entusiasta, expresando tu motivación por aportar liderazgo estable y resultados a la organización en una entrevista personal.
-   - TONO: Inspirador, humano, fresco, apasionado y con aplomo directivo en Retail y CX.
-   - PROHIBICIONES ABSOLUTAS:
-     • PROHIBIDO REPETIR O DUPLICAR PÁRRAFOS. Cada párrafo debe tratar un tema diferente.
-     • NO menciones nombres de empresas (Telefónica, etc.) ni cargos previos.
-     • NO incluyas firma ni datos de contacto al final (el sistema los renderiza dinámicamente).
+   - Usa un lenguaje HUMANO, PERSUASIVO Y ADECUADO AL NIVEL DEL PUESTO.
+
+5. CARTA DE PRESENTACIÓN (¡SIGUE ESTAS REGLAS AL PIE DE LA LETRA!):
+   - LONGITUD OBLIGATORIA: Entre 320 y 380 palabras en total en el cuerpo en 4 párrafos bien desarrollados separados por \\n\\n.
+   - ESTRUCTURA OBLIGATORIA:
+     1. Párrafo de apertura (4-5 oraciones): Muestra pasión por el sector de la empresa objetivo y la atención al cliente/tienda, conectando de inmediato tu perfil con la empresa solicitante. PROHIBIDO saludos genéricos.
+     2. Párrafo de trayectoria y experiencia en el rol (5-6 oraciones): Describe tu bagaje liderando o ejecutando tareas clave con excelencia, trabajo en equipo y atención personalizada.
+     3. Párrafo de conexión con la empresa y puesto (5-6 oraciones): Conecta directamente con las responsabilidades clave del puesto (caja/TPV, reposición, escaparatismo, servicio) y la visión de la empresa.
+     4. Párrafo de cierre (3-4 oraciones): Conclusión confiada y entusiasta para coordinar una entrevista personal.
+   - TONO: Inspirador, humano, cercano y profesional.
+   - PROHIBICIONES: PROHIBIDO REPETIR PÁRRAFOS, NO menciones marcas de empresas previas frías en la carta ni incluyas firma final.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {

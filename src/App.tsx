@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles } from 'lucide-react';
+import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
 import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
 import { generateTailoredCV } from './services/ai';
@@ -11,6 +11,8 @@ function App() {
   const [baseCV, setBaseCV] = useState<BaseCV>(defaultBaseCV);
   
   const [jobDescription, setJobDescription] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [seniorityLevel, setSeniorityLevel] = useState<'auto' | 'operational' | 'middle' | 'executive'>('auto');
   const [isGenerating, setIsGenerating] = useState(false);
   const [tailoredData, setTailoredData] = useState<{tailoredCV?: Partial<BaseCV>, coverLetter?: string} | null>(null);
 
@@ -18,7 +20,7 @@ function App() {
     if (!jobDescription.trim()) return;
     setIsGenerating(true);
     try {
-      const result = await generateTailoredCV(jobDescription, baseCV);
+      const result = await generateTailoredCV(jobDescription, baseCV, companyName, seniorityLevel);
       setTailoredData(result);
     } catch (error) {
       alert("Error al generar el CV. Revisa la consola para más detalles.");
@@ -118,6 +120,61 @@ function App() {
                 <p className="text-slate-400 text-xs sm:text-sm mt-1.5 sm:mt-2 leading-relaxed">
                   Pega el requerimiento del puesto. Nuestra IA analizará las palabras clave, adaptará tu experiencia y redactará una carta persuasiva.
                 </p>
+              </div>
+
+              {/* Optional Company Input */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5 pl-1">
+                  <Building2 size={13} className="text-amber-500" /> Empresa u Organización (Opcional)
+                </label>
+                <input
+                  type="text"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  placeholder="Ej: Supermercado Berafa S.L., Inditex, Telefónica..."
+                  className="w-full bg-[#0f172a] border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner"
+                />
+              </div>
+
+              {/* Seniority Calibration Selector */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5 pl-1">
+                  <Target size={13} className="text-amber-500" /> Calibración de Senioridad (Anti-Sobrecualificación)
+                </label>
+                <div className="grid grid-cols-2 gap-2 p-1.5 bg-[#0f172a] border border-slate-800 rounded-xl">
+                  <button
+                    type="button"
+                    onClick={() => setSeniorityLevel('auto')}
+                    className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left flex flex-col justify-center ${seniorityLevel === 'auto' ? 'bg-slate-800 text-amber-400 border border-slate-700/50 shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                  >
+                    <span>⚡ Auto-Detectar</span>
+                    <span className="text-[9px] font-normal text-slate-500">Según la oferta</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSeniorityLevel('operational')}
+                    className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left flex flex-col justify-center ${seniorityLevel === 'operational' ? 'bg-slate-800 text-amber-400 border border-slate-700/50 shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                  >
+                    <span>🛒 Operativo / Tienda</span>
+                    <span className="text-[9px] font-normal text-slate-500">Dependiente, Caja, Reposición</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSeniorityLevel('middle')}
+                    className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left flex flex-col justify-center ${seniorityLevel === 'middle' ? 'bg-slate-800 text-amber-400 border border-slate-700/50 shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                  >
+                    <span>👔 Mando Medio</span>
+                    <span className="text-[9px] font-normal text-slate-500">Encargado, Coordinador</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSeniorityLevel('executive')}
+                    className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left flex flex-col justify-center ${seniorityLevel === 'executive' ? 'bg-slate-800 text-amber-400 border border-slate-700/50 shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                  >
+                    <span>📊 Ejecutivo / Directivo</span>
+                    <span className="text-[9px] font-normal text-slate-500">Estrategia & IA</span>
+                  </button>
+                </div>
               </div>
               
               <div className="relative group">
