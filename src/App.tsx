@@ -40,7 +40,7 @@ function App() {
       margin: 0,
       filename: `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`,
       image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, windowWidth: 794 },
+      html2canvas: { scale: 2, useCORS: true, windowWidth: 794, letterRendering: true, logging: false },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
@@ -59,7 +59,7 @@ function App() {
       margin: 0,
       filename: `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`,
       image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, windowWidth: 794 },
+      html2canvas: { scale: 2, useCORS: true, windowWidth: 794, letterRendering: true, logging: false },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
@@ -576,10 +576,16 @@ function App() {
       </main>
 
       {/* Renderizado Oculto para el PDF */}
-      <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: '"Arial", sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
+      <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content * {
             box-sizing: border-box !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            letter-spacing: normal !important;
+            word-spacing: normal !important;
+            text-rendering: auto !important;
+            -webkit-font-smoothing: auto !important;
+            font-feature-settings: normal !important;
             word-break: break-word !important;
             overflow-wrap: break-word !important;
           }
@@ -597,7 +603,7 @@ function App() {
                 <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box' }}>
                   {/* Header / Name */}
                   <div style={{ marginBottom: '30px' }}>
-                    <h1 style={{ fontSize: '32pt', margin: '0 0 5px', color: '#333333', fontWeight: '900', letterSpacing: '1px', textTransform: 'uppercase', lineHeight: '1' }}>{baseCV.name}</h1>
+                    <h1 style={{ fontSize: '28pt', margin: '0 0 5px', color: '#333333', fontWeight: '900', letterSpacing: 'normal', textTransform: 'uppercase', lineHeight: '1.1' }}>{baseCV.name}</h1>
                     
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 18px', fontSize: '9pt', color: '#666', fontWeight: '500', marginTop: '15px' }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>📞 {baseCV.contact?.phone}</span>
@@ -610,7 +616,7 @@ function App() {
                   {/* Profile */}
                   <div style={{ marginBottom: '25px', pageBreakInside: 'avoid' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Perfil Profesional</h3>
-                    <div style={{ fontSize: '9.5pt', lineHeight: '1.5', color: '#444', textAlign: 'justify' }}>
+                    <div style={{ fontSize: '9.5pt', lineHeight: '1.5', color: '#444', textAlign: 'left' }}>
                       {tailoredData?.tailoredCV?.summary || baseCV.summary}
                     </div>
                   </div>
@@ -660,7 +666,7 @@ function App() {
                       {tailoredData.tailoredCV.portfolio.slice(0, 4).map((item, idx) => (
                         <div key={idx} style={{ marginBottom: '14px' }}>
                           <h4 style={{ fontSize: '10pt', margin: '0 0 4px', color: '#005C53', fontWeight: '700' }}>★ {item.title}</h4>
-                          <p style={{ fontSize: '9pt', margin: 0, color: '#555', lineHeight: '1.45', textAlign: 'justify' }}>{item.description}</p>
+                          <p style={{ fontSize: '9pt', margin: 0, color: '#555', lineHeight: '1.45', textAlign: 'left' }}>{item.description}</p>
                         </div>
                       ))}
                     </div>
@@ -721,7 +727,20 @@ function App() {
 
       {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
       {/* Margen externo 0 en html2pdf + ancho fijo 794px + contenedor centrado 630px garantizan margen derecho impecable sin cortes */}
-      <div id="cover-letter-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: '"Arial", sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
+      <div id="cover-letter-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
+        <style>{`
+          #cover-letter-pdf-content, #cover-letter-pdf-content * {
+            box-sizing: border-box !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            letter-spacing: normal !important;
+            word-spacing: normal !important;
+            text-rendering: auto !important;
+            -webkit-font-smoothing: auto !important;
+            font-feature-settings: normal !important;
+            word-break: break-word !important;
+            overflow-wrap: break-word !important;
+          }
+        `}</style>
         <div style={{ width: '630px', margin: '0 auto', padding: '50px 0', boxSizing: 'border-box' }}>
           {/* Date top right */}
           <div style={{ textAlign: 'right', fontSize: '10pt', color: '#777777', marginBottom: '25px' }}>
@@ -729,12 +748,12 @@ function App() {
           </div>
           
           {/* Title */}
-          <h3 style={{ fontSize: '16pt', fontWeight: '800', marginBottom: '25px', color: '#005C53', textTransform: 'uppercase', letterSpacing: '1px', margin: '0 0 25px 0' }}>CARTA DE PRESENTACIÓN</h3>
+          <h3 style={{ fontSize: '16pt', fontWeight: '800', marginBottom: '25px', color: '#005C53', textTransform: 'uppercase', letterSpacing: 'normal', margin: '0 0 25px 0' }}>CARTA DE PRESENTACIÓN</h3>
           
           {/* Body - párrafos separados */}
           <div style={{ fontSize: '10.5pt', color: '#333333', lineHeight: '1.65', marginBottom: '30px', width: '100%' }}>
-            {tailoredData?.coverLetter?.split('\n\n').map((paragraph, idx) => (
-              <p key={idx} style={{ margin: '0 0 16px 0', textAlign: 'justify', wordBreak: 'normal', overflowWrap: 'break-word', width: '100%' }}>
+            {tailoredData?.coverLetter?.split('\n\n').filter(p => !p.trim().toLowerCase().startsWith('atentamente')).map((paragraph, idx) => (
+              <p key={idx} style={{ margin: '0 0 16px 0', textAlign: 'left', wordBreak: 'normal', overflowWrap: 'break-word', width: '100%' }}>
                 {paragraph.trim()}
               </p>
             ))}

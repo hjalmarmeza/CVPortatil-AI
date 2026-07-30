@@ -85,10 +85,11 @@ TAREA:
 
 2. ADAPTACIÓN Y CALIBRACIÓN DE SENIORIDAD DEL CV (REGLA CRÍTICA ANTI-SOBRECUALIFICACIÓN):
    - DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO ELIMINAR O DUPLICAR CARGOS.
+   - PROHIBIDO INVENTAR O CAMBIAR LOS NOMBRES DE LAS EMPRESAS (company) Y NOMBRES DE PUESTOS (title) DEL CV BASE. Cada elemento en 'experience' DEBE CONSERVAR EXACTAMENTE el mismo 'company', 'period' y 'location' original del CV Base (PROHIBIDO inventar nombres de empresas ficticias como Kiko Food u otras).
    - REGLA DE CALIBRACIÓN DE SENIORIDAD:
      * SI EL PUESTO ES DE NIVEL OPERATIVO / TIENDA (ej: Dependiente/a, Reponedor/a, Cajero/a, Auxiliar, Atención al Cliente):
        • RESUMEN EJECUTIVO: DEBE SER OPERATIVO Y CERCANO AL ROL. Presenta al candidato como un profesional apasionado por el servicio al cliente de excelencia, asesoramiento personalizado, manejo ágil de TPV/caja, reposición cuidadosa y trabajo en equipo. PROHIBIDO sonar como un directivo costoso de nivel regional o corporativo que asuste al reclutador.
-       • EXPERIENCIA LABORAL: Reescribe las funciones y logros enfocándolos hacia la ejecución táctica diaria: atención directa, resolución de dudas en tienda, arqueo de caja, reposición de producto, escaparatismo y colaboración. Suaviza o contextualiza las métricas ejecutivas gigantes para no parecer inaccesible.
+       • EXPERIENCIA LABORAL: Reescribe las funciones y logros enfocándolos hacia la ejecución táctica diaria: atención directa, resolución de dudas en tienda, arqueo de caja, reposición de producto, escaparatismo y colaboración. Suaviza o contextualiza las métricas ejecutivas gigantes para no parecer inaccesible. Conserva la empresa real del CV base.
        • DOMINIOS Y COMPETENCIAS (domainAreas): Adapta las competencias a: "Atención al Cliente & Venta", "Operaciones de Tienda & TPV", "Reposición & Control de Stock", "Escaparatismo & Visual Merchandising", "Trabajo en Equipo", "Comunicación & Proactividad".
        • HABILIDADES DESTACADAS (skills): Selecciona EXACTAMENTE entre 6 y 8 habilidades operativas clave (ej: Atención al Cliente, Manejo de TPV / Caja, Venta Personalizada, Reposición de Productos, Escaparatismo, Trabajo en Equipo, Proactividad, Resolución de Problemas).
        • PROYECTOS PERSONALES: Redáctalos como iniciativas prácticas de gestión comercial, atención al cliente u organización de tienda, evitando mencionar lenguajes de programación complejos (React, Node, MongoDB) que estén fuera del alcance de un puesto de dependiente.
@@ -114,7 +115,9 @@ TAREA:
      3. Párrafo de conexión con la empresa y puesto (5-6 oraciones): Conecta directamente con las responsabilidades clave del puesto (caja/TPV, reposición, escaparatismo, servicio) y la visión de la empresa.
      4. Párrafo de cierre (3-4 oraciones): Conclusión confiada y entusiasta para coordinar una entrevista personal.
    - TONO: Inspirador, humano, cercano y profesional.
-   - PROHIBICIONES: PROHIBIDO REPETIR PÁRRAFOS, NO menciones marcas de empresas previas frías en la carta ni incluyas firma final.
+   - PROHIBICIONES ABSOLUTAS:
+     • PROHIBIDO incluir firma ni despidos tipo "Atentamente" o tu nombre al final de la carta (el sistema HTML renderiza dinámicamente el bloque de firma).
+     • PROHIBIDO REPETIR PÁRRAFOS.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
@@ -168,6 +171,30 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const content = response.data.choices[0].message.content;
     const parsedData = JSON.parse(content);
     
+    // ESCUDO DE SEGURIDAD 1: Restaurar estrictamente la historia laboral real del CV Base
+    if (parsedData?.tailoredCV?.experience && Array.isArray(parsedData.tailoredCV.experience)) {
+      parsedData.tailoredCV.experience = parsedData.tailoredCV.experience.map((exp: any, i: number) => {
+        const baseExp = baseCV.experience[i];
+        if (baseExp) {
+          return {
+            ...exp,
+            company: baseExp.company,
+            period: baseExp.period,
+            location: baseExp.location,
+            title: exp.title && !exp.title.toLowerCase().includes('kiko') ? exp.title : baseExp.title
+          };
+        }
+        return exp;
+      });
+    }
+
+    // ESCUDO DE SEGURIDAD 2: Eliminar firmas o despidos al final de la carta para evitar firmas dobles encimadas
+    if (parsedData?.coverLetter && typeof parsedData.coverLetter === 'string') {
+      parsedData.coverLetter = parsedData.coverLetter
+        .replace(/\n\n?(Atentamente|Un cordial saludo|Cordialmente|Sinceramente)[\s\S]*$/i, '')
+        .trim();
+    }
+
     // Sanitización automática de gramática y cacofonías (ej. "y implementé" -> "e implementé")
     return sanitizeObjectGrammar(parsedData);
   } catch (error) {
