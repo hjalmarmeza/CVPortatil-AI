@@ -116,18 +116,19 @@ TAREA:
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
    - Usa un lenguaje HUMANO, PERSUASIVO Y ADECUADO AL NIVEL DEL PUESTO.
 
-5. CARTA DE PRESENTACIÓN (ESTILO LIMPIO, DIRECTO Y ELEGANTE):
-   - TONO Y ESTILO (Basado exactamente en la estructura exitosa): Claro, profesional, sobrio, seguro y sin florituras ni cursilerías.
-   - LONGITUD OBLIGATORIA: Exactamente 4 párrafos claros y directos (separados por \\n\\n).
-   - ESTRUCTURA OBLIGATORIA:
-     1. Párrafo 1 (Presentación Directa): Empieza exactamente con un saludo respetuoso como "Estimado/a Director/a de Selección," seguido del párrafo inicial: "Es un placer presentar mi candidatura para el puesto de [Nombre del Puesto]. Como profesional apasionado por el sector retail y la atención al cliente, estoy motivado por aportar mi experiencia a un equipo que valore la excelencia operativa y el servicio."
-     2. Párrafo 2 (Trayectoria Resumida): "Con más de 18 años de experiencia liderando equipos y gestionando operaciones, estoy seguro de que puedo aportar valor a su equipo y contribuir al éxito de su organización. Mi enfoque en la atención al cliente, la gestión de equipos y la optimización de procesos me permite ofrecer una visión integral y práctica."
-     3. Párrafo 3 (Destacar Competencias del Puesto): "Me gustaría destacar mi experiencia en la gestión operativa, la resolución de incidencias y la toma de decisiones, así como mi capacidad para fomentar un ambiente de trabajo colaborativo y enfocado en la satisfacción del cliente."
-     4. Párrafo 4 (Cierre Directo): "Quedo a su entera disposición para ampliar los detalles de mi trayectoria en una entrevista personal. Agradezco de antemano el tiempo dedicado a revisar mi perfil."
+5. CARTA DE PRESENTACIÓN (ESTILO LIMPIO, DIRECTO Y ELEGANTE — 4 PÁRRAFOS RICOS):
+   - TONO Y ESTILO: Claro, profesional, sobrio, seguro. Sin cursilerías ni frases vacías. Redacción en primera persona del singular.
+   - LONGITUD OBLIGATORIA: Exactamente 4 párrafos, cada uno de al menos 2-3 frases completas (separados por \n\n).
+   - ESTRUCTURA OBLIGATORIA (adapta el contenido al puesto real, NO copies plantillas):
+     1. Párrafo 1 — Presentación directa y sincera: Saludo "Estimado/a Director/a de Selección," + frase de presentación al puesto específico por su nombre real (extraído de la oferta). Menciona brevemente tu motivación genuina por ese tipo de rol (atención al cliente, operaciones, liderazgo, etc. según el nivel del puesto).
+     2. Párrafo 2 — Trayectoria real y logros concretos: Describe con autenticidad tu experiencia de 18 años extrayendo 2-3 logros o responsabilidades REALES y específicas del CV base (ej: gestión de 52 centros, migración de 20 millones de clientes, ahorro de 110.000€, liderazgo de 48 gestores). Adapta los logros al nivel del puesto (para operativo: destaca la gestión directa de equipos, servicio al cliente, etc.).
+     3. Párrafo 3 — Conexión directa con el puesto: Conecta 2-3 de tus competencias REALES del CV base con los requisitos específicos de la oferta (sin inventar nada). Sé específico y concreto, no genérico.
+     4. Párrafo 4 — Cierre respetuoso y directo: "Quedo a su entera disposición para ampliar los detalles de mi trayectoria en una entrevista personal. Agradezco de antemano el tiempo dedicado a revisar mi perfil."
    - PROHIBICIONES ABSOLUTAS:
-     • PROHIBIDO incluir despedida tipo "Atentamente" o tu nombre al final de la carta (el sistema HTML renderiza dinámicamente el bloque de firma al pie).
-     • PROHIBIDO inventar áreas ajenas como marketing o finanzas.
-     • PROHIBIDO usar lenguaje cursi o adulador.
+     • PROHIBIDO incluir despedida tipo "Atentamente" o el nombre del candidato al final (el sistema renderiza el bloque de firma dinámicamente).
+     • PROHIBIDO inventar áreas, empresas o logros que no están en el CV base.
+     • PROHIBIDO usar lenguaje cursi, adulador o frases hechas como "Me identifico plenamente con los valores de...".
+     • PROHIBIDO párrafos de menos de 2 frases.
      • PROHIBIDO REPETIR PÁRRAFOS.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
@@ -182,30 +183,45 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const content = response.data.choices[0].message.content;
     const parsedData = JSON.parse(content);
     
-    // ESCUDO DE SEGURIDAD 1: Restaurar estrictamente los cargos y datos reales inmutables del CV Base
-    if (parsedData?.tailoredCV?.experience && Array.isArray(parsedData.tailoredCV.experience)) {
-      parsedData.tailoredCV.experience = parsedData.tailoredCV.experience.map((exp: any, i: number) => {
-        const baseExp = baseCV.experience[i];
-        if (baseExp) {
-          // Filtrar viñetas alucinadas o absurdas (ej: mermeladas, bases de datos relacionales en tienda, etc.)
-          const cleanDescription = (exp.description || baseExp.description).filter((descLine: string) => {
-            const lower = descLine.toLowerCase();
-            return !lower.includes('mermelada') && !lower.includes('relacionale') && !lower.includes('autoservicio');
-          });
+    // ESCUDO DE SEGURIDAD 1: Garantizar las 4 experiencias reales del CV Base, incluso si la IA devuelve menos
+    const aiExperiences = parsedData?.tailoredCV?.experience || [];
+    parsedData.tailoredCV = parsedData.tailoredCV || {};
+    parsedData.tailoredCV.experience = baseCV.experience.map((baseExp, i) => {
+      const aiExp = aiExperiences[i];
+      // Tomar viñetas de la IA si existen y son válidas, sino usar las del CV base
+      const rawDescription = (aiExp?.description && Array.isArray(aiExp.description) && aiExp.description.length >= 3)
+        ? aiExp.description
+        : baseExp.description;
 
-          return {
-            title: baseExp.title, // Título real inmutable del CV Base
-            company: baseExp.company, // Empresa real inmutable
-            period: baseExp.period,
-            location: baseExp.location,
-            description: cleanDescription.length > 0 ? cleanDescription : baseExp.description
-          };
-        }
-        return exp;
+      // Filtrar viñetas absurdas
+      const cleanDescription = rawDescription.filter((descLine: string) => {
+        const lower = descLine.toLowerCase();
+        return !lower.includes('mermelada') && !lower.includes('autoservicio');
+      });
+
+      return {
+        title: baseExp.title,       // Inmutable: título real del CV base
+        company: baseExp.company,   // Inmutable: empresa real del CV base
+        period: baseExp.period,
+        location: baseExp.location,
+        description: cleanDescription.length >= 2 ? cleanDescription : baseExp.description
+      };
+    });
+
+    // ESCUDO DE SEGURIDAD 2: Forzar título de proyectos como "Proyectos Personales"
+    if (parsedData?.tailoredCV) {
+      parsedData.tailoredCV.portfolioTitle = 'Proyectos Personales';
+    }
+
+    // ESCUDO DE SEGURIDAD 3: Eliminar duplicados de "Atención al Cliente" entre skills y domainAreas
+    if (parsedData?.tailoredCV?.domainAreas && Array.isArray(parsedData.tailoredCV.domainAreas)) {
+      const skillsSet = new Set((parsedData.tailoredCV.skills || []).map((s: string) => s.toLowerCase()));
+      parsedData.tailoredCV.domainAreas = parsedData.tailoredCV.domainAreas.filter((domain: any) => {
+        return !skillsSet.has(domain.title?.toLowerCase());
       });
     }
 
-    // ESCUDO DE SEGURIDAD 2: Eliminar firmas o despidos al final de la carta para evitar firmas dobles encimadas
+    // ESCUDO DE SEGURIDAD 4: Eliminar firmas dobles al final de la carta
     if (parsedData?.coverLetter && typeof parsedData.coverLetter === 'string') {
       parsedData.coverLetter = parsedData.coverLetter
         .replace(/\n\n?(Atentamente|Un cordial saludo|Cordialmente|Sinceramente)[\s\S]*$/i, '')
