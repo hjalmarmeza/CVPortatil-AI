@@ -90,12 +90,24 @@ function App() {
         }
       });
 
-      // Dimensiones A4
+      // Dimensiones A4 multipágina
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = 210;
-      const pdfHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
+      const pdfHeight = 297;
+      const imgHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
+      let heightLeft = imgHeight;
+      let position = 0;
 
-      pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
+      heightLeft -= pdfHeight;
+
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
+        heightLeft -= pdfHeight;
+      }
+
       pdf.save(filename);
     } catch (err) {
       console.error("Error generating PDF:", err);
@@ -674,9 +686,9 @@ function App() {
                   {/* Certifications */}
                   <div style={{ marginBottom: '25px', pageBreakInside: 'avoid' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
-                    <div style={{ columns: '2', columnGap: '20px', fontSize: '9pt', color: '#444', lineHeight: '1.5' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '9pt', color: '#444', lineHeight: '1.4' }}>
                       {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).map((cert, idx) => (
-                        <div key={idx} style={{ breakInside: 'avoid', marginBottom: '5px' }}>• {cert}</div>
+                        <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
                       ))}
                     </div>
                   </div>
@@ -686,9 +698,8 @@ function App() {
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
-                        const isPage2Start = idx === 3;
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', paddingTop: isPage2Start ? '45px' : '0px', width: '100%' }}>
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
