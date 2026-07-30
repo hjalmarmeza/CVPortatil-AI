@@ -113,16 +113,18 @@ TAREA:
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
    - Usa un lenguaje HUMANO, PERSUASIVO Y ADECUADO AL NIVEL DEL PUESTO.
 
-5. CARTA DE PRESENTACIÓN (ESTRUCTURA SOBRIA Y PROFESIONAL):
-   - LONGITUD OBLIGATORIA: Entre 300 y 360 palabras en total en el cuerpo en 4 párrafos bien estructurados separados por \\n\\n.
+5. CARTA DE PRESENTACIÓN (ESTILO LIMPIO, DIRECTO Y ELEGANTE):
+   - TONO Y ESTILO (Basado exactamente en la estructura exitosa): Claro, profesional, sobrio, seguro y sin florituras ni cursilerías.
+   - LONGITUD OBLIGATORIA: Exactamente 4 párrafos claros y directos (separados por \\n\\n).
    - ESTRUCTURA OBLIGATORIA:
-     1. Párrafo 1 (Presentación Directa): "Presento mi candidatura para la posición de [Nombre del Puesto], expresando un interés profesional serio por aportar mi experiencia operativa y capacidad de organización a las necesidades del puesto." (Sin adular a agencias ni decir 'me atrae la cultura de...').
-     2. Párrafo 2 (Trayectoria y Capacidad): Explica tu trayectoria en la dirección y gestión de operaciones, liderazgo de equipos y atención al cliente de excelencia, resaltando tu capacidad de organización.
-     3. Párrafo 3 (Encaje con el Puesto): Muestra cómo tus competencias prácticas (gestión, reposición, caja/TPV, atención al cliente) responden directamente a los objetivos de la oferta.
-     4. Párrafo 4 (Cierre Profesional): "Agradezco de antemano el tiempo dedicado a revisar mi candidatura y quedo a su entera disposición para ampliar cualquier información sobre mi perfil en una entrevista personal."
+     1. Párrafo 1 (Presentación Directa): Empieza exactamente con un saludo respetuoso como "Estimado/a Director/a de Selección," seguido del párrafo inicial: "Es un placer presentar mi candidatura para el puesto de [Nombre del Puesto]. Como profesional apasionado por el sector retail y la atención al cliente, estoy motivado por aportar mi experiencia a un equipo que valore la excelencia operativa y el servicio."
+     2. Párrafo 2 (Trayectoria Resumida): "Con más de 18 años de experiencia liderando equipos y gestionando operaciones, estoy seguro de que puedo aportar valor a su equipo y contribuir al éxito de su organización. Mi enfoque en la atención al cliente, la gestión de equipos y la optimización de procesos me permite ofrecer una visión integral y práctica."
+     3. Párrafo 3 (Destacar Competencias del Puesto): "Me gustaría destacar mi experiencia en la gestión operativa, la resolución de incidencias y la toma de decisiones, así como mi capacidad para fomentar un ambiente de trabajo colaborativo y enfocado en la satisfacción del cliente."
+     4. Párrafo 4 (Cierre Directo): "Quedo a su entera disposición para ampliar los detalles de mi trayectoria en una entrevista personal. Agradezco de antemano el tiempo dedicado a revisar mi perfil."
    - PROHIBICIONES ABSOLUTAS:
-     • PROHIBIDO incluir firma ni despidos tipo "Atentamente" o tu nombre al final de la carta (el sistema HTML renderiza dinámicamente el bloque de firma).
-     • PROHIBIDO inventar experiencia en marketing o áreas ajenas.
+     • PROHIBIDO incluir despedida tipo "Atentamente" o tu nombre al final de la carta (el sistema HTML renderiza dinámicamente el bloque de firma al pie).
+     • PROHIBIDO inventar áreas ajenas como marketing o finanzas.
+     • PROHIBIDO usar lenguaje cursi o adulador.
      • PROHIBIDO REPETIR PÁRRAFOS.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
