@@ -201,22 +201,22 @@ export const defaultBaseCV: BaseCV = {
   portfolio: [
     {
       title: "Logística y Entregas Rápidas",
-      description: "Implementación de arquitecturas de comercio digital (Alacena) integradas en Firebase, para solucionar la gestión ineficiente de reservas nocturnas, garantizando disponibilidad logística en tiempo real.",
+      description: "Orquestación de operaciones de comercio digital 'Alacena' (arquitectura Firebase) para automatizar la gestión de reservas nocturnas, erradicando ineficiencias logísticas y garantizando disponibilidad de stock en tiempo real.",
       tags: ["Comercio Digital", "Bases NoSQL"]
     },
     {
       title: "Sistemas de Gestión Comercial",
-      description: "Desarrollo de plataformas serverless de gestión (Kopilot, Restaurante360) para solucionar problemas de planificación de recursos, consolidando inventarios y optimizando el servicio al cliente.",
+      description: "Diseño e implementación de sistemas serverless (Kopilot, Restaurante360) integrados al ecosistema cloud, resolviendo cuellos de botella en la asignación de recursos y consolidando el control de inventarios en operaciones de alto tráfico.",
       tags: ["Puntos de Venta", "Planificación"]
     },
     {
       title: "Telemetría y Operaciones Geo",
-      description: "Despliegue de sistemas de telemetría y radares geolocalizados (Alerta Vecinal, ChrisLocation) para solucionar retos de prevención comunitaria, permitiendo el control y emisión de alertas de emergencia al instante.",
+      description: "Dirección del proyecto 'Alerta Vecinal', una plataforma PWA de telemetría en tiempo real y arquitectura de microservicios, desarrollada para coordinar protocolos de emergencia comunitaria y trazabilidad geográfica.",
       tags: ["Mapas Digitales", "Tiempo Real"]
     },
     {
       title: "Minería de Datos y Autopilotos",
-      description: "Creación de agentes de extracción de datos (OCR) y sistemas autónomos (Linkedinmatic) para solucionar los cuellos de botella del trabajo manual operativo, automatizando el despliegue de campañas de marketing.",
+      description: "Liderazgo en la creación de agentes autónomos de extracción (OCR) y automatización de marketing (Linkedinmatic), sustituyendo el trabajo manual por flujos de IA que incrementan radicalmente la productividad operativa.",
       tags: ["Minería Web", "Reconocimiento Óptico"]
     },
     {
@@ -226,7 +226,7 @@ export const defaultBaseCV: BaseCV = {
     },
     {
       title: "Tecnología de Salud e Inclusión",
-      description: "Desarrollo de algoritmos predictivos e interfaces inclusivas (Mediclock, MoodWeather) para solucionar la falta de adherencia a tratamientos médicos, facilitando el control de la nutrición y salud del paciente.",
+      description: "Desarrollo de ecosistemas preventivos de salud (Mediclock) mediante algoritmos predictivos y notificaciones push, diseñados para garantizar la adherencia médica y optimizar el control integral del paciente.",
       tags: ["Salud Integral", "Inclusión Digital"]
     },
     {
