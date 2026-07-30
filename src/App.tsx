@@ -776,7 +776,7 @@ function App() {
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Competencias</h3>
                     <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.8' }}>
-                      {(tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas).slice(0, 4).map((area, i) => (
+                      {(tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas).slice(0, 5).map((area, i) => (
                         <div key={i} style={{ marginBottom: '6px' }}>
                           <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
                         </div>
