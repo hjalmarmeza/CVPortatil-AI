@@ -130,6 +130,7 @@ TAREA:
      • PROHIBIDO usar lenguaje cursi, adulador o frases hechas como "Me identifico plenamente con los valores de...".
      • PROHIBIDO párrafos de menos de 2 frases.
      • PROHIBIDO REPETIR PÁRRAFOS.
+     • PROHIBIDO usar arrobas (@) o "x" para inclusividad (ej: "segur@", "convencid@"). El candidato es hombre, redacta siempre en masculino (ej: "estoy seguro", "estoy convencido").
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
@@ -187,10 +188,9 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const aiExperiences = parsedData?.tailoredCV?.experience || [];
     parsedData.tailoredCV = parsedData.tailoredCV || {};
     parsedData.tailoredCV.experience = baseCV.experience.map((baseExp) => {
-      // Buscar la experiencia correspondiente en la respuesta de la IA (por título o empresa)
+      // Buscar la experiencia correspondiente en la respuesta de la IA (SOLO por título exacto, ya que la empresa se repite y causaba cruces)
       const aiExp = aiExperiences.find((ai: any) => 
-        (ai.title && ai.title.toLowerCase().trim() === baseExp.title.toLowerCase().trim()) || 
-        (ai.company && ai.company.toLowerCase().trim() === baseExp.company.toLowerCase().trim())
+        ai.title && ai.title.toLowerCase().trim() === baseExp.title.toLowerCase().trim()
       );
 
       // Tomar viñetas de la IA si existen y son válidas, sino usar las del CV base
