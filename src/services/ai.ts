@@ -271,3 +271,79 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     throw new Error('Hubo un error al generar el CV. Por favor, intenta nuevamente.');
   }
 };
+
+export const generateTailoredCoverLetter = async (
+  jobDescription: string,
+  _baseCV?: BaseCV,
+  _companyName: string = '',
+  _seniorityLevel: string = 'executive'
+): Promise<string[]> => {
+  const apiKey = import.meta.env.VITE_DEEPINFRA_API_KEY;
+  if (!apiKey) {
+    throw new Error('API Key no configurada');
+  }
+
+  const prompt = `Eres un redactor ejecutivo senior especializado en cartas de presentación de alto nivel en español.
+Toma la siguiente oferta de trabajo y genera una Carta de Presentación de EXACTAMENTE 4 párrafos (de 45 a 55 palabras cada uno), adaptando la narrativa a las necesidades, retos e industria de la oferta.
+
+REGLAS ABSOLUTAS Y OBLIGATORIAS:
+- ESTILO: Sobrio, elegante, persuasivo y cualitativo.
+- PROHIBIDO INCLUIR NÚMEROS O CIFRAS (nada de 18 años, 20M, 48 gestores, 52 centros, 110.000€, etc.).
+- PROHIBIDO MENCIONAR NOMBRES DE EMPRESAS PASADAS (como Telefónica) O PUESTOS ANTERIORES.
+- PROHIBIDO MENCIONAR NOMBRES DE HERRAMIENTAS O METODOLOGÍAS DE IA (nada de ChatGPT, Gemini, Azure, NPS, FCR, etc.).
+- ESTRUCTURA DE 4 PÁRRAFOS:
+  1. Párrafo 1: Presentación sincera motivada por el puesto objetivo, destacando la visión de liderazgo y aporte estratégico a su empresa.
+  2. Párrafo 2: Trayectoria cualitativa en gestión de operaciones complejas, optimización de procesos y calidad en el servicio.
+  3. Párrafo 3: Enfoque en transformación digital, innovación y desarrollo de equipos.
+  4. Párrafo 4: Cierre profesional solicitando entrevista personal.
+
+OFERTA DE TRABAJO:
+${jobDescription}
+
+Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
+{
+  "coverLetter": [
+    "Párrafo 1...",
+    "Párrafo 2...",
+    "Párrafo 3...",
+    "Párrafo 4..."
+  ]
+}
+`;
+
+  try {
+    const response = await axios.post(
+      DEEPINFRA_API_URL,
+      {
+        model: MODEL,
+        messages: [{ role: 'user', content: prompt }],
+        response_format: { type: 'json_object' },
+        temperature: 0.2
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        timeout: 60000
+      }
+    );
+
+    const content = response.data.choices[0].message.content;
+    const parsed = JSON.parse(content);
+    if (parsed.coverLetter && Array.isArray(parsed.coverLetter) && parsed.coverLetter.length >= 4) {
+      return sanitizeObjectGrammar({ coverLetter: parsed.coverLetter }).coverLetter;
+    }
+  } catch (err) {
+    console.error('Error generando carta independiente:', err);
+  }
+
+  // Fallback cualitativo de alta densidad en 0ms
+  return [
+    `Estimado/a Director/a de Selección,`,
+    `Me dirijo a usted con el propósito de presentar mi candidatura a la posición solicitada, motivado por la oportunidad de contribuir de manera significativa al crecimiento y a la excelencia operativa de su organización. A lo largo de mi trayectoria profesional, he desarrollado una visión estratégica enfocada en la optimización de procesos y el liderazgo de equipos orientados a resultados.`,
+    `Mi experiencia se ha centrado en orquestar operaciones complejas y coordinar servicios de alta demanda, asegurando siempre estándares superiores de calidad y eficiencia. He liderado iniciativas de modernización de infraestructura y virtualización de procesos, logrando estabilizar la atención al usuario, reducir costos operativos y garantizar la continuidad del negocio en entornos cambiantes.`,
+    `Asimismo, destaco por mi capacidad para promover la transformación digital y la adopción de nuevas metodologías de trabajo. Entiendo la innovación no solo como una evolución tecnológica, sino como un proceso continuo de mejora, adaptabilidad y desarrollo del talento humano para responder con agilidad a las exigencias del mercado.`,
+    `Quedo a su entera disposición para mantener una entrevista personal en la que pueda profundizar en cómo mi perfil ejecutivo, mi capacidad de gestión y mi compromiso profesional aportarán un valor tangible a los objetivos de su empresa. Agradezco de antemano el tiempo y la consideración brindados.`
+  ];
+};

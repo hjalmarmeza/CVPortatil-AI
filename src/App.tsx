@@ -4,7 +4,7 @@ import jsPDF from 'jspdf';
 import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
 import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
-import { generateTailoredCV } from './services/ai';
+import { generateTailoredCV, generateTailoredCoverLetter } from './services/ai';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'generator' | 'base'>('generator');
@@ -17,7 +17,7 @@ function App() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [tailoredData, setTailoredData] = useState<{
     tailoredCV: BaseCV | null;
-    coverLetter: string | null;
+    coverLetter: string[] | null;
   }>({
     tailoredCV: null,
     coverLetter: null
@@ -42,17 +42,33 @@ function App() {
     }
   }, [baseCV.contact?.photoUrl]);
 
+  const [isGeneratingLetter, setIsGeneratingLetter] = useState(false);
+
   const handleGenerate = async () => {
     if (!jobDescription.trim()) return;
     setIsGenerating(true);
     try {
       const result = await generateTailoredCV(jobDescription, baseCV, companyName, seniorityLevel);
-      setTailoredData(result);
+      setTailoredData(prev => ({ ...prev, tailoredCV: result.tailoredCV, coverLetter: prev.coverLetter || result.coverLetter }));
     } catch (error) {
       alert("Error al generar el CV. Revisa la consola para más detalles.");
       console.error(error);
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const handleGenerateCoverLetter = async () => {
+    if (!jobDescription.trim()) return;
+    setIsGeneratingLetter(true);
+    try {
+      const letterParagraphs = await generateTailoredCoverLetter(jobDescription, baseCV, companyName, seniorityLevel);
+      setTailoredData(prev => ({ ...prev, coverLetter: letterParagraphs }));
+    } catch (error) {
+      alert("Error al generar la Carta de Presentación.");
+      console.error(error);
+    } finally {
+      setIsGeneratingLetter(false);
     }
   };
 
@@ -258,17 +274,31 @@ function App() {
                 </div>
               </div>
 
-              <button 
-                onClick={handleGenerate}
-                disabled={isGenerating || !jobDescription.trim()}
-                className="w-full group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-slate-950 bg-amber-500 rounded-xl overflow-hidden transition-all duration-300 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_40px_-10px_rgba(245,158,11,0.5)] text-sm sm:text-base"
-              >
-                {isGenerating ? (
-                  <><Loader2 className="animate-spin" size={18} /> Procesando con IA...</>
-                ) : (
-                  <><FileText size={18} className="transition-transform group-hover:scale-110" /> Generar Perfil Adaptado</>
-                )}
-              </button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button 
+                  onClick={handleGenerate}
+                  disabled={isGenerating || isGeneratingLetter || !jobDescription.trim()}
+                  className="w-full group relative inline-flex items-center justify-center gap-2 px-5 py-3.5 font-bold text-slate-950 bg-amber-500 rounded-xl overflow-hidden transition-all duration-300 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.5)] text-sm"
+                >
+                  {isGenerating ? (
+                    <><Loader2 className="animate-spin" size={16} /> Procesando CV...</>
+                  ) : (
+                    <><FileText size={16} className="transition-transform group-hover:scale-110" /> Adaptar CV con IA</>
+                  )}
+                </button>
+
+                <button 
+                  onClick={handleGenerateCoverLetter}
+                  disabled={isGenerating || isGeneratingLetter || !jobDescription.trim()}
+                  className="w-full group relative inline-flex items-center justify-center gap-2 px-5 py-3.5 font-bold text-white bg-teal-600 rounded-xl overflow-hidden transition-all duration-300 hover:bg-teal-500 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(13,148,136,0.5)] text-sm border border-teal-500/30"
+                >
+                  {isGeneratingLetter ? (
+                    <><Loader2 className="animate-spin" size={16} /> Generando Carta...</>
+                  ) : (
+                    <><Sparkles size={16} className="transition-transform group-hover:scale-110" /> Adaptar Carta con IA</>
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Right Column: Preview (7 cols) */}
