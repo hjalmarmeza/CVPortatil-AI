@@ -84,8 +84,15 @@ ${seniorityLevel === 'operational'
   : 'AUTO-DETECTAR NIVEL SEGÚN LA OFERTA LABORAL: Analizar si el puesto es operativo/tienda, mando medio o ejecutivo, y calibrar la experiencia en consecuencia.'}
 
 TAREA:
-1. ADAPTACIÓN REALISTA Y SIN CLICHÉS (¡CERO ADULACIÓN O HABILIDADES INVENTADAS!):\n   - PROHIBIDO MENCIONAR ÁREAS QUE NO ESTÉN EN EL CV BASE: NUNCA menciones 'marketing', 'finanzas corporativas' o áreas en las que el candidato no ha trabajado. Mantén la historia estrictamente en Operaciones, Atención al Cliente, Gestión de Tiendas/Call Center, Liderazgo de Equipos y Transformación Digital/IA.
-   - PROHIBIDO FRASES ADULADORAS O CURSIS: Queda ESTRICTAMENTE PROHIBIDO usar frases como "Me siento atraído por la cultura de...", "Me identifico plenamente con los valores de...", "Quedo a su disposición para discutir cómo mi visión...", "empresa solicitante".
+1. ADAPTACIÓN REALISTA Y SIN CLICHÉS (¡CERO ADULACIÓN O HABILIDADES INVENTADAS!):
+   - PROHIBIDO MENCIONAR ÁREAS QUE NO ESTÉN EN EL CV BASE: NUNCA menciones 'marketing', 'finanzas corporativas' o áreas en las que el candidato no ha trabajado. Mantén la historia estrictamente en Operaciones, Atención al Cliente, Gestión de Tiendas/Call Center, Liderazgo de Equipos y Transformación Digital/IA.
+   - ESTRUCTURA OBLIGATORIA (PROHIBIDO HACER CARTAS CORTAS O SIMPLES):
+     1. Párrafo 1 — Presentación directa y sincera: Saludo "Estimado/a Director/a de Selección," + frase inicial de por qué te atrae la empresa y el puesto.
+     2. Párrafo 2 — Desarrollo y Valor central: Toma la columna vertebral de tu carta original y adáptala. Desarrolla tu experiencia clave conectándola con las necesidades del puesto.
+     3. Párrafo 3 — Profundidad y Aporte de valor: Explica un logro o enfoque estratégico usando las palabras clave del puesto. No resumas, argumenta de forma extensa, densa y elocuente.
+     4. Párrafo 4 — Cierre proactivo: Agradecimiento sincero, invitación a entrevista, "Atentamente," y "Hjalmar Meza".
+   - REGLA CRÍTICA DE CONTEXTO: OMITE TOTALMENTE cualquier mención a "Inteligencia Artificial", "Tecnología Generativa" o jerga técnica IT si el puesto es puramente de Retail, Alimentación o Gestión de Tienda (ej. "Director de Tienda"). En su lugar, usa conceptos de "eficiencia operativa", "liderazgo comercial" y "gestión de equipos".
+   - Mantén un volumen, profundidad y peso narrativo altos. Reemplaza los conceptos clave de la carta original sin amputar su extensión. Mínimo 4 párrafos extensos. PROHIBIDO usar frases como "Me siento atraído por la cultura de...", "Me identifico plenamente con los valores de...", "Quedo a su disposición para discutir cómo mi visión...", "empresa solicitante".
    - LA REDACCIÓN DEBE SER HUMANA, REALISTA, AUTÉNTICA Y SOBRIA.
 
 2. ADAPTACIÓN Y CALIBRACIÓN DE SENIORIDAD DEL CV (REGLA CRÍTICA ANTI-SOBRECUALIFICACIÓN):

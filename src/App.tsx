@@ -650,27 +650,48 @@ function App() {
                   {/* Experience */}
                   <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
-                    {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
-                      // El trabajo en idx >= 3 es el que se renderiza en la Hoja 2
-                      const isPage2Start = idx === 3;
-                      return (
-                        <div key={idx} style={{ marginBottom: '18px', pageBreakInside: 'avoid', marginTop: isPage2Start ? '45px' : '0px' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px' }}>
-                            <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
-                            <span style={{ fontSize: '9pt', color: '#666' }}>{exp.period}</span>
-                          </div>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
-                            <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
-                            <span style={{ fontSize: '9pt', color: '#666' }}>{exp.location}</span>
-                          </div>
-                          <ul style={{ margin: 0, paddingLeft: '15px', fontSize: '9pt', color: '#444', lineHeight: '1.45' }}>
-                            {exp.description.map((desc, i) => (
-                              <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      );
-                    })}
+                    <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0 }}>
+                      <tbody>
+                        {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
+                          const isPage2Start = idx === 3;
+                          return (
+                            <tr key={idx}>
+                              <td style={{ paddingBottom: '18px', pageBreakInside: 'avoid', paddingTop: isPage2Start ? '45px' : '0px', verticalAlign: 'top' }}>
+                                <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, marginBottom: '2px' }}>
+                                  <tbody>
+                                    <tr>
+                                      <td style={{ textAlign: 'left', width: '70%' }}>
+                                        <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
+                                      </td>
+                                      <td style={{ textAlign: 'right', width: '30%' }}>
+                                        <span style={{ fontSize: '9pt', color: '#666' }}>{exp.period}</span>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, marginBottom: '8px' }}>
+                                  <tbody>
+                                    <tr>
+                                      <td style={{ textAlign: 'left', width: '70%' }}>
+                                        <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
+                                      </td>
+                                      <td style={{ textAlign: 'right', width: '30%' }}>
+                                        <span style={{ fontSize: '9pt', color: '#666' }}>{exp.location}</span>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <ul style={{ margin: 0, paddingLeft: '15px', fontSize: '9pt', color: '#444', lineHeight: '1.45' }}>
+                                  {exp.description.map((desc, i) => (
+                                    <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
+                                  ))}
+                                </ul>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
                   </div>
 
                   {/* Proyectos Personales */}
@@ -759,32 +780,54 @@ function App() {
             overflow-wrap: break-word !important;
           }
         `}</style>
-        <div style={{ width: '630px', margin: '0 auto', padding: '50px 0', boxSizing: 'border-box' }}>
-          {/* Date top right */}
-          <div style={{ textAlign: 'right', fontSize: '10pt', color: '#777777', marginBottom: '25px' }}>
-            {new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
-          </div>
-          
-          {/* Title */}
-          <h3 style={{ fontSize: '16pt', fontWeight: '800', marginBottom: '25px', color: '#005C53', textTransform: 'uppercase', letterSpacing: 'normal', margin: '0 0 25px 0' }}>CARTA DE PRESENTACIÓN</h3>
-          
-          {/* Body - párrafos separados */}
-          <div style={{ fontSize: '10.5pt', color: '#333333', lineHeight: '1.65', marginBottom: '30px', width: '100%' }}>
-            {tailoredData?.coverLetter?.split('\n\n').filter(p => !p.trim().toLowerCase().startsWith('atentamente')).map((paragraph, idx) => (
-              <p key={idx} style={{ margin: '0 0 16px 0', textAlign: 'left', wordBreak: 'normal', overflowWrap: 'break-word', width: '100%' }}>
-                {paragraph.trim()}
-              </p>
-            ))}
-          </div>
+        <table style={{ width: '100%', margin: '0', borderCollapse: 'collapse', borderSpacing: 0 }}>
+          <tbody>
+            <tr>
+              <td style={{ width: '100%', padding: '50px 82px', boxSizing: 'border-box', verticalAlign: 'top' }}>
+                
+                {/* Date top right */}
+                <div style={{ textAlign: 'right', fontSize: '10pt', color: '#777777', marginBottom: '25px' }}>
+                  {new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </div>
+                
+                {/* Title */}
+                <h3 style={{ fontSize: '16pt', fontWeight: '800', marginBottom: '25px', color: '#005C53', textTransform: 'uppercase', letterSpacing: 'normal', margin: '0 0 25px 0' }}>CARTA DE PRESENTACIÓN</h3>
+                
+                {/* Body - párrafos separados por tablas */}
+                <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, marginBottom: '30px' }}>
+                  <tbody>
+                    {tailoredData?.coverLetter?.split('\n\n').filter(p => !p.trim().toLowerCase().startsWith('atentamente')).map((paragraph, idx) => (
+                      <tr key={idx}>
+                        <td style={{ paddingBottom: '16px', fontSize: '10.5pt', color: '#333333', lineHeight: '1.65', textAlign: 'left', wordBreak: 'normal', overflowWrap: 'break-word' }}>
+                          {paragraph.trim()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
 
-          {/* Signature Block */}
-          <div style={{ fontSize: '9.5pt', color: '#333333', lineHeight: '1.6', borderTop: '1px solid #E2E8F0', paddingTop: '18px' }}>
-            <p style={{ margin: '0 0 4px', color: '#666', fontStyle: 'italic' }}>Atentamente,</p>
-            <p style={{ margin: '0 0 3px', fontWeight: '800', fontSize: '11.5pt', color: '#005C53' }}>{baseCV.name}</p>
-            <p style={{ margin: '0 0 2px', fontSize: '9pt', color: '#666' }}>📞 {baseCV.contact?.phone} &nbsp;|&nbsp; ✉️ {baseCV.contact?.email}</p>
-            <p style={{ margin: '0', fontSize: '9pt', color: '#666' }}>🔗 {baseCV.contact?.linkedin} &nbsp;|&nbsp; 📍 {baseCV.contact?.location}</p>
-          </div>
-          </div>
+                {/* Signature Block */}
+                <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, marginTop: '30px' }}>
+                  <tbody>
+                    <tr>
+                      <td style={{ width: '60px', paddingRight: '15px', verticalAlign: 'middle' }}>
+                        <div style={{ width: '60px', height: '60px', overflow: 'hidden', border: '2px solid #005C53', borderRadius: '4px' }}>
+                          <img src={baseCV.contact?.photoUrl ? (baseCV.contact.photoUrl.startsWith('http') || baseCV.contact.photoUrl.startsWith('data:') ? baseCV.contact.photoUrl : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`) : ''} alt="Foto" style={{ width: '60px', height: '60px', objectFit: 'cover', objectPosition: 'center top' }} />
+                        </div>
+                      </td>
+                      <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
+                        <p style={{ margin: '0 0 3px', fontWeight: '800', fontSize: '11.5pt', color: '#005C53' }}>{baseCV.name}</p>
+                        <p style={{ margin: '0 0 2px', fontSize: '9pt', color: '#666' }}>📞 {baseCV.contact?.phone} &nbsp;|&nbsp; ✉️ {baseCV.contact?.email}</p>
+                        <p style={{ margin: '0', fontSize: '9pt', color: '#666' }}>🔗 {baseCV.contact?.linkedin} &nbsp;|&nbsp; 📍 {baseCV.contact?.location}</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
         </div>
       </div>
     </div>
