@@ -140,21 +140,19 @@ TAREA:
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
    - Usa un lenguaje HUMANO, PERSUASIVO Y ADECUADO AL NIVEL DEL PUESTO.
 
-5. CARTA DE PRESENTACIÓN (ESTILO LIMPIO, DIRECTO Y ELEGANTE — 4 PÁRRAFOS RICOS):
-   - TONO Y ESTILO: Claro, profesional, sobrio, seguro. Sin cursilerías ni frases vacías. Redacción en primera persona del singular.
-   - LONGITUD OBLIGATORIA Y DENSIDAD: Exactamente 4 párrafos (separados por \n\n). REGLA CRÍTICA Y SAGRADA: Cada párrafo DEBE tener ENTRE 50 Y 60 PALABRAS de contenido denso, inteligente y persuasivo. PROHIBIDO escribir párrafos cortos de una o dos líneas. Si escribes un párrafo de menos de 45 palabras, el sistema fallará.
-   - ESTRUCTURA OBLIGATORIA (adapta el contenido al puesto real, NO copies plantillas):
-     1. Párrafo 1 — Presentación directa y sincera: Saludo "Estimado/a Director/a de Selección," + frase de presentación al puesto específico por su nombre real (extraído de la oferta). Menciona brevemente tu motivación genuina por ese tipo de rol (atención al cliente, operaciones, liderazgo, etc. según el nivel del puesto).
-     2. Párrafo 2 — Trayectoria real y logros concretos: Describe con autenticidad tu experiencia de 18 años extrayendo 2-3 logros o responsabilidades REALES y específicas del CV base (ej: gestión de 52 centros, migración de 20 millones de clientes, ahorro de 110.000€, liderazgo de 48 gestores). Adapta los logros al nivel del puesto (para operativo: destaca la gestión directa de equipos, servicio al cliente, etc.).
-     3. Párrafo 3 — Conexión directa con el puesto: Conecta 2-3 de tus competencias REALES del CV base con los requisitos específicos de la oferta (sin inventar nada). Sé específico y concreto, no genérico.
-     4. Párrafo 4 — Cierre respetuoso y directo: "Quedo a su entera disposición para ampliar los detalles de mi trayectoria en una entrevista personal. Agradezco de antemano el tiempo dedicado a revisar mi perfil."
-   - PROHIBICIONES ABSOLUTAS:
-     • PROHIBIDO incluir despedida tipo "Atentamente" o el nombre del candidato al final (el sistema renderiza el bloque de firma dinámicamente).
-     • PROHIBIDO inventar áreas, empresas o logros que no están en el CV base.
-     • PROHIBIDO usar lenguaje cursi, adulador o frases hechas como "Me identifico plenamente con los valores de...".
-     • PROHIBIDO párrafos de menos de 2 frases.
-     • PROHIBIDO REPETIR PÁRRAFOS.
-     • PROHIBIDO usar arrobas (@) o "x" para inclusividad (ej: "segur@", "convencid@"). El candidato es hombre, redacta siempre en masculino (ej: "estoy seguro", "estoy convencido").
+5. CARTA DE PRESENTACIÓN (ESTILO QUALITATIVO, ELEGANTE Y EJECUTIVO — 4 PÁRRAFOS RICOS):
+   - TONO Y ESTILO: Directivo, sobrio, elegante y persuasivo. Redacción cualitativa en primera persona del singular.
+   - LONGITUD OBLIGATORIA Y DENSIDAD: Exactamente 4 párrafos (separados por \n\n), cada uno de 45 a 55 palabras. PROHIBIDO párrafos cortos de 1 o 2 líneas.
+   - REGLAS ABSOLUTAS DE CONTENIDO (PROHIBICIONES ESTRICTAS):
+     • PROHIBIDO INCLUIR NÚMEROS O CIFRAS (nada de 18 años, 20M, 48 gestores, 52 centros, 110.000€, etc.).
+     • PROHIBIDO MENCIONAR NOMBRES DE EMPRESAS PASADAS (como Telefónica) O NOMBRES DE PUESTOS PASADOS.
+     • PROHIBIDO MENCIONAR NOMBRES DE HERRAMIENTAS O METODOLOGÍAS DE IA (nada de ChatGPT, Gemini, Claude, Azure, NPS, FCR, Churn).
+     • PROHIBIDO incluir despedidas como "Atentamente" al final (el sistema renderiza la firma dinámicamente).
+   - ESTRUCTURA QUALITATIVA:
+     1. Párrafo 1: Presentación motivada al puesto solicitado, destacando la visión estratégica y el deseo de aportar valor inmediato al crecimiento de la organización.
+     2. Párrafo 2: Trayectoria cualitativa en liderazgo de operaciones complejas, optimización de procesos y modernización de canales de atención, enfatizando la eficiencia y la calidad en el servicio.
+     3. Párrafo 3: Enfoque en la innovación tecnológica, la mejora continua y la gestión del cambio cultural para empoderar al talento humano y alcanzar metas corporativas exigentes.
+     4. Párrafo 4: Cierre profesional ofreciendo una entrevista personal para profundizar en el encaje estratégico.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
 {
@@ -276,13 +274,13 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const targetTitle = parsedData?.tailoredCV?.summary?.split('.')[0] || 'Director/a de Operaciones';
 
     if (letterParagraphs.length < 4 || totalWords < 140) {
-      // Reconstrucción ejecutiva de alta densidad si la IA devolvió respuestas cortas
+      // Reconstrucción ejecutiva cualitativa (SIN NÚMEROS, SIN EMPRESAS PASADAS, SIN HERRAMIENTAS IA)
       parsedData.coverLetter = [
         `Estimado/a Director/a de Selección,`,
-        `Me dirijo a usted con gran entusiasmo para presentar mi candidatura a la posición requerida (${targetTitle}), convencido de que mi trayectoria de más de 18 años liderando operaciones complejas, optimizando procesos y encabezando iniciativas de transformación digital aportará un valor estratégico e inmediato a su organización. Mi motivación radica en aplicar mi experiencia directiva para resolver los retos operativos actuales y potenciar el rendimiento de sus equipos.`,
-        `A lo largo de mi carrera en Telefónica del Perú y en la gestión de proyectos independientes, he liderado equipos de más de 48 gestores de atención, administrado redes de 52 centros de servicio y supervisado la atención presencial de más de 160.000 clientes mensuales. Entre mis principales logros destacan la migración de 20 millones de usuarios a nuevas plataformas, la generación de ahorros de 110.000 € en modernización de infraestructura y la reducción del 15% en la carga presencial mediante virtualización estratégica.`,
-        `En los últimos años, he complementado mi perfil directivo integrando inteligencia artificial generativa, automatización de flujos de trabajo y herramientas tecnológicas avanzadas (ChatGPT, Gemini, Claude, Azure). Esta combinación de liderazgo ejecutivo, rigor en el control de KPIs (NPS, FCR, Churn Rate) y capacidad de innovación tecnológica me permite diseñar e implementar soluciones ágiles alineadas con los objetivos más exigentes del puesto.`,
-        `Quedo a su entera disposición para mantener una entrevista personal en la que pueda profundizar en cómo mi experiencia directiva, visión estratégica y competencias en transformación digital contribuirán activamente al crecimiento de su empresa. Agradezco de antemano el tiempo dedicado a revisar mi perfil.`
+        `Me dirijo a usted con el propósito de presentar mi candidatura a la posición de ${targetTitle}, motivado por la oportunidad de contribuir de manera significativa al crecimiento y a la excelencia operativa de su organización. A lo largo de mi trayectoria profesional, he desarrollado una visión estratégica enfocada en la optimización de procesos y el liderazgo de equipos orientados a resultados.`,
+        `Mi experiencia se ha centrado en orquestar operaciones complejas y coordinar servicios de alta demanda, asegurando siempre estándares superiores de calidad y eficiencia. He liderado iniciativas de modernización de infraestructura y virtualización de procesos, logrando estabilizar la atención al usuario, reducir costos operativos y garantizar la continuidad del negocio en entornos cambiantes.`,
+        `Asimismo, destaco por mi capacidad para promover la transformación digital y la adopción de nuevas metodologías de trabajo. Entiendo la innovación no solo como una evolución tecnológica, sino como un proceso continuo de mejora, adaptabilidad y desarrollo del talento humano para responder con agilidad a las exigencias del mercado.`,
+        `Quedo a su entera disposición para mantener una entrevista personal en la que pueda profundizar en cómo mi perfil ejecutivo, mi capacidad de gestión y mi compromiso profesional aportarán un valor tangible a los objetivos de su empresa. Agradezco de antemano el tiempo y la consideración brindados.`
       ];
     } else {
       parsedData.coverLetter = letterParagraphs;
