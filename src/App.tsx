@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
 import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
@@ -32,82 +33,18 @@ function App() {
     }
   };
 
-  const generatePdfFromElement = async (elementId: string, filename: string) => {
-    const element = document.getElementById(elementId);
-    if (!element) return;
+  const cvRef = useRef<HTMLDivElement>(null);
+  const letterRef = useRef<HTMLDivElement>(null);
 
-    // Clonar el nodo para evitar modificar el DOM original y causar bugs de renderizado (kerning roto)
-    const clone = element.cloneNode(true) as HTMLElement;
-    
-    // Forzar el clon fuera de la vista pero en el flujo normal para que html2canvas mida bien las fuentes
-    clone.style.position = 'absolute';
-    clone.style.top = '-9999px';
-    clone.style.left = '-9999px';
-    clone.style.width = '794px'; // Ancho A4
-    clone.style.display = 'block';
-    clone.style.backgroundColor = '#ffffff';
-    
-    // Asegurar que las fuentes se rendericen bien (saltando el chequeo estricto de TS)
-    clone.style.setProperty('-webkit-font-smoothing', 'antialiased');
-    clone.style.setProperty('-moz-osx-font-smoothing', 'grayscale');
-    
-    // Envolver el clon en un contenedor con las clases base para que herede la tipografía correcta
-    const wrapper = document.createElement('div');
-    wrapper.className = 'font-sans text-slate-900'; // Clases para forzar la tipografía correcta
-    wrapper.style.position = 'absolute';
-    wrapper.style.top = '-9999px';
-    wrapper.style.left = '-9999px';
-    wrapper.appendChild(clone);
-    
-    document.body.appendChild(wrapper);
+  const handleDownloadPDF = useReactToPrint({
+    contentRef: cvRef,
+    documentTitle: `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored`
+  }) as () => void;
 
-    // Esperar a que el browser pinte el layout completo
-    await new Promise((resolve) => setTimeout(resolve, 300));
-
-    try {
-      const canvas = await html2canvas(clone, {
-        scale: 2, // 2 para evitar borrosidad en pantallas retina sin romper kerning
-        useCORS: true,
-        allowTaint: true,
-        scrollX: 0,
-        scrollY: -window.scrollY, // Corregir offset de scroll
-        backgroundColor: '#ffffff',
-        logging: false,
-        windowWidth: document.documentElement.offsetWidth,
-        windowHeight: document.documentElement.offsetHeight
-      });
-
-      const imgData = canvas.toDataURL('image/jpeg', 0.98);
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const pageWidth = 210; // A4 en mm
-      const pageHeight = 297;
-      const imgWidthMm = pageWidth;
-      const imgHeightMm = (canvas.height * imgWidthMm) / canvas.width;
-
-      let yOffset = 0;
-      let remainingHeight = imgHeightMm;
-
-      while (remainingHeight > 0) {
-        pdf.addImage(imgData, 'JPEG', 0, -yOffset, imgWidthMm, imgHeightMm);
-        remainingHeight -= pageHeight;
-        yOffset += pageHeight;
-        if (remainingHeight > 0) pdf.addPage();
-      }
-
-      pdf.save(filename);
-    } finally {
-      // Limpiar el clon y el wrapper
-      document.body.removeChild(wrapper);
-    }
-  };
-
-  const handleDownloadPDF = () => {
-    generatePdfFromElement('cv-pdf-content', `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`);
-  };
-
-  const handleDownloadCoverLetterPDF = () => {
-    generatePdfFromElement('cover-letter-pdf-content', `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`);
-  };
+  const handleDownloadCoverLetterPDF = useReactToPrint({
+    contentRef: letterRef,
+    documentTitle: `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}`
+  }) as () => void;
 
   return (
     <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-amber-500/30 overflow-x-hidden w-full max-w-full">
@@ -617,7 +554,8 @@ function App() {
       </main>
 
       {/* Renderizado Oculto para el PDF */}
-      <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'system-ui, -apple-system, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
+      <div style={{ display: 'none' }}>
+        <div id="cv-pdf-content" ref={cvRef} style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'system-ui, -apple-system, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -765,10 +703,12 @@ function App() {
           </tbody>
         </table>
       </div>
+      </div>
 
       {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
       {/* Margen externo 0 en html2pdf + ancho fijo 794px + contenedor centrado 630px garantizan margen derecho impecable sin cortes */}
-      <div id="cover-letter-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
+      <div style={{ display: 'none' }}>
+        <div id="cover-letter-pdf-content" ref={letterRef} style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
         <style>{`
           #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -807,9 +747,9 @@ function App() {
             <p style={{ margin: '0 0 2px', fontSize: '9pt', color: '#666' }}>📞 {baseCV.contact?.phone} &nbsp;|&nbsp; ✉️ {baseCV.contact?.email}</p>
             <p style={{ margin: '0', fontSize: '9pt', color: '#666' }}>🔗 {baseCV.contact?.linkedin} &nbsp;|&nbsp; 📍 {baseCV.contact?.location}</p>
           </div>
+          </div>
         </div>
       </div>
-
     </div>
   );
 }
