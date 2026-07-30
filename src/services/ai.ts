@@ -198,9 +198,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const parsedData = JSON.parse(content);
     
     // ESCUDOS DE SEGURIDAD EXTREMA:
-    if (!parsedData.tailoredCV.portfolio || parsedData.tailoredCV.portfolio.length < 2 || parsedData.tailoredCV.portfolio[0].title === 'Atención al cliente') {
-      parsedData.tailoredCV.portfolio = baseCV.portfolio.slice(0, 4);
-    }
+    // Escudo de Hierro: Los proyectos personales no se tocan jamás.
+    parsedData.tailoredCV.portfolio = baseCV.portfolio.slice(0, 4);
     if (!parsedData.tailoredCV.domainAreas || parsedData.tailoredCV.domainAreas.length < 4) {
       parsedData.tailoredCV.domainAreas = baseCV.domainAreas.slice(0, 4);
     }
