@@ -49,7 +49,7 @@ function App() {
     setIsGenerating(true);
     try {
       const result = await generateTailoredCV(jobDescription, baseCV, companyName, seniorityLevel);
-      setTailoredData(prev => ({ ...prev, tailoredCV: result.tailoredCV, coverLetter: prev.coverLetter || result.coverLetter }));
+      setTailoredData(prev => ({ ...prev, tailoredCV: result.tailoredCV }));
     } catch (error) {
       alert("Error al generar el CV. Revisa la consola para más detalles.");
       console.error(error);
@@ -110,18 +110,27 @@ function App() {
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = 210;
       const pdfHeight = 297;
-      const imgHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
-      let heightLeft = imgHeight;
-      let position = 0;
-
-      pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
-      heightLeft -= pdfHeight;
-
-      while (heightLeft > 5) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
+      const calculatedHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
+      
+      if (elementId === 'cv-pdf-content') {
+        // Cargar exactamente 2 páginas (594mm) en jsPDF para evitar hoja 3 vacía
+        const imgHeight = Math.min(calculatedHeight, 594);
+        pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, imgHeight);
+        if (calculatedHeight > 300) {
+          pdf.addPage();
+          pdf.addImage(dataUrl, 'JPEG', 0, -297, pdfWidth, imgHeight);
+        }
+      } else {
+        let heightLeft = calculatedHeight;
+        let position = 0;
+        pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, calculatedHeight);
         heightLeft -= pdfHeight;
+        while (heightLeft > 5) {
+          position = heightLeft - calculatedHeight;
+          pdf.addPage();
+          pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, calculatedHeight);
+          heightLeft -= pdfHeight;
+        }
       }
 
       pdf.save(filename);
@@ -709,7 +718,12 @@ function App() {
                   <div style={{ marginBottom: '25px', pageBreakInside: 'avoid' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Perfil Profesional</h3>
                     <div style={{ fontSize: '9.5pt', lineHeight: '1.5', color: '#444', textAlign: 'left' }}>
-                      {tailoredData?.tailoredCV?.summary || baseCV.summary}
+                      {(() => {
+                        const s = tailoredData?.tailoredCV?.summary || baseCV.summary;
+                        return (s && s.split(/\s+/).length >= 35)
+                          ? s
+                          : `${s} Trayectoria directiva y estratégica enfocada en la optimización de procesos, gestión de equipos de alto rendimiento y transformación digital para elevar la rentabilidad y la excelencia operativa.`;
+                      })()}
                     </div>
                   </div>
 
@@ -745,7 +759,7 @@ function App() {
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 2 ? '75px' : '0px' }}>
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 1 ? '110px' : '0px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
@@ -806,11 +820,17 @@ function App() {
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Competencias</h3>
                     <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.8' }}>
-                      {(tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas).slice(0, 5).map((area, i) => (
-                        <div key={i} style={{ marginBottom: '6px' }}>
-                          <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
-                        </div>
-                      ))}
+                      {(() => {
+                        const currentSkills = (tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5);
+                        const hasLeadershipSkill = currentSkills.some(s => s.toLowerCase().includes('liderazgo'));
+                        const rawAreas = (tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas);
+                        const cleanAreas = rawAreas.filter(area => !(hasLeadershipSkill && area.title.toLowerCase().includes('liderazgo')));
+                        return cleanAreas.slice(0, 5).map((area, i) => (
+                          <div key={i} style={{ marginBottom: '6px' }}>
+                            <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
+                          </div>
+                        ));
+                      })()}
                     </div>
                   </div>
 
