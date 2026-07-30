@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import html2pdf from 'html2pdf.js';
+import domtoimage from 'dom-to-image-more';
+import jsPDF from 'jspdf';
 import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
 import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
@@ -76,17 +77,38 @@ function App() {
     try {
       // Usar dom-to-image-more con un scale alto para excelente calidad.
       // A diferencia de html2canvas, esto usa SVG foreignObject y respeta al 100% el kerning nativo.
-      
-      const opt = {
-        margin:       0,
-        filename:     filename,
-        image:        { type: 'jpeg' as const, quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, letterRendering: false },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
-        pagebreak:    { mode: ['css', 'legacy'] }
-      };
-      await html2pdf().set(opt).from(element).save();
+      const scale = 2;
+      const dataUrl = await domtoimage.toJpeg(element, {
+        quality: 0.98,
+        width: element.offsetWidth * scale,
+        height: element.offsetHeight * scale,
+        style: {
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+          width: `${element.offsetWidth}px`,
+          height: `${element.offsetHeight}px`
+        }
+      });
 
+      // Dimensiones A4 multipágina
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdfWidth = 210;
+      const pdfHeight = 297;
+      const imgHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
+      heightLeft -= pdfHeight;
+
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
+        heightLeft -= pdfHeight;
+      }
+
+      pdf.save(filename);
     } catch (err) {
       console.error("Error generating PDF:", err);
       alert("Error al generar el PDF. Verifica la consola.");
@@ -297,7 +319,7 @@ function App() {
                           <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Carta de Presentación</h4>
                         </div>
                         <div className="p-6 rounded-2xl bg-slate-800/30 border border-slate-700/50 text-sm text-slate-300 whitespace-pre-wrap leading-relaxed shadow-inner">
-                          {Array.isArray(tailoredData.coverLetter) ? tailoredData.coverLetter.join('\\n\\n') : tailoredData.coverLetter}
+                          {Array.isArray(tailoredData.coverLetter) ? tailoredData.coverLetter.join('\n\n') : tailoredData.coverLetter}
                         </div>
                       </section>
 
@@ -677,7 +699,7 @@ function App() {
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 3 ? '45px' : '0px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
