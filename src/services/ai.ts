@@ -90,7 +90,7 @@ TAREA:
      1. Párrafo 1 — Presentación directa y sincera: Saludo "Estimado/a Director/a de Selección," + "Es un placer presentar mi candidatura para el puesto de [Nombre del Puesto]. Como profesional apasionado por el sector y la atención al cliente, estoy emocionado de unirme a un equipo que comparte mis valores y objetivos."
      2. Párrafo 2 — Desarrollo y Valor central: "Con más de 18 años de experiencia liderando equipos y gestionando operaciones, estoy seguro de que puedo aportar valor..." No menciones NINGÚN nombre de empresa pasada.
        • TÍTULO: Empieza con tu nombre, un salto de línea (\n), título del puesto al que postulas, seguido de tus datos de contacto.\n
-       • CUERPO: La carta DEBE tener 4 párrafos extensos y detallados. Es ESTRICTAMENTE OBLIGATORIO separar cada párrafo con dobles saltos de línea (\n\n). REGLA CRÍTICA INQUEBRANTABLE: Cada uno de los 4 párrafos debe ser un bloque masivo de texto denso y complejo. PROHIBIDO usar frases cortas o simples. Expláyate profundamente en cada punto. Usa la carta base como esqueleto pero adáptala para que suene inspiradora y orientada al puesto (ej. si es Director de Tienda, enfócate en excelencia operativa en Retail).\n
+       • CUERPO: La carta DEBE tener 4 párrafos extensos y detallados. Debes devolver un ARRAY de 4 strings, donde cada string es un párrafo. REGLA CRÍTICA INQUEBRANTABLE: Cada uno de los 4 párrafos debe ser un bloque masivo de texto denso y complejo. PROHIBIDO usar frases cortas o simples. Expláyate profundamente en cada punto. Usa la carta base como esqueleto pero adáptala para que suene inspiradora y orientada al puesto (ej. si es Director de Tienda, enfócate en excelencia operativa en Retail).\n
      4. Párrafo 4 — Cierre proactivo: "Estoy emocionado de unirme a su equipo y contribuir al éxito de su empresa. Agradezco de antemano el tiempo dedicado a revisar mi perfil." + "Atentamente," + "Hjalmar Meza Cortez".
    - REGLA CRÍTICA DE CONTEXTO: PROHIBIDO listar tus trabajos anteriores o empresas. PROHIBIDO decir "En mi experiencia como [puesto] en [empresa]". La carta debe ser sobre tus valores, habilidades transversales y lo que puedes aportar.
    - Mantén un volumen, profundidad y peso narrativo altos. Mínimo 4 párrafos extensos. PROHIBIDO usar frases como "Me siento atraído por la cultura de...", "Me identifico plenamente con los valores de...", "Quedo a su disposición para discutir cómo mi visión...", "empresa solicitante".
@@ -120,7 +120,7 @@ TAREA:
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Debes elegir OBLIGATORIAMENTE entre 5 y 6 habilidades de la lista original del CV base.
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base.
-   - Resumen Profesional (summary): Debe empezar con tu título profesional adaptado al puesto objetivo. Adapta explícitamente el enfoque a la industria de la oferta (ej. si es Retail, destaca tu experiencia orquestando operaciones comerciales/retail). REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes, métricas, cantidades de personal (ej. 48 gestores) o nombres específicos de industrias pasadas (como telecomunicaciones). Escribe 4-5 líneas densas y cualitativas.
+   - Resumen Profesional (summary): Debe empezar con tu título profesional adaptado al puesto objetivo. Adapta explícitamente el enfoque a la industria de la oferta (ej. si es Retail, destaca tu experiencia orquestando operaciones comerciales/retail). REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes, métricas, cantidades de personal (ej. 48 gestores) o nombres específicos de industrias pasadas (como telecomunicaciones). Escribe un bloque masivo de MÍNIMO 80 PALABRAS (4 a 5 líneas completas). NO HAGAS RESÚMENES CORTOS.
    - Dominios Técnicos (domainAreas): ESTRICTAMENTE OBLIGATORIO elegir EXACTAMENTE 4 o 5 áreas clave (competencias) EXACTAMENTE IGUALES a las del CV base. NUNCA devuelvas solo 1.
    - Experiencia (experience): Mantén un tono altamente profesional, directivo y estructurado. Copia la complejidad, el peso narrativo y la formalidad del CV Base. NO simplifiques las descripciones. NO inventes resultados ni métricas.
 
@@ -173,7 +173,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       }
     ]
   },
-  "coverLetter": "Texto completo de la carta de presentación..."
+  "coverLetter": ["Párrafo 1 extenso...", "Párrafo 2 extenso...", "Párrafo 3 extenso...", "Párrafo 4 extenso..."]
 }
 `;
 
@@ -197,6 +197,19 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const content = response.data.choices[0].message.content;
     const parsedData = JSON.parse(content);
     
+    // ESCUDOS DE SEGURIDAD EXTREMA:
+    if (!parsedData.tailoredCV.portfolio || parsedData.tailoredCV.portfolio.length === 0 || parsedData.tailoredCV.portfolio[0].title === 'Atención al cliente') {
+      parsedData.tailoredCV.portfolio = baseCV.portfolio.slice(0, 4);
+    }
+    if (!parsedData.tailoredCV.domainAreas || parsedData.tailoredCV.domainAreas.length < 4) {
+      parsedData.tailoredCV.domainAreas = baseCV.domainAreas.slice(0, 4);
+    }
+    if (!parsedData.tailoredCV.certifications || parsedData.tailoredCV.certifications.length < 5) {
+      parsedData.tailoredCV.certifications = baseCV.certifications.slice(0, 6);
+    }
+    if (typeof parsedData.coverLetter === 'string') {
+      parsedData.coverLetter = parsedData.coverLetter.split(/\\n+/);
+    }
     // ESCUDO DE SEGURIDAD 1: Garantizar las 4 experiencias reales del CV Base, asociando por título/empresa para evitar mezcla si la IA las desordena
     const aiExperiences = parsedData?.tailoredCV?.experience || [];
     parsedData.tailoredCV = parsedData.tailoredCV || {};

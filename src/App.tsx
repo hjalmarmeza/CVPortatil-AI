@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import domtoimage from 'dom-to-image-more';
-import jsPDF from 'jspdf';
+import html2pdf from 'html2pdf.js';
 import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
 import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
@@ -77,38 +76,17 @@ function App() {
     try {
       // Usar dom-to-image-more con un scale alto para excelente calidad.
       // A diferencia de html2canvas, esto usa SVG foreignObject y respeta al 100% el kerning nativo.
-      const scale = 2;
-      const dataUrl = await domtoimage.toJpeg(element, {
-        quality: 0.98,
-        width: element.offsetWidth * scale,
-        height: element.offsetHeight * scale,
-        style: {
-          transform: `scale(${scale})`,
-          transformOrigin: 'top left',
-          width: `${element.offsetWidth}px`,
-          height: `${element.offsetHeight}px`
-        }
-      });
+      
+      const opt = {
+        margin:       0,
+        filename:     filename,
+        image:        { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: false },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
+        pagebreak:    { mode: ['css', 'legacy'] }
+      };
+      await html2pdf().set(opt).from(element).save();
 
-      // Dimensiones A4 multipágina
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const pdfWidth = 210;
-      const pdfHeight = 297;
-      const imgHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
-      let heightLeft = imgHeight;
-      let position = 0;
-
-      pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
-      heightLeft -= pdfHeight;
-
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
-        heightLeft -= pdfHeight;
-      }
-
-      pdf.save(filename);
     } catch (err) {
       console.error("Error generating PDF:", err);
       alert("Error al generar el PDF. Verifica la consola.");
