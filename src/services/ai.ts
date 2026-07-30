@@ -91,11 +91,11 @@ TAREA:
 
 2. ADAPTACIÓN Y CALIBRACIÓN DE SENIORIDAD DEL CV (REGLA CRÍTICA ANTI-SOBRECUALIFICACIÓN):
    - DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO ELIMINAR O DUPLICAR CARGOS.
-   - PROHIBIDO INVENTAR O CAMBIAR LOS NOMBRES DE LAS EMPRESAS (company) Y NOMBRES DE PUESTOS (title) DEL CV BASE. Cada elemento en 'experience' DEBE CONSERVAR EXACTAMENTE el mismo 'company', 'period' y 'location' original del CV Base (PROHIBIDO inventar nombres de empresas ficticias como Kiko Food u otras).
+   - PROHIBIDO INVENTAR O CAMBIAR LOS NOMBRES DE LAS EMPRESAS (company) Y NOMBRES DE PUESTOS (title) DEL CV BASE. Cada elemento en 'experience' DEBE CONSERVAR EXACTAMENTE el mismo 'title', 'company', 'period' y 'location' original del CV Base. PROHIBIDO inventar puestos como "Director/a de Tienda" si el puesto base es "Gestor de Negocio Familiar & Consultor IA". PROHIBIDO inventar tareas absurdas (como mermeladas, bases de datos relacionales en tienda o alianzas internacionales sin sentido).
    - REGLA DE CALIBRACIÓN DE SENIORIDAD:
      * SI EL PUESTO ES DE NIVEL OPERATIVO / TIENDA (ej: Dependiente/a, Reponedor/a, Cajero/a, Auxiliar, Atención al Cliente):
        • RESUMEN EJECUTIVO: DEBE SER OPERATIVO Y CERCANO AL ROL. Presenta al candidato como un profesional apasionado por el servicio al cliente de excelencia, asesoramiento personalizado, manejo ágil de TPV/caja, reposición cuidadosa y trabajo en equipo. PROHIBIDO sonar como un directivo costoso de nivel regional o corporativo que asuste al reclutador.
-       • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Lideré...", "Desarrollé...", "Implementé...", "Supervisé...", "Optimicé..."). Reescribe las funciones y logros enfocándolos hacia la ejecución táctica diaria: atención directa, resolución de dudas en tienda, arqueo de caja, reposición de producto, escaparatismo y colaboración. Suaviza o contextualiza las métricas ejecutivas gigantes para no parecer inaccesible. Conserva la empresa real del CV base.
+       • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Lideré...", "Desarrollé...", "Implementé...", "Supervisé...", "Optimicé..."). Reescribe las funciones y logros manteniendo la veracidad del rol base. Conserva el cargo real y la empresa real del CV base.
        • DOMINIOS Y COMPETENCIAS (domainAreas): Adapta las competencias a: "Atención al Cliente & Venta", "Operaciones de Tienda & TPV", "Reposición & Control de Stock", "Escaparatismo & Visual Merchandising", "Trabajo en Equipo", "Comunicación & Proactividad".
        • HABILIDADES DESTACADAS (skills): Selecciona EXACTAMENTE entre 6 y 8 habilidades operativas clave (ej: Atención al Cliente, Manejo de TPV / Caja, Venta Personalizada, Reposición de Productos, Escaparatismo, Trabajo en Equipo, Proactividad, Resolución de Problemas).
        • PROYECTOS PERSONALES: Redáctalos como iniciativas prácticas de gestión comercial, atención al cliente u organización de tienda, evitando mencionar lenguajes de programación complejos (React, Node, MongoDB) que estén fuera del alcance de un puesto de dependiente.
@@ -179,17 +179,23 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const content = response.data.choices[0].message.content;
     const parsedData = JSON.parse(content);
     
-    // ESCUDO DE SEGURIDAD 1: Restaurar estrictamente la historia laboral real del CV Base
+    // ESCUDO DE SEGURIDAD 1: Restaurar estrictamente los cargos y datos reales inmutables del CV Base
     if (parsedData?.tailoredCV?.experience && Array.isArray(parsedData.tailoredCV.experience)) {
       parsedData.tailoredCV.experience = parsedData.tailoredCV.experience.map((exp: any, i: number) => {
         const baseExp = baseCV.experience[i];
         if (baseExp) {
+          // Filtrar viñetas alucinadas o absurdas (ej: mermeladas, bases de datos relacionales en tienda, etc.)
+          const cleanDescription = (exp.description || baseExp.description).filter((descLine: string) => {
+            const lower = descLine.toLowerCase();
+            return !lower.includes('mermelada') && !lower.includes('relacionale') && !lower.includes('autoservicio');
+          });
+
           return {
-            ...exp,
-            company: baseExp.company,
+            title: baseExp.title, // Título real inmutable del CV Base
+            company: baseExp.company, // Empresa real inmutable
             period: baseExp.period,
             location: baseExp.location,
-            title: exp.title && !exp.title.toLowerCase().includes('kiko') ? exp.title : baseExp.title
+            description: cleanDescription.length > 0 ? cleanDescription : baseExp.description
           };
         }
         return exp;
