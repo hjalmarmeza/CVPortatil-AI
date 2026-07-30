@@ -130,7 +130,7 @@ TAREA:
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
    - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base. Si el CV base no tiene un porcentaje, NO LO INVENTES.
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
-   - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Debes elegir OBLIGATORIAMENTE entre 5 y 6 habilidades de la lista original del CV base.
+   - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Debes elegir OBLIGATORIAMENTE entre 5 y 6 habilidades de la lista original del CV base. REGLA CRÍTICA: NO generes habilidades o competencias que sean sinónimos o redundantes entre sí (ej. no pongas "Liderazgo" y luego "Liderazgo Organizacional").
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base.
    - Resumen Profesional (summary): Debe empezar con tu título profesional adaptado al puesto objetivo. Adapta explícitamente el enfoque a la industria de la oferta (ej. si es Retail, destaca tu experiencia orquestando operaciones comerciales/retail). REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes, métricas, cantidades de personal (ej. 48 gestores) o nombres específicos de industrias pasadas (como telecomunicaciones). Escribe un resumen directo, profesional y natural de aproximadamente 80 palabras. NO uses jerga corporativa excesiva ni suenes robótico (ej. evita frases como "fusiono mi sólido background"). NUNCA inventes profesiones que no están en el CV Base (ej. no pongas Ingeniero).
    - Dominios Técnicos (domainAreas): ESTRICTAMENTE OBLIGATORIO elegir EXACTAMENTE 4 o 5 áreas clave (competencias) EXACTAMENTE IGUALES a las del CV base. NUNCA devuelvas solo 1.
@@ -142,7 +142,7 @@ TAREA:
 
 5. CARTA DE PRESENTACIÓN (ESTILO LIMPIO, DIRECTO Y ELEGANTE — 4 PÁRRAFOS RICOS):
    - TONO Y ESTILO: Claro, profesional, sobrio, seguro. Sin cursilerías ni frases vacías. Redacción en primera persona del singular.
-   - LONGITUD OBLIGATORIA: Exactamente 4 párrafos, cada uno de al menos 2-3 frases completas (separados por \n\n).
+   - LONGITUD OBLIGATORIA Y DENSIDAD: Exactamente 4 párrafos (separados por \n\n). REGLA CRÍTICA Y SAGRADA: Cada párrafo DEBE tener ENTRE 50 Y 60 PALABRAS de contenido denso, inteligente y persuasivo. PROHIBIDO escribir párrafos cortos de una o dos líneas. Si escribes un párrafo de menos de 45 palabras, el sistema fallará.
    - ESTRUCTURA OBLIGATORIA (adapta el contenido al puesto real, NO copies plantillas):
      1. Párrafo 1 — Presentación directa y sincera: Saludo "Estimado/a Director/a de Selección," + frase de presentación al puesto específico por su nombre real (extraído de la oferta). Menciona brevemente tu motivación genuina por ese tipo de rol (atención al cliente, operaciones, liderazgo, etc. según el nivel del puesto).
      2. Párrafo 2 — Trayectoria real y logros concretos: Describe con autenticidad tu experiencia de 18 años extrayendo 2-3 logros o responsabilidades REALES y específicas del CV base (ej: gestión de 52 centros, migración de 20 millones de clientes, ahorro de 110.000€, liderazgo de 48 gestores). Adapta los logros al nivel del puesto (para operativo: destaca la gestión directa de equipos, servicio al cliente, etc.).
@@ -181,7 +181,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     "portfolio": [
       {
         "title": "...",
-        "description": "Descripción reescrita y adaptada a la oferta..."
+        "description": "Descripción reescrita con un tono natural, humano y altamente profesional. Adapta el proyecto sutilmente a la oferta pero evita que suene forzado, robótico o exagerado. Debe sentirse real y encajar orgánicamente."
       }
     ]
   },
