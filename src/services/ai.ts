@@ -1,5 +1,17 @@
 import axios from 'axios';
 import type { BaseCV } from '../data/baseCV';
+import axiosRetry from 'axios-retry';
+
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: (retryCount) => {
+    return retryCount * 2000; // time interval between retries
+  },
+  retryCondition: (error) => {
+    // Retry on network errors or 5xx server errors
+    return axiosRetry.isNetworkOrIdempotentRequestError(error) || error.code === 'ECONNABORTED';
+  }
+});
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
 const MODEL = 'meta-llama/Meta-Llama-3-70B-Instruct';
@@ -190,7 +202,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         headers: {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json'
-        }
+        },
+        timeout: 60000 // 60 seconds timeout
       }
     );
 
