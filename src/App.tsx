@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { useReactToPrint } from 'react-to-print';
+import { useState } from 'react';
+import html2pdf from 'html2pdf.js';
 import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
 import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
@@ -33,18 +33,55 @@ function App() {
     }
   };
 
-  const cvRef = useRef<HTMLDivElement>(null);
-  const letterRef = useRef<HTMLDivElement>(null);
+  const generatePdfWithHtml2Pdf = async (elementId: string, filename: string) => {
+    const element = document.getElementById(elementId);
+    if (!element) return;
 
-  const handleDownloadPDF = useReactToPrint({
-    contentRef: cvRef,
-    documentTitle: `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored`
-  }) as () => void;
+    // Obtener el contenedor oculto padre
+    const wrapper = element.parentElement;
+    if (!wrapper) return;
 
-  const handleDownloadCoverLetterPDF = useReactToPrint({
-    contentRef: letterRef,
-    documentTitle: `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}`
-  }) as () => void;
+    // Hacerlo visible pero fuera de pantalla para que html2pdf no devuelva página en blanco
+    const originalDisplay = wrapper.style.display;
+    wrapper.style.display = 'block';
+    wrapper.style.position = 'absolute';
+    wrapper.style.left = '-9999px';
+    wrapper.style.top = '-9999px';
+
+    // Pequeña pausa para asegurar que el navegador pinte el elemento (evitar blanco)
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    const opt = {
+      margin:       0,
+      filename:     filename,
+      image:        { type: 'jpeg' as const, quality: 1 },
+      html2canvas:  { 
+        scale: 2, 
+        useCORS: true, 
+        letterRendering: true,
+        windowWidth: 794 // Forzar ancho exacto de A4 a 96DPI
+      },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+    };
+
+    try {
+      await html2pdf().set(opt).from(element).save();
+    } finally {
+      // Restaurar estado oculto
+      wrapper.style.display = originalDisplay;
+      wrapper.style.position = '';
+      wrapper.style.left = '';
+      wrapper.style.top = '';
+    }
+  };
+
+  const handleDownloadPDF = () => {
+    generatePdfWithHtml2Pdf('cv-pdf-content', `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`);
+  };
+
+  const handleDownloadCoverLetterPDF = () => {
+    generatePdfWithHtml2Pdf('cover-letter-pdf-content', `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`);
+  };
 
   return (
     <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-amber-500/30 overflow-x-hidden w-full max-w-full">
@@ -555,7 +592,7 @@ function App() {
 
       {/* Renderizado Oculto para el PDF */}
       <div style={{ display: 'none' }}>
-        <div id="cv-pdf-content" ref={cvRef} style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'system-ui, -apple-system, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
+        <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -708,7 +745,7 @@ function App() {
       {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
       {/* Margen externo 0 en html2pdf + ancho fijo 794px + contenedor centrado 630px garantizan margen derecho impecable sin cortes */}
       <div style={{ display: 'none' }}>
-        <div id="cover-letter-pdf-content" ref={letterRef} style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
+        <div id="cover-letter-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
         <style>{`
           #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
