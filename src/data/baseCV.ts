@@ -200,59 +200,54 @@ export const defaultBaseCV: BaseCV = {
   ],
   portfolio: [
     {
-      title: "Logística y Entregas Rápidas",
-      description: "Orquestación de operaciones de comercio digital 'Alacena' (arquitectura Firebase) para automatizar la gestión de reservas nocturnas, erradicando ineficiencias logísticas y garantizando disponibilidad de stock en tiempo real.",
+      title: "Logística y Entregas de Última Milla",
+      description: "Desarrollo de una arquitectura de comercio electrónico para digitalizar y automatizar el flujo de pedidos de comida, resolviendo problemas de coordinación logística y garantizando tiempos de entrega exactos.",
       tags: ["Comercio Digital", "Bases NoSQL"]
     },
     {
       title: "Sistemas de Gestión Comercial",
-      description: "Diseño e implementación de sistemas serverless (Kopilot, Restaurante360) integrados al ecosistema cloud, resolviendo cuellos de botella en la asignación de recursos y consolidando el control de inventarios en operaciones de alto tráfico.",
+      description: "Diseño de plataformas en la nube para administrar múltiples puntos de venta en el sector gastronómico, solucionando cuellos de botella en la atención al cliente al centralizar el control de inventarios y la facturación.",
       tags: ["Puntos de Venta", "Planificación"]
     },
     {
-      title: "Telemetría y Operaciones Geo",
-      description: "Dirección del proyecto 'Alerta Vecinal', una plataforma PWA de telemetría en tiempo real y arquitectura de microservicios, desarrollada para coordinar protocolos de emergencia comunitaria y trazabilidad geográfica.",
+      title: "Geolocalización y Seguridad Comunitaria",
+      description: "Dirección de una plataforma móvil de rastreo GPS y alertas de emergencia, creada para coordinar de forma inmediata a comunidades vecinales ante riesgos de seguridad y mejorar los tiempos de respuesta.",
       tags: ["Mapas Digitales", "Tiempo Real"]
     },
     {
-      title: "Minería de Datos y Autopilotos",
-      description: "Liderazgo en la creación de agentes autónomos de extracción (OCR) y automatización de marketing (Linkedinmatic), sustituyendo el trabajo manual por flujos de IA que incrementan radicalmente la productividad operativa.",
+      title: "Automatización y Minería de Datos",
+      description: "Creación de agentes de Inteligencia Artificial capaces de extraer datos automáticamente y publicar contenido en redes sociales, eliminando horas de trabajo operativo manual e incrementando el alcance comercial.",
       tags: ["Minería Web", "Reconocimiento Óptico"]
     },
     {
-      title: "Ingeniería de Emisión & Cloud",
-      description: "Implementación de estaciones de transmisión 24/7 (GeoRadio) sobre infraestructura cloud para solucionar caídas de servicio, asegurando alta disponibilidad y emisiones estables mediante auditorías perimetrales.",
+      title: "Infraestructura de Transmisión Continua",
+      description: "Implementación de servidores de transmisión ininterrumpida (24/7) para señales de audio, solucionando problemas de caídas de servicio mediante sistemas de monitoreo y estabilización en la nube.",
       tags: ["Infraestructura", "Broadcast"]
     },
     {
-      title: "Tecnología de Salud e Inclusión",
-      description: "Desarrollo de ecosistemas preventivos de salud (Mediclock) mediante algoritmos predictivos y notificaciones push, diseñados para garantizar la adherencia médica y optimizar el control integral del paciente.",
+      title: "Plataformas de Salud Digital",
+      description: "Desarrollo de aplicaciones móviles con recordatorios inteligentes e interfaces accesibles, diseñadas para solucionar la falta de constancia en los tratamientos médicos y ayudar a los pacientes a controlar su salud.",
       tags: ["Salud Integral", "Inclusión Digital"]
     },
     {
-      title: "Interfaces de Teleoperación",
-      description: "Integración de sistemas de reconocimiento gestual a manos libres y controladores virtuales para solucionar retos de teleoperación física, logrando una interacción asíncrona altamente precisa.",
+      title: "Control Remoto e Interfaces Asíncronas",
+      description: "Integración de sistemas de reconocimiento gestual (manos libres) y controladores virtuales, creados para operar pantallas y dispositivos a distancia en entornos físicos donde el contacto directo no es posible.",
       tags: ["Sensores Ópticos", "Mandos a Distancia"]
     },
     {
-      title: "Asesoría de Modas Computarizada",
-      description: "Implementación de modelos predictivos de geometría facial (FaceCut) para solucionar problemas de experiencia de usuario en Retail, ofreciendo probadores sintéticos y asesoría visual procesada analíticamente.",
+      title: "Soluciones Retail con IA Visual",
+      description: "Implementación de modelos predictivos y probadores visuales para el sector moda, solucionando el problema de la experiencia de usuario al permitir recomendaciones de prendas personalizadas mediante análisis facial.",
       tags: ["Generación Gráfica", "Análisis Predictivo"]
     },
     {
-      title: "Procesadores Lingüísticos",
-      description: "Arquitectura de asistentes estructurales de redacción con comprensión semántica para solucionar ineficiencias en el procesamiento lingüístico, agilizando la gestión documental interactiva.",
+      title: "Asistentes de Procesamiento Lingüístico",
+      description: "Arquitectura de asistentes virtuales integrados a bases de datos, desarrollados para solucionar ineficiencias en la comprensión y redacción de documentos complejos mediante análisis de texto automatizado.",
       tags: ["Razonamiento Lógico", "Asistencia Cognitiva"]
     },
     {
-      title: "Automatización de Contenido & IA",
-      description: "Motores de procesamiento multimedia, audio inmersivo y despliegue autónomo (MusiChris Atmos, Studio, SOUL, Shorts Engine). Orquestación desatendida mediante Inteligencia Artificial para la creación masiva de activos digitales y control de flujos en tiempo real.",
+      title: "Automatización Multimedia con IA",
+      description: "Creación de motores de procesamiento que generan contenido audiovisual de forma autónoma, diseñados para solucionar la alta carga operativa de los equipos de producción y escalar la presencia en plataformas digitales.",
       tags: ["Producción Digital", "Workflows IA"]
-    },
-    {
-      title: "Ingeniería de Voz y Comunicaciones",
-      description: "Interfaces de traducción fluida en tiempo real y baja latencia (Talk.Me) orquestadas junto a sistemas de dictado asincrónico para automatizar mapas mentales y resúmenes de gestión directiva (VoxMind AI).",
-      tags: ["Voice-to-Action", "Conversación IA"]
     },
     {
       title: "Experiencias Narrativas con IA",
