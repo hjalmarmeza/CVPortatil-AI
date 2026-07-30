@@ -14,7 +14,7 @@ axiosRetry(axios, {
 });
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
-const MODEL = 'meta-llama/Meta-Llama-3-8B-Instruct'; // Llama 3 original (100% estable)
+const MODEL = 'mistralai/Mixtral-8x7B-Instruct-v0.1'; // Mixtral ultra veloz y barato
 
 // Función sanitizadora de gramática española para corregir cacofonías (ej. "y implementé" -> "e implementé")
 const fixSpanishCacophony = (text: string): string => {
