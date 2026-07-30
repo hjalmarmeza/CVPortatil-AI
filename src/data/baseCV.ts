@@ -201,47 +201,47 @@ export const defaultBaseCV: BaseCV = {
   portfolio: [
     {
       title: "Logística y Entregas Rápidas",
-      description: "Arquitecturas de comercio digital y reservas (Alacena). Ecosistemas alojados en Firebase gestionando reglas de horarios nocturnos en tiempo real, integrados nativamente.",
+      description: "Implementación de arquitecturas de comercio digital (Alacena) integradas en Firebase, para solucionar la gestión ineficiente de reservas nocturnas, garantizando disponibilidad logística en tiempo real.",
       tags: ["Comercio Digital", "Bases NoSQL"]
     },
     {
       title: "Sistemas de Gestión Comercial",
-      description: "Planificación de recursos de bases de datos serverless (Kopilot) y gestión del sector de restaurantes (Restaurante360). Consolidación de inventarios y atención.",
+      description: "Desarrollo de plataformas serverless de gestión (Kopilot, Restaurante360) para solucionar problemas de planificación de recursos, consolidando inventarios y optimizando el servicio al cliente.",
       tags: ["Puntos de Venta", "Planificación"]
     },
     {
       title: "Telemetría y Operaciones Geo",
-      description: "Sistemas Web Progresivos de radares geolocalizados para control y prevención comunitaria (Alerta Vecinal, ChrisLocation), emitiendo alertas de emergencia al instante.",
+      description: "Despliegue de sistemas de telemetría y radares geolocalizados (Alerta Vecinal, ChrisLocation) para solucionar retos de prevención comunitaria, permitiendo el control y emisión de alertas de emergencia al instante.",
       tags: ["Mapas Digitales", "Tiempo Real"]
     },
     {
       title: "Minería de Datos y Autopilotos",
-      description: "Agentes de extracción empresarial y OCR (OptiCompra, Scripto), y sistemas autónomos Text-to-Image para el despliegue de contenido de Marketing en redes (Linkedinmatic V2).",
+      description: "Creación de agentes de extracción de datos (OCR) y sistemas autónomos (Linkedinmatic) para solucionar los cuellos de botella del trabajo manual operativo, automatizando el despliegue de campañas de marketing.",
       tags: ["Minería Web", "Reconocimiento Óptico"]
     },
     {
       title: "Ingeniería de Emisión & Cloud",
-      description: "Implementación de estaciones de radio 24/7 de alta disponibilidad (MusiChris Live Station, GeoRadio, Musichris App) sobre infraestructura de bajos recursos, mediante arquitectura de transmisión optimizada y auditorías perimetrales (WiFiSentinel).",
+      description: "Implementación de estaciones de transmisión 24/7 (GeoRadio) sobre infraestructura cloud para solucionar caídas de servicio, asegurando alta disponibilidad y emisiones estables mediante auditorías perimetrales.",
       tags: ["Infraestructura", "Broadcast"]
     },
     {
       title: "Tecnología de Salud e Inclusión",
-      description: "Prevención mediante algoritmos predictivos (MoodWeather), interfaces inclusivas (CHART_LESS) y controles de nutrición médica (Mediclock, AlliMentate).",
+      description: "Desarrollo de algoritmos predictivos e interfaces inclusivas (Mediclock, MoodWeather) para solucionar la falta de adherencia a tratamientos médicos, facilitando el control de la nutrición y salud del paciente.",
       tags: ["Salud Integral", "Inclusión Digital"]
     },
     {
       title: "Interfaces de Teleoperación",
-      description: "Integración de sistemas de reconocimiento gestual a manos libres (HandRacer) y controladores virtuales asíncronos (Allivision, MediPresenter) para teleoperación física.",
+      description: "Integración de sistemas de reconocimiento gestual a manos libres y controladores virtuales para solucionar retos de teleoperación física, logrando una interacción asíncrona altamente precisa.",
       tags: ["Sensores Ópticos", "Mandos a Distancia"]
     },
     {
       title: "Asesoría de Modas Computarizada",
-      description: "Modelos predictivos de geometría facial y asesoría visual de indumentaria mediante probadores sintéticos (FaceCut, Style TARA) procesados analíticamente con el motor MLLM.",
+      description: "Implementación de modelos predictivos de geometría facial (FaceCut) para solucionar problemas de experiencia de usuario en Retail, ofreciendo probadores sintéticos y asesoría visual procesada analíticamente.",
       tags: ["Generación Gráfica", "Análisis Predictivo"]
     },
     {
       title: "Procesadores Lingüísticos",
-      description: "Arquitecturas de interacción avanzadas conectadas a hojas de cálculo. Asistentes estructurales de redacción y comprensión semántica profunda (SELAH, Biblia-Cool, Lírica Celestial).",
+      description: "Arquitectura de asistentes estructurales de redacción con comprensión semántica para solucionar ineficiencias en el procesamiento lingüístico, agilizando la gestión documental interactiva.",
       tags: ["Razonamiento Lógico", "Asistencia Cognitiva"]
     },
     {
