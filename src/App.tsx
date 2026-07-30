@@ -693,13 +693,29 @@ function App() {
                     </div>
                   </div>
 
+
+                  {/* Educación */}
+                  <div style={{ marginBottom: '35px' }}>
+                    <h3 style={{ fontSize: '10.5pt', color: '#333333', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid #E2E8F0', paddingBottom: '6px' }}>Estudios</h3>
+                    {baseCV.education.map((edu, idx) => (
+                      <div key={idx} style={{ marginBottom: '8px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '3px' }}>
+                          <span style={{ fontSize: '10pt', fontWeight: '700', color: '#005C53' }}>{edu.degree}</span>
+                          <span style={{ fontSize: '9pt', color: '#666666' }}>{edu.period}</span>
+                        </div>
+                        <div style={{ fontSize: '9pt', color: '#555555' }}>{edu.institution}</div>
+                      </div>
+                    ))}
+                  </div>
+
+
                   {/* Experience */}
                   <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 3 ? '45px' : '0px' }}>
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 2 ? '40px' : '0px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
