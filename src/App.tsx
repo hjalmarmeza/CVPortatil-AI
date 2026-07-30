@@ -697,7 +697,7 @@ function App() {
                               <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                             </div>
-                            <ul style={{ margin: 0, paddingLeft: '15px', fontSize: '9pt', color: '#444', lineHeight: '1.45' }}>
+                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.35' }}>
                               {exp.description.map((desc, i) => (
                                 <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
                               ))}
@@ -797,7 +797,7 @@ function App() {
         <table style={{ width: '100%', margin: '0', borderCollapse: 'collapse', borderSpacing: 0 }}>
           <tbody>
             <tr>
-              <td style={{ width: '100%', padding: '50px 82px', boxSizing: 'border-box', verticalAlign: 'top' }}>
+              <td style={{ width: '100%', padding: '30px 60px', boxSizing: 'border-box', verticalAlign: 'top' }}>
                 
                 {/* Date top right */}
                 <div style={{ textAlign: 'right', fontSize: '10pt', color: '#777777', marginBottom: '25px' }}>
