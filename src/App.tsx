@@ -269,7 +269,7 @@ function App() {
                   <div>
                     <h3 className="text-lg sm:text-xl font-bold text-slate-100 flex items-center gap-3">
                       <div className="relative flex h-3 w-3">
-                        {tailoredData ? (
+                        {tailoredData?.tailoredCV ? (
                           <>
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
@@ -283,7 +283,7 @@ function App() {
                     <p className="text-xs text-slate-500 mt-1">Vista previa del documento generado</p>
                   </div>
                   
-                  {tailoredData && (
+                  {tailoredData?.tailoredCV && (
                     <div className="flex items-center gap-2 sm:gap-3">
                       <button onClick={handleDownloadCoverLetterPDF} className="flex-1 sm:flex-none justify-center flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-slate-100 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-slate-600 transition-all shadow-sm hover:shadow-md">
                         <Download size={15} className="text-amber-500" /> PDF Carta
@@ -296,7 +296,7 @@ function App() {
                 </div>
 
                 <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar relative z-10">
-                  {tailoredData ? (
+                  {tailoredData?.tailoredCV ? (
                     <div className="space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
                       {/* Cover Letter */}
                       <section>
