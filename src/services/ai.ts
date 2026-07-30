@@ -95,17 +95,17 @@ TAREA:
      * SI EL PUESTO ES DE NIVEL OPERATIVO / TIENDA (ej: Dependiente/a, Reponedor/a, Cajero/a, Auxiliar, Atención al Cliente):
        • RESUMEN EJECUTIVO (OBLIGATORIAMENTE 3-4 frases completas adaptadas al puesto operativo): Presenta al candidato como profesional apasionado por la atención al cliente, el servicio de excelencia, la gestión del punto de venta, el trabajo en equipo y la resolución de incidencias. Extrae la información del CV base (18 años de trayectoria, liderazgo de equipos, experiencia en operaciones de tienda). NO inventes nada, REUTILIZA y ADAPTA lo que ya está en el CV base al tono operativo del puesto.
        • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Lideré...", "Desarrollé...", "Implementé...", "Supervisé...", "Optimicé..."). OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Reescribe las funciones y logros del CV base reenfocándolos hacia la ejecución operativa del puesto (atención directa al cliente, gestión del punto de venta, trabajo en equipo, cumplimiento de objetivos). Conserva el cargo real y empresa real del CV base.
-       • DOMINIOS Y COMPETENCIAS (domainAreas): OBLIGATORIO MÍNIMO 4 bloques de competencias. Adapta las competencias del CV base a: "Atención al Cliente & Venta", "Operaciones de Tienda & TPV", "Reposición & Control de Stock", "Trabajo en Equipo & Colaboración", "Resolución de Incidencias", "Comunicación & Proactividad".
-       • HABILIDADES DESTACADAS (skills): Selecciona EXACTAMENTE entre 7 y 8 habilidades operativas clave del CV base adaptadas al puesto (ej: Atención al Cliente, Gestión Operativa, Manejo de TPV / Caja, Venta Personalizada, Trabajo en Equipo, Proactividad, Resolución de Problemas, Toma de Decisiones).
+       • DOMINIOS Y COMPETENCIAS (domainAreas): OBLIGATORIO MÍNIMO 4 bloques de competencias extraídos ESTRICTAMENTE del CV base. Adapta el título ligeramente al puesto, pero PROHIBIDO inventar competencias o áreas que no existan en el CV base.
+       • HABILIDADES DESTACADAS (skills): Selecciona EXACTAMENTE entre 7 y 8 habilidades operativas clave ESTRICTAMENTE EXTRAÍDAS del CV base (NO inventes habilidades como "Manejo de TPV" si no están explícitamente en el CV base).
        • PROYECTOS PERSONALES: Selecciona EXACTAMENTE 4 proyectos del portafolio del CV base y readáptalos al puesto operativo. Cada proyecto debe tener un título claro y una descripción de al menos 2 frases completas conectando la iniciativa con el rol al que se postula. PROHIBIDO proyectos de tecnología compleja inapropiada para el nivel.
      * SI EL PUESTO ES MANDO MEDIO / ENCARGADO:
        • RESUMEN EJECUTIVO (3-4 frases): Equilibra la atención al cliente y ejecución operativa con liderazgo de tienda, control de KPIs y gestión de equipo.
        • OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Equilibra la atención al cliente con métricas y liderazgo.
-       • DOMINIOS: MÍNIMO 4 bloques de competencias combinando operativa y liderazgo.
+       • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base, combinando operativa y liderazgo. NO inventar.
      * SI EL PUESTO ES EJECUTIVO / DIRECTIVO:
        • RESUMEN EJECUTIVO (3-4 frases): Mantén tono de alto nivel, visión estratégica, transformación digital, IA e impacto financiero.
        • OBLIGATORIO MÍNIMO 4-5 VIÑETAS POR CARGO con métricas reales del CV base (20M clientes, 52 tiendas, 110.000€, 160.000 clientes/mes).
-       • DOMINIOS: MÍNIMO 5 bloques de competencias.
+       • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base. NO inventar.
 
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS:
    - PROYECTOS PERSONALES (Portafolio): Selecciona EXACTAMENTE 4 proyectos del portafolio del CV Base. Adapta su descripción al puesto, pero basándote en los títulos y descripciones reales ya existentes en el CV base. PROHIBIDO inventar proyectos inexistentes.
@@ -183,13 +183,18 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const content = response.data.choices[0].message.content;
     const parsedData = JSON.parse(content);
     
-    // ESCUDO DE SEGURIDAD 1: Garantizar las 4 experiencias reales del CV Base, incluso si la IA devuelve menos
+    // ESCUDO DE SEGURIDAD 1: Garantizar las 4 experiencias reales del CV Base, asociando por título/empresa para evitar mezcla si la IA las desordena
     const aiExperiences = parsedData?.tailoredCV?.experience || [];
     parsedData.tailoredCV = parsedData.tailoredCV || {};
-    parsedData.tailoredCV.experience = baseCV.experience.map((baseExp, i) => {
-      const aiExp = aiExperiences[i];
+    parsedData.tailoredCV.experience = baseCV.experience.map((baseExp) => {
+      // Buscar la experiencia correspondiente en la respuesta de la IA (por título o empresa)
+      const aiExp = aiExperiences.find((ai: any) => 
+        (ai.title && ai.title.toLowerCase().trim() === baseExp.title.toLowerCase().trim()) || 
+        (ai.company && ai.company.toLowerCase().trim() === baseExp.company.toLowerCase().trim())
+      );
+
       // Tomar viñetas de la IA si existen y son válidas, sino usar las del CV base
-      const rawDescription = (aiExp?.description && Array.isArray(aiExp.description) && aiExp.description.length >= 3)
+      const rawDescription = (aiExp?.description && Array.isArray(aiExp.description) && aiExp.description.length >= 2)
         ? aiExp.description
         : baseExp.description;
 

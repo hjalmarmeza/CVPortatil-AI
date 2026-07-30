@@ -36,7 +36,12 @@ function App() {
     const element = document.getElementById(elementId);
     if (!element) return;
 
-    // Mostrar el elemento en el viewport activo para que html2canvas lo capture correctamente
+    // Crear un overlay blanco que cubra TODA la página para que html2canvas no capture la app por debajo
+    const blocker = document.createElement('div');
+    blocker.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:#ffffff;z-index:99998;pointer-events:none;';
+    document.body.appendChild(blocker);
+
+    // Mostrar el elemento encima del overlay blanco
     element.style.display = 'block';
     element.style.position = 'fixed';
     element.style.top = '0';
@@ -44,22 +49,25 @@ function App() {
     element.style.width = '794px';
     element.style.zIndex = '99999';
     element.style.pointerEvents = 'none';
+    element.style.backgroundColor = '#ffffff';
 
-    // Esperar a que el browser pinte el layout completo
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    // Esperar a que el browser pinte el layout completo sobre el fondo blanco
+    await new Promise((resolve) => setTimeout(resolve, 400));
 
     try {
       const canvas = await html2canvas(element, {
-        scale: 2,
+        scale: 1,
         useCORS: true,
         allowTaint: true,
         scrollX: 0,
         scrollY: 0,
         backgroundColor: '#ffffff',
-        logging: false
+        logging: false,
+        width: 794,
+        height: element.scrollHeight
       });
 
-      const imgData = canvas.toDataURL('image/jpeg', 0.97);
+      const imgData = canvas.toDataURL('image/jpeg', 0.98);
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pageWidth = 210; // A4 en mm
       const pageHeight = 297;
@@ -78,12 +86,15 @@ function App() {
 
       pdf.save(filename);
     } finally {
+      // Limpiar: quitar el overlay blanco y volver a ocultar el elemento PDF
+      document.body.removeChild(blocker);
       element.style.display = 'none';
-      element.style.position = 'static';
+      element.style.position = '';
       element.style.top = '';
       element.style.left = '';
       element.style.zIndex = '';
       element.style.pointerEvents = '';
+      element.style.backgroundColor = '';
     }
   };
 
