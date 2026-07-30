@@ -86,13 +86,13 @@ ${seniorityLevel === 'operational'
 TAREA:
 1. ADAPTACIÓN REALISTA Y SIN CLICHÉS (¡CERO ADULACIÓN O HABILIDADES INVENTADAS!):
    - PROHIBIDO MENCIONAR ÁREAS QUE NO ESTÉN EN EL CV BASE: NUNCA menciones 'marketing', 'finanzas corporativas' o áreas en las que el candidato no ha trabajado. Mantén la historia estrictamente en Operaciones, Atención al Cliente, Gestión de Tiendas/Call Center, Liderazgo de Equipos y Transformación Digital/IA.
-   - ESTRUCTURA OBLIGATORIA (PROHIBIDO HACER CARTAS CORTAS O SIMPLES):
-     1. Párrafo 1 — Presentación directa y sincera: Saludo "Estimado/a Director/a de Selección," + frase inicial de por qué te atrae la empresa y el puesto.
-     2. Párrafo 2 — Desarrollo y Valor central: Toma la columna vertebral de tu carta original y adáptala. Desarrolla tu experiencia clave conectándola con las necesidades del puesto.
-     3. Párrafo 3 — Profundidad y Aporte de valor: Explica un logro o enfoque estratégico usando las palabras clave del puesto. No resumas, argumenta de forma extensa, densa y elocuente.
-     4. Párrafo 4 — Cierre proactivo: Agradecimiento sincero, invitación a entrevista, "Atentamente," y "Hjalmar Meza".
-   - REGLA CRÍTICA DE CONTEXTO: OMITE TOTALMENTE cualquier mención a "Inteligencia Artificial", "Tecnología Generativa" o jerga técnica IT si el puesto es puramente de Retail, Alimentación o Gestión de Tienda (ej. "Director de Tienda"). En su lugar, usa conceptos de "eficiencia operativa", "liderazgo comercial" y "gestión de equipos".
-   - Mantén un volumen, profundidad y peso narrativo altos. Reemplaza los conceptos clave de la carta original sin amputar su extensión. Mínimo 4 párrafos extensos. PROHIBIDO usar frases como "Me siento atraído por la cultura de...", "Me identifico plenamente con los valores de...", "Quedo a su disposición para discutir cómo mi visión...", "empresa solicitante".
+   - ESTRUCTURA OBLIGATORIA Y TONO DE LA CARTA (PROHIBIDO HACER CARTAS CORTAS O SIMPLES):
+     1. Párrafo 1 — Presentación directa y sincera: Saludo "Estimado/a Director/a de Selección," + "Es un placer presentar mi candidatura para el puesto de [Nombre del Puesto]. Como profesional apasionado por el sector y la atención al cliente, estoy emocionado de unirme a un equipo que comparte mis valores y objetivos."
+     2. Párrafo 2 — Desarrollo y Valor central: "Con más de 18 años de experiencia liderando equipos y gestionando operaciones, estoy seguro de que puedo aportar valor..." No menciones NINGÚN nombre de empresa pasada (ni Telefónica, ni Gestor Familiar) ni títulos de puestos anteriores. Habla de tu enfoque general (atención al cliente, gestión de equipos, KPIs).
+     3. Párrafo 3 — Profundidad y Aporte de valor: Destaca tu experiencia en implementación de sistemas, análisis de KPIs y toma de decisiones. Argumenta de forma extensa, densa y elocuente sobre tu capacidad de liderazgo y motivación de equipos.
+     4. Párrafo 4 — Cierre proactivo: "Estoy emocionado de unirme a su equipo y contribuir al éxito de su empresa. Agradezco de antemano el tiempo dedicado a revisar mi perfil." + "Atentamente," + "Hjalmar Meza Cortez".
+   - REGLA CRÍTICA DE CONTEXTO: PROHIBIDO listar tus trabajos anteriores o empresas. PROHIBIDO decir "En mi experiencia como [puesto] en [empresa]". La carta debe ser sobre tus valores, habilidades transversales y lo que puedes aportar.
+   - Mantén un volumen, profundidad y peso narrativo altos. Mínimo 4 párrafos extensos. PROHIBIDO usar frases como "Me siento atraído por la cultura de...", "Me identifico plenamente con los valores de...", "Quedo a su disposición para discutir cómo mi visión...", "empresa solicitante".
    - LA REDACCIÓN DEBE SER HUMANA, REALISTA, AUTÉNTICA Y SOBRIA.
 
 2. ADAPTACIÓN Y CALIBRACIÓN DE SENIORIDAD DEL CV (REGLA CRÍTICA ANTI-SOBRECUALIFICACIÓN):

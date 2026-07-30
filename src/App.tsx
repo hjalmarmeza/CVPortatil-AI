@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import html2pdf from 'html2pdf.js';
+import domtoimage from 'dom-to-image-more';
+import jsPDF from 'jspdf';
 import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
 import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
 import { generateTailoredCV } from './services/ai';
-// @ts-ignore
-import html2canvas from 'html2canvas';
-// @ts-ignore
-import jsPDF from 'jspdf';
+
 
 function App() {
   const [activeTab, setActiveTab] = useState<'generator' | 'base'>('generator');
@@ -33,7 +31,7 @@ function App() {
     }
   };
 
-  const generatePdfWithHtml2Pdf = async (elementId: string, filename: string) => {
+  const generatePdfWithDomToImage = async (elementId: string, filename: string) => {
     const element = document.getElementById(elementId);
     if (!element) return;
 
@@ -41,7 +39,7 @@ function App() {
     const wrapper = element.parentElement;
     if (!wrapper) return;
 
-    // Hacerlo visible pero fuera de pantalla para que html2pdf no devuelva página en blanco
+    // Hacerlo visible temporalmente fuera de pantalla
     const originalDisplay = wrapper.style.display;
     wrapper.style.display = 'block';
     wrapper.style.position = 'absolute';
@@ -51,20 +49,32 @@ function App() {
     // Pequeña pausa para asegurar que el navegador pinte el elemento (evitar blanco)
     await new Promise((resolve) => setTimeout(resolve, 300));
 
-    const opt = {
-      margin:       0,
-      filename:     filename,
-      image:        { type: 'jpeg' as const, quality: 1 },
-      html2canvas:  { 
-        scale: 2, 
-        useCORS: true, 
-        windowWidth: 794 // Forzar ancho exacto de A4 a 96DPI
-      },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
-    };
-
     try {
-      await html2pdf().set(opt).from(element).save();
+      // Usar dom-to-image-more con un scale alto para excelente calidad.
+      // A diferencia de html2canvas, esto usa SVG foreignObject y respeta al 100% el kerning nativo.
+      const scale = 2;
+      const dataUrl = await domtoimage.toJpeg(element, {
+        quality: 0.98,
+        width: element.offsetWidth * scale,
+        height: element.offsetHeight * scale,
+        style: {
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+          width: `${element.offsetWidth}px`,
+          height: `${element.offsetHeight}px`
+        }
+      });
+
+      // Dimensiones A4
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdfWidth = 210;
+      const pdfHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
+
+      pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(filename);
+    } catch (err) {
+      console.error("Error generating PDF:", err);
+      alert("Error al generar el PDF. Verifica la consola.");
     } finally {
       // Restaurar estado oculto
       wrapper.style.display = originalDisplay;
@@ -75,11 +85,11 @@ function App() {
   };
 
   const handleDownloadPDF = () => {
-    generatePdfWithHtml2Pdf('cv-pdf-content', `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`);
+    generatePdfWithDomToImage('cv-pdf-content', `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`);
   };
 
   const handleDownloadCoverLetterPDF = () => {
-    generatePdfWithHtml2Pdf('cover-letter-pdf-content', `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`);
+    generatePdfWithDomToImage('cover-letter-pdf-content', `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`);
   };
 
   return (
