@@ -47,9 +47,9 @@ function App() {
     clone.style.display = 'block';
     clone.style.backgroundColor = '#ffffff';
     
-    // Asegurar que las fuentes se rendericen bien
-    clone.style.fontSmooth = 'always';
-    clone.style.webkitFontSmoothing = 'antialiased';
+    // Asegurar que las fuentes se rendericen bien (saltando el chequeo estricto de TS)
+    clone.style.setProperty('-webkit-font-smoothing', 'antialiased');
+    clone.style.setProperty('-moz-osx-font-smoothing', 'grayscale');
     
     document.body.appendChild(clone);
 
