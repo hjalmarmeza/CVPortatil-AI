@@ -14,7 +14,7 @@ axiosRetry(axios, {
 });
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
-const MODEL = 'mistralai/Mixtral-8x7B-Instruct-v0.1'; // Mixtral ultra veloz y barato
+const MODEL = 'meta-llama/Meta-Llama-3-70B-Instruct';
 
 // Función sanitizadora de gramática española para corregir cacofonías (ej. "y implementé" -> "e implementé")
 const fixSpanishCacophony = (text: string): string => {
@@ -195,6 +195,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       {
         model: MODEL,
         messages: [{ role: 'user', content: prompt }],
+        response_format: { type: 'json_object' },
         temperature: 0.7
       },
       {
