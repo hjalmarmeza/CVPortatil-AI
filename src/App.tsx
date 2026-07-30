@@ -297,7 +297,7 @@ function App() {
                           <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Carta de Presentación</h4>
                         </div>
                         <div className="p-6 rounded-2xl bg-slate-800/30 border border-slate-700/50 text-sm text-slate-300 whitespace-pre-wrap leading-relaxed shadow-inner">
-                          {tailoredData.coverLetter}
+                          {Array.isArray(tailoredData.coverLetter) ? tailoredData.coverLetter.join('\\n\\n') : tailoredData.coverLetter}
                         </div>
                       </section>
 
@@ -799,13 +799,13 @@ function App() {
                 {/* Body - párrafos separados por tablas */}
                 <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, marginBottom: '30px' }}>
                   <tbody>
-                    {tailoredData?.coverLetter?.split('\n\n').filter(p => !p.trim().toLowerCase().startsWith('atentamente')).map((paragraph, idx) => (
+                    {Array.isArray(tailoredData?.coverLetter) ? tailoredData.coverLetter.filter(p => !p.trim().toLowerCase().startsWith('atentamente')).map((paragraph, idx) => (
                       <tr key={idx}>
                         <td style={{ paddingBottom: '16px', fontSize: '10.5pt', color: '#333333', lineHeight: '1.65', textAlign: 'left', wordBreak: 'normal', overflowWrap: 'break-word' }}>
                           {paragraph.trim()}
                         </td>
                       </tr>
-                    ))}
+                    )) : null}
                   </tbody>
                 </table>
 
