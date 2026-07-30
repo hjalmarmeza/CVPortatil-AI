@@ -198,7 +198,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const parsedData = JSON.parse(content);
     
     // ESCUDOS DE SEGURIDAD EXTREMA:
-    if (!parsedData.tailoredCV.portfolio || parsedData.tailoredCV.portfolio.length === 0 || parsedData.tailoredCV.portfolio[0].title === 'Atención al cliente') {
+    if (!parsedData.tailoredCV.portfolio || parsedData.tailoredCV.portfolio.length < 2 || parsedData.tailoredCV.portfolio[0].title === 'Atención al cliente') {
       parsedData.tailoredCV.portfolio = baseCV.portfolio.slice(0, 4);
     }
     if (!parsedData.tailoredCV.domainAreas || parsedData.tailoredCV.domainAreas.length < 4) {
