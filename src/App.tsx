@@ -33,8 +33,6 @@ function App() {
   const handleDownloadPDF = () => {
     const element = document.getElementById('cv-pdf-content');
     if (!element) return;
-    
-    element.style.display = 'block';
 
     const opt = {
       margin: 0,
@@ -44,16 +42,12 @@ function App() {
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
-    html2pdf().from(element).set(opt).save().then(() => {
-      element.style.display = 'none';
-    });
+    html2pdf().from(element).set(opt).save();
   };
 
   const handleDownloadCoverLetterPDF = () => {
     const element = document.getElementById('cover-letter-pdf-content');
     if (!element) return;
-    
-    element.style.display = 'block';
 
     const opt = {
       margin: 0,
@@ -63,9 +57,7 @@ function App() {
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
-    html2pdf().from(element).set(opt).save().then(() => {
-      element.style.display = 'none';
-    });
+    html2pdf().from(element).set(opt).save();
   };
 
   return (
@@ -576,7 +568,7 @@ function App() {
       </main>
 
       {/* Renderizado Oculto para el PDF */}
-      <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'system-ui, -apple-system, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
+      <div id="cv-pdf-content" style={{ position: 'fixed', left: '-9999px', top: '0', zIndex: -9999, pointerEvents: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'system-ui, -apple-system, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -727,7 +719,7 @@ function App() {
 
       {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
       {/* Margen externo 0 en html2pdf + ancho fijo 794px + contenedor centrado 630px garantizan margen derecho impecable sin cortes */}
-      <div id="cover-letter-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
+      <div id="cover-letter-pdf-content" style={{ position: 'fixed', left: '-9999px', top: '0', zIndex: -9999, pointerEvents: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
         <style>{`
           #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;

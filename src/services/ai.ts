@@ -78,10 +78,10 @@ ${seniorityLevel === 'operational'
   : 'AUTO-DETECTAR NIVEL SEGÚN LA OFERTA LABORAL: Analizar si el puesto es operativo/tienda, mando medio o ejecutivo, y calibrar la experiencia en consecuencia.'}
 
 TAREA:
-1. INVESTIGACIÓN DE EMPRESA Y CULTURA:
-   - Analiza e integra la visión, valores, tono de marca y cultura de la empresa solicitante.
-   - En la CARTA DE PRESENTACIÓN, conecta de forma auténtica en el 1er y 3er párrafo con la misión de la empresa y por qué tu perfil encaja con su cultura.
-   - En el CV, utiliza palabras clave propias del sector y de la cultura de dicha empresa.
+1. ADAPTACIÓN REALISTA Y SIN CLICHÉS (¡CERO ADULACIÓN O HABILIDADES INVENTADAS!):
+   - PROHIBIDO MENCIONAR ÁREAS QUE NO ESTÉN EN EL CV BASE: NUNCA menciones 'marketing', 'finanzas corporativas' o áreas en las que el candidato no ha trabajado. Mantén la historia estrictamente en Operaciones, Atención al Cliente, Gestión de Tiendas/Call Center, Liderazgo de Equipos y Transformación Digital/IA.
+   - PROHIBIDO FRASES ADULADORAS O CURSIS: Queda ESTRICTAMENTE PROHIBIDO usar frases como "Me siento atraído por la cultura de...", "Me identifico plenamente con los valores de...", "Quedo a su disposición para discutir cómo mi visión...", "empresa solicitante".
+   - LA REDACCIÓN DEBE SER HUMANA, REALISTA, AUTÉNTICA Y SOBRIA.
 
 2. ADAPTACIÓN Y CALIBRACIÓN DE SENIORIDAD DEL CV (REGLA CRÍTICA ANTI-SOBRECUALIFICACIÓN):
    - DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO ELIMINAR O DUPLICAR CARGOS.
@@ -107,16 +107,16 @@ TAREA:
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
    - Usa un lenguaje HUMANO, PERSUASIVO Y ADECUADO AL NIVEL DEL PUESTO.
 
-5. CARTA DE PRESENTACIÓN (¡SIGUE ESTAS REGLAS AL PIE DE LA LETRA!):
-   - LONGITUD OBLIGATORIA: Entre 320 y 380 palabras en total en el cuerpo en 4 párrafos bien desarrollados separados por \\n\\n.
+5. CARTA DE PRESENTACIÓN (ESTRUCTURA SOBRIA Y PROFESIONAL):
+   - LONGITUD OBLIGATORIA: Entre 300 y 360 palabras en total en el cuerpo en 4 párrafos bien estructurados separados por \\n\\n.
    - ESTRUCTURA OBLIGATORIA:
-     1. Párrafo de apertura (4-5 oraciones): Muestra pasión por el sector de la empresa objetivo y la atención al cliente/tienda, conectando de inmediato tu perfil con la empresa solicitante. PROHIBIDO saludos genéricos.
-     2. Párrafo de trayectoria y experiencia en el rol (5-6 oraciones): Describe tu bagaje liderando o ejecutando tareas clave con excelencia, trabajo en equipo y atención personalizada.
-     3. Párrafo de conexión con la empresa y puesto (5-6 oraciones): Conecta directamente con las responsabilidades clave del puesto (caja/TPV, reposición, escaparatismo, servicio) y la visión de la empresa.
-     4. Párrafo de cierre (3-4 oraciones): Conclusión confiada y entusiasta para coordinar una entrevista personal.
-   - TONO: Inspirador, humano, cercano y profesional.
+     1. Párrafo 1 (Presentación Directa): Presenta tu candidatura al puesto expresando un interés profesional serio por aportar tu experiencia en el sector y en la gestión operativa de la empresa.
+     2. Párrafo 2 (Trayectoria y Capacidad): Explica tu trayectoria en la dirección y gestión de operaciones, liderazgo de equipos y atención al cliente de excelencia, resaltando tu capacidad de organización.
+     3. Párrafo 3 (Encaje con el Puesto): Muestra cómo tus competencias prácticas (gestión, reposición, caja/TPV, atención al cliente) responden directamente a los objetivos de la oferta.
+     4. Párrafo 4 (Cierre Profesional): Finaliza con sobriedad: "Agradezco de antemano el tiempo dedicado a revisar mi candidatura y quedo a su entera disposición para ampliar cualquier información sobre mi perfil en una entrevista personal."
    - PROHIBICIONES ABSOLUTAS:
      • PROHIBIDO incluir firma ni despidos tipo "Atentamente" o tu nombre al final de la carta (el sistema HTML renderiza dinámicamente el bloque de firma).
+     • PROHIBIDO inventar experiencia en marketing o áreas ajenas.
      • PROHIBIDO REPETIR PÁRRAFOS.
 
 Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
