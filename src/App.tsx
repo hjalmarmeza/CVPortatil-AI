@@ -49,19 +49,15 @@ function App() {
       html2canvas: {
         scale: 2,
         useCORS: true,
-        windowWidth: 794,
-        scrollY: 0,
         scrollX: 0,
-        x: 0,
-        y: 0,
-        letterRendering: true,
+        scrollY: 0,
         logging: false
       },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
     try {
-      await html2pdf().set(opt).from(element).save();
+      await html2pdf().from(element).set(opt).save();
     } finally {
       element.style.display = 'none';
       element.style.position = 'static';
@@ -87,19 +83,15 @@ function App() {
       html2canvas: {
         scale: 2,
         useCORS: true,
-        windowWidth: 794,
-        scrollY: 0,
         scrollX: 0,
-        x: 0,
-        y: 0,
-        letterRendering: true,
+        scrollY: 0,
         logging: false
       },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
     try {
-      await html2pdf().set(opt).from(element).save();
+      await html2pdf().from(element).set(opt).save();
     } finally {
       element.style.display = 'none';
       element.style.position = 'static';
