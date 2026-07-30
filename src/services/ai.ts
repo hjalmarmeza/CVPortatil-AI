@@ -84,8 +84,7 @@ ${seniorityLevel === 'operational'
   : 'AUTO-DETECTAR NIVEL SEGÚN LA OFERTA LABORAL: Analizar si el puesto es operativo/tienda, mando medio o ejecutivo, y calibrar la experiencia en consecuencia.'}
 
 TAREA:
-1. ADAPTACIÓN REALISTA Y SIN CLICHÉS (¡CERO ADULACIÓN O HABILIDADES INVENTADAS!):
-   - PROHIBIDO MENCIONAR ÁREAS QUE NO ESTÉN EN EL CV BASE: NUNCA menciones 'marketing', 'finanzas corporativas' o áreas en las que el candidato no ha trabajado. Mantén la historia estrictamente en Operaciones, Atención al Cliente, Gestión de Tiendas/Call Center, Liderazgo de Equipos y Transformación Digital/IA.
+1. ADAPTACIÓN REALISTA Y SIN CLICHÉS (¡CERO ADULACIÓN O HABILIDADES INVENTADAS!):\n   - PROHIBIDO MENCIONAR ÁREAS QUE NO ESTÉN EN EL CV BASE: NUNCA menciones 'marketing', 'finanzas corporativas' o áreas en las que el candidato no ha trabajado. Mantén la historia estrictamente en Operaciones, Atención al Cliente, Gestión de Tiendas/Call Center, Liderazgo de Equipos y Transformación Digital/IA.
    - PROHIBIDO FRASES ADULADORAS O CURSIS: Queda ESTRICTAMENTE PROHIBIDO usar frases como "Me siento atraído por la cultura de...", "Me identifico plenamente con los valores de...", "Quedo a su disposición para discutir cómo mi visión...", "empresa solicitante".
    - LA REDACCIÓN DEBE SER HUMANA, REALISTA, AUTÉNTICA Y SOBRIA.
 
@@ -94,20 +93,24 @@ TAREA:
    - PROHIBIDO INVENTAR O CAMBIAR LOS NOMBRES DE LAS EMPRESAS (company) Y NOMBRES DE PUESTOS (title) DEL CV BASE. Cada elemento en 'experience' DEBE CONSERVAR EXACTAMENTE el mismo 'title', 'company', 'period' y 'location' original del CV Base. PROHIBIDO inventar puestos como "Director/a de Tienda" si el puesto base es "Gestor de Negocio Familiar & Consultor IA". PROHIBIDO inventar tareas absurdas (como mermeladas, bases de datos relacionales en tienda o alianzas internacionales sin sentido).
    - REGLA DE CALIBRACIÓN DE SENIORIDAD:
      * SI EL PUESTO ES DE NIVEL OPERATIVO / TIENDA (ej: Dependiente/a, Reponedor/a, Cajero/a, Auxiliar, Atención al Cliente):
-       • RESUMEN EJECUTIVO: DEBE SER OPERATIVO Y CERCANO AL ROL. Presenta al candidato como un profesional apasionado por el servicio al cliente de excelencia, asesoramiento personalizado, manejo ágil de TPV/caja, reposición cuidadosa y trabajo en equipo. PROHIBIDO sonar como un directivo costoso de nivel regional o corporativo que asuste al reclutador.
-       • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Lideré...", "Desarrollé...", "Implementé...", "Supervisé...", "Optimicé..."). Reescribe las funciones y logros manteniendo la veracidad del rol base. Conserva el cargo real y la empresa real del CV base.
-       • DOMINIOS Y COMPETENCIAS (domainAreas): Adapta las competencias a: "Atención al Cliente & Venta", "Operaciones de Tienda & TPV", "Reposición & Control de Stock", "Escaparatismo & Visual Merchandising", "Trabajo en Equipo", "Comunicación & Proactividad".
-       • HABILIDADES DESTACADAS (skills): Selecciona EXACTAMENTE entre 6 y 8 habilidades operativas clave (ej: Atención al Cliente, Manejo de TPV / Caja, Venta Personalizada, Reposición de Productos, Escaparatismo, Trabajo en Equipo, Proactividad, Resolución de Problemas).
-       • PROYECTOS PERSONALES: Redáctalos como iniciativas prácticas de gestión comercial, atención al cliente u organización de tienda, evitando mencionar lenguajes de programación complejos (React, Node, MongoDB) que estén fuera del alcance de un puesto de dependiente.
+       • RESUMEN EJECUTIVO (OBLIGATORIAMENTE 3-4 frases completas adaptadas al puesto operativo): Presenta al candidato como profesional apasionado por la atención al cliente, el servicio de excelencia, la gestión del punto de venta, el trabajo en equipo y la resolución de incidencias. Extrae la información del CV base (18 años de trayectoria, liderazgo de equipos, experiencia en operaciones de tienda). NO inventes nada, REUTILIZA y ADAPTA lo que ya está en el CV base al tono operativo del puesto.
+       • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Lideré...", "Desarrollé...", "Implementé...", "Supervisé...", "Optimicé..."). OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Reescribe las funciones y logros del CV base reenfocándolos hacia la ejecución operativa del puesto (atención directa al cliente, gestión del punto de venta, trabajo en equipo, cumplimiento de objetivos). Conserva el cargo real y empresa real del CV base.
+       • DOMINIOS Y COMPETENCIAS (domainAreas): OBLIGATORIO MÍNIMO 4 bloques de competencias. Adapta las competencias del CV base a: "Atención al Cliente & Venta", "Operaciones de Tienda & TPV", "Reposición & Control de Stock", "Trabajo en Equipo & Colaboración", "Resolución de Incidencias", "Comunicación & Proactividad".
+       • HABILIDADES DESTACADAS (skills): Selecciona EXACTAMENTE entre 7 y 8 habilidades operativas clave del CV base adaptadas al puesto (ej: Atención al Cliente, Gestión Operativa, Manejo de TPV / Caja, Venta Personalizada, Trabajo en Equipo, Proactividad, Resolución de Problemas, Toma de Decisiones).
+       • PROYECTOS PERSONALES: Selecciona EXACTAMENTE 4 proyectos del portafolio del CV base y readáptalos al puesto operativo. Cada proyecto debe tener un título claro y una descripción de al menos 2 frases completas conectando la iniciativa con el rol al que se postula. PROHIBIDO proyectos de tecnología compleja inapropiada para el nivel.
      * SI EL PUESTO ES MANDO MEDIO / ENCARGADO:
-       • Equilibra la atención al cliente y ejecución operativa con liderazgo de tienda, control de KPIs y gestión de equipo.
+       • RESUMEN EJECUTIVO (3-4 frases): Equilibra la atención al cliente y ejecución operativa con liderazgo de tienda, control de KPIs y gestión de equipo.
+       • OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Equilibra la atención al cliente con métricas y liderazgo.
+       • DOMINIOS: MÍNIMO 4 bloques de competencias combinando operativa y liderazgo.
      * SI EL PUESTO ES EJECUTIVO / DIRECTIVO:
-       • Mantén el tono de alto nivel, visión estratégica, transformación digital, IA e impacto financiero.
+       • RESUMEN EJECUTIVO (3-4 frases): Mantén tono de alto nivel, visión estratégica, transformación digital, IA e impacto financiero.
+       • OBLIGATORIO MÍNIMO 4-5 VIÑETAS POR CARGO con métricas reales del CV base (20M clientes, 52 tiendas, 110.000€, 160.000 clientes/mes).
+       • DOMINIOS: MÍNIMO 5 bloques de competencias.
 
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS:
-   - CONOCIMIENTOS ADICIONALES (Portafolio): Genera EXACTAMENTE entre 3 y 4 proyectos personales adaptados al puesto. Usa el título "Proyectos Personales" o "Proyectos de Innovación Tecnológica".
-   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones relevantes.
-   - NO INVENTES NADA NUEVO. Re-enfoca la experiencia real del candidato.
+   - PROYECTOS PERSONALES (Portafolio): Selecciona EXACTAMENTE 4 proyectos del portafolio del CV Base. Adapta su descripción al puesto, pero basándote en los títulos y descripciones reales ya existentes en el CV base. PROHIBIDO inventar proyectos inexistentes.
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base que sean más relevantes para el puesto.
+   - NO INVENTES NADA NUEVO. Re-enfoca y reescribe la información real ya existente en el CV base.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
