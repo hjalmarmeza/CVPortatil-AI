@@ -130,11 +130,11 @@ TAREA:
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
    - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base. Si el CV base no tiene un porcentaje, NO LO INVENTES.
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
-   - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Debes elegir OBLIGATORIAMENTE entre 5 y 6 habilidades de la lista original del CV base. REGLA CRÍTICA: NO generes habilidades o competencias que sean sinónimos o redundantes entre sí (ej. no pongas "Liderazgo" y luego "Liderazgo Organizacional").
-   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base.
-   - Resumen Profesional (summary): Debe empezar con tu título profesional adaptado al puesto objetivo. Adapta explícitamente el enfoque a la industria de la oferta (ej. si es Retail, destaca tu experiencia orquestando operaciones comerciales/retail). REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes, métricas, cantidades de personal (ej. 48 gestores) o nombres específicos de industrias pasadas (como telecomunicaciones). Escribe un resumen directo, profesional y natural de aproximadamente 80 palabras. NO uses jerga corporativa excesiva ni suenes robótico (ej. evita frases como "fusiono mi sólido background"). NUNCA inventes profesiones que no están en el CV Base (ej. no pongas Ingeniero).
-   - Dominios Técnicos (domainAreas): ESTRICTAMENTE OBLIGATORIO elegir EXACTAMENTE 4 o 5 áreas clave (competencias) EXACTAMENTE IGUALES a las del CV base. NUNCA devuelvas solo 1.
-   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Mantén un tono altamente profesional, directivo y estructurado. Copia la complejidad, el peso narrativo y la formalidad del CV Base. NO simplifiques las descripciones. NO inventes resultados ni métricas.
+   - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Debes elegir EXACTAMENTE 5 habilidades únicas de la lista original del CV base. REGLA CRÍTICA: NO generes habilidades o competencias que sean sinónimos o redundantes entre sí (ej. no pongas "Liderazgo" y luego "Liderazgo Organizacional").
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base. REGLA: PROHIBIDO incluir cursos o programas que ya formen parte de la sección de Estudios (ej. "Liderazgo en la Era Digital - Tec. de Monterrey").
+   - Resumen Profesional (summary): Debe empezar con tu título profesional adaptado al puesto objetivo. Adapta explícitamente el enfoque a la industria de la oferta (ej. si es Retail, destaca tu experiencia orquestando operaciones comerciales/retail). REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes, métricas, cantidades de personal (ej. 48 gestores) o nombres específicos de industrias pasadas (como telecomunicaciones). Escribe un resumen de AL MENOS 100 A 120 PALABRAS, que sea denso, persuasivo y altamente directivo. NO uses jerga corporativa excesiva ni suenes robótico. NUNCA inventes profesiones que no están en el CV Base.
+   - Dominios Técnicos (domainAreas): ESTRICTAMENTE OBLIGATORIO elegir EXACTAMENTE 4 áreas clave (competencias) EXACTAMENTE IGUALES a las del CV base. PROHIBIDO DEVOLVER MENOS DE 4.
+   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Mantén un tono altamente profesional, directivo y estructurado. REGLA CRÍTICA: Cada cargo DEBE tener entre 3 y 5 viñetas extensas (descriptions). PROHIBIDO descripciones cortas o simples de una línea. Copia la complejidad y el peso narrativo del CV Base sin simplificar ni inventar métricas.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
@@ -181,7 +181,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     "portfolio": [
       {
         "title": "...",
-        "description": "Descripción reescrita con un tono natural, humano y altamente profesional. Adapta el proyecto sutilmente a la oferta pero evita que suene forzado, robótico o exagerado. Debe sentirse real y encajar orgánicamente."
+        "description": "Reescribe la descripción enfocándola como una 'Solución Tecnológica u Operativa' que resolvió un problema concreto o generó un impacto de negocio. Usa un tono directivo, detallando el valor generado, sin sonar forzado ni plano."
       }
     ]
   },
