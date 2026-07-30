@@ -9,7 +9,7 @@ axiosRetry(axios, {
   },
   retryCondition: (error) => {
     // Retry on network errors or 5xx server errors
-    return axiosRetry.isNetworkOrIdempotentRequestError(error) || error.code === 'ECONNABORTED';
+    return !!(axiosRetry.isNetworkOrIdempotentRequestError(error) || error.code === 'ECONNABORTED' || (error.response && error.response.status === 429));
   }
 });
 
