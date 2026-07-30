@@ -51,7 +51,15 @@ function App() {
     clone.style.setProperty('-webkit-font-smoothing', 'antialiased');
     clone.style.setProperty('-moz-osx-font-smoothing', 'grayscale');
     
-    document.body.appendChild(clone);
+    // Envolver el clon en un contenedor con las clases base para que herede la tipografía correcta
+    const wrapper = document.createElement('div');
+    wrapper.className = 'font-sans text-slate-900'; // Clases para forzar la tipografía correcta
+    wrapper.style.position = 'absolute';
+    wrapper.style.top = '-9999px';
+    wrapper.style.left = '-9999px';
+    wrapper.appendChild(clone);
+    
+    document.body.appendChild(wrapper);
 
     // Esperar a que el browser pinte el layout completo
     await new Promise((resolve) => setTimeout(resolve, 300));
@@ -88,8 +96,8 @@ function App() {
 
       pdf.save(filename);
     } finally {
-      // Limpiar el clon
-      document.body.removeChild(clone);
+      // Limpiar el clon y el wrapper
+      document.body.removeChild(wrapper);
     }
   };
 
