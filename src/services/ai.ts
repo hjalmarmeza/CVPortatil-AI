@@ -14,7 +14,7 @@ axiosRetry(axios, {
 });
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
-const MODEL = 'meta-llama/Meta-Llama-3-70B-Instruct';
+const MODEL = 'meta-llama/Meta-Llama-3.1-8B-Instruct'; // Modelo ultra rápido y 10x más barato
 
 // Función sanitizadora de gramática española para corregir cacofonías (ej. "y implementé" -> "e implementé")
 const fixSpanishCacophony = (text: string): string => {
