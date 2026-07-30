@@ -182,7 +182,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       {
         model: MODEL,
         messages: [{ role: 'user', content: prompt }],
-        response_format: { type: "json_object" }
+        response_format: { type: "json_object" },
+        temperature: 0.7
       },
       {
         headers: {
