@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import domtoimage from 'dom-to-image-more';
 import jsPDF from 'jspdf';
 import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
@@ -6,16 +6,41 @@ import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
 import { generateTailoredCV } from './services/ai';
 
-
 function App() {
   const [activeTab, setActiveTab] = useState<'generator' | 'base'>('generator');
   const [baseCV, setBaseCV] = useState<BaseCV>(defaultBaseCV);
+  const [photoBase64, setPhotoBase64] = useState<string>('');
   
   const [jobDescription, setJobDescription] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [seniorityLevel, setSeniorityLevel] = useState<'auto' | 'operational' | 'middle' | 'executive'>('auto');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [tailoredData, setTailoredData] = useState<{tailoredCV?: Partial<BaseCV>, coverLetter?: string} | null>(null);
+  const [tailoredData, setTailoredData] = useState<{
+    tailoredCV: BaseCV | null;
+    coverLetter: string | null;
+  }>({
+    tailoredCV: null,
+    coverLetter: null
+  });
+
+  useEffect(() => {
+    if (baseCV.contact?.photoUrl) {
+      const url = baseCV.contact.photoUrl.startsWith('http') || baseCV.contact.photoUrl.startsWith('data:') 
+        ? baseCV.contact.photoUrl 
+        : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`;
+      
+      fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setPhotoBase64(reader.result as string);
+          };
+          reader.readAsDataURL(blob);
+        })
+        .catch(err => console.error("Error preloading photo:", err));
+    }
+  }, [baseCV.contact?.photoUrl]);
 
   const handleGenerate = async () => {
     if (!jobDescription.trim()) return;
@@ -706,7 +731,7 @@ function App() {
                   {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '35px', width: '100%', textAlign: 'center' }}>
                     <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block' }}>
-                      <img src={baseCV.contact?.photoUrl ? (baseCV.contact.photoUrl.startsWith('http') || baseCV.contact.photoUrl.startsWith('data:') ? baseCV.contact.photoUrl : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`) : ''} alt="Foto" style={{ width: '140px', height: '140px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+                      <img src={photoBase64 || (baseCV.contact?.photoUrl ? (baseCV.contact.photoUrl.startsWith('http') || baseCV.contact.photoUrl.startsWith('data:') ? baseCV.contact.photoUrl : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`) : '')} alt="Foto" style={{ width: '140px', height: '140px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
                     </div>
                   </div>
 

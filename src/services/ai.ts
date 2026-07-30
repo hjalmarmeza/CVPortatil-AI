@@ -114,13 +114,14 @@ TAREA:
        • OBLIGATORIO MÍNIMO 4-5 VIÑETAS POR CARGO con métricas reales del CV base (20M clientes, 52 tiendas, 110.000€, 160.000 clientes/mes).
        • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base. NO inventar.
 
-3. REGLAS GENERALES Y CANTIDADES ESTRICTAS:
-   - PROYECTOS PERSONALES (Portafolio): Selecciona EXACTAMENTE 4 proyectos del portafolio del CV Base. Adapta su descripción al puesto, pero basándote en los títulos y descripciones reales ya existentes en el CV base. PROHIBIDO inventar proyectos inexistentes.
-   - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Debes elegir OBLIGATORIAMENTE un máximo de 8 habilidades de la lista original del CV base que sean relevantes para el puesto.
-   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base que sean más relevantes para el puesto.
-   - Resumen Profesional (summary): Escribe un resumen denso, contundente y sustancial de al menos 4 líneas completas. NO hagas un resumen corto ni simple. Debe estar enfocado en su visión ejecutiva, liderazgo y mejora de procesos en el sector. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o nombres de puestos anteriores exactos en el resumen. Todo debe ser cualitativo y narrativo.
-   - Dominios Técnicos/Competencias (domainAreas): NO INVENTES COMPETENCIAS. ESTRICTAMENTE OBLIGATORIO elegir entre 4 y 6 áreas clave o competencias exactamente iguales a las que figuran en el CV base. NUNCA lo dejes vacío y NUNCA inventes nuevas áreas.
-   - NO INVENTES NADA NUEVO. Re-enfoca y reescribe la información real ya existente en el CV base.
+3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
+   - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base. Si el CV base no tiene un porcentaje, NO LO INVENTES.
+   - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
+   - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Debes elegir OBLIGATORIAMENTE un máximo de 8 habilidades de la lista original del CV base.
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base.
+   - Resumen Profesional (summary): Debe empezar con tu título profesional o rol (ej. "Ejecutivo de Operaciones..."). PROHIBIDO mencionar sectores pasados (como "empresas de telecomunicaciones"). REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o industrias pasadas en el resumen. Debe ser denso y contundente, de al menos 4 líneas completas.
+   - Dominios Técnicos (domainAreas): ESTRICTAMENTE OBLIGATORIO elegir entre 4 y 6 áreas clave EXACTAMENTE IGUALES a las del CV base. NUNCA lo dejes vacío.
+   - Experiencia (experience): Mantén un tono altamente profesional, directivo y estructurado. Copia la complejidad, el peso narrativo y la formalidad del CV Base. NO simplifiques las descripciones. NO inventes resultados ni métricas.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
