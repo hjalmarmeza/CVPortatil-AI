@@ -117,6 +117,8 @@ TAREA:
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS:
    - PROYECTOS PERSONALES (Portafolio): Selecciona EXACTAMENTE 4 proyectos del portafolio del CV Base. Adapta su descripción al puesto, pero basándote en los títulos y descripciones reales ya existentes en el CV base. PROHIBIDO inventar proyectos inexistentes.
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base que sean más relevantes para el puesto.
+   - Resumen Profesional (summary): Escribe un resumen denso, contundente y sustancial de al menos 4 líneas completas. NO hagas un resumen corto ni simple. Debe estar enfocado en su visión ejecutiva, liderazgo y mejora de KPIs en el sector retail/operaciones, conectando su trayectoria de 18 años con el rol.
+   - Dominios Técnicos (domainAreas): ESTRICTAMENTE OBLIGATORIO generar entre 4 y 6 áreas clave o competencias (ej. "Gestión de Operaciones", "Liderazgo de Equipos", "Análisis de KPIs", etc.) acordes al puesto. NUNCA lo dejes vacío.
    - NO INVENTES NADA NUEVO. Re-enfoca y reescribe la información real ya existente en el CV base.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):

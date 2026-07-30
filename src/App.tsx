@@ -659,48 +659,28 @@ function App() {
                   {/* Experience */}
                   <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
-                    <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0 }}>
-                      <tbody>
-                        {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
-                          const isPage2Start = idx === 3;
-                          return (
-                            <tr key={idx}>
-                              <td style={{ paddingBottom: '18px', pageBreakInside: 'avoid', paddingTop: isPage2Start ? '45px' : '0px', verticalAlign: 'top' }}>
-                                <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, marginBottom: '2px' }}>
-                                  <tbody>
-                                    <tr>
-                                      <td style={{ textAlign: 'left', width: '70%' }}>
-                                        <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
-                                      </td>
-                                      <td style={{ textAlign: 'right', width: '30%' }}>
-                                        <span style={{ fontSize: '9pt', color: '#666' }}>{exp.period}</span>
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                                <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, marginBottom: '8px' }}>
-                                  <tbody>
-                                    <tr>
-                                      <td style={{ textAlign: 'left', width: '70%' }}>
-                                        <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
-                                      </td>
-                                      <td style={{ textAlign: 'right', width: '30%' }}>
-                                        <span style={{ fontSize: '9pt', color: '#666' }}>{exp.location}</span>
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                                <ul style={{ margin: 0, paddingLeft: '15px', fontSize: '9pt', color: '#444', lineHeight: '1.45' }}>
-                                  {exp.description.map((desc, i) => (
-                                    <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
-                                  ))}
-                                </ul>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
+                    <div style={{ width: '100%' }}>
+                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
+                        const isPage2Start = idx === 3;
+                        return (
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', paddingTop: isPage2Start ? '45px' : '0px', width: '100%' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
+                              <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
+                              <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px', width: '100%' }}>
+                              <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
+                              <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
+                            </div>
+                            <ul style={{ margin: 0, paddingLeft: '15px', fontSize: '9pt', color: '#444', lineHeight: '1.45' }}>
+                              {exp.description.map((desc, i) => (
+                                <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
 
                   {/* Proyectos Personales */}
