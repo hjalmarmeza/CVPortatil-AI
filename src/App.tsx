@@ -576,16 +576,16 @@ function App() {
       </main>
 
       {/* Renderizado Oculto para el PDF */}
-      <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
+      <div id="cv-pdf-content" style={{ display: 'none', backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'system-ui, -apple-system, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
         <style>{`
-          #cv-pdf-content, #cv-pdf-content * {
+          #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
-            font-family: Arial, Helvetica, sans-serif !important;
-            letter-spacing: normal !important;
-            word-spacing: normal !important;
-            text-rendering: auto !important;
-            -webkit-font-smoothing: auto !important;
-            font-feature-settings: normal !important;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+            letter-spacing: 0px !important;
+            word-spacing: 0px !important;
+            text-rendering: optimizeLegibility !important;
+            -webkit-font-smoothing: antialiased !important;
+            font-feature-settings: "liga" 0, "clig" 0 !important;
             word-break: break-word !important;
             overflow-wrap: break-word !important;
           }
