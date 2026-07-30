@@ -65,8 +65,14 @@ ${JSON.stringify(baseCV, null, 2)}
 OFERTA LABORAL:
 ${jobDescription}
 
-EMPRESA A LA QUE SE POSTULA:
-${companyName.trim() ? companyName : 'Extraer e inferir el nombre, valores y cultura de la empresa directamente del texto de la Oferta LaborAL.'}
+EMPRESA A LA QUE SE POSTULA / AGENCIA DE SELECCIÓN:
+${companyName.trim() ? companyName : 'Si no se especifica, redacta la carta de forma elegante e imparcial enfocado en la posición solicitada sin nombrar marcas ficticias.'}
+
+CALIBRACIÓN DE ENTIDAD RECLUTADORA VS EMPRESA FINAL:
+- Si se menciona una agencia de selección / ETT / Headhunter (ej: Grafton, Randstad, Adecco, Manpower, etc.) o no se conoce la empresa final:
+  • Queda ESTRICTAMENTE PROHIBIDO redactar la carta como si el candidato quisiera trabajar "dentro de la agencias de selección".
+  • La carta debe presentar la candidatura a la posición solicitada de forma neutra y profesional: "Presento mi candidatura para la posición de [Nombre del Puesto]..."
+  • PROHIBIDO decir "Me atrae la cultura de Grafton" o "Quiero unirme a Grafton".
 
 CALIBRACIÓN DE SENIORIDAD Y NIVEL REQUERIDO:
 ${seniorityLevel === 'operational' 
@@ -110,10 +116,10 @@ TAREA:
 5. CARTA DE PRESENTACIÓN (ESTRUCTURA SOBRIA Y PROFESIONAL):
    - LONGITUD OBLIGATORIA: Entre 300 y 360 palabras en total en el cuerpo en 4 párrafos bien estructurados separados por \\n\\n.
    - ESTRUCTURA OBLIGATORIA:
-     1. Párrafo 1 (Presentación Directa): Presenta tu candidatura al puesto expresando un interés profesional serio por aportar tu experiencia en el sector y en la gestión operativa de la empresa.
+     1. Párrafo 1 (Presentación Directa): "Presento mi candidatura para la posición de [Nombre del Puesto], expresando un interés profesional serio por aportar mi experiencia operativa y capacidad de organización a las necesidades del puesto." (Sin adular a agencias ni decir 'me atrae la cultura de...').
      2. Párrafo 2 (Trayectoria y Capacidad): Explica tu trayectoria en la dirección y gestión de operaciones, liderazgo de equipos y atención al cliente de excelencia, resaltando tu capacidad de organización.
      3. Párrafo 3 (Encaje con el Puesto): Muestra cómo tus competencias prácticas (gestión, reposición, caja/TPV, atención al cliente) responden directamente a los objetivos de la oferta.
-     4. Párrafo 4 (Cierre Profesional): Finaliza con sobriedad: "Agradezco de antemano el tiempo dedicado a revisar mi candidatura y quedo a su entera disposición para ampliar cualquier información sobre mi perfil en una entrevista personal."
+     4. Párrafo 4 (Cierre Profesional): "Agradezco de antemano el tiempo dedicado a revisar mi candidatura y quedo a su entera disposición para ampliar cualquier información sobre mi perfil en una entrevista personal."
    - PROHIBICIONES ABSOLUTAS:
      • PROHIBIDO incluir firma ni despidos tipo "Atentamente" o tu nombre al final de la carta (el sistema HTML renderiza dinámicamente el bloque de firma).
      • PROHIBIDO inventar experiencia en marketing o áreas ajenas.
