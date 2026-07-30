@@ -4,7 +4,9 @@ import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
 import { generateTailoredCV } from './services/ai';
 // @ts-ignore
-import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+// @ts-ignore
+import jsPDF from 'jspdf';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'generator' | 'base'>('generator');
@@ -30,72 +32,67 @@ function App() {
     }
   };
 
-  const handleDownloadPDF = async () => {
-    const element = document.getElementById('cv-pdf-content');
+  const generatePdfFromElement = async (elementId: string, filename: string) => {
+    const element = document.getElementById(elementId);
     if (!element) return;
 
+    // Mostrar el elemento en el viewport activo para que html2canvas lo capture correctamente
     element.style.display = 'block';
     element.style.position = 'fixed';
     element.style.top = '0';
     element.style.left = '0';
+    element.style.width = '794px';
     element.style.zIndex = '99999';
+    element.style.pointerEvents = 'none';
 
-    await new Promise((resolve) => setTimeout(resolve, 150));
-
-    const opt = {
-      margin: 0,
-      filename: `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`,
-      image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        scrollX: 0,
-        scrollY: 0,
-        logging: false
-      },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
-    };
+    // Esperar a que el browser pinte el layout completo
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     try {
-      await html2pdf().from(element).set(opt).save();
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        scrollX: 0,
+        scrollY: 0,
+        backgroundColor: '#ffffff',
+        logging: false
+      });
+
+      const imgData = canvas.toDataURL('image/jpeg', 0.97);
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pageWidth = 210; // A4 en mm
+      const pageHeight = 297;
+      const imgWidthMm = pageWidth;
+      const imgHeightMm = (canvas.height * imgWidthMm) / canvas.width;
+
+      let yOffset = 0;
+      let remainingHeight = imgHeightMm;
+
+      while (remainingHeight > 0) {
+        pdf.addImage(imgData, 'JPEG', 0, -yOffset, imgWidthMm, imgHeightMm);
+        remainingHeight -= pageHeight;
+        yOffset += pageHeight;
+        if (remainingHeight > 0) pdf.addPage();
+      }
+
+      pdf.save(filename);
     } finally {
       element.style.display = 'none';
       element.style.position = 'static';
+      element.style.top = '';
+      element.style.left = '';
+      element.style.zIndex = '';
+      element.style.pointerEvents = '';
     }
   };
 
-  const handleDownloadCoverLetterPDF = async () => {
-    const element = document.getElementById('cover-letter-pdf-content');
-    if (!element) return;
+  const handleDownloadPDF = () => {
+    generatePdfFromElement('cv-pdf-content', `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`);
+  };
 
-    element.style.display = 'block';
-    element.style.position = 'fixed';
-    element.style.top = '0';
-    element.style.left = '0';
-    element.style.zIndex = '99999';
-
-    await new Promise((resolve) => setTimeout(resolve, 150));
-
-    const opt = {
-      margin: 0,
-      filename: `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`,
-      image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        scrollX: 0,
-        scrollY: 0,
-        logging: false
-      },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
-    };
-
-    try {
-      await html2pdf().from(element).set(opt).save();
-    } finally {
-      element.style.display = 'none';
-      element.style.position = 'static';
-    }
+  const handleDownloadCoverLetterPDF = () => {
+    generatePdfFromElement('cover-letter-pdf-content', `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`);
   };
 
   return (
