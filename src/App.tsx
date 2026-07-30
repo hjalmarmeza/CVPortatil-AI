@@ -720,9 +720,9 @@ function App() {
                     <div style={{ fontSize: '9.5pt', lineHeight: '1.5', color: '#444', textAlign: 'left' }}>
                       {(() => {
                         const s = tailoredData?.tailoredCV?.summary || baseCV.summary;
-                        return (s && s.split(/\s+/).length >= 35)
+                        return (s && s.split(/\s+/).length >= 60)
                           ? s
-                          : `${s} Trayectoria directiva y estratégica enfocada en la optimización de procesos, gestión de equipos de alto rendimiento y transformación digital para elevar la rentabilidad y la excelencia operativa.`;
+                          : `${s} Trayectoria directiva y estratégica enfocada en la optimización de procesos, gestión de equipos de alto rendimiento y transformación digital para elevar la rentabilidad y la excelencia operativa. Lideré iniciativas de modernización de canales de atención y virtualización de operaciones, garantizando la satisfacción del cliente y el cumplimiento riguroso de objetivos corporativos.`;
                       })()}
                     </div>
                   </div>
@@ -823,8 +823,20 @@ function App() {
                       {(() => {
                         const currentSkills = (tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5);
                         const hasLeadershipSkill = currentSkills.some(s => s.toLowerCase().includes('liderazgo'));
-                        const rawAreas = (tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas);
-                        const cleanAreas = rawAreas.filter(area => !(hasLeadershipSkill && area.title.toLowerCase().includes('liderazgo')));
+                        const rawAreas = (tailoredData?.tailoredCV?.domainAreas && tailoredData.tailoredCV.domainAreas.length >= 3)
+                          ? tailoredData.tailoredCV.domainAreas
+                          : baseCV.domainAreas;
+                        
+                        let cleanAreas = rawAreas.filter(area => !(hasLeadershipSkill && area.title.toLowerCase().includes('liderazgo')));
+                        
+                        // Si quedan menos de 4 por el filtro, auto-completar con competencias del CV base
+                        for (const baseArea of baseCV.domainAreas) {
+                          if (cleanAreas.length >= 4) break;
+                          if (!cleanAreas.some(a => a.title.toLowerCase() === baseArea.title.toLowerCase()) && !(hasLeadershipSkill && baseArea.title.toLowerCase().includes('liderazgo'))) {
+                            cleanAreas.push(baseArea);
+                          }
+                        }
+
                         return cleanAreas.slice(0, 5).map((area, i) => (
                           <div key={i} style={{ marginBottom: '6px' }}>
                             <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
