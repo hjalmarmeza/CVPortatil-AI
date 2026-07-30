@@ -133,7 +133,6 @@ export const defaultBaseCV: BaseCV = {
     "Filtros de Integridad IA"
   ],
   certifications: [
-    "Liderazgo en la Era Digital - Tec. de Monterrey",
     "Desarrolla tus habilidades de productividad con IA generativa - Microsoft",
     "Habilidades humanas en la era de la IA - Microsoft",
     "Domina el marketing digital - LinkedIn",

@@ -101,7 +101,7 @@ function App() {
       pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
       heightLeft -= pdfHeight;
 
-      while (heightLeft > 0) {
+      while (heightLeft > 5) {
         position = heightLeft - imgHeight;
         pdf.addPage();
         pdf.addImage(dataUrl, 'JPEG', 0, position, pdfWidth, imgHeight);
@@ -653,7 +653,7 @@ function App() {
           }
         `}</style>
         
-        <table style={{ width: '794px', minHeight: '2244px', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
+        <table style={{ width: '794px', height: '2244px', maxHeight: '2244px', borderCollapse: 'collapse', tableLayout: 'fixed', overflow: 'hidden' }}>
           <colgroup>
             <col style={{ width: '516px' }} />
             <col style={{ width: '278px' }} />
@@ -715,7 +715,7 @@ function App() {
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 2 ? '40px' : '0px' }}>
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 2 ? '75px' : '0px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
@@ -766,7 +766,7 @@ function App() {
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Habilidades</h3>
                     <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.8' }}>
-                      {(tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 8).map((skill, i) => (
+                      {(tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5).map((skill, i) => (
                         <div key={i} style={{ marginBottom: '5px' }}>▸ {skill}</div>
                       ))}
                     </div>
@@ -776,7 +776,7 @@ function App() {
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Competencias</h3>
                     <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.8' }}>
-                      {(tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas).map((area, i) => (
+                      {(tailoredData?.tailoredCV?.domainAreas || baseCV.domainAreas).slice(0, 4).map((area, i) => (
                         <div key={i} style={{ marginBottom: '6px' }}>
                           <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
                         </div>
