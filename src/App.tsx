@@ -58,7 +58,6 @@ function App() {
       html2canvas:  { 
         scale: 2, 
         useCORS: true, 
-        letterRendering: true,
         windowWidth: 794 // Forzar ancho exacto de A4 a 96DPI
       },
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
@@ -810,11 +809,6 @@ function App() {
                 <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, marginTop: '30px' }}>
                   <tbody>
                     <tr>
-                      <td style={{ width: '60px', paddingRight: '15px', verticalAlign: 'middle' }}>
-                        <div style={{ width: '60px', height: '60px', overflow: 'hidden', border: '2px solid #005C53', borderRadius: '4px' }}>
-                          <img src={baseCV.contact?.photoUrl ? (baseCV.contact.photoUrl.startsWith('http') || baseCV.contact.photoUrl.startsWith('data:') ? baseCV.contact.photoUrl : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`) : ''} alt="Foto" style={{ width: '60px', height: '60px', objectFit: 'cover', objectPosition: 'center top' }} />
-                        </div>
-                      </td>
                       <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>
                         <p style={{ margin: '0 0 3px', fontWeight: '800', fontSize: '11.5pt', color: '#005C53' }}>{baseCV.name}</p>
                         <p style={{ margin: '0 0 2px', fontSize: '9pt', color: '#666' }}>📞 {baseCV.contact?.phone} &nbsp;|&nbsp; ✉️ {baseCV.contact?.email}</p>
