@@ -174,16 +174,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         "skills": ["...", "..."]
       }
     ],
-    "certifications": ["...", "..."],
-    "portfolioTitle": "Nombre adaptado de la sección del portafolio",
-    "portfolio": [
-      {
-        "title": "...",
-        "description": "Reescribe la descripción enfocándola como una 'Solución Tecnológica u Operativa' que resolvió un problema concreto o generó un impacto de negocio. Usa un tono directivo, detallando el valor generado, sin sonar forzado ni plano."
-      }
-    ]
-  },
-  "coverLetter": ["Párrafo 1 extenso...", "Párrafo 2 extenso...", "Párrafo 3 extenso...", "Párrafo 4 extenso..."]
+    "certifications": ["...", "..."]
+  }
 }
 `;
 
@@ -262,29 +254,15 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       });
     }
 
-    // ESCUDO DE SEGURIDAD 4: Garantizar carta de presentación rica, densa y profesional (mínimo 160 palabras)
-    let letterParagraphs: string[] = [];
-    if (Array.isArray(parsedData?.coverLetter)) {
-      letterParagraphs = parsedData.coverLetter.map((p: string) => p.trim()).filter(Boolean);
-    } else if (typeof parsedData?.coverLetter === 'string') {
-      letterParagraphs = parsedData.coverLetter.split(/\n+/).map((p: string) => p.trim()).filter(Boolean);
-    }
-
-    const totalWords = letterParagraphs.join(' ').split(/\s+/).filter(Boolean).length;
+    // ESCUDO DE SEGURIDAD 4: Generación instantánea de Carta Cualitativa de 4 párrafos (0ms)
     const targetTitle = parsedData?.tailoredCV?.summary?.split('.')[0] || 'Director/a de Operaciones';
-
-    if (letterParagraphs.length < 4 || totalWords < 140) {
-      // Reconstrucción ejecutiva cualitativa (SIN NÚMEROS, SIN EMPRESAS PASADAS, SIN HERRAMIENTAS IA)
-      parsedData.coverLetter = [
-        `Estimado/a Director/a de Selección,`,
-        `Me dirijo a usted con el propósito de presentar mi candidatura a la posición de ${targetTitle}, motivado por la oportunidad de contribuir de manera significativa al crecimiento y a la excelencia operativa de su organización. A lo largo de mi trayectoria profesional, he desarrollado una visión estratégica enfocada en la optimización de procesos y el liderazgo de equipos orientados a resultados.`,
-        `Mi experiencia se ha centrado en orquestar operaciones complejas y coordinar servicios de alta demanda, asegurando siempre estándares superiores de calidad y eficiencia. He liderado iniciativas de modernización de infraestructura y virtualización de procesos, logrando estabilizar la atención al usuario, reducir costos operativos y garantizar la continuidad del negocio en entornos cambiantes.`,
-        `Asimismo, destaco por mi capacidad para promover la transformación digital y la adopción de nuevas metodologías de trabajo. Entiendo la innovación no solo como una evolución tecnológica, sino como un proceso continuo de mejora, adaptabilidad y desarrollo del talento humano para responder con agilidad a las exigencias del mercado.`,
-        `Quedo a su entera disposición para mantener una entrevista personal en la que pueda profundizar en cómo mi perfil ejecutivo, mi capacidad de gestión y mi compromiso profesional aportarán un valor tangible a los objetivos de su empresa. Agradezco de antemano el tiempo y la consideración brindados.`
-      ];
-    } else {
-      parsedData.coverLetter = letterParagraphs;
-    }
+    parsedData.coverLetter = [
+      `Estimado/a Director/a de Selección,`,
+      `Me dirijo a usted con el propósito de presentar mi candidatura a la posición de ${targetTitle}, motivado por la oportunidad de contribuir de manera significativa al crecimiento y a la excelencia operativa de su organización. A lo largo de mi trayectoria profesional, he desarrollado una visión estratégica enfocada en la optimización de procesos y el liderazgo de equipos orientados a resultados.`,
+      `Mi experiencia se ha centrado en orquestar operaciones complejas y coordinar servicios de alta demanda, asegurando siempre estándares superiores de calidad y eficiencia. He liderado iniciativas de modernización de infraestructura y virtualización de procesos, logrando estabilizar la atención al usuario, reducir costos operativos y garantizar la continuidad del negocio en entornos cambiantes.`,
+      `Asimismo, destaco por mi capacidad para promover la transformación digital y la adopción de nuevas metodologías de trabajo. Entiendo la innovación no solo como una evolución tecnológica, sino como un proceso continuo de mejora, adaptabilidad y desarrollo del talento humano para responder con agilidad a las exigencias del mercado.`,
+      `Quedo a su entera disposición para mantener una entrevista personal en la que pueda profundizar en cómo mi perfil ejecutivo, mi capacidad de gestión y mi compromiso profesional aportarán un valor tangible a los objetivos de su empresa. Agradezco de antemano el tiempo y la consideración brindados.`
+    ];
 
     // Sanitización automática de gramática y cacofonías (ej. "y implementé" -> "e implementé")
     return sanitizeObjectGrammar(parsedData);
