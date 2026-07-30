@@ -46,12 +46,22 @@ function App() {
       margin: 0,
       filename: `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`,
       image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, windowWidth: 794, letterRendering: true, logging: false },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        windowWidth: 794,
+        scrollY: 0,
+        scrollX: 0,
+        x: 0,
+        y: 0,
+        letterRendering: true,
+        logging: false
+      },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
     try {
-      await html2pdf().from(element).set(opt).save();
+      await html2pdf().set(opt).from(element).save();
     } finally {
       element.style.display = 'none';
       element.style.position = 'static';
@@ -74,12 +84,22 @@ function App() {
       margin: 0,
       filename: `Carta_Presentacion_${baseCV.name.replace(/\s+/g, '_')}.pdf`,
       image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, windowWidth: 794, letterRendering: true, logging: false },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        windowWidth: 794,
+        scrollY: 0,
+        scrollX: 0,
+        x: 0,
+        y: 0,
+        letterRendering: true,
+        logging: false
+      },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
     };
 
     try {
-      await html2pdf().from(element).set(opt).save();
+      await html2pdf().set(opt).from(element).save();
     } finally {
       element.style.display = 'none';
       element.style.position = 'static';
