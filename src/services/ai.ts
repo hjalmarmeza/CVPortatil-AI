@@ -196,6 +196,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     if (!parsedData.tailoredCV.certifications || parsedData.tailoredCV.certifications.length < 5) {
       parsedData.tailoredCV.certifications = baseCV.certifications.slice(0, 6);
     }
+    parsedData.tailoredCV.education = baseCV.education;
+    parsedData.tailoredCV.languages = baseCV.languages;
     if (typeof parsedData.coverLetter === 'string') {
       parsedData.coverLetter = parsedData.coverLetter.split(/\\n+/);
     }
