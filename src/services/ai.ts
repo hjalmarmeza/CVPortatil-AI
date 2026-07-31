@@ -131,30 +131,16 @@ TAREA:
    - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base. Si el CV base no tiene un porcentaje, NO LO INVENTES.
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo. REGLA CRÍTICA: NO generes habilidades o competencias que sean sinónimos o redundantes entre sí.
-   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base. REGLA: PROHIBIDO incluir cursos o programas que ya formen parte de la sección de Estudios (ej. "Liderazgo en la Era Digital - Tec. de Monterrey").
-   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título exacto adaptado al puesto objetivo. Todo el párrafo debe personalizarse y orientarse explícitamente a las necesidades, desafíos e industria de la oferta de empleo introducida. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o métricas. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, densas, directivas y persuasivas directamente enfocadas al rol solicitado). PROHIBIDO resúmenes genéricos o cortos.
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 8 certificaciones del listado real del CV base. REGLA: PROHIBIDO incluir cursos o programas que ya formen parte de la sección de Estudios.
+   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título exacto adaptado al puesto objetivo. Todo el párrafo debe personalizarse y orientarse explícitamente a las necesidades, desafíos e industria de la oferta de empleo introducida. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o métricas. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, densas, directivas y persuasivas directamente enfocadas al rol solicitado).
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
-   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Mantén un tono altamente profesional, directivo y estructurado. REGLA CRÍTICA: Cada cargo DEBE tener entre 3 y 5 viñetas extensas (descriptions). PROHIBIDO descripciones cortas o simples de una línea. Copia la complejidad y el peso narrativo del CV Base sin simplificar ni inventar métricas.
+   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Mantén un tono altamente profesional, directivo y estructurado. REGLA CRÍTICA: Cada cargo DEBE tener entre 3 y 5 viñetas extensas (descriptions). PROHIBIDO descripciones cortas o simples de una línea.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
-   - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi" (Ejemplo PROHIBIDO: "Desarrollé y implementé", DEBE SER "Desarrollé e implementé"; PROHIBIDO: "Creatividad y innovación", DEBE SER "Creatividad e innovación"). De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
+   - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi". De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
    - Usa un lenguaje HUMANO, PERSUASIVO Y ADECUADO AL NIVEL DEL PUESTO.
 
-5. CARTA DE PRESENTACIÓN (ESTILO QUALITATIVO, ELEGANTE Y EJECUTIVO — 4 PÁRRAFOS RICOS):
-   - TONO Y ESTILO: Directivo, sobrio, elegante y persuasivo. Redacción cualitativa en primera persona del singular.
-   - LONGITUD OBLIGATORIA Y DENSIDAD: Exactamente 4 párrafos (separados por \n\n), cada uno de 45 a 55 palabras. PROHIBIDO párrafos cortos de 1 o 2 líneas.
-   - REGLAS ABSOLUTAS DE CONTENIDO (PROHIBICIONES ESTRICTAS):
-     • PROHIBIDO INCLUIR NÚMEROS O CIFRAS (nada de 18 años, 20M, 48 gestores, 52 centros, 110.000€, etc.).
-     • PROHIBIDO MENCIONAR NOMBRES DE EMPRESAS PASADAS (como Telefónica) O NOMBRES DE PUESTOS PASADOS.
-     • PROHIBIDO MENCIONAR NOMBRES DE HERRAMIENTAS O METODOLOGÍAS DE IA (nada de ChatGPT, Gemini, Claude, Azure, NPS, FCR, Churn).
-     • PROHIBIDO incluir despedidas como "Atentamente" al final (el sistema renderiza la firma dinámicamente).
-   - ESTRUCTURA QUALITATIVA:
-     1. Párrafo 1: Presentación motivada al puesto solicitado, destacando la visión estratégica y el deseo de aportar valor inmediato al crecimiento de la organización.
-     2. Párrafo 2: Trayectoria cualitativa en liderazgo de operaciones complejas, optimización de procesos y modernización de canales de atención, enfatizando la eficiencia y la calidad en el servicio.
-     3. Párrafo 3: Enfoque en la innovación tecnológica, la mejora continua y la gestión del cambio cultural para empoderar al talento humano y alcanzar metas corporativas exigentes.
-     4. Párrafo 4: Cierre profesional ofreciendo una entrevista personal para profundizar en el encaje estratégico.
-
-Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown \`\`\`json):
+Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicional (es muy importante que el JSON sea válido y no tenga markdown):
 {
   "tailoredCV": {
     "summary": "...",
@@ -186,14 +172,15 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         model: MODEL,
         messages: [{ role: 'user', content: prompt }],
         response_format: { type: 'json_object' },
-        temperature: 0.2
+        temperature: 0.2,
+        max_tokens: 1500
       },
       {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json'
         },
-        timeout: 120000 // 120 seconds timeout
+        timeout: 90000
       }
     );
 
@@ -318,7 +305,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
         model: MODEL,
         messages: [{ role: 'user', content: prompt }],
         response_format: { type: 'json_object' },
-        temperature: 0.2
+        temperature: 0.2,
+        max_tokens: 1500
       },
       {
         headers: {
