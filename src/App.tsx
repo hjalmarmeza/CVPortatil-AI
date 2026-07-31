@@ -25,20 +25,27 @@ function App() {
 
   useEffect(() => {
     if (baseCV.contact?.photoUrl) {
-      const url = baseCV.contact.photoUrl.startsWith('http') || baseCV.contact.photoUrl.startsWith('data:') 
-        ? baseCV.contact.photoUrl 
-        : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`;
-      
-      fetch(url)
-        .then(response => response.blob())
-        .then(blob => {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            setPhotoBase64(reader.result as string);
-          };
-          reader.readAsDataURL(blob);
-        })
-        .catch(err => console.error("Error preloading photo:", err));
+      if (baseCV.contact.photoUrl.startsWith('data:')) {
+        setPhotoBase64(baseCV.contact.photoUrl);
+      } else {
+        const url = baseCV.contact.photoUrl.startsWith('http') 
+          ? baseCV.contact.photoUrl 
+          : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`;
+        
+        fetch(url)
+          .then(response => response.blob())
+          .then(blob => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              setPhotoBase64(reader.result as string);
+            };
+            reader.readAsDataURL(blob);
+          })
+          .catch(err => {
+            console.error("Error preloading photo:", err);
+            setPhotoBase64(baseCV.contact.photoUrl);
+          });
+      }
     }
   }, [baseCV.contact?.photoUrl]);
 
@@ -754,12 +761,12 @@ function App() {
 
 
                   {/* Experience */}
-                  <div style={{ marginBottom: '25px' }}>
+                  <div style={{ marginBottom: '25px', paddingTop: '110px' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 1 ? '110px' : '0px' }}>
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
@@ -802,7 +809,7 @@ function App() {
                   {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '35px', width: '100%', textAlign: 'center' }}>
                     <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block' }}>
-                      <img src={photoBase64 || (baseCV.contact?.photoUrl ? (baseCV.contact.photoUrl.startsWith('http') || baseCV.contact.photoUrl.startsWith('data:') ? baseCV.contact.photoUrl : `${import.meta.env.BASE_URL}${baseCV.contact.photoUrl.replace(/^\//, '')}`) : '')} alt="Foto" style={{ width: '140px', height: '140px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+                      <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Foto" style={{ width: '140px', height: '140px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
                     </div>
                   </div>
 
