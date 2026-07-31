@@ -760,13 +760,13 @@ function App() {
                   </div>
 
 
-                  {/* Experience */}
-                  <div style={{ marginBottom: '25px' }}>
+                  {/* Experience - Seccion completa al inicio de la Hoja 2 */}
+                  <div style={{ marginBottom: '25px', paddingTop: '470px' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 2 ? '75px' : '0px' }}>
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
