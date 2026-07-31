@@ -727,9 +727,9 @@ function App() {
                     <div style={{ fontSize: '9.5pt', lineHeight: '1.5', color: '#444', textAlign: 'left' }}>
                       {(() => {
                         const s = tailoredData?.tailoredCV?.summary || baseCV.summary;
-                        return (s && s.split(/\s+/).length >= 60)
+                        return (s && s.split(/\s+/).length >= 50)
                           ? s
-                          : `${s} Trayectoria directiva y estratégica enfocada en la optimización de procesos, gestión de equipos de alto rendimiento y transformación digital para elevar la rentabilidad y la excelencia operativa. Lideré iniciativas de modernización de canales de atención y virtualización de operaciones, garantizando la satisfacción del cliente y el cumplimiento riguroso de objetivos corporativos.`;
+                          : `${s} Trayectoria directiva y estratégica enfocada en la optimización de procesos, gestión de equipos de alto rendimiento y excelencia operativa para elevar la rentabilidad y el cumplimiento de objetivos corporativos.`;
                       })()}
                     </div>
                   </div>
@@ -761,12 +761,12 @@ function App() {
 
 
                   {/* Experience */}
-                  <div style={{ marginBottom: '25px', paddingTop: '110px' }}>
+                  <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%', paddingTop: idx === 2 ? '75px' : '0px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
