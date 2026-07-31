@@ -173,7 +173,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         messages: [{ role: 'user', content: prompt }],
         response_format: { type: 'json_object' },
         temperature: 0.2,
-        max_tokens: 1500
+        max_tokens: 2500
       },
       {
         headers: {
@@ -184,8 +184,29 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       }
     );
 
-    const content = response.data.choices[0].message.content;
-    const parsedData = JSON.parse(content);
+    let cleanContent = response.data.choices[0].message.content.trim();
+    cleanContent = cleanContent.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '');
+
+    let parsedData: any;
+    try {
+      parsedData = JSON.parse(cleanContent);
+    } catch (parseError) {
+      console.warn("JSON Parse warning, attempting auto-repair...", parseError);
+      try {
+        let repaired = cleanContent;
+        if ((repaired.match(/"/g) || []).length % 2 !== 0) {
+          repaired += '"';
+        }
+        const openBrackets = (repaired.match(/\[/g) || []).length - (repaired.match(/\]/g) || []).length;
+        const openBraces = (repaired.match(/\{/g) || []).length - (repaired.match(/\}/g) || []).length;
+        for (let i = 0; i < Math.max(0, openBrackets); i++) repaired += ']';
+        for (let i = 0; i < Math.max(0, openBraces); i++) repaired += '}';
+        parsedData = JSON.parse(repaired);
+      } catch (fatalError) {
+        console.error("Fatal JSON error, using baseCV fallback:", fatalError);
+        parsedData = { tailoredCV: { ...baseCV } };
+      }
+    }
     
     // ESCUDOS DE SEGURIDAD EXTREMA:
     // Escudo de Hierro: Los proyectos personales no se tocan jamás.
