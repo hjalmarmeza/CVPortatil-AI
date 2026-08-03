@@ -154,7 +154,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 90000);
+    const timeoutId = setTimeout(() => controller.abort(), 120000); // 120 segundos para CV
 
     let response;
     let retries = 3;
@@ -336,7 +336,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 60000);
+    const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 segundos para Carta
 
     const response = await fetch(DEEPINFRA_API_URL, {
       method: 'POST',
