@@ -708,7 +708,8 @@ function App() {
             <tr>
               {/* LEFT COLUMN (White) - 516px */}
               <td style={{ width: '516px', padding: 0, backgroundColor: '#FFFFFF', verticalAlign: 'top' }}>
-                <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box' }}>
+                {/* --- HOJA 1 --- */}
+                <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Header / Name */}
                   <div style={{ marginBottom: '30px' }}>
                     <h1 style={{ fontSize: '28pt', margin: '0 0 5px', color: '#333333', fontWeight: '900', letterSpacing: 'normal', textTransform: 'uppercase', lineHeight: '1.1' }}>{baseCV.name}</h1>
@@ -758,10 +759,12 @@ function App() {
                       </div>
                     ))}
                   </div>
+                </div>
 
-
+                {/* --- HOJA 2 --- */}
+                <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Experience - Seccion completa al inicio de la Hoja 2 */}
-                  <div style={{ marginBottom: '25px', paddingTop: '470px' }}>
+                  <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
                       {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
@@ -808,8 +811,8 @@ function App() {
                 <div style={{ width: '278px', padding: '45px 25px', boxSizing: 'border-box' }}>
                   {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '35px', width: '100%', textAlign: 'center' }}>
-                    <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block' }}>
-                      <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Foto" style={{ width: '140px', height: '140px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+                    <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block', backgroundColor: '#fff' }}>
+                      <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Foto" style={{ width: '140px', height: '140px', display: 'block' }} />
                     </div>
                   </div>
 
