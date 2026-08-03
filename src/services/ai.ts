@@ -1,17 +1,4 @@
-import axios from 'axios';
 import type { BaseCV } from '../data/baseCV';
-import axiosRetry from 'axios-retry';
-
-axiosRetry(axios, {
-  retries: 3,
-  retryDelay: (retryCount) => {
-    return retryCount * 2000; // time interval between retries
-  },
-  retryCondition: (error) => {
-    // Retry on network errors or 5xx server errors
-    return !!(axiosRetry.isNetworkOrIdempotentRequestError(error) || error.code === 'ECONNABORTED' || (error.response && error.response.status === 429));
-  }
-});
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
 const MODEL = 'meta-llama/Meta-Llama-3.1-70B-Instruct';
@@ -166,25 +153,51 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
 `;
 
   try {
-    const response = await axios.post(
-      DEEPINFRA_API_URL,
-      {
-        model: MODEL,
-        messages: [{ role: 'user', content: prompt }],
-        response_format: { type: 'json_object' },
-        temperature: 0.2,
-        max_tokens: 2500
-      },
-      {
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        timeout: 90000
-      }
-    );
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 90000);
 
-    let cleanContent = response.data.choices[0].message.content.trim();
+    let response;
+    let retries = 3;
+    let attempt = 0;
+    while (attempt < retries) {
+      try {
+        response = await fetch(DEEPINFRA_API_URL, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: [{ role: 'user', content: prompt }],
+            response_format: { type: 'json_object' },
+            temperature: 0.2,
+            max_tokens: 2500
+          }),
+          signal: controller.signal
+        });
+        
+        if (response.ok) break;
+        if (response.status === 429 || response.status >= 500) {
+          throw new Error('Server error or rate limit');
+        } else {
+          break; // Don't retry on 400 Bad Request
+        }
+      } catch (err) {
+        attempt++;
+        if (attempt >= retries) throw err;
+        await new Promise(r => setTimeout(r, attempt * 2000));
+      }
+    }
+    
+    clearTimeout(timeoutId);
+
+    if (!response || !response.ok) {
+      throw new Error(`Error en la API de DeepInfra: ${response ? response.status : 'Desconocido'}`);
+    }
+
+    const data = await response.json();
+    let cleanContent = data.choices[0].message.content.trim();
     cleanContent = cleanContent.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '');
 
     let parsedData: any;
@@ -322,26 +335,29 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
 `;
 
   try {
-    const response = await axios.post(
-      DEEPINFRA_API_URL,
-      {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000);
+
+    const response = await fetch(DEEPINFRA_API_URL, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         model: MODEL,
         messages: [{ role: 'user', content: prompt }],
         response_format: { type: 'json_object' },
-        temperature: 0.2,
+        temperature: 0.3,
         max_tokens: 1500
-      },
-      {
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        timeout: 60000
-      }
-    );
+      }),
+      signal: controller.signal
+    });
 
-    const content = response.data.choices[0].message.content;
-    const parsed = JSON.parse(content);
+    clearTimeout(timeoutId);
+
+    const data = await response.json();
+    const parsed = JSON.parse(data.choices[0].message.content);
     if (parsed.coverLetter && Array.isArray(parsed.coverLetter) && parsed.coverLetter.length >= 4) {
       return sanitizeObjectGrammar({ coverLetter: parsed.coverLetter }).coverLetter;
     }
