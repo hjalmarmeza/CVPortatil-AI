@@ -442,16 +442,16 @@ function App() {
                           <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">Certificaciones Destacadas</h4>
                         </div>
                         <div className="grid md:grid-cols-2 gap-3">
-                          {(tailoredData?.tailoredCV?.certifications || baseCV.certifications.slice(0, 8)).map((cert, idx) => (
+                          {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 10).map((cert, idx) => (
                             <div key={idx} className="flex items-start gap-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div> 
                               <span className="text-xs text-slate-300 leading-relaxed">{cert}</span>
                             </div>
                           ))}
                         </div>
-                        {(!tailoredData?.tailoredCV?.certifications && baseCV.certifications.length > 8) && (
+                        {(!tailoredData?.tailoredCV?.certifications && baseCV.certifications.length > 10) && (
                           <p className="text-xs text-slate-500 mt-4 text-center italic">
-                            * Y {baseCV.certifications.length - 8} certificaciones adicionales en el perfil base.
+                            * Y {baseCV.certifications.length - 10} certificaciones adicionales en el perfil base.
                           </p>
                         )}
                       </section>
@@ -739,7 +739,7 @@ function App() {
                   <div style={{ marginBottom: '25px', pageBreakInside: 'avoid' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '9pt', color: '#444', lineHeight: '1.4' }}>
-                      {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).map((cert, idx) => (
+                      {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 10).map((cert, idx) => (
                         <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
                       ))}
                     </div>
