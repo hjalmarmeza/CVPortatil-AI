@@ -153,13 +153,13 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
 `;
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 120000); // 120 segundos para CV
-
     let response;
     let retries = 3;
     let attempt = 0;
     while (attempt < retries) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 120000); // 120s por intento
+      
       try {
         response = await fetch(DEEPINFRA_API_URL, {
           method: 'POST',
@@ -177,6 +177,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
           signal: controller.signal
         });
         
+        clearTimeout(timeoutId);
+
         if (response.ok) break;
         if (response.status === 429 || response.status >= 500) {
           throw new Error('Server error or rate limit');
@@ -184,13 +186,12 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
           break; // Don't retry on 400 Bad Request
         }
       } catch (err) {
+        clearTimeout(timeoutId);
         attempt++;
         if (attempt >= retries) throw err;
-        await new Promise(r => setTimeout(r, attempt * 2000));
+        await new Promise(r => setTimeout(r, attempt * 3000));
       }
     }
-    
-    clearTimeout(timeoutId);
 
     if (!response || !response.ok) {
       throw new Error(`Error en la API de DeepInfra: ${response ? response.status : 'Desconocido'}`);
@@ -335,26 +336,49 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
 `;
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 segundos para Carta
+    let response;
+    let retries = 3;
+    let attempt = 0;
+    while (attempt < retries) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 90000); // 90s por intento
+      
+      try {
+        response = await fetch(DEEPINFRA_API_URL, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: [{ role: 'user', content: prompt }],
+            response_format: { type: 'json_object' },
+            temperature: 0.3,
+            max_tokens: 1500
+          }),
+          signal: controller.signal
+        });
 
-    const response = await fetch(DEEPINFRA_API_URL, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: [{ role: 'user', content: prompt }],
-        response_format: { type: 'json_object' },
-        temperature: 0.3,
-        max_tokens: 1500
-      }),
-      signal: controller.signal
-    });
+        clearTimeout(timeoutId);
 
-    clearTimeout(timeoutId);
+        if (response.ok) break;
+        if (response.status === 429 || response.status >= 500) {
+          throw new Error('Server error or rate limit');
+        } else {
+          break; // Don't retry on 400 Bad Request
+        }
+      } catch (err) {
+        clearTimeout(timeoutId);
+        attempt++;
+        if (attempt >= retries) throw err;
+        await new Promise(r => setTimeout(r, attempt * 3000));
+      }
+    }
+
+    if (!response || !response.ok) {
+      throw new Error(`Error en la API de DeepInfra: ${response ? response.status : 'Desconocido'}`);
+    }
 
     const data = await response.json();
     const parsed = JSON.parse(data.choices[0].message.content);
