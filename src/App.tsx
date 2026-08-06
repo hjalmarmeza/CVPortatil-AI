@@ -823,7 +823,7 @@ function App() {
                 <div style={{ width: '278px', padding: '45px 25px', boxSizing: 'border-box' }}>
                   {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '35px', width: '100%', textAlign: 'center' }}>
-                    <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block', backgroundColor: '#fff', backgroundImage: `url(${photoBase64 || baseCV.contact?.photoUrl || ''})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+                    <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block', backgroundColor: '#fff', backgroundImage: `url('${photoBase64 || baseCV.contact?.photoUrl || ''}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
                     </div>
                   </div>
 

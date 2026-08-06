@@ -1,7 +1,7 @@
 import type { BaseCV } from '../data/baseCV';
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
-const MODEL = 'meta-llama/Meta-Llama-3.1-70B-Instruct';
+const MODEL = 'meta-llama/Meta-Llama-3-70B-Instruct';
 
 // Función sanitizadora de gramática española para corregir cacofonías (ej. "y implementé" -> "e implementé")
 const fixSpanishCacophony = (text: string): string => {
@@ -116,12 +116,12 @@ TAREA:
 
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
    - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base. Si el CV base no tiene un porcentaje, NO LO INVENTES.
-   - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
+   - PROYECTOS PERSONALES (portfolio): El array "portfolio" debe estar siempre VACÍO ("portfolio": []). ESTRICTAMENTE PROHIBIDO inventar, alucinar o agregar proyectos. El usuario no quiere esta sección.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo. REGLA CRÍTICA: NO generes habilidades o competencias que sean sinónimos o redundantes entre sí.
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base según aplique al puesto. REGLA: PROHIBIDO incluir cursos o programas que ya formen parte de la sección de Estudios.
    - Resumen Profesional (summary): Debe empezar obligatoriamente con el título exacto adaptado al puesto objetivo (ej. "Store Manager / Director/a de Tienda"). Presenta al candidato según su verdadera trayectoria: Ejecutivo de Operaciones, Gestión de Puntos de Venta, Liderazgo de Equipos y Atención al Cliente. PROHIBIDO inventar conocimientos o títulos falsos (como "diseño de moda" o "experto en textiles"). REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o métricas. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, densas, directivas y persuasivas directamente enfocadas al rol solicitado).
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
-   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Mantén un tono altamente profesional, directivo y estructurado. REGLA CRÍTICA: Cada cargo DEBE tener entre 3 y 5 viñetas extensas (descriptions). PROHIBIDO descripciones cortas o simples de una línea.
+   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Mantén un tono altamente profesional, directivo y estructurado. REGLA CRÍTICA: Cada cargo DEBE tener MÁXIMO 3 viñetas (descriptions). Las descripciones deben ser CORTAS, DIRECTAS Y CONCISAS (máximo 15 palabras por viñeta) para evitar que el CV se desborde visualmente de la página. ESTRICTAMENTE PROHIBIDO crear párrafos largos.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi". De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
@@ -154,11 +154,11 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
 
   try {
     let response;
-    let retries = 3;
+    let retries = 2;
     let attempt = 0;
     while (attempt < retries) {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 120000); // 120s por intento
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s por intento para fallar rápido si hay congestión
       
       try {
         response = await fetch(DEEPINFRA_API_URL, {
@@ -337,11 +337,11 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
 
   try {
     let response;
-    let retries = 3;
+    let retries = 2;
     let attempt = 0;
     while (attempt < retries) {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 90000); // 90s por intento
+      const timeoutId = setTimeout(() => controller.abort(), 50000); // 50s por intento
       
       try {
         response = await fetch(DEEPINFRA_API_URL, {
