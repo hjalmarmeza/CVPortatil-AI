@@ -232,7 +232,7 @@ export const defaultBaseCV: BaseCV = {
     },
     {
       title: "Sistemas de Gestión Comercial",
-      description: "Diseño de plataformas en la nube para administrar múltiples puntos de venta en el sector gastronómico, solucionando cuellos de botella en la atención al cliente al centralizar el control de inventarios y la facturación.",
+      description: "Diseño de plataformas en la nube para administrar múltiples áreas en el punto de venta en el sector gastronómico, solucionando cuellos de botella en la atención al cliente al centralizar el control de inventarios y la facturación.",
       tags: ["Puntos de Venta", "Planificación"]
     },
     {
