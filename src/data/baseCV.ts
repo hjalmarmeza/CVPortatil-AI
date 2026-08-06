@@ -226,11 +226,6 @@ export const defaultBaseCV: BaseCV = {
   ],
   portfolio: [
     {
-      title: "Logística y Entregas de Última Milla",
-      description: "Desarrollo de una arquitectura de comercio electrónico para digitalizar y automatizar el flujo de pedidos de comida, resolviendo problemas de coordinación logística y garantizando tiempos de entrega exactos.",
-      tags: ["Comercio Digital", "Bases NoSQL"]
-    },
-    {
       title: "Sistemas de Gestión Comercial",
       description: "Diseño de plataformas en la nube para administrar múltiples áreas en el punto de venta en el sector gastronómico, solucionando cuellos de botella en la atención al cliente al centralizar el control de inventarios y la facturación.",
       tags: ["Puntos de Venta", "Planificación"]
