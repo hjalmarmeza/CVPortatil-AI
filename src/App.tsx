@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import domtoimage from 'dom-to-image-more';
 import jsPDF from 'jspdf';
-import { Briefcase, FileText, Settings, Loader2, Download, Upload, Sparkles, Building2, Target } from 'lucide-react';
+import { Briefcase, FileText, Settings, Loader2, Download, Sparkles, Building2, Target } from 'lucide-react';
 import { defaultBaseCV } from './data/baseCV';
 import type { BaseCV } from './data/baseCV';
 import { generateTailoredCV, generateTailoredCoverLetter } from './services/ai';
@@ -16,10 +16,6 @@ function App() {
     return defaultBaseCV;
   });
 
-  const handleSaveLocal = () => {
-    localStorage.setItem('cv_portatil_base_cv', JSON.stringify(baseCV));
-    alert('Perfil local guardado exitosamente.\nAl refrescar la aplicación, se cargarán estos datos automáticamente.');
-  };
 
   const [photoBase64, setPhotoBase64] = useState<string>('');
   
@@ -685,9 +681,46 @@ function App() {
               </div>
 
               <div className="pt-8 border-t border-slate-800/50 flex justify-end">
-                <button onClick={handleSaveLocal} className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-slate-100 bg-slate-800 hover:bg-slate-700 transition-all border border-slate-600 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                  <Upload size={18} className="text-amber-500" /> Guardar Perfil Local
-                </button>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <button
+                    onClick={() => {
+                      localStorage.setItem('cvportatil_baseCV', JSON.stringify(baseCV));
+                      alert('¡Perfil local guardado con éxito! Tus cambios se mantendrán aunque cierres el navegador.');
+                    }}
+                    style={{
+                      backgroundColor: '#3b82f6',
+                      color: 'white',
+                      padding: '10px 15px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontWeight: 'bold',
+                      flex: 1
+                    }}
+                  >
+                    💾 Guardar Perfil Local
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (confirm('¿Estás seguro de que deseas restaurar el perfil a su estado original? Esto borrará tus cambios locales no guardados en el código.')) {
+                        localStorage.removeItem('cvportatil_baseCV');
+                        window.location.reload();
+                      }
+                    }}
+                    style={{
+                      backgroundColor: '#ef4444',
+                      color: 'white',
+                      padding: '10px 15px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontWeight: 'bold',
+                      flex: 1
+                    }}
+                  >
+                    🔄 Restaurar Original
+                  </button>
+                </div>
               </div>
             </div>
           </div>
