@@ -116,7 +116,7 @@ export const defaultBaseCV: BaseCV = {
   ],
   languages: [
     { language: "Español", level: "Nativo" },
-    { language: "Inglés", level: "B1" }
+    { language: "Inglés", level: "A1" }
   ],
   skills: [
     "Resolución de Problemas",
