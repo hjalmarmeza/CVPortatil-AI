@@ -8,7 +8,19 @@ import { generateTailoredCV, generateTailoredCoverLetter } from './services/ai';
 
 function App() {
   const [activeTab, setActiveTab] = useState<'generator' | 'base'>('generator');
-  const [baseCV, setBaseCV] = useState<BaseCV>(defaultBaseCV);
+  const [baseCV, setBaseCV] = useState<BaseCV>(() => {
+    const saved = localStorage.getItem('cv_portatil_base_cv');
+    if (saved) {
+      try { return JSON.parse(saved); } catch(e) {}
+    }
+    return defaultBaseCV;
+  });
+
+  const handleSaveLocal = () => {
+    localStorage.setItem('cv_portatil_base_cv', JSON.stringify(baseCV));
+    alert('Perfil local guardado exitosamente.\nAl refrescar la aplicación, se cargarán estos datos automáticamente.');
+  };
+
   const [photoBase64, setPhotoBase64] = useState<string>('');
   
   const [jobDescription, setJobDescription] = useState('');
@@ -673,7 +685,7 @@ function App() {
               </div>
 
               <div className="pt-8 border-t border-slate-800/50 flex justify-end">
-                <button className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-slate-100 bg-slate-800 hover:bg-slate-700 transition-all border border-slate-600 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                <button onClick={handleSaveLocal} className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-slate-100 bg-slate-800 hover:bg-slate-700 transition-all border border-slate-600 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                   <Upload size={18} className="text-amber-500" /> Guardar Perfil Local
                 </button>
               </div>
@@ -811,8 +823,7 @@ function App() {
                 <div style={{ width: '278px', padding: '45px 25px', boxSizing: 'border-box' }}>
                   {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '35px', width: '100%', textAlign: 'center' }}>
-                    <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block', backgroundColor: '#fff' }}>
-                      <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Foto" style={{ width: '140px', height: '140px', display: 'block' }} />
+                    <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block', backgroundColor: '#fff', backgroundImage: `url(${photoBase64 || baseCV.contact?.photoUrl || ''})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
                     </div>
                   </div>
 
