@@ -105,7 +105,7 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TIENDA / ATENCI
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base.
    - Resumen Profesional (summary): Debe empezar obligatoriamente con el título adaptado al puesto objetivo (Ej. "Dependiente de Tienda" o "Ejecutivo" según corresponda). PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, fluidas y persuasivas directamente enfocadas al rol solicitado).
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
-   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base. Adapta el tono al nivel de la oferta. REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser ORACIONES COMPLETAS Y DETALLADAS (MÍNIMO 15 PALABRAS POR VIÑETA), explicando la acción y el resultado. QUEDA ESTRICTAMENTE PROHIBIDO poner solo 2, 3 o 7 palabras como "Atención al cliente" o "Gestión de inventarios". Debes redactar la oración completa. ESTRICTAMENTE PROHIBIDO REPETIR VIÑETAS, CADA EXPERIENCIA DEBE TENER UN TEXTO ÚNICO.
+   - Experiencia (experience): Es OBLIGATORIO procesar y devolver EXACTAMENTE EL MISMO NÚMERO DE EXPERIENCIAS que el CV Base. PROHIBIDO AÑADIR EXPERIENCIAS FANTASMAS O DIVIDIRLAS. Adapta el tono al nivel de la oferta. REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser ORACIONES COMPLETAS Y DETALLADAS (MÍNIMO 15 PALABRAS POR VIÑETA), explicando la acción y el resultado. QUEDA ESTRICTAMENTE PROHIBIDO poner solo 2, 3 o 7 palabras como "Atención al cliente" o "Gestión de inventarios". Debes redactar la oración completa. ESTRICTAMENTE PROHIBIDO REPETIR VIÑETAS, CADA EXPERIENCIA DEBE TENER UN TEXTO ÚNICO.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi". De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
@@ -232,8 +232,12 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     const aiExperiences = parsedData?.tailoredCV?.experience || [];
     parsedData.tailoredCV = parsedData.tailoredCV || {};
     parsedData.tailoredCV.experience = baseCV.experience.map((baseExp, index) => {
-      // Buscar la experiencia correspondiente por índice ya que la IA puede haber adaptado el título
-      const aiExp = aiExperiences[index];
+      // Buscar la experiencia correspondiente por nombre de empresa preferentemente para evitar desfases
+      let aiExp = aiExperiences[index];
+      const matchByCompany = aiExperiences.find((e: any) => e.company && baseExp.company && e.company.toLowerCase() === baseExp.company.toLowerCase() && e.title === baseExp.title);
+      if (aiExp && aiExp.company && baseExp.company && aiExp.company.toLowerCase() !== baseExp.company.toLowerCase()) {
+        aiExp = matchByCompany || aiExp;
+      }
 
       // Tomar viñetas de la IA si existen y son válidas, sino usar las del CV base
       const rawDescription = (aiExp?.description && Array.isArray(aiExp.description) && aiExp.description.length >= 2)
