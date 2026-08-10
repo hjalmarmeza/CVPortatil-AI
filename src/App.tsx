@@ -128,12 +128,16 @@ function App() {
       const calculatedHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
       
       if (elementId === 'cv-pdf-content') {
-        // Cargar exactamente 2 páginas (594mm) en jsPDF para evitar hoja 3 vacía
-        const imgHeight = Math.min(calculatedHeight, 594);
+        // Cargar exactamente 3 páginas (891mm) en jsPDF
+        const imgHeight = Math.min(calculatedHeight, 891);
         pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, imgHeight);
         if (calculatedHeight > 300) {
           pdf.addPage();
           pdf.addImage(dataUrl, 'JPEG', 0, -297, pdfWidth, imgHeight);
+        }
+        if (calculatedHeight > 600) {
+          pdf.addPage();
+          pdf.addImage(dataUrl, 'JPEG', 0, -594, pdfWidth, imgHeight);
         }
       } else {
         let heightLeft = calculatedHeight;
@@ -729,7 +733,7 @@ function App() {
 
       {/* Renderizado Oculto para el PDF */}
       <div style={{ display: 'none' }}>
-        <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '2244px', boxSizing: 'border-box' }}>
+        <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '3366px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -744,7 +748,7 @@ function App() {
           }
         `}</style>
         
-        <table style={{ width: '794px', height: '2244px', maxHeight: '2244px', borderCollapse: 'collapse', tableLayout: 'fixed', overflow: 'hidden' }}>
+        <table style={{ width: '794px', height: '3366px', maxHeight: '3366px', borderCollapse: 'collapse', tableLayout: 'fixed', overflow: 'hidden' }}>
           <colgroup>
             <col style={{ width: '516px' }} />
             <col style={{ width: '278px' }} />
@@ -833,10 +837,13 @@ function App() {
                       })}
                     </div>
                   </div>
+                </div>
 
+                {/* --- HOJA 3 --- */}
+                <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Proyectos Personales */}
                   {(tailoredData?.tailoredCV?.portfolio && tailoredData.tailoredCV.portfolio.length > 0) && (
-                    <div style={{ marginTop: '25px', pageBreakInside: 'avoid' }}>
+                    <div style={{ pageBreakInside: 'avoid' }}>
                       <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>
                         {tailoredData.tailoredCV.portfolioTitle || 'Proyectos Personales'}
                       </h3>
@@ -851,7 +858,7 @@ function App() {
                 </div>
               </td>
 
-              {/* RIGHT COLUMN (Teal) - 278px continuo de 2244px de altura */}
+              {/* RIGHT COLUMN (Teal) - 278px continuo de 3366px de altura */}
               <td style={{ width: '278px', backgroundColor: '#005C53', padding: 0, color: '#FFFFFF', verticalAlign: 'top', height: '100%' }}>
                 <div style={{ width: '278px', padding: '45px 25px', boxSizing: 'border-box' }}>
                   {/* Photo - centrada perfectamente */}
