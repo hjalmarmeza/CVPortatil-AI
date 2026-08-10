@@ -99,7 +99,7 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TIENDA / ATENCI
         • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base.`}
 
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
-   - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base.
+   - CERO ALUCINACIONES: ESTÁ TOTALMENTE PROHIBIDO inventar funciones, habilidades, tareas específicas de la oferta de trabajo (ej. "portabilidades", "venta de SIMs") o métricas que no estén EXPRESAMENTE escritas o inferidas lógicamente del CV Base. El CV debe ser 100% verídico. BAJO NINGUNA CIRCUNSTANCIA puedes inventar logros falsos.
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo.
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base.
