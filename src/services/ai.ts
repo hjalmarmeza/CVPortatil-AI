@@ -205,7 +205,15 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         parsedData = { tailoredCV: { ...baseCV } };
       }
     }
-    
+    // NORMALIZAR EL ENVOLTORIO
+    if (!parsedData.tailoredCV) {
+      if (parsedData.summary || parsedData.experience) {
+        parsedData = { tailoredCV: parsedData };
+      } else {
+        parsedData = { tailoredCV: { ...baseCV } };
+      }
+    }
+
     // ESCUDOS DE SEGURIDAD EXTREMA:
     // Escudo de Hierro: Los proyectos personales no se tocan jamás.
     parsedData.tailoredCV.portfolio = baseCV.portfolio.slice(0, 4);
