@@ -220,14 +220,12 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     if (typeof parsedData.coverLetter === 'string') {
       parsedData.coverLetter = parsedData.coverLetter.split(/\\n+/);
     }
-    // ESCUDO DE SEGURIDAD 1: Garantizar las 4 experiencias reales del CV Base, asociando por título/empresa para evitar mezcla si la IA las desordena
+    // ESCUDO DE SEGURIDAD 1: Garantizar las experiencias reales del CV Base
     const aiExperiences = parsedData?.tailoredCV?.experience || [];
     parsedData.tailoredCV = parsedData.tailoredCV || {};
-    parsedData.tailoredCV.experience = baseCV.experience.map((baseExp) => {
-      // Buscar la experiencia correspondiente en la respuesta de la IA (SOLO por título exacto, ya que la empresa se repite y causaba cruces)
-      const aiExp = aiExperiences.find((ai: any) => 
-        ai.title && ai.title.toLowerCase().trim() === baseExp.title.toLowerCase().trim()
-      );
+    parsedData.tailoredCV.experience = baseCV.experience.map((baseExp, index) => {
+      // Buscar la experiencia correspondiente por índice ya que la IA puede haber adaptado el título
+      const aiExp = aiExperiences[index];
 
       // Tomar viñetas de la IA si existen y son válidas, sino usar las del CV base
       const rawDescription = (aiExp?.description && Array.isArray(aiExp.description) && aiExp.description.length >= 2)
@@ -241,7 +239,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       });
 
       return {
-        title: baseExp.title,       // Inmutable: título real del CV base
+        title: aiExp?.title || baseExp.title, // Permitir que la IA adapte el título al nivel
         company: baseExp.company,   // Inmutable: empresa real del CV base
         period: baseExp.period,
         location: baseExp.location,
@@ -262,15 +260,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       });
     }
 
-    // ESCUDO DE SEGURIDAD 4: Generación instantánea de Carta Cualitativa de 4 párrafos (0ms)
-    const targetTitle = parsedData?.tailoredCV?.summary?.split('.')[0] || 'Director/a de Operaciones';
-    parsedData.coverLetter = [
-      `Estimado/a Director/a de Selección,`,
-      `Me dirijo a usted con el propósito de presentar mi candidatura a la posición de ${targetTitle}, motivado por la oportunidad de contribuir de manera significativa al crecimiento y a la excelencia operativa de su organización. A lo largo de mi trayectoria profesional, he desarrollado una visión estratégica enfocada en la optimización de procesos y el liderazgo de equipos orientados a resultados.`,
-      `Mi experiencia se ha centrado en orquestar operaciones complejas y coordinar servicios de alta demanda, asegurando siempre estándares superiores de calidad y eficiencia. He liderado iniciativas de modernización de infraestructura y virtualización de procesos, logrando estabilizar la atención al usuario, reducir costos operativos y garantizar la continuidad del negocio en entornos cambiantes.`,
-      `Asimismo, destaco por mi capacidad para promover la transformación digital y la adopción de nuevas metodologías de trabajo. Entiendo la innovación no solo como una evolución tecnológica, sino como un proceso continuo de mejora, adaptabilidad y desarrollo del talento humano para responder con agilidad a las exigencias del mercado.`,
-      `Quedo a su entera disposición para mantener una entrevista personal en la que pueda profundizar en cómo mi perfil ejecutivo, mi capacidad de gestión y mi compromiso profesional aportarán un valor tangible a los objetivos de su empresa. Agradezco de antemano el tiempo y la consideración brindados.`
-    ];
+    // ESCUDO DE SEGURIDAD 4: Fallback eliminado ya que la carta ahora se genera por separado.
 
     // Sanitización automática de gramática y cacofonías (ej. "y implementé" -> "e implementé")
     return sanitizeObjectGrammar(parsedData);
@@ -381,11 +371,29 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
   }
 
   // Fallback cualitativo de alta densidad en 0ms
-  return [
-    `Estimado/a Director/a de Selección,`,
-    `Me dirijo a usted con el propósito de presentar mi candidatura a la posición solicitada, motivado por la oportunidad de contribuir de manera significativa al crecimiento y a la excelencia operativa de su organización. A lo largo de mi trayectoria profesional, he desarrollado una visión estratégica enfocada en la optimización de procesos y el liderazgo de equipos orientados a resultados.`,
-    `Mi experiencia se ha centrado en orquestar operaciones complejas y coordinar servicios de alta demanda, asegurando siempre estándares superiores de calidad y eficiencia. He liderado iniciativas de modernización de infraestructura y virtualización de procesos, logrando estabilizar la atención al usuario, reducir costos operativos y garantizar la continuidad del negocio en entornos cambiantes.`,
-    `Asimismo, destaco por mi capacidad para promover la transformación digital y la adopción de nuevas metodologías de trabajo. Entiendo la innovación no solo como una evolución tecnológica, sino como un proceso continuo de mejora, adaptabilidad y desarrollo del talento humano para responder con agilidad a las exigencias del mercado.`,
-    `Quedo a su entera disposición para mantener una entrevista personal en la que pueda profundizar en cómo mi perfil ejecutivo, mi capacidad de gestión y mi compromiso profesional aportarán un valor tangible a los objetivos de su empresa. Agradezco de antemano el tiempo y la consideración brindados.`
-  ];
+  if (_seniorityLevel === 'operational') {
+    return [
+      `Estimado/a Director/a de Selección,`,
+      `Me dirijo a usted con el propósito de presentar mi candidatura a la posición solicitada, motivado por el deseo de aportar mi compromiso, dinamismo y orientación al servicio en su equipo. A lo largo de mi trayectoria, he desarrollado una sólida capacidad para garantizar la satisfacción del cliente y la eficiencia en las operaciones del día a día.`,
+      `Mi experiencia me ha permitido perfeccionar habilidades clave en la resolución rápida de problemas, el trabajo en equipo y el trato directo al público. Entiendo la importancia de representar los valores de la empresa ante cada cliente, manteniendo siempre un trato profesional, cercano y resolutivo.`,
+      `Asimismo, me caracterizo por mi gran adaptabilidad, facilidad de aprendizaje y proactividad para mantener los estándares de calidad y orden que exige este sector. Estoy seguro de que mi entusiasmo y mi experiencia operativa serán de gran valor para su equipo.`,
+      `Agradezco de antemano el tiempo dedicado a revisar mi perfil. Quedo a su entera disposición para concertar una entrevista y conversar sobre cómo puedo sumar positivamente a su empresa.`
+    ];
+  } else if (_seniorityLevel === 'middle') {
+    return [
+      `Estimado/a Director/a de Selección,`,
+      `Me dirijo a usted para presentar mi candidatura a la posición solicitada. Con una sólida trayectoria coordinando equipos y gestionando la operativa diaria, me motiva la oportunidad de aportar mi experiencia en liderazgo y orientación a resultados a su organización.`,
+      `A lo largo de mi carrera, me he especializado en equilibrar la excelencia en la atención al cliente con el cumplimiento estricto de los KPIs del negocio. He supervisado turnos, coordinado personal y asegurado que los procesos internos se ejecuten de manera fluida y eficiente, resolviendo los incidentes con agilidad.`,
+      `Considero que el éxito de cualquier centro o tienda radica en un equipo motivado y en procesos bien estructurados. Por ello, destaco por mi capacidad para comunicar objetivos, formar al talento y mantener un entorno de trabajo colaborativo que impacte positivamente en la rentabilidad y en la experiencia del cliente.`,
+      `Quedo a su entera disposición para mantener una entrevista en la que podamos profundizar sobre cómo mi experiencia en mando medio aportará valor a su equipo. Agradezco de antemano su atención.`
+    ];
+  } else {
+    return [
+      `Estimado/a Director/a de Selección,`,
+      `Me dirijo a usted con el propósito de presentar mi candidatura a la posición solicitada, motivado por la oportunidad de contribuir de manera significativa al crecimiento y a la excelencia operativa de su organización. A lo largo de mi trayectoria profesional, he desarrollado una visión estratégica enfocada en la optimización de procesos y el liderazgo de equipos orientados a resultados.`,
+      `Mi experiencia se ha centrado en orquestar operaciones complejas y coordinar servicios de alta demanda, asegurando siempre estándares superiores de calidad y eficiencia. He liderado iniciativas de modernización de infraestructura y virtualización de procesos, logrando estabilizar la atención al usuario, reducir costos operativos y garantizar la continuidad del negocio en entornos cambiantes.`,
+      `Asimismo, destaco por mi capacidad para promover la transformación digital y la adopción de nuevas metodologías de trabajo. Entiendo la innovación no solo como una evolución tecnológica, sino como un proceso continuo de mejora, adaptabilidad y desarrollo del talento humano para responder con agilidad a las exigencias del mercado.`,
+      `Quedo a su entera disposición para mantener una entrevista personal en la que pueda profundizar en cómo mi perfil ejecutivo, mi capacidad de gestión y mi compromiso profesional aportarán un valor tangible a los objetivos de su empresa. Agradezco de antemano el tiempo y la consideración brindados.`
+    ];
+  }
 };
