@@ -87,15 +87,15 @@ TAREA:
    - REGLA DE CALIBRACIÓN DE SENIORIDAD:
 ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TIENDA / ATENCIÓN AL CLIENTE:
         • RESUMEN PROFESIONAL (3-4 frases): Adapta el título y la presentación para un rol de tienda (ej. "Dependiente de Tienda", "Atención al Cliente"). Enfoca la trayectoria en resolución de problemas, trato al cliente, ventas y soporte. PROHIBIDO usar lenguaje directivo o títulos de "Ejecutivo" o "Líder".
-        • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Gestioné...", "Atendí...", "Apoyé...", "Resolví..."). OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Reescribe las funciones del CV base reenfocándolos HASTA EL EXTREMO hacia la ejecución operativa y trato directo al cliente.
+        • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Gestioné...", "Atendí...", "Apoyé...", "Resolví..."). OBLIGATORIO EXACTAMENTE 3 VIÑETAS POR CARGO. Cada viñeta debe ser una ORACIÓN COMPLETA Y DETALLADA (ej. "Gestioné el inventario de tienda asegurando el stock diario..."), NO uses solo títulos cortos. Reescribe las funciones del CV base reenfocándolos HASTA EL EXTREMO hacia la ejecución operativa y trato directo al cliente.
         • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base, seleccionando solo los más operativos y de servicio.`
 : seniorityLevel === 'middle' ? `      * PUESTO MANDO MEDIO / ENCARGADO:
         • RESUMEN EJECUTIVO (3-4 frases): Equilibra la atención al cliente y ejecución operativa con liderazgo de tienda, control de KPIs y gestión de equipo.
-        • EXPERIENCIA LABORAL: OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Equilibra la atención al cliente con métricas y liderazgo.
+        • EXPERIENCIA LABORAL: OBLIGATORIO EXACTAMENTE 3 VIÑETAS POR CARGO. Cada viñeta debe ser una ORACIÓN COMPLETA Y DETALLADA. Equilibra la atención al cliente con métricas y liderazgo.
         • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base.`
 : `      * PUESTO EJECUTIVO / DIRECTIVO:
         • RESUMEN PROFESIONAL (3-4 frases): Mantén tono de alto nivel, visión estratégica, transformación digital, IA e impacto financiero (ej. "Ejecutivo de Operaciones").
-        • EXPERIENCIA LABORAL: OBLIGATORIO MÍNIMO 4-5 VIÑETAS POR CARGO con métricas reales del CV base.
+        • EXPERIENCIA LABORAL: OBLIGATORIO EXACTAMENTE 3 VIÑETAS POR CARGO. Cada viñeta debe ser una ORACIÓN COMPLETA con métricas reales del CV base.
         • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base.`}
 
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
@@ -105,7 +105,7 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TIENDA / ATENCI
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base.
    - Resumen Profesional (summary): Debe empezar obligatoriamente con el título adaptado al puesto objetivo (Ej. "Dependiente de Tienda" o "Ejecutivo" según corresponda). PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, fluidas y persuasivas directamente enfocadas al rol solicitado).
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
-   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Adapta el tono al nivel de la oferta (operativo o directivo). REGLA CRÍTICA: Cada cargo DEBE tener MÁXIMO 3 viñetas (descriptions). Las descripciones deben ser CORTAS, DIRECTAS Y CONCISAS (máximo 15 palabras por viñeta) para evitar que el CV se desborde visualmente de la página. ESTRICTAMENTE PROHIBIDO crear párrafos largos.
+   - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base. Adapta el tono al nivel de la oferta. REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser ORACIONES COMPLETAS Y DETALLADAS (entre 12 y 20 palabras por viñeta), explicando la acción y el resultado. QUEDA ESTRICTAMENTE PROHIBIDO poner solo 2 o 3 palabras como "Atención al cliente" o "Gestión de inventarios". Debes redactar la oración completa.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi". De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
