@@ -55,7 +55,7 @@ export const generateTailoredCV = async (
   }
 
   const prompt = `
-Eres un experto redactor de CVs y cartas de presentación ejecutivas.
+Eres un experto redactor de CVs y cartas de presentación profesionales.
 A continuación te proporciono el CV base de un candidato, la descripción de una oferta laboral y la información de la empresa objetivo.
 
 CV BASE:
@@ -117,7 +117,7 @@ TAREA:
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo.
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base.
-   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título exacto adaptado al puesto objetivo. Si el rol es operativo/tienda, preséntalo como un perfil comercial y de atención al cliente. Si es ejecutivo, preséntalo como Ejecutivo de Operaciones. PROHIBIDO inventar conocimientos o títulos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o métricas. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, densas, directivas y persuasivas directamente enfocadas al rol solicitado).
+   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título exacto adaptado al puesto objetivo. Si el rol es operativo/tienda, preséntalo como un perfil comercial y de atención al cliente. Si es ejecutivo, preséntalo como Ejecutivo de Operaciones. PROHIBIDO inventar conocimientos o títulos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o métricas. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, fluidas y persuasivas directamente enfocadas al rol solicitado).
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
    - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Adapta el tono al nivel de la oferta (operativo o directivo). REGLA CRÍTICA: Cada cargo DEBE tener MÁXIMO 3 viñetas (descriptions). Las descripciones deben ser CORTAS, DIRECTAS Y CONCISAS (máximo 15 palabras por viñeta) para evitar que el CV se desborde visualmente de la página. ESTRICTAMENTE PROHIBIDO crear párrafos largos.
 
@@ -305,7 +305,14 @@ export const generateTailoredCoverLetter = async (
     throw new Error('API Key no configurada');
   }
 
-  const prompt = `Eres un redactor ejecutivo senior especializado en cartas de presentación de alto nivel en español.
+  const prompt = `Eres un experto redactor especializado en cartas de presentación corporativas y comerciales en español.
+
+CALIBRACIÓN DE SENIORIDAD:
+${_seniorityLevel === 'operational' 
+  ? 'OBLIGATORIO: El puesto es NIVEL OPERATIVO / TIENDA. Redacta la carta enfocada en el servicio al cliente, dinamismo, resolución de problemas y ventas. NO uses tono de directivo ni hables de transformación digital.' 
+  : _seniorityLevel === 'middle' 
+  ? 'NIVEL MANDO MEDIO / ENCARGADO. Enfoca en liderazgo de equipos, control de tienda y atención al cliente.' 
+  : 'NIVEL EJECUTIVO. Mantén tono de alto nivel, visión estratégica, operaciones complejas y transformación digital.'}
 Toma la siguiente oferta de trabajo y genera una Carta de Presentación de EXACTAMENTE 4 párrafos (de 45 a 55 palabras cada uno), adaptando la narrativa a las necesidades, retos e industria de la oferta.
 
 REGLAS ABSOLUTAS Y OBLIGATORIAS:
