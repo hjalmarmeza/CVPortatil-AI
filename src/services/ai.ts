@@ -65,17 +65,11 @@ OFERTA LABORAL:
 ${jobDescription}
 
 EMPRESA A LA QUE SE POSTULA / AGENCIA DE SELECCIÓN:
-${companyName.trim() ? companyName : 'Si no se especifica, redacta la carta de forma elegante e imparcial enfocado en la posición solicitada sin nombrar marcas ficticias.'}
-
-CALIBRACIÓN DE ENTIDAD RECLUTADORA VS EMPRESA FINAL:
-- Si se menciona una agencia de selección / ETT / Headhunter (ej: Grafton, Randstad, Adecco, Manpower, etc.) o no se conoce la empresa final:
-  • Queda ESTRICTAMENTE PROHIBIDO redactar la carta como si el candidato quisiera trabajar "dentro de la agencias de selección".
-  • La carta debe presentar la candidatura a la posición solicitada de forma neutra y profesional: "Presento mi candidatura para la posición de [Nombre del Puesto]..."
-  • PROHIBIDO decir "Me atrae la cultura de Grafton" o "Quiero unirme a Grafton".
+${companyName.trim() ? companyName : 'Si no se especifica, redacta el CV de forma imparcial enfocado en la posición solicitada.'}
 
 CALIBRACIÓN DE SENIORIDAD Y NIVEL REQUERIDO:
 ${seniorityLevel === 'operational' 
-  ? 'OBLIGATORIO: NIVEL OPERATIVO / TIENDA (Dependiente/a, Cajero/a, Reponedor/a, Auxiliar). Re-enfocar el CV y la carta para evitar sobrecualificación.' 
+  ? 'OBLIGATORIO: NIVEL OPERATIVO / TIENDA (Dependiente/a, Cajero/a, Reponedor/a, Auxiliar). Re-enfocar TODO el CV para evitar sobrecualificación.' 
   : seniorityLevel === 'middle' 
   ? 'NIVEL MANDO MEDIO / ENCARGADO DE TIENDA (Liderazgo de equipo, gestión operativa, KPIs, turno).' 
   : seniorityLevel === 'executive' 
@@ -85,39 +79,31 @@ ${seniorityLevel === 'operational'
 TAREA:
 1. ADAPTACIÓN REALISTA Y SIN CLICHÉS (¡CERO ADULACIÓN O HABILIDADES INVENTADAS!):
    - PROHIBIDO MENCIONAR ÁREAS QUE NO ESTÉN EN EL CV BASE: NUNCA menciones 'marketing', 'finanzas corporativas' o áreas en las que el candidato no ha trabajado. Mantén la historia estrictamente en Operaciones, Atención al Cliente, Gestión de Tiendas/Call Center, Liderazgo de Equipos y Transformación Digital/IA.
-   - ESTRUCTURA OBLIGATORIA Y TONO DE LA CARTA (PROHIBIDO HACER CARTAS CORTAS O SIMPLES):
-     1. Párrafo 1 — Presentación directa y sincera: Saludo "Estimado/a Director/a de Selección," + "Es un placer presentar mi candidatura para el puesto de [Nombre del Puesto]. Como profesional apasionado por el sector y la atención al cliente, estoy emocionado de unirme a un equipo que comparte mis valores y objetivos."
-     2. Párrafo 2 — Desarrollo y Valor central: "Con más de 18 años de experiencia liderando equipos y gestionando operaciones, estoy seguro de que puedo aportar valor..." No menciones NINGÚN nombre de empresa pasada.
-       • TÍTULO: Empieza con tu nombre, un salto de línea (\n), título del puesto al que postulas, seguido de tus datos de contacto.\n
-       • CUERPO: La carta DEBE tener 4 párrafos extensos y detallados. Debes devolver un ARRAY de 4 strings, donde cada string es un párrafo. REGLA CRÍTICA INQUEBRANTABLE: Cada uno de los 4 párrafos debe tener una longitud aproximada de 90 a 110 palabras. Debe ser sustancial y detallado. Usa un lenguaje natural, persuasivo y humano, sin sonar excesivamente robótico o poético. Usa la carta base como esqueleto pero adáptala para que suene inspiradora y orientada al puesto (ej. si es Director de Tienda, enfócate en excelencia operativa en Retail).\n
-     4. Párrafo 4 — Cierre proactivo: "Estoy emocionado de unirme a su equipo y contribuir al éxito de su empresa. Agradezco de antemano el tiempo dedicado a revisar mi perfil." + "Atentamente," + "Hjalmar Meza Cortez".
-   - REGLA CRÍTICA DE CONTEXTO: PROHIBIDO listar tus trabajos anteriores o empresas. PROHIBIDO decir "En mi experiencia como [puesto] en [empresa]". La carta debe ser sobre tus valores, habilidades transversales y lo que puedes aportar.
-   - Mantén un volumen, profundidad y peso narrativo altos. Mínimo 4 párrafos extensos. PROHIBIDO usar frases como "Me siento atraído por la cultura de...", "Me identifico plenamente con los valores de...", "Quedo a su disposición para discutir cómo mi visión...", "empresa solicitante".
    - LA REDACCIÓN DEBE SER HUMANA, REALISTA, AUTÉNTICA Y SOBRIA.
 
 2. ADAPTACIÓN Y CALIBRACIÓN DE SENIORIDAD DEL CV (REGLA CRÍTICA ANTI-SOBRECUALIFICACIÓN):
    - DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO ELIMINAR O DUPLICAR CARGOS.
    - PROHIBIDO INVENTAR O CAMBIAR LOS NOMBRES DE LAS EMPRESAS (company). Sin embargo, TIENES PERMISO DE ADAPTAR el nombre del puesto (title) para resaltar tu función real según el nivel del puesto (ej. si eres 'Gestor de Negocio Familiar & Consultor IA' y aplicas a tienda, puedes poner 'Gestor de Tienda y Atención al Cliente' siempre que no sea mentira). PROHIBIDO inventar tareas absurdas.
    - REGLA DE CALIBRACIÓN DE SENIORIDAD:
-      * SI EL PUESTO ES OPERATIVO / TIENDA / ATENCIÓN AL CLIENTE:
-        • RESUMEN PROFESIONAL (3-4 frases): Adapta el título y la presentación para un rol de tienda (ej. "Dependiente de Tienda", "Atención al Cliente"). Enfoca la trayectoria en resolución de problemas, trato al cliente, ventas y soporte. NO uses lenguaje directivo ni títulos de "Ejecutivo".
-        • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Lideré...", "Desarrollé...", "Implementé...", "Supervisé...", "Optimicé..."). OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. CADA VIÑETA DEBE SER LARGA Y EXHAUSTIVA (mínimo 15 a 20 palabras). Reescribe las funciones y logros del CV base reenfocándolos hacia la ejecución operativa del puesto.
-        • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base, combinando operativa y servicio. NO inventar.
-      * SI EL PUESTO ES MANDO MEDIO / ENCARGADO:
+${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TIENDA / ATENCIÓN AL CLIENTE:
+        • RESUMEN PROFESIONAL (3-4 frases): Adapta el título y la presentación para un rol de tienda (ej. "Dependiente de Tienda", "Atención al Cliente"). Enfoca la trayectoria en resolución de problemas, trato al cliente, ventas y soporte. PROHIBIDO usar lenguaje directivo o títulos de "Ejecutivo" o "Líder".
+        • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Gestioné...", "Atendí...", "Apoyé...", "Resolví..."). OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Reescribe las funciones del CV base reenfocándolos HASTA EL EXTREMO hacia la ejecución operativa y trato directo al cliente.
+        • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base, seleccionando solo los más operativos y de servicio.`
+: seniorityLevel === 'middle' ? `      * PUESTO MANDO MEDIO / ENCARGADO:
         • RESUMEN EJECUTIVO (3-4 frases): Equilibra la atención al cliente y ejecución operativa con liderazgo de tienda, control de KPIs y gestión de equipo.
-        • OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Equilibra la atención al cliente con métricas y liderazgo.
-        • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base, combinando operativa y liderazgo. NO inventar.
-      * SI EL PUESTO ES EJECUTIVO / DIRECTIVO:
+        • EXPERIENCIA LABORAL: OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Equilibra la atención al cliente con métricas y liderazgo.
+        • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base.`
+: `      * PUESTO EJECUTIVO / DIRECTIVO:
         • RESUMEN PROFESIONAL (3-4 frases): Mantén tono de alto nivel, visión estratégica, transformación digital, IA e impacto financiero (ej. "Ejecutivo de Operaciones").
-        • OBLIGATORIO MÍNIMO 4-5 VIÑETAS POR CARGO con métricas reales del CV base.
-        • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base. NO inventar.
+        • EXPERIENCIA LABORAL: OBLIGATORIO MÍNIMO 4-5 VIÑETAS POR CARGO con métricas reales del CV base.
+        • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base.`}
 
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
    - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base.
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo.
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base.
-   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título exacto adaptado al puesto objetivo. Si el rol es operativo/tienda, preséntalo como un perfil comercial y de atención al cliente. Si es ejecutivo, preséntalo como Ejecutivo de Operaciones. PROHIBIDO inventar conocimientos o títulos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o métricas. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, fluidas y persuasivas directamente enfocadas al rol solicitado).
+   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título adaptado al puesto objetivo (Ej. "Dependiente de Tienda" o "Ejecutivo" según corresponda). PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, fluidas y persuasivas directamente enfocadas al rol solicitado).
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
    - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Adapta el tono al nivel de la oferta (operativo o directivo). REGLA CRÍTICA: Cada cargo DEBE tener MÁXIMO 3 viñetas (descriptions). Las descripciones deben ser CORTAS, DIRECTAS Y CONCISAS (máximo 15 palabras por viñeta) para evitar que el CV se desborde visualmente de la página. ESTRICTAMENTE PROHIBIDO crear párrafos largos.
 
