@@ -99,27 +99,25 @@ TAREA:
    - DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO ELIMINAR O DUPLICAR CARGOS.
    - PROHIBIDO INVENTAR O CAMBIAR LOS NOMBRES DE LAS EMPRESAS (company) Y NOMBRES DE PUESTOS (title) DEL CV BASE. Cada elemento en 'experience' DEBE CONSERVAR EXACTAMENTE el mismo 'title', 'company', 'period' y 'location' original del CV Base. PROHIBIDO inventar puestos como "Director/a de Tienda" si el puesto base es "Gestor de Negocio Familiar & Consultor IA". PROHIBIDO inventar tareas absurdas (como mermeladas, bases de datos relacionales en tienda o alianzas internacionales sin sentido).
    - REGLA DE CALIBRACIÓN DE SENIORIDAD:
-     * SI EL PUESTO ES DE NIVEL OPERATIVO / TIENDA (ej: Dependiente/a, Reponedor/a, Cajero/a, Auxiliar, Atención al Cliente):
-       • RESUMEN EJECUTIVO (OBLIGATORIAMENTE 3-4 frases completas adaptadas al puesto operativo): Presenta al candidato como profesional apasionado por la atención al cliente, el servicio de excelencia, la gestión del punto de venta, el trabajo en equipo y la resolución de incidencias. Extrae la información del CV base (18 años de trayectoria, liderazgo de equipos, experiencia en operaciones de tienda). NO inventes nada, REUTILIZA y ADAPTA lo que ya está en el CV base al tono operativo del puesto.
-       • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Lideré...", "Desarrollé...", "Implementé...", "Supervisé...", "Optimicé..."). OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. CADA VIÑETA DEBE SER LARGA Y EXHAUSTIVA (mínimo 15 a 20 palabras). Reescribe las funciones y logros del CV base reenfocándolos hacia la ejecución operativa del puesto (atención directa al cliente, gestión del punto de venta, trabajo en equipo, cumplimiento de objetivos). Conserva el cargo real y empresa real del CV base.
-       • DOMINIOS Y COMPETENCIAS (domainAreas): OBLIGATORIO MÍNIMO 4 bloques de competencias extraídos ESTRICTAMENTE del CV base. Adapta el título ligeramente al puesto, pero PROHIBIDO inventar competencias o áreas que no existan en el CV base.
-       • HABILIDADES DESTACADAS (skills): Selecciona EXACTAMENTE 5 habilidades operativas clave ESTRICTAMENTE EXTRAÍDAS del CV base (NO inventes habilidades como "Manejo de TPV" si no están explícitamente en el CV base).
-       • PROYECTOS PERSONALES: Selecciona EXACTAMENTE 4 proyectos del portafolio del CV base y readáptalos al puesto operativo. Cada proyecto debe tener un título claro y una descripción de al menos 2 frases completas conectando la iniciativa con el rol al que se postula. PROHIBIDO proyectos de tecnología compleja inapropiada para el nivel.
-     * SI EL PUESTO ES MANDO MEDIO / ENCARGADO:
-       • RESUMEN EJECUTIVO (3-4 frases): Equilibra la atención al cliente y ejecución operativa con liderazgo de tienda, control de KPIs y gestión de equipo.
-       • OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Equilibra la atención al cliente con métricas y liderazgo.
-       • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base, combinando operativa y liderazgo. NO inventar.
-     * SI EL PUESTO ES EJECUTIVO / DIRECTIVO:
-       • RESUMEN EJECUTIVO (3-4 frases): Mantén tono de alto nivel, visión estratégica, transformación digital, IA e impacto financiero.
-       • OBLIGATORIO MÍNIMO 4-5 VIÑETAS POR CARGO con métricas reales del CV base (20M clientes, 52 tiendas, 110.000€, 160.000 clientes/mes).
-       • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base. NO inventar.
+      * SI EL PUESTO ES OPERATIVO / TIENDA / ATENCIÓN AL CLIENTE:
+        • RESUMEN PROFESIONAL (3-4 frases): Adapta el título y la presentación para un rol de tienda (ej. "Dependiente de Tienda", "Atención al Cliente"). Enfoca la trayectoria en resolución de problemas, trato al cliente, ventas y soporte. NO uses lenguaje directivo ni títulos de "Ejecutivo".
+        • EXPERIENCIA LABORAL: DEBE REDACTARSE EN PRIMERA PERSONA DEL SINGULAR ACTIVA (ej: "Lideré...", "Desarrollé...", "Implementé...", "Supervisé...", "Optimicé..."). OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. CADA VIÑETA DEBE SER LARGA Y EXHAUSTIVA (mínimo 15 a 20 palabras). Reescribe las funciones y logros del CV base reenfocándolos hacia la ejecución operativa del puesto.
+        • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base, combinando operativa y servicio. NO inventar.
+      * SI EL PUESTO ES MANDO MEDIO / ENCARGADO:
+        • RESUMEN EJECUTIVO (3-4 frases): Equilibra la atención al cliente y ejecución operativa con liderazgo de tienda, control de KPIs y gestión de equipo.
+        • OBLIGATORIO MÍNIMO 4 VIÑETAS POR CARGO. Equilibra la atención al cliente con métricas y liderazgo.
+        • DOMINIOS: MÍNIMO 4 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base, combinando operativa y liderazgo. NO inventar.
+      * SI EL PUESTO ES EJECUTIVO / DIRECTIVO:
+        • RESUMEN PROFESIONAL (3-4 frases): Mantén tono de alto nivel, visión estratégica, transformación digital, IA e impacto financiero (ej. "Ejecutivo de Operaciones").
+        • OBLIGATORIO MÍNIMO 4-5 VIÑETAS POR CARGO con métricas reales del CV base.
+        • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base. NO inventar.
 
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
-   - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base. Si el CV base no tiene un porcentaje, NO LO INVENTES.
+   - PROHIBIDO INVENTAR DATOS: BAJO NINGUNA CIRCUNSTANCIA puedes inventar métricas, porcentajes (ej. "15%"), cifras o logros que no estén EXPRESAMENTE escritos en el CV Base.
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
-   - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo. REGLA CRÍTICA: NO generes habilidades o competencias que sean sinónimos o redundantes entre sí.
-   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base según aplique al puesto. REGLA: PROHIBIDO incluir cursos o programas que ya formen parte de la sección de Estudios.
-   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título exacto adaptado al puesto objetivo (ej. "Store Manager / Director/a de Tienda"). Presenta al candidato según su verdadera trayectoria: Ejecutivo de Operaciones, Gestión de Puntos de Venta, Liderazgo de Equipos y Atención al Cliente. PROHIBIDO inventar conocimientos o títulos falsos (como "diseño de moda" o "experto en textiles"). REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o métricas. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, densas, directivas y persuasivas directamente enfocadas al rol solicitado).
+   - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo.
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base.
+   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título exacto adaptado al puesto objetivo. Si el rol es operativo/tienda, preséntalo como un perfil comercial y de atención al cliente. Si es ejecutivo, preséntalo como Ejecutivo de Operaciones. PROHIBIDO inventar conocimientos o títulos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar "telecomunicaciones" o sectores ajenos a menos que la oferta sea expresamente de telecomunicaciones. REGLA ESTRICTA: PROHIBIDO incluir cifras, números, porcentajes o métricas. Escribe un resumen de OBLIGATORIAMENTE ENTRE 100 Y 120 PALABRAS (4 a 5 frases completas, densas, directivas y persuasivas directamente enfocadas al rol solicitado).
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
    - Experiencia (experience): Es OBLIGATORIO procesar y devolver TODAS las experiencias laborales del CV Base sin omitir ninguna. Mantén un tono altamente profesional, directivo y estructurado. REGLA CRÍTICA: Cada cargo DEBE tener MÁXIMO 3 viñetas (descriptions). Las descripciones deben ser CORTAS, DIRECTAS Y CONCISAS (máximo 15 palabras por viñeta) para evitar que el CV se desborde visualmente de la página. ESTRICTAMENTE PROHIBIDO crear párrafos largos.
 
@@ -316,9 +314,9 @@ REGLAS ABSOLUTAS Y OBLIGATORIAS:
 - PROHIBIDO MENCIONAR NOMBRES DE EMPRESAS PASADAS (como Telefónica) O PUESTOS ANTERIORES.
 - PROHIBIDO MENCIONAR NOMBRES DE HERRAMIENTAS O METODOLOGÍAS DE IA (nada de ChatGPT, Gemini, Azure, NPS, FCR, etc.).
 - ESTRUCTURA DE 4 PÁRRAFOS:
-  1. Párrafo 1: Presentación sincera motivada por el puesto objetivo, destacando la visión de liderazgo y aporte estratégico a su empresa.
-  2. Párrafo 2: Trayectoria cualitativa en gestión de operaciones complejas, optimización de procesos y calidad en el servicio.
-  3. Párrafo 3: Enfoque en transformación digital, innovación y desarrollo de equipos.
+  1. Párrafo 1: Presentación sincera motivada por el puesto objetivo, destacando cómo su experiencia encaja con la oferta.
+  2. Párrafo 2: Trayectoria adaptada al puesto (si es tienda: atención al cliente, ventas y soporte; si es ejecutivo: gestión de operaciones y optimización de procesos).
+  3. Párrafo 3: Enfoque en adaptabilidad, innovación y habilidades alineadas a la cultura de la empresa.
   4. Párrafo 4: Cierre profesional solicitando entrevista personal.
 
 OFERTA DE TRABAJO:
