@@ -159,7 +159,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
             model: MODEL,
             messages: [{ role: 'user', content: prompt }],
             temperature: 0.2,
-            max_tokens: 2500
+            max_tokens: 4000
           }),
           signal: controller.signal
         });
@@ -235,6 +235,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     if (typeof parsedData.coverLetter === 'string') {
       parsedData.coverLetter = parsedData.coverLetter.split(/\\n+/);
     }
+
     // ESCUDO DE SEGURIDAD 1: Garantizar las experiencias reales del CV Base
     const aiExperiences = parsedData?.tailoredCV?.experience || [];
     parsedData.tailoredCV = parsedData.tailoredCV || {};
