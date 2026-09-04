@@ -896,7 +896,7 @@ function App() {
                   {/* Photo - centrada perfectamente y NUNCA aplastada */}
                   <div style={{ marginBottom: '35px', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <div style={{ width: '140px', height: '140px', borderRadius: '4px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', backgroundColor: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Profile" style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }} />
                     </div>
                   </div>
 

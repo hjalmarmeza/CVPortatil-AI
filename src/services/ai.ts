@@ -282,6 +282,13 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
 
     // ESCUDO DE SEGURIDAD 4: Fallback eliminado ya que la carta ahora se genera por separado.
 
+    // ESCUDO DE SEGURIDAD 4: BULLETPROOF FALLBACK PARA EXPERIENCIA (Si la IA corta experiencias)
+    if (parsedData?.tailoredCV?.experience && parsedData.tailoredCV.experience.length < baseCV.experience.length) {
+      const missingCount = baseCV.experience.length - parsedData.tailoredCV.experience.length;
+      const missingExperiences = baseCV.experience.slice(-missingCount);
+      parsedData.tailoredCV.experience = [...parsedData.tailoredCV.experience, ...missingExperiences];
+    }
+
     // Sanitización automática de gramática y cacofonías (ej. "y implementé" -> "e implementé")
     return sanitizeObjectGrammar(parsedData);
   } catch (error) {
