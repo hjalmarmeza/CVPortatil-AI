@@ -128,14 +128,15 @@ function App() {
       const calculatedHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
       
       if (elementId === 'cv-pdf-content') {
-        // Cargar exactamente 3 páginas (891mm) en jsPDF
-        const imgHeight = Math.min(calculatedHeight, 891);
+        const hasPortfolio = tailoredData?.tailoredCV?.portfolio && tailoredData.tailoredCV.portfolio.length > 0;
+        const maxLimit = hasPortfolio ? 891 : 594;
+        const imgHeight = Math.min(calculatedHeight, maxLimit);
         pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, imgHeight);
         if (calculatedHeight > 300) {
           pdf.addPage();
           pdf.addImage(dataUrl, 'JPEG', 0, -297, pdfWidth, imgHeight);
         }
-        if (calculatedHeight > 600) {
+        if (calculatedHeight > 600 && hasPortfolio) {
           pdf.addPage();
           pdf.addImage(dataUrl, 'JPEG', 0, -594, pdfWidth, imgHeight);
         }
@@ -735,7 +736,7 @@ function App() {
 
       {/* Renderizado Oculto para el PDF */}
       <div style={{ display: 'none' }}>
-        <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '3366px', boxSizing: 'border-box' }}>
+        <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: (tailoredData?.tailoredCV?.portfolio && tailoredData.tailoredCV.portfolio.length > 0) ? '3366px' : '2244px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -786,15 +787,7 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Certifications */}
-                  <div style={{ marginBottom: '25px', pageBreakInside: 'avoid' }}>
-                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '9pt', color: '#444', lineHeight: '1.4' }}>
-                      {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 10).map((cert, idx) => (
-                        <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
-                      ))}
-                    </div>
-                  </div>
+
 
 
                   {/* Educación */}
@@ -837,6 +830,15 @@ function App() {
                           </div>
                         );
                       })}
+                    </div>
+                  </div>
+                  {/* Certifications - Movido a Hoja 2 */}
+                  <div style={{ marginTop: '25px', pageBreakInside: 'avoid' }}>
+                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '9pt', color: '#444', lineHeight: '1.4' }}>
+                      {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 10).map((cert, idx) => (
+                        <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
+                      ))}
                     </div>
                   </div>
                 </div>
