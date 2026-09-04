@@ -874,12 +874,15 @@ function App() {
                 </div>
               </td>
 
-              {/* RIGHT COLUMN (Teal) - 278px continuo de 3366px de altura */}
-              <td style={{ width: '278px', backgroundColor: '#005C53', padding: 0, color: '#FFFFFF', verticalAlign: 'top', height: '100%' }}>
-                <div style={{ width: '278px', padding: '45px 25px', boxSizing: 'border-box' }}>
+              {/* RIGHT COLUMN (Teal) */}
+              <td style={{ width: '278px', backgroundColor: '#005C53', padding: 0, color: '#FFFFFF', verticalAlign: 'top' }}>
+                {/* --- HOJA 1 RIGHT --- */}
+                <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Photo - centrada perfectamente */}
-                  <div style={{ marginBottom: '35px', width: '100%', textAlign: 'center' }}>
-                    <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Profile" style={{ objectFit: 'cover', width: '140px', height: '140px', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block', backgroundColor: '#fff' }} />
+                  <div style={{ marginBottom: '35px', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ width: '140px', height: '140px', borderRadius: '4px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', backgroundColor: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Profile" style={{ minWidth: '100%', minHeight: '100%', width: '140px', height: '140px', objectFit: 'cover' }} />
+                    </div>
                   </div>
 
                   {/* Habilidades */}
@@ -921,7 +924,10 @@ function App() {
                       })()}
                     </div>
                   </div>
+                </div>
 
+                {/* --- HOJA 2 RIGHT --- */}
+                <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Educación / Estudios */}
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Estudios</h3>
