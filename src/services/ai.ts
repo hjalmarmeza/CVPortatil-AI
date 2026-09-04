@@ -158,7 +158,6 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
           body: JSON.stringify({
             model: MODEL,
             messages: [{ role: 'user', content: prompt }],
-            response_format: { type: 'json_object' },
             temperature: 0.2,
             max_tokens: 2500
           }),
@@ -354,7 +353,6 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
           body: JSON.stringify({
             model: MODEL,
             messages: [{ role: 'user', content: prompt }],
-            response_format: { type: 'json_object' },
             temperature: 0.3,
             max_tokens: 1500
           }),
