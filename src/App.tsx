@@ -790,28 +790,40 @@ function App() {
 
 
 
-                  {/* Educación */}
-                  <div style={{ marginBottom: '35px' }}>
-                    <h3 style={{ fontSize: '10.5pt', color: '#333333', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid #E2E8F0', paddingBottom: '6px' }}>Estudios</h3>
-                    {baseCV.education.map((edu, idx) => (
-                      <div key={idx} style={{ marginBottom: '8px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '3px' }}>
-                          <span style={{ fontSize: '10pt', fontWeight: '700', color: '#005C53' }}>{edu.degree}</span>
-                          <span style={{ fontSize: '9pt', color: '#666666' }}>{edu.period}</span>
-                        </div>
-                        <div style={{ fontSize: '9pt', color: '#555555' }}>{edu.institution}</div>
-                      </div>
-                    ))}
+
+                  {/* Experience - Parte 1 (Hoja 1) */}
+                  <div style={{ marginBottom: '25px' }}>
+                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
+                    <div style={{ width: '100%' }}>
+                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(0, 2).map((exp, idx) => {
+                        return (
+                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
+                              <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
+                              <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px', width: '100%' }}>
+                              <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
+                              <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
+                            </div>
+                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.35' }}>
+                              {exp.description.map((desc, i) => (
+                                <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
 
                 {/* --- HOJA 2 --- */}
                 <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
-                  {/* Experience - Seccion completa al inicio de la Hoja 2 */}
+                  {/* Experience - Parte 2 (Hoja 2) */}
                   <div style={{ marginBottom: '25px' }}>
-                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
-                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).map((exp, idx) => {
+                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(2).map((exp, idx) => {
                         return (
                           <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
@@ -867,8 +879,7 @@ function App() {
                 <div style={{ width: '278px', padding: '45px 25px', boxSizing: 'border-box' }}>
                   {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '35px', width: '100%', textAlign: 'center' }}>
-                    <div style={{ width: '140px', height: '140px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block', backgroundColor: '#fff', backgroundImage: `url('${photoBase64 || baseCV.contact?.photoUrl || ''}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-                    </div>
+                    <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Profile" style={{ objectFit: 'cover', width: '140px', height: '140px', border: '3px solid rgba(255,255,255,0.4)', borderRadius: '4px', margin: '0 auto', display: 'block', backgroundColor: '#fff' }} />
                   </div>
 
                   {/* Habilidades */}
@@ -909,6 +920,20 @@ function App() {
                         ));
                       })()}
                     </div>
+                  </div>
+
+                  {/* Educación / Estudios */}
+                  <div style={{ marginBottom: '35px' }}>
+                    <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Estudios</h3>
+                    {baseCV.education.map((edu, idx) => (
+                      <div key={idx} style={{ marginBottom: '10px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginBottom: '3px' }}>
+                          <span style={{ fontSize: '9pt', fontWeight: '700', color: '#FFFFFF' }}>{edu.degree}</span>
+                          <span style={{ fontSize: '8.5pt', color: 'rgba(255,255,255,0.9)' }}>{edu.period}</span>
+                        </div>
+                        <div style={{ fontSize: '8.5pt', color: 'rgba(255,255,255,0.8)' }}>{edu.institution}</div>
+                      </div>
+                    ))}
                   </div>
 
                   {/* Idiomas */}
