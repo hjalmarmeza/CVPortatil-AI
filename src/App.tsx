@@ -803,7 +803,7 @@ function App() {
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                             </div>
                             <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.3' }}>
-                              {exp.description.map((desc, i) => (
+                              {exp.description.filter((d: string) => d.trim() !== '').map((desc, i) => (
                                 <li key={i} style={{ marginBottom: '3px' }}>{desc}</li>
                               ))}
                             </ul>
@@ -831,7 +831,7 @@ function App() {
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                             </div>
                             <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.3' }}>
-                              {exp.description.map((desc, i) => (
+                              {exp.description.filter((d: string) => d.trim() !== '').map((desc, i) => (
                                 <li key={i} style={{ marginBottom: '3px' }}>{desc}</li>
                               ))}
                             </ul>
@@ -840,15 +840,7 @@ function App() {
                       })}
                     </div>
                   </div>
-                  {/* Certifications - Movido a Hoja 2 */}
-                  <div style={{ marginTop: '25px', pageBreakInside: 'avoid' }}>
-                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '9pt', color: '#444', lineHeight: '1.4' }}>
-                      {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 10).map((cert, idx) => (
-                        <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
-                      ))}
-                    </div>
-                  </div>
+
                 </div>
 
                 {/* --- HOJA 3 --- */}
@@ -938,7 +930,7 @@ function App() {
                 {/* --- HOJA 2 RIGHT --- */}
                 <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Idiomas */}
-                  <div style={{ marginBottom: '20px' }}>
+                  <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Idiomas</h3>
                     <div style={{ marginTop: '10px' }}>
                       {baseCV.languages?.map((lang, idx) => (
@@ -946,6 +938,16 @@ function App() {
                           <span>{lang.language}</span>
                           <span style={{ fontWeight: '700', color: '#FFD580', marginLeft: '6px' }}>— {lang.level}</span>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Certifications - En la columna verde */}
+                  <div style={{ marginBottom: '20px', pageBreakInside: 'avoid' }}>
+                    <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Certificaciones</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '8.5pt', color: 'rgba(255,255,255,0.9)', lineHeight: '1.4' }}>
+                      {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 10).map((cert, idx) => (
+                        <div key={idx} style={{ breakInside: 'avoid', paddingLeft: '10px', textIndent: '-10px' }}>▸ {cert}</div>
                       ))}
                     </div>
                   </div>
