@@ -99,7 +99,9 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TIENDA / ATENCI
         • DOMINIOS: MÍNIMO 5 bloques de competencias ESTRICTAMENTE EXTRAÍDOS del CV base.`}
 
 3. REGLAS GENERALES Y CANTIDADES ESTRICTAS (ANTI-ALUCINACIONES):
-   - CERO ALUCINACIONES: ESTÁ TOTALMENTE PROHIBIDO inventar funciones, habilidades, tareas específicas de la oferta de trabajo (ej. "portabilidades", "venta de SIMs") o métricas que no estén EXPRESAMENTE escritas o inferidas lógicamente del CV Base. El CV debe ser 100% verídico. BAJO NINGUNA CIRCUNSTANCIA puedes inventar logros falsos.
+   - CERO ALUCINACIONES: Prohibido inventar habilidades o métricas falsas. El CV debe ser 100% verídico.
+   - REGLA SAGRADA DE VERACIDAD (PROHIBIDO INVENTAR CARGOS O SECTORES): La IA tiene estrictamente prohibido cambiar la industria raíz de la experiencia del candidato. Hjalmar ha trabajado en el sector de las Telecomunicaciones, Canales de Atención Masiva y Gestión de Negocios. NUNCA inventes que ha trabajado en "Supermercados", "Hostelería", "Retail de alimentación" o sectores ajenos.
+   - CÓMO ADAPTAR EL TÍTULO SIN MENTIR: Si aplica a un puesto de Encargado en otra industria, el título del puesto debe reflejar su rol funcional real (ej. "Supervisor de Operaciones", "Supervisor Regional", "Responsable de Canales de Atención" o "Gestor de Negocio"). Lo que se adapta es el enfoque de las tareas (destacar la atención al cliente, los KPIs o el liderazgo de equipos), pero el cargo histórico y la empresa deben ser 100% verídicos.
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo.
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE entre 6 y 10 certificaciones del listado real del CV base.
