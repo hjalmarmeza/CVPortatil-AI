@@ -775,9 +775,9 @@ function App() {
                   </div>
 
                   {/* Profile */}
-                  <div style={{ marginBottom: '25px', pageBreakInside: 'avoid' }}>
-                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Perfil Profesional</h3>
-                    <div style={{ fontSize: '9.5pt', lineHeight: '1.5', color: '#444', textAlign: 'left' }}>
+                  <div style={{ marginBottom: '15px', pageBreakInside: 'avoid' }}>
+                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '3px' }}>Perfil Profesional</h3>
+                    <div style={{ fontSize: '9.5pt', lineHeight: '1.4', color: '#444', textAlign: 'left' }}>
                       {(() => {
                         const s = tailoredData?.tailoredCV?.summary || baseCV.summary;
                         return (s && s.split(/\s+/).length >= 50)
@@ -787,28 +787,24 @@ function App() {
                     </div>
                   </div>
 
-
-
-
-
                   {/* Experience - Parte 1 (Hoja 1) */}
-                  <div style={{ marginBottom: '25px' }}>
-                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Experiencia</h3>
+                  <div style={{ marginBottom: '10px' }}>
+                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '3px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
-                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(0, 2).map((exp, idx) => {
+                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(0, 3).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
+                          <div key={idx} style={{ paddingBottom: '10px', pageBreakInside: 'avoid', width: '100%' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px', width: '100%' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px', width: '100%' }}>
                               <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                             </div>
-                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.35' }}>
+                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.3' }}>
                               {exp.description.map((desc, i) => (
-                                <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
+                                <li key={i} style={{ marginBottom: '3px' }}>{desc}</li>
                               ))}
                             </ul>
                           </div>
@@ -821,22 +817,22 @@ function App() {
                 {/* --- HOJA 2 --- */}
                 <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Experience - Parte 2 (Hoja 2) */}
-                  <div style={{ marginBottom: '25px' }}>
+                  <div style={{ marginBottom: '15px' }}>
                     <div style={{ width: '100%' }}>
-                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(2).map((exp, idx) => {
+                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(3).map((exp, idx) => {
                         return (
-                          <div key={idx} style={{ paddingBottom: '18px', pageBreakInside: 'avoid', width: '100%' }}>
+                          <div key={idx} style={{ paddingBottom: '10px', pageBreakInside: 'avoid', width: '100%' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
                               <h4 style={{ fontSize: '11pt', margin: 0, color: '#333333', fontWeight: '700' }}>{exp.title}</h4>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.period}</span>
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px', width: '100%' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px', width: '100%' }}>
                               <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                             </div>
-                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.35' }}>
+                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.3' }}>
                               {exp.description.map((desc, i) => (
-                                <li key={i} style={{ marginBottom: '4px' }}>{desc}</li>
+                                <li key={i} style={{ marginBottom: '3px' }}>{desc}</li>
                               ))}
                             </ul>
                           </div>
@@ -924,10 +920,6 @@ function App() {
                       })()}
                     </div>
                   </div>
-                </div>
-
-                {/* --- HOJA 2 RIGHT --- */}
-                <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Educación / Estudios */}
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Estudios</h3>
@@ -941,7 +933,10 @@ function App() {
                       </div>
                     ))}
                   </div>
+                </div>
 
+                {/* --- HOJA 2 RIGHT --- */}
+                <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Idiomas */}
                   <div style={{ marginBottom: '20px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Idiomas</h3>
