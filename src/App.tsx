@@ -802,9 +802,9 @@ function App() {
                               <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                             </div>
-                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.3' }}>
+                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.25' }}>
                               {exp.description.filter((d: string) => d.trim() !== '').map((desc, i) => (
-                                <li key={i} style={{ marginBottom: '3px' }}>{desc}</li>
+                                <li key={i} style={{ marginBottom: '1px' }}>{desc}</li>
                               ))}
                             </ul>
                           </div>
@@ -817,7 +817,7 @@ function App() {
                   {((tailoredData?.tailoredCV?.experience || baseCV.experience).length <= 4) && (
                     <div style={{ marginTop: '5px', pageBreakInside: 'avoid' }}>
                       <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '9pt', color: '#444', lineHeight: '1.4' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '9pt', color: '#444', lineHeight: '1.3' }}>
                         {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 4).map((cert, idx) => (
                           <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
                         ))}
@@ -846,9 +846,9 @@ function App() {
                                 <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
                                 <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                               </div>
-                              <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.3' }}>
+                              <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.25' }}>
                                 {exp.description.filter((d: string) => d.trim() !== '').map((desc, i) => (
-                                  <li key={i} style={{ marginBottom: '3px' }}>{desc}</li>
+                                  <li key={i} style={{ marginBottom: '1px' }}>{desc}</li>
                                 ))}
                               </ul>
                             </div>
@@ -856,10 +856,10 @@ function App() {
                         })}
                       </div>
                     </div>
-                    {/* Certifications - Movido a Hoja 2 */}
-                    <div style={{ marginTop: '5px', pageBreakInside: 'avoid' }}>
+                    {/* Certificaciones - Movido a Hoja 2 */}
+                    <div style={{ marginTop: '10px', pageBreakInside: 'avoid' }}>
                       <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '9pt', color: '#444', lineHeight: '1.4' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '9pt', color: '#444', lineHeight: '1.3' }}>
                         {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 4).map((cert, idx) => (
                           <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
                         ))}
@@ -875,15 +875,17 @@ function App() {
                   {/* Proyectos Personales */}
                   {(tailoredData?.tailoredCV?.portfolio && tailoredData.tailoredCV.portfolio.length > 0) && (
                     <div style={{ pageBreakInside: 'avoid' }}>
-                      <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '15px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>
+                      <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '3px' }}>
                         {tailoredData.tailoredCV.portfolioTitle || 'Proyectos Personales'}
                       </h3>
-                      {tailoredData.tailoredCV.portfolio.slice(0, 4).map((item, idx) => (
-                        <div key={idx} style={{ marginBottom: '14px' }}>
-                          <h4 style={{ fontSize: '10pt', margin: '0 0 4px', color: '#005C53', fontWeight: '700' }}>★ {item.title}</h4>
-                          <p style={{ fontSize: '9pt', margin: 0, color: '#555', lineHeight: '1.45', textAlign: 'left' }}>{item.description}</p>
-                        </div>
-                      ))}
+                      <div style={{ width: '100%' }}>
+                        {tailoredData.tailoredCV.portfolio.map((proj, idx) => (
+                          <div key={idx} style={{ paddingBottom: '8px', pageBreakInside: 'avoid', width: '100%' }}>
+                            <h4 style={{ fontSize: '10pt', margin: '0 0 2px 0', color: '#333333', fontWeight: '700' }}>{proj.title}</h4>
+                            <p style={{ fontSize: '8.5pt', color: '#444', margin: 0, lineHeight: '1.25' }}>{proj.description}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -903,9 +905,9 @@ function App() {
                   {/* Habilidades */}
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Habilidades</h3>
-                    <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.8' }}>
+                    <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.5' }}>
                       {(tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5).map((skill, i) => (
-                        <div key={i} style={{ marginBottom: '5px' }}>▸ {skill}</div>
+                        <div key={i} style={{ marginBottom: '3px' }}>▸ {skill}</div>
                       ))}
                     </div>
                   </div>
@@ -913,7 +915,7 @@ function App() {
                   {/* Competencias */}
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Competencias</h3>
-                    <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.8' }}>
+                    <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.5' }}>
                       {(() => {
                         const currentSkills = (tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5);
                         const hasLeadershipSkill = currentSkills.some(s => s.toLowerCase().includes('liderazgo'));
@@ -932,7 +934,7 @@ function App() {
                         }
 
                         return cleanAreas.slice(0, 5).map((area, i) => (
-                          <div key={i} style={{ marginBottom: '6px' }}>
+                          <div key={i} style={{ marginBottom: '3px' }}>
                             <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
                           </div>
                         ));
