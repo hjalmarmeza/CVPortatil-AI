@@ -826,7 +826,6 @@ function App() {
                   )}
 
                   <div style={{ flexGrow: 1 }} />
-                  <div style={{ width: '100%', borderTop: '1px solid #EEEEEE', paddingTop: '10px', textAlign: 'center', fontSize: '8pt', color: '#999999' }}>Hjalmar Meza - Currículum Vitae</div>
                 </div>
 
                 {/* --- HOJA 2 (Dinámica) --- */}
@@ -856,7 +855,7 @@ function App() {
                         })}
                       </div>
                     </div>
-                    {/* Certificaciones - Movido a Hoja 2 */}
+                    {/* Certificaciones dinámicas: Si hay hoja 2, se muestran aquí */}
                     <div style={{ marginTop: '10px', pageBreakInside: 'avoid' }}>
                       <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '9pt', color: '#444', lineHeight: '1.3' }}>
@@ -866,7 +865,6 @@ function App() {
                       </div>
                     </div>
                     <div style={{ flexGrow: 1 }} />
-                    <div style={{ width: '100%', borderTop: '1px solid #EEEEEE', paddingTop: '10px', textAlign: 'center', fontSize: '8pt', color: '#999999' }}>Hjalmar Meza - Currículum Vitae</div>
                   </div>
                 )}
 
@@ -895,19 +893,27 @@ function App() {
               <td style={{ width: '278px', backgroundColor: '#005C53', padding: 0, color: '#FFFFFF', verticalAlign: 'top' }}>
                 {/* --- HOJA 1 RIGHT --- */}
                 <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', minHeight: '1122px' }}>
-                  {/* Photo - centrada perfectamente y NUNCA aplastada */}
+                  {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '35px', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ width: '140px', height: '140px', borderRadius: '4px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', backgroundColor: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      <img src={photoBase64 || baseCV.contact?.photoUrl || ''} alt="Profile" style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }} />
-                    </div>
+                    <div style={{ 
+                      width: '140px', 
+                      height: '140px', 
+                      borderRadius: '4px', 
+                      border: '3px solid rgba(255,255,255,0.4)', 
+                      backgroundColor: '#fff',
+                      backgroundImage: `url(${photoBase64 || baseCV.contact?.photoUrl || ''})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat'
+                    }} />
                   </div>
 
                   {/* Habilidades */}
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Habilidades</h3>
-                    <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.5' }}>
+                    <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.4' }}>
                       {(tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5).map((skill, i) => (
-                        <div key={i} style={{ marginBottom: '3px' }}>▸ {skill}</div>
+                        <div key={i} style={{ marginBottom: '4px' }}>▸ {skill}</div>
                       ))}
                     </div>
                   </div>
@@ -915,7 +921,7 @@ function App() {
                   {/* Competencias */}
                   <div style={{ marginBottom: '35px' }}>
                     <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Competencias</h3>
-                    <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.5' }}>
+                    <div style={{ fontSize: '9pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.4' }}>
                       {(() => {
                         const currentSkills = (tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5);
                         const hasLeadershipSkill = currentSkills.some(s => s.toLowerCase().includes('liderazgo'));
@@ -934,7 +940,7 @@ function App() {
                         }
 
                         return cleanAreas.slice(0, 5).map((area, i) => (
-                          <div key={i} style={{ marginBottom: '3px' }}>
+                          <div key={i} style={{ marginBottom: '4px' }}>
                             <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
                           </div>
                         ));
