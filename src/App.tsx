@@ -840,7 +840,15 @@ function App() {
                       })}
                     </div>
                   </div>
-
+                  {/* Certifications - Movido a Hoja 2 */}
+                  <div style={{ marginTop: '10px', pageBreakInside: 'avoid' }}>
+                    <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '9pt', color: '#444', lineHeight: '1.4' }}>
+                      {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 10).map((cert, idx) => (
+                        <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 {/* --- HOJA 3 --- */}
@@ -938,16 +946,6 @@ function App() {
                           <span>{lang.language}</span>
                           <span style={{ fontWeight: '700', color: '#FFD580', marginLeft: '6px' }}>— {lang.level}</span>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Certifications - En la columna verde */}
-                  <div style={{ marginBottom: '20px', pageBreakInside: 'avoid' }}>
-                    <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Certificaciones</h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '8.5pt', color: 'rgba(255,255,255,0.9)', lineHeight: '1.4' }}>
-                      {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 10).map((cert, idx) => (
-                        <div key={idx} style={{ breakInside: 'avoid', paddingLeft: '10px', textIndent: '-10px' }}>▸ {cert}</div>
                       ))}
                     </div>
                   </div>
