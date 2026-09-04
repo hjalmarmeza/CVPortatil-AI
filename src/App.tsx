@@ -761,7 +761,7 @@ function App() {
               {/* LEFT COLUMN (White) - 516px */}
               <td style={{ width: '516px', padding: 0, backgroundColor: '#FFFFFF', verticalAlign: 'top' }}>
                 {/* --- HOJA 1 --- */}
-                <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Header / Name */}
                   <div style={{ marginBottom: '30px' }}>
                     <h1 style={{ fontSize: '28pt', margin: '0 0 5px', color: '#333333', fontWeight: '900', letterSpacing: 'normal', textTransform: 'uppercase', lineHeight: '1.1' }}>{baseCV.name}</h1>
@@ -812,10 +812,12 @@ function App() {
                       })}
                     </div>
                   </div>
+                  <div style={{ flexGrow: 1 }} />
+                  <div style={{ width: '100%', borderTop: '1px solid #EEEEEE', paddingTop: '10px', textAlign: 'center', fontSize: '8pt', color: '#999999' }}>Hjalmar Meza - Currículum Vitae</div>
                 </div>
 
                 {/* --- HOJA 2 --- */}
-                <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
                   {/* Experience - Parte 2 (Hoja 2) */}
                   <div style={{ marginBottom: '15px' }}>
                     <div style={{ width: '100%' }}>
@@ -849,6 +851,8 @@ function App() {
                       ))}
                     </div>
                   </div>
+                  <div style={{ flexGrow: 1 }} />
+                  <div style={{ width: '100%', borderTop: '1px solid #EEEEEE', paddingTop: '10px', textAlign: 'center', fontSize: '8pt', color: '#999999' }}>Hjalmar Meza - Currículum Vitae</div>
                 </div>
 
                 {/* --- HOJA 3 --- */}
