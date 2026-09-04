@@ -818,7 +818,7 @@ function App() {
                     <div style={{ marginTop: '5px', pageBreakInside: 'avoid' }}>
                       <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '9pt', color: '#444', lineHeight: '1.3' }}>
-                        {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 4).map((cert, idx) => (
+                        {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 5).map((cert, idx) => (
                           <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
                         ))}
                       </div>
@@ -855,11 +855,12 @@ function App() {
                         })}
                       </div>
                     </div>
+
                     {/* Certificaciones dinámicas: Si hay hoja 2, se muestran aquí */}
                     <div style={{ marginTop: '10px', pageBreakInside: 'avoid' }}>
                       <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '9pt', color: '#444', lineHeight: '1.3' }}>
-                        {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 4).map((cert, idx) => (
+                        {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 5).map((cert, idx) => (
                           <div key={idx} style={{ breakInside: 'avoid' }}>• {cert}</div>
                         ))}
                       </div>

@@ -106,7 +106,7 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TRABAJO DE CAMP
    - CÓMO ADAPTAR LA EXPERIENCIA: MANTÉN ESTRICTAMENTE LOS TÍTULOS ORIGINALES DEL CV BASE. ESTÁ TOTALMENTE PROHIBIDO RENOMBRAR LOS CARGOS O CAMBIAR LAS FECHAS. Lo que debes adaptar es el enfoque de las viñetas (tareas), pero el cargo histórico y la empresa deben ser 100% verídicos y exactos al CV base.
    - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo.
-   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE EXACTAMENTE 4 certificaciones del listado real del CV base que sean las MÁS RELEVANTES para el puesto ofertado.
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 certificaciones del listado real del CV base que sean las MÁS RELEVANTES para el puesto ofertado.
    - Resumen Profesional (summary): Debe empezar obligatoriamente con el título PROFESIONAL REAL DEL CANDIDATO (Ej. "Supervisor de Operaciones", "Gestor de Negocio", "Líder de Equipo" o "Ejecutivo"). ESTRICTAMENTE PROHIBIDO iniciar el resumen llamando al candidato con un título inferior a su experiencia real, incluso si aplica a ese puesto. El candidato es un Supervisor/Gestor postulando al rol, no pierdas su jerarquía en la presentación. PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar sectores ajenos. Escribe un resumen corto y contundente de OBLIGATORIAMENTE ENTRE 40 Y 60 PALABRAS (2 a 3 frases fluidas y persuasivas directamente enfocadas al rol). ESTRICTAMENTE PROHIBIDO repetir las funciones o tareas de la experiencia laboral en el resumen.
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
    - Experiencia (experience): ¡ATENCIÓN CRÍTICA! ES ESTRICTAMENTE OBLIGATORIO PROCESAR Y DEVOLVER EXACTAMENTE EL MISMO NÚMERO DE EXPERIENCIAS LABORALES QUE TIENE EL CV BASE. PROHIBIDO OMITIR NINGUNA EXPERIENCIA (NUNCA OMITAS SUPERVISOR REGIONAL NI NINGUNA OTRA). REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser ORACIONES COMPLETAS Y DETALLADAS (MÍNIMO 15 PALABRAS POR VIÑETA), explicando la acción y el resultado. ESTRICTAMENTE PROHIBIDO REPETIR VIÑETAS.
@@ -228,7 +228,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       parsedData.tailoredCV.domainAreas = baseCV.domainAreas.slice(0, 4);
     }
     if (!parsedData.tailoredCV.certifications || parsedData.tailoredCV.certifications.length === 0) {
-      parsedData.tailoredCV.certifications = baseCV.certifications.slice(0, 4);
+      parsedData.tailoredCV.certifications = baseCV.certifications.slice(0, 5);
     }
     parsedData.tailoredCV.education = baseCV.education;
     parsedData.tailoredCV.languages = baseCV.languages;
