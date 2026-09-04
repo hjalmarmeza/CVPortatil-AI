@@ -791,7 +791,7 @@ function App() {
                   <div style={{ marginBottom: '10px' }}>
                     <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '3px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
-                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(0, 4).map((exp, idx) => {
+                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(0, 3).map((exp, idx) => {
                         return (
                           <div key={idx} style={{ paddingBottom: '10px', pageBreakInside: 'avoid', width: '100%' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
@@ -802,9 +802,9 @@ function App() {
                               <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
                               <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                             </div>
-                            <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.25' }}>
+                            <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '8.5pt', color: '#444', lineHeight: '1.25', listStyleType: 'disc' }}>
                               {exp.description.filter((d: string) => d.trim() !== '').map((desc, i) => (
-                                <li key={i} style={{ marginBottom: '1px' }}>{desc}</li>
+                                <li key={i} style={{ marginBottom: '2px' }}>{desc}</li>
                               ))}
                             </ul>
                           </div>
@@ -814,7 +814,7 @@ function App() {
                   </div>
 
                   {/* Certificaciones dinámicas: Si solo hay 1 página, se muestran aquí */}
-                  {((tailoredData?.tailoredCV?.experience || baseCV.experience).length <= 4) && (
+                  {((tailoredData?.tailoredCV?.experience || baseCV.experience).length <= 3) && (
                     <div style={{ marginTop: '5px', pageBreakInside: 'avoid' }}>
                       <h3 style={{ fontSize: '12pt', color: '#333333', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '5px' }}>Certificación</h3>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '9pt', color: '#444', lineHeight: '1.3' }}>
@@ -830,12 +830,12 @@ function App() {
                 </div>
 
                 {/* --- HOJA 2 (Dinámica) --- */}
-                {((tailoredData?.tailoredCV?.experience || baseCV.experience).length > 4) && (
+                {((tailoredData?.tailoredCV?.experience || baseCV.experience).length > 3) && (
                   <div style={{ display: 'flex', flexDirection: 'column', padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', minHeight: '1122px' }}>
                     {/* Experience - Parte 2 (Hoja 2) */}
                     <div style={{ marginBottom: '15px' }}>
                       <div style={{ width: '100%' }}>
-                        {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(4).map((exp, idx) => {
+                        {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(3).map((exp, idx) => {
                           return (
                             <div key={idx} style={{ paddingBottom: '10px', pageBreakInside: 'avoid', width: '100%' }}>
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px', width: '100%' }}>
@@ -846,9 +846,9 @@ function App() {
                                 <span style={{ fontSize: '10pt', color: '#005C53', fontWeight: '600' }}>{exp.company}</span>
                                 <span style={{ fontSize: '9pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '10px' }}>{exp.location}</span>
                               </div>
-                              <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8.5pt', color: '#444', lineHeight: '1.25' }}>
+                              <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '8.5pt', color: '#444', lineHeight: '1.25', listStyleType: 'disc' }}>
                                 {exp.description.filter((d: string) => d.trim() !== '').map((desc, i) => (
-                                  <li key={i} style={{ marginBottom: '1px' }}>{desc}</li>
+                                  <li key={i} style={{ marginBottom: '2px' }}>{desc}</li>
                                 ))}
                               </ul>
                             </div>
