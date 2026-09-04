@@ -506,8 +506,9 @@ function App() {
                       </div>
 
                       {/* Portfolio */}
-                      <section className="bg-[#0f172a] rounded-3xl p-8 border border-slate-800 shadow-xl">
-                        <div className="flex items-center gap-3 mb-6">
+                      {(!tailoredData?.tailoredCV || (tailoredData.tailoredCV.portfolio && tailoredData.tailoredCV.portfolio.length > 0)) && (
+                        <section className="bg-[#0f172a] rounded-3xl p-8 border border-slate-800 shadow-xl">
+                          <div className="flex items-center gap-3 mb-6">
                           <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
                             <Sparkles size={16} className="text-amber-500" />
                           </div>
@@ -527,6 +528,7 @@ function App() {
                           </p>
                         )}
                       </section>
+                      )}
                     </div>
                   ) : (
                     <div className="h-full flex flex-col items-center justify-center text-slate-500 space-y-6">

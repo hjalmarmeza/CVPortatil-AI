@@ -215,8 +215,12 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     }
 
     // ESCUDOS DE SEGURIDAD EXTREMA:
-    // Escudo de Hierro: Los proyectos personales no se tocan jamás.
-    parsedData.tailoredCV.portfolio = baseCV.portfolio.slice(0, 4);
+    // LÓGICA CONDICIONAL DE CONTROL DEL PORTAFOLIO SEGÚN SENIORIDAD
+    if (seniorityLevel === 'operational' || seniorityLevel === 'middle') {
+      parsedData.tailoredCV.portfolio = [];
+    } else {
+      parsedData.tailoredCV.portfolio = baseCV.portfolio.slice(0, 4);
+    }
     if (!parsedData.tailoredCV.domainAreas || parsedData.tailoredCV.domainAreas.length < 4) {
       parsedData.tailoredCV.domainAreas = baseCV.domainAreas.slice(0, 4);
     }
