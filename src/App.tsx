@@ -751,7 +751,7 @@ function App() {
           }
         `}</style>
         
-        <table style={{ width: '794px', height: '3366px', maxHeight: '3366px', borderCollapse: 'collapse', tableLayout: 'fixed', overflow: 'hidden' }}>
+        <table style={{ width: '794px', borderCollapse: 'collapse', tableLayout: 'fixed', overflow: 'hidden' }}>
           <colgroup>
             <col style={{ width: '516px' }} />
             <col style={{ width: '278px' }} />
@@ -761,7 +761,7 @@ function App() {
               {/* LEFT COLUMN (White) - 516px */}
               <td style={{ width: '516px', padding: 0, backgroundColor: '#FFFFFF', verticalAlign: 'top' }}>
                 {/* --- HOJA 1 --- */}
-                <div style={{ display: 'flex', flexDirection: 'column', padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', minHeight: '1122px' }}>
                   {/* Header / Name */}
                   <div style={{ marginBottom: '20px' }}>
                     <h1 style={{ fontSize: '28pt', margin: '0 0 5px', color: '#333333', fontWeight: '900', letterSpacing: 'normal', textTransform: 'uppercase', lineHeight: '1.1' }}>{baseCV.name}</h1>
@@ -831,7 +831,7 @@ function App() {
 
                 {/* --- HOJA 2 (Dinámica) --- */}
                 {((tailoredData?.tailoredCV?.experience || baseCV.experience).length > 4) && (
-                  <div style={{ display: 'flex', flexDirection: 'column', padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', minHeight: '1122px' }}>
                     {/* Experience - Parte 2 (Hoja 2) */}
                     <div style={{ marginBottom: '15px' }}>
                       <div style={{ width: '100%' }}>
@@ -871,7 +871,7 @@ function App() {
                 )}
 
                 {/* --- HOJA 3 --- */}
-                <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                <div style={{ padding: '45px 35px 45px 35px', width: '100%', boxSizing: 'border-box', minHeight: '1122px' }}>
                   {/* Proyectos Personales */}
                   {(tailoredData?.tailoredCV?.portfolio && tailoredData.tailoredCV.portfolio.length > 0) && (
                     <div style={{ pageBreakInside: 'avoid' }}>
@@ -892,7 +892,7 @@ function App() {
               {/* RIGHT COLUMN (Teal) */}
               <td style={{ width: '278px', backgroundColor: '#005C53', padding: 0, color: '#FFFFFF', verticalAlign: 'top' }}>
                 {/* --- HOJA 1 RIGHT --- */}
-                <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', minHeight: '1122px' }}>
                   {/* Photo - centrada perfectamente y NUNCA aplastada */}
                   <div style={{ marginBottom: '35px', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <div style={{ width: '140px', height: '140px', borderRadius: '4px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.4)', backgroundColor: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -970,7 +970,7 @@ function App() {
 
                 {/* --- HOJA 2 RIGHT (Dinámica) --- */}
                 {((tailoredData?.tailoredCV?.experience || baseCV.experience).length > 4) && (
-                  <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                  <div style={{ padding: '45px 25px 45px 25px', width: '100%', boxSizing: 'border-box', minHeight: '1122px' }}>
                     {/* Idiomas */}
                     <div style={{ marginBottom: '25px' }}>
                       <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '6px', margin: '0 0 12px 0' }}>Idiomas</h3>
