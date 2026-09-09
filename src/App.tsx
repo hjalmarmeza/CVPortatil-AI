@@ -844,7 +844,7 @@ function App() {
                       backgroundColor: '#fff',
                       backgroundImage: `url(${photoBase64 || baseCV.contact?.photoUrl || ''})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center',
+                      backgroundPosition: 'top center',
                       backgroundRepeat: 'no-repeat'
                     }} />
                   </div>
