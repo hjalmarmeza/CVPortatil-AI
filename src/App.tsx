@@ -726,7 +726,7 @@ function App() {
 
       {/* Renderizado Oculto para el PDF */}
       <div style={{ display: 'none' }}>
-        <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: (tailoredData?.tailoredCV?.portfolio && tailoredData.tailoredCV.portfolio.length > 0) ? '3366px' : (((tailoredData?.tailoredCV?.experience || baseCV.experience).length <= 4) ? '1122px' : '2244px'), boxSizing: 'border-box' }}>
+        <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '1122px', height: '1122px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
