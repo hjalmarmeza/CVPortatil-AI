@@ -116,15 +116,14 @@ export const defaultBaseCV: BaseCV = {
     }
   ],
 
-  strengths: [
-    "Liderazgo de equipos masivos (hasta 52 centros y +40 gestores)",
-    "Migraciones tecnológicas de gran escala (soporte a +20M de clientes)",
-    "Optimización de KPIs críticos (NPS, IRP, Churn, ARPU)",
-    "Reducción de costos mediante virtualización de procesos",
-    "Automatización de operaciones con IA Generativa y Cloud",
-    "Estrategia comercial y desarrollo de negocio (B2B / B2C)",
-    "Estabilización de operaciones y control de calidad",
-    "Administración integral de rentabilidad y fidelización"
+    strengths: [
+    "Liderazgo positivo, resiliencia y alta gestión emocional",
+    "Pragmatismo y capacidad para simplificar problemas complejos",
+    "Aprendizaje continuo (Lifelong learning) y adaptabilidad",
+    "Pensamiento crítico y autoevaluación para la mejora continua",
+    "Liderazgo de equipos masivos y gestión del cambio",
+    "Optimización de procesos operativos y KPIs de negocio",
+    "Estrategia comercial y desarrollo de soluciones B2B / B2C"
   ],
   languages: [
     { language: "Español", level: "Nativo" },
