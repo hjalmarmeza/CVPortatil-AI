@@ -113,7 +113,7 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TRABAJO DE CAMP
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE EXACTAMENTE 4 certificaciones del listado real del CV base que sean las MÁS RELEVANTES para el puesto ofertado. ESTÁ ESTRICTAMENTE PROHIBIDO ELEGIR LAS PRIMERAS DE LA LISTA POR DEFECTO. Analiza toda la lista y elige las 4 que tengan MÁS RELACIÓN con las funciones del puesto.
    - Resumen Profesional (summary): Debe empezar obligatoriamente con el título PROFESIONAL REAL DEL CANDIDATO (Ej. "Supervisor de Operaciones", "Gestor de Negocio", "Líder de Equipo" o "Ejecutivo"). ESTRICTAMENTE PROHIBIDO iniciar el resumen llamando al candidato con un título inferior a su experiencia real. PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar sectores ajenos. Escribe un resumen corto y contundente de OBLIGATORIAMENTE ENTRE 30 Y 45 PALABRAS (2 frases fluidas y persuasivas directamente enfocadas al rol). ESTRICTAMENTE PROHIBIDO repetir las funciones o tareas de la experiencia laboral en el resumen.
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
-   - Experiencia (experience): INCLUIR ÚNICAMENTE LAS 3 EXPERIENCIAS MÁS RECIENTES DEL CV BASE (OMITIR la primera experiencia "Gestor de Negocio Familiar & Consultor IA"). REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 2 viñetas (descriptions). Las viñetas deben ser CONCISAS pero IMPACTANTES (MÁXIMO 20 PALABRAS POR VIÑETA), explicando la acción y el resultado. ESTRICTAMENTE PROHIBIDO REPETIR VIÑETAS.
+   - Experiencia (experience): INCLUIR ÚNICAMENTE LAS 3 EXPERIENCIAS MÁS RECIENTES DEL CV BASE (OMITIR la primera experiencia "Gestor de Negocio Familiar & Consultor IA"). REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser CONCISAS pero IMPACTANTES (MÁXIMO 20 PALABRAS POR VIÑETA), explicando la acción y el resultado. ESTRICTAMENTE PROHIBIDO REPETIR VIÑETAS.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi". De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
@@ -247,9 +247,9 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         aiExp = matchByCompany || aiExp;
       }
 
-      const rawDescription = (aiExp?.description && Array.isArray(aiExp.description) && aiExp.description.length >= 2)
-        ? aiExp.description.slice(0, 2) // Máximo 2 viñetas
-        : baseExp.description.slice(0, 2);
+      const rawDescription = (aiExp?.description && Array.isArray(aiExp.description) && aiExp.description.length >= 3)
+        ? aiExp.description.slice(0, 3) // Máximo 3 viñetas
+        : baseExp.description.slice(0, 3);
 
       const cleanDescription = rawDescription.filter((descLine: string) => {
         const lower = descLine.toLowerCase();
@@ -261,7 +261,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         company: baseExp.company,   // Empresa real del CV base
         period: baseExp.period,
         location: baseExp.location,
-        description: cleanDescription.length >= 2 ? cleanDescription : baseExp.description.slice(0, 2)
+        description: cleanDescription.length >= 3 ? cleanDescription : baseExp.description.slice(0, 3)
       };
     });
 

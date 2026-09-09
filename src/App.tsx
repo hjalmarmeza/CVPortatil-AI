@@ -793,7 +793,7 @@ function App() {
                               <span style={{ fontSize: '8pt', color: '#666', whiteSpace: 'nowrap', marginLeft: '8px' }}>{exp.location}</span>
                             </div>
                             <ul style={{ margin: 0, paddingLeft: '14px', fontSize: '8pt', color: '#444', lineHeight: '1.25', listStyleType: 'disc' }}>
-                              {exp.description.filter((d: string) => d.trim() !== '').slice(0, 2).map((desc, i) => (
+                              {exp.description.filter((d: string) => d.trim() !== '').slice(0, 3).map((desc, i) => (
                                 <li key={i} style={{ marginBottom: '1px' }}>{desc}</li>
                               ))}
                             </ul>
