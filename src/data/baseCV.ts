@@ -115,6 +115,17 @@ export const defaultBaseCV: BaseCV = {
       period: ""
     }
   ],
+
+  strengths: [
+    "Liderazgo de equipos masivos (hasta 52 centros y +40 gestores)",
+    "Migraciones tecnológicas de gran escala (soporte a +20M de clientes)",
+    "Optimización de KPIs críticos (NPS, IRP, Churn, ARPU)",
+    "Reducción de costos mediante virtualización de procesos",
+    "Automatización de operaciones con IA Generativa y Cloud",
+    "Estrategia comercial y desarrollo de negocio (B2B / B2C)",
+    "Estabilización de operaciones y control de calidad",
+    "Administración integral de rentabilidad y fidelización"
+  ],
   languages: [
     { language: "Español", level: "Nativo" },
     { language: "Inglés", level: "A1" }
