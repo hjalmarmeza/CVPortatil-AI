@@ -854,7 +854,7 @@ function App() {
                     <div style={{ marginBottom: '20px' }}>
                       <h3 style={{ fontSize: '10pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 8px 0' }}>Fortalezas</h3>
                       <div style={{ fontSize: '8.5pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.3' }}>
-                        {tailoredData.tailoredCV.strengths.slice(0, 4).map((str, i) => (
+                        {tailoredData.tailoredCV.strengths.slice(0, 5).map((str, i) => (
                           <div key={i} style={{ marginBottom: '3px' }}>▸ {str}</div>
                         ))}
                       </div>
