@@ -116,14 +116,14 @@ export const defaultBaseCV: BaseCV = {
     }
   ],
 
-    strengths: [
-    "Liderazgo positivo, resiliencia y alta gestión emocional",
-    "Pragmatismo y capacidad para simplificar problemas complejos",
-    "Aprendizaje continuo (Lifelong learning) y adaptabilidad",
-    "Pensamiento crítico y autoevaluación para la mejora continua",
-    "Liderazgo de equipos masivos y gestión del cambio",
-    "Optimización de procesos operativos y KPIs de negocio",
-    "Estrategia comercial y desarrollo de soluciones B2B / B2C"
+      strengths: [
+    "Habilidad para simplificar problemas complejos",
+    "Actitud positiva frente a los retos diarios",
+    "Capacidad de autocrítica para mejorar constantemente",
+    "Búsqueda constante de nuevos conocimientos",
+    "Dirección de equipos grandes de trabajo",
+    "Mejora de ventas y atención al cliente",
+    "Facilidad para organizar procesos y herramientas"
   ],
   languages: [
     { language: "Español", level: "Nativo" },
