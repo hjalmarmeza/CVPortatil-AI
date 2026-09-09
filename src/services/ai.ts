@@ -109,12 +109,11 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TRABAJO DE CAMP
    - CERO ALUCINACIONES: Prohibido inventar habilidades o métricas falsas. El CV debe ser 100% verídico.
    - REGLA SAGRADA DE VERACIDAD (PROHIBIDO INVENTAR CARGOS O SECTORES): La IA tiene estrictamente prohibido cambiar la industria raíz de la experiencia del candidato. Hjalmar ha trabajado en el sector de las Telecomunicaciones, Canales de Atención Masiva y Gestión de Negocios. NUNCA inventes que ha trabajado en sectores ajenos si no tienen relación.
    - CÓMO ADAPTAR LA EXPERIENCIA: MANTÉN ESTRICTAMENTE LOS TÍTULOS ORIGINALES DEL CV BASE. ESTÁ TOTALMENTE PROHIBIDO RENOMBRAR LOS CARGOS O CAMBIAR LAS FECHAS. Lo que debes adaptar es el enfoque de las viñetas (tareas), pero el cargo histórico y la empresa deben ser 100% verídicos y exactos al CV base.
-   - PROYECTOS PERSONALES (portfolio): Es OBLIGATORIO incluir el array "portfolio" en el JSON con EXACTAMENTE 4 proyectos reales del CV Base. NUNCA lo omitas ni lo dejes vacío.
    - Habilidades (skills): NO INVENTES NINGUNA HABILIDAD NUEVA. Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 habilidades clave del CV base que tengan la mayor coincidencia con los requisitos de la oferta laboral objetivo.
-   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 certificaciones del listado real del CV base que sean las MÁS RELEVANTES para el puesto ofertado. ESTÁ ESTRICTAMENTE PROHIBIDO ELEGIR LAS PRIMERAS DE LA LISTA POR DEFECTO. Analiza toda la lista y elige las 5 que tengan MÁS RELACIÓN con las funciones del puesto.
-   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título PROFESIONAL REAL DEL CANDIDATO (Ej. "Supervisor de Operaciones", "Gestor de Negocio", "Líder de Equipo" o "Ejecutivo"). ESTRICTAMENTE PROHIBIDO iniciar el resumen llamando al candidato con un título inferior a su experiencia real, incluso si aplica a ese puesto. El candidato es un Supervisor/Gestor postulando al rol, no pierdas su jerarquía en la presentación. PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar sectores ajenos. Escribe un resumen corto y contundente de OBLIGATORIAMENTE ENTRE 40 Y 60 PALABRAS (2 a 3 frases fluidas y persuasivas directamente enfocadas al rol). ESTRICTAMENTE PROHIBIDO repetir las funciones o tareas de la experiencia laboral en el resumen.
+   - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE EXACTAMENTE 4 certificaciones del listado real del CV base que sean las MÁS RELEVANTES para el puesto ofertado. ESTÁ ESTRICTAMENTE PROHIBIDO ELEGIR LAS PRIMERAS DE LA LISTA POR DEFECTO. Analiza toda la lista y elige las 4 que tengan MÁS RELACIÓN con las funciones del puesto.
+   - Resumen Profesional (summary): Debe empezar obligatoriamente con el título PROFESIONAL REAL DEL CANDIDATO (Ej. "Supervisor de Operaciones", "Gestor de Negocio", "Líder de Equipo" o "Ejecutivo"). ESTRICTAMENTE PROHIBIDO iniciar el resumen llamando al candidato con un título inferior a su experiencia real. PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar sectores ajenos. Escribe un resumen corto y contundente de OBLIGATORIAMENTE ENTRE 30 Y 45 PALABRAS (2 frases fluidas y persuasivas directamente enfocadas al rol). ESTRICTAMENTE PROHIBIDO repetir las funciones o tareas de la experiencia laboral en el resumen.
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
-   - Experiencia (experience): ¡ATENCIÓN CRÍTICA! ES ESTRICTAMENTE OBLIGATORIO PROCESAR Y DEVOLVER EXACTAMENTE EL MISMO NÚMERO DE EXPERIENCIAS LABORALES QUE TIENE EL CV BASE. PROHIBIDO OMITIR NINGUNA EXPERIENCIA (NUNCA OMITAS SUPERVISOR REGIONAL NI NINGUNA OTRA). REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser ORACIONES COMPLETAS Y DETALLADAS (MÍNIMO 15 PALABRAS POR VIÑETA), explicando la acción y el resultado. ESTRICTAMENTE PROHIBIDO REPETIR VIÑETAS.
+   - Experiencia (experience): INCLUIR ÚNICAMENTE LAS 3 EXPERIENCIAS MÁS RECIENTES DEL CV BASE (OMITIR la primera experiencia "Gestor de Negocio Familiar & Consultor IA"). REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 2 viñetas (descriptions). Las viñetas deben ser CONCISAS pero IMPACTANTES (MÁXIMO 20 PALABRAS POR VIÑETA), explicando la acción y el resultado. ESTRICTAMENTE PROHIBIDO REPETIR VIÑETAS.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi". De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
@@ -223,17 +222,13 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     }
 
     // ESCUDOS DE SEGURIDAD EXTREMA:
-    // LÓGICA CONDICIONAL DE CONTROL DEL PORTAFOLIO SEGÚN SENIORIDAD
-    if (seniorityLevel === 'operational' || seniorityLevel === 'middle') {
-      parsedData.tailoredCV.portfolio = [];
-    } else {
-      parsedData.tailoredCV.portfolio = baseCV.portfolio.slice(0, 4);
-    }
+    // LÓGICA: Sin portfolio para CV de 1 hoja
+    parsedData.tailoredCV.portfolio = [];
     if (!parsedData.tailoredCV.domainAreas || parsedData.tailoredCV.domainAreas.length < 4) {
       parsedData.tailoredCV.domainAreas = baseCV.domainAreas.slice(0, 4);
     }
     if (!parsedData.tailoredCV.certifications || parsedData.tailoredCV.certifications.length === 0) {
-      parsedData.tailoredCV.certifications = baseCV.certifications.slice(0, 5);
+      parsedData.tailoredCV.certifications = baseCV.certifications.slice(0, 4);
     }
     parsedData.tailoredCV.education = baseCV.education;
     parsedData.tailoredCV.languages = baseCV.languages;
@@ -241,58 +236,34 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       parsedData.coverLetter = parsedData.coverLetter.split(/\\n+/);
     }
 
-    // ESCUDO DE SEGURIDAD 1: Garantizar las experiencias reales del CV Base
+    // ESCUDO DE SEGURIDAD 1: Solo las 3 experiencias más recientes (omitir la 1ra: Negocio Familiar)
+    const relevantBaseExperiences = baseCV.experience.slice(1); // Skip index 0 (Gestor de Negocio Familiar)
     const aiExperiences = parsedData?.tailoredCV?.experience || [];
     parsedData.tailoredCV = parsedData.tailoredCV || {};
-    parsedData.tailoredCV.experience = baseCV.experience.map((baseExp, index) => {
-      // Buscar la experiencia correspondiente por nombre de empresa preferentemente para evitar desfases
+    parsedData.tailoredCV.experience = relevantBaseExperiences.map((baseExp, index) => {
       let aiExp = aiExperiences[index];
       const matchByCompany = aiExperiences.find((e: any) => e.company && baseExp.company && e.company.toLowerCase() === baseExp.company.toLowerCase() && e.title === baseExp.title);
       if (aiExp && aiExp.company && baseExp.company && aiExp.company.toLowerCase() !== baseExp.company.toLowerCase()) {
         aiExp = matchByCompany || aiExp;
       }
 
-      // Tomar viñetas de la IA si existen y son válidas, sino usar las del CV base
       const rawDescription = (aiExp?.description && Array.isArray(aiExp.description) && aiExp.description.length >= 2)
-        ? aiExp.description
-        : baseExp.description;
+        ? aiExp.description.slice(0, 2) // Máximo 2 viñetas
+        : baseExp.description.slice(0, 2);
 
-      // Filtrar viñetas absurdas
       const cleanDescription = rawDescription.filter((descLine: string) => {
         const lower = descLine.toLowerCase();
         return !lower.includes('mermelada') && !lower.includes('autoservicio');
       });
 
       return {
-        title: aiExp?.title || baseExp.title, // Permitir que la IA adapte el título al nivel
-        company: baseExp.company,   // Inmutable: empresa real del CV base
+        title: baseExp.title,       // Título original inmutable
+        company: baseExp.company,   // Empresa real del CV base
         period: baseExp.period,
         location: baseExp.location,
-        description: cleanDescription.length >= 2 ? cleanDescription : baseExp.description
+        description: cleanDescription.length >= 2 ? cleanDescription : baseExp.description.slice(0, 2)
       };
     });
-
-    // ESCUDO DE SEGURIDAD 2: Forzar título de proyectos como "Proyectos Personales"
-    if (parsedData?.tailoredCV) {
-      parsedData.tailoredCV.portfolioTitle = 'Proyectos Personales';
-    }
-
-    // ESCUDO DE SEGURIDAD 3: Eliminar duplicados de "Atención al Cliente" entre skills y domainAreas
-    if (parsedData?.tailoredCV?.domainAreas && Array.isArray(parsedData.tailoredCV.domainAreas)) {
-      const skillsSet = new Set((parsedData.tailoredCV.skills || []).map((s: string) => s.toLowerCase()));
-      parsedData.tailoredCV.domainAreas = parsedData.tailoredCV.domainAreas.filter((domain: any) => {
-        return !skillsSet.has(domain.title?.toLowerCase());
-      });
-    }
-
-    // ESCUDO DE SEGURIDAD 4: Fallback eliminado ya que la carta ahora se genera por separado.
-
-    // ESCUDO DE SEGURIDAD 4: BULLETPROOF FALLBACK PARA EXPERIENCIA (Si la IA corta experiencias)
-    if (parsedData?.tailoredCV?.experience && parsedData.tailoredCV.experience.length < baseCV.experience.length) {
-      const missingCount = baseCV.experience.length - parsedData.tailoredCV.experience.length;
-      const missingExperiences = baseCV.experience.slice(-missingCount);
-      parsedData.tailoredCV.experience = [...parsedData.tailoredCV.experience, ...missingExperiences];
-    }
 
     // Sanitización automática de gramática y cacofonías (ej. "y implementé" -> "e implementé")
     return sanitizeObjectGrammar(parsedData);
