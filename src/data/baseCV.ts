@@ -116,14 +116,25 @@ export const defaultBaseCV: BaseCV = {
     }
   ],
 
-      strengths: [
+        strengths: [
     "Habilidad para simplificar problemas complejos",
     "Actitud positiva frente a los retos diarios",
     "Capacidad de autocrítica para mejorar constantemente",
     "Búsqueda constante de nuevos conocimientos",
     "Dirección de equipos grandes de trabajo",
     "Mejora de ventas y atención al cliente",
-    "Facilidad para organizar procesos y herramientas"
+    "Facilidad para organizar procesos y herramientas",
+    "Habilidad para mantener al equipo motivado y unido",
+    "Siempre busco soluciones prácticas ante cualquier obstáculo",
+    "Facilidad para negociar y llegar a buenos acuerdos",
+    "Me adapto muy rápido a los cambios y nuevas formas de trabajo",
+    "Uso la tecnología e Inteligencia Artificial para ahorrar tiempo",
+    "Compromiso total para sacar el trabajo adelante",
+    "Cuidado por los detalles y el trabajo bien hecho",
+    "Tomo la iniciativa sin esperar a que me digan qué hacer",
+    "Facilidad para enseñar y guiar a otros compañeros",
+    "Buen ojo para detectar oportunidades de mejora en el negocio",
+    "Facilidad para organizar mi tiempo y priorizar lo importante"
   ],
   languages: [
     { language: "Español", level: "Nativo" },
