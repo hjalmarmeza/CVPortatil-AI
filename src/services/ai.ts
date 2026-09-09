@@ -113,7 +113,9 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TRABAJO DE CAMP
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE EXACTAMENTE 4 certificaciones del listado real del CV base que sean las MÁS RELEVANTES para el puesto ofertado. ESTÁ ESTRICTAMENTE PROHIBIDO ELEGIR LAS PRIMERAS DE LA LISTA POR DEFECTO. Analiza toda la lista y elige las 4 que tengan MÁS RELACIÓN con las funciones del puesto.
    - Resumen Profesional (summary): Debe empezar obligatoriamente con el título PROFESIONAL REAL DEL CANDIDATO (Ej. "Supervisor de Operaciones", "Gestor de Negocio", "Líder de Equipo" o "Ejecutivo"). ESTRICTAMENTE PROHIBIDO iniciar el resumen llamando al candidato con un título inferior a su experiencia real. PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar sectores ajenos. Escribe un resumen corto y contundente de OBLIGATORIAMENTE ENTRE 30 Y 45 PALABRAS (2 frases fluidas y persuasivas directamente enfocadas al rol). ESTRICTAMENTE PROHIBIDO repetir las funciones o tareas de la experiencia laboral en el resumen.
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
-   - Experiencia (experience): INCLUIR ÚNICAMENTE LAS 3 EXPERIENCIAS MÁS RECIENTES DEL CV BASE (OMITIR la primera experiencia "Gestor de Negocio Familiar & Consultor IA"). REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser CONCISAS pero IMPACTANTES (MÁXIMO 20 PALABRAS POR VIÑETA), explicando la acción y el resultado. ESTRICTAMENTE PROHIBIDO REPETIR VIÑETAS.
+   - Experiencia (experience): INCLUIR ÚNICAMENTE LAS 3 EXPERIENCIAS MÁS RECIENTES DEL CV BASE (OMITIR la primera experiencia "Gestor de Negocio Familiar & Consultor IA"). REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser CONCISAS pero IMPACTANTES (MÁXIMO 20 PALABRAS POR VIÑETA).
+   - Fortalezas (strengths): INCLUIR EXACTAMENTE 4 fortalezas profesionales clave (ej. Visión Estratégica, Gestión de Conflictos).
+   - Proyectos (portfolio): INCLUIR EXACTAMENTE 2 proyectos del CV base (solo title y description) que demuestren valor para la oferta.
 
 4. REGLAS GRAMATICALES Y DE ESTILO (¡CUMPLIMIENTO ESTRICTO!):
    - REGLA GRAMATICAL SAGRADA (E/Y y U/O): Está ESTRICTAMENTE PROHIBIDO escribir "y" antes de palabras que inicien con sonido "i" o "hi". De igual forma, reemplaza "o" por "u" antes de sonido "o" u "ho".
@@ -139,7 +141,14 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
         "skills": ["...", "..."]
       }
     ],
-    "certifications": ["...", "..."]
+    "certifications": ["...", "..."],
+    "strengths": ["...", "..."],
+    "portfolio": [
+      {
+        "title": "...",
+        "description": "..."
+      }
+    ]
   }
 }
 `;
@@ -222,8 +231,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     }
 
     // ESCUDOS DE SEGURIDAD EXTREMA:
-    // LÓGICA: Sin portfolio para CV de 1 hoja
-    parsedData.tailoredCV.portfolio = [];
+    // Permitimos portfolio de hasta 2 elementos para llenar el espacio
+    if (parsedData.tailoredCV.portfolio && parsedData.tailoredCV.portfolio.length > 2) parsedData.tailoredCV.portfolio = parsedData.tailoredCV.portfolio.slice(0, 2);
     if (!parsedData.tailoredCV.domainAreas || parsedData.tailoredCV.domainAreas.length < 4) {
       parsedData.tailoredCV.domainAreas = baseCV.domainAreas.slice(0, 4);
     }

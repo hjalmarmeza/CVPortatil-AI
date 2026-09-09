@@ -23,6 +23,7 @@ export interface BaseCV {
   }[];
   skills: string[];
   certifications: string[];
+  strengths?: string[];
   languages: { language: string; level: string }[];
   domainAreas: { title: string; skills: string[] }[];
   portfolio: { title: string; description: string; tags: string[] }[];
