@@ -137,7 +137,7 @@ export const defaultBaseCV: BaseCV = {
     "Adaptación al Cambio",
     "Proactividad e Iniciativa",
     "Trabajo en Equipo",
-    "Atención al Cliente"
+    "Capacidad Crítica"
   ],
   certifications: [
     "Liderazgo en la Era Digital - Tecnológico de Monterrey, edx",
