@@ -43,18 +43,7 @@ export const defaultBaseCV: BaseCV = {
   },
   summary: "Supervisor de Operaciones con 18 años de experiencia en la gestión de equipos y mejora de procesos. Mi enfoque es asegurar que las operaciones de ventas y atención al cliente sean rentables, resolutivas y se apoyen en tecnología práctica.",
   experience: [
-    {
-      title: "Gestor de Negocio Familiar & Consultor IA",
-      company: "Emprendimiento & Advisory",
-      period: "2021 — Actualidad",
-      location: "España / Remoto",
-      description: [
-        "Dirección y administración integral de un negocio familiar, liderando las operaciones diarias, rentabilidad y estrategias de fidelización de clientes.",
-        "En paralelo, formación continua en nuevas tecnologías, logrando más de 50 certificaciones técnicas (IA, Cloud, CX, Agile).",
-        "Uso de herramientas de Inteligencia Artificial para automatizar tareas repetitivas y reducir costos en el día a día.",
-        "Entorno Tecnológico: Google Workspace, Trello, Make.com, Herramientas de IA Generativa."
-      ]
-    },
+    
     {
       title: "Supervisor de Operaciones",
       company: "Telefónica del Perú",
