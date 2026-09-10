@@ -951,6 +951,11 @@ function App() {
                         return cleanAreas.slice(0, 5).map((area, i) => (
                           <div key={i} style={{ marginBottom: '6px' }}>
                             <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
+                            {area.skills && area.skills.length > 0 && (
+                              <div style={{ paddingLeft: '10px', fontSize: '7.5pt', color: 'rgba(255,255,255,0.75)', lineHeight: '1.2', marginTop: '2px', fontWeight: '400' }}>
+                                {area.skills.join(' • ')}
+                              </div>
+                            )}
                           </div>
                         ));
                       })()}
