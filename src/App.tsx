@@ -736,7 +736,21 @@ function App() {
           }
           @media print {
             body.printing-cv {
-              background: linear-gradient(to right, #FFFFFF 516px, #005C53 516px) !important;
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+            }
+            .fixed-print-bg {
+              display: none;
+            }
+            body.printing-cv .fixed-print-bg {
+              display: block !important;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              z-index: -1;
+              background: linear-gradient(to right, #FFFFFF 64.98%, #005C53 64.98%) !important;
               -webkit-print-color-adjust: exact !important;
               print-color-adjust: exact !important;
             }
@@ -780,7 +794,8 @@ function App() {
 
       {/* Renderizado Oculto para el PDF */}
       <div>
-        <div id="cv-pdf-content" className="print-wrapper-cv" style={{ background: 'linear-gradient(to right, #FFFFFF 516px, #005C53 516px)', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '1122px', height: '1122px', boxSizing: 'border-box' }}>
+        <div className="fixed-print-bg"></div>
+        <div id="cv-pdf-content" className="print-wrapper-cv" style={{ background: 'linear-gradient(to right, #FFFFFF 516px, #005C53 516px)', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -800,7 +815,7 @@ function App() {
           }
         `}</style>
         
-        <table style={{ width: '794px', height: '1122px', borderCollapse: 'collapse', tableLayout: 'fixed', overflow: 'hidden' }}>
+        <table style={{ width: '794px', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
           <colgroup>
             <col style={{ width: '516px' }} />
             <col style={{ width: '278px' }} />
@@ -824,9 +839,9 @@ function App() {
                   </div>
 
                   {/* Profile */}
-                  <div style={{ marginBottom: '10px' }}>
+                  <div style={{ marginBottom: '6px' }}>
                     <h3 style={{ fontSize: '8pt', color: '#333333', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '2px' }}>Perfil Profesional</h3>
-                    <div style={{ fontSize: '8pt', lineHeight: '1.35', color: '#444', textAlign: 'left' }}>
+                    <div style={{ fontSize: '8pt', lineHeight: '1.25', color: '#444', textAlign: 'left' }}>
                       {(() => {
                         const s = tailoredData?.tailoredCV?.summary || baseCV.summary;
                         return (s && s.split(/\s+/).length >= 10)
@@ -865,7 +880,7 @@ function App() {
                   {/* Certificaciones */}
                   <div style={{ marginTop: '4px' }}>
                     <h3 style={{ fontSize: '8pt', color: '#333333', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '2px' }}>Certificación</h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', fontSize: '8pt', color: '#444', lineHeight: '1.3' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', fontSize: '8pt', color: '#444', lineHeight: '1.2' }}>
                       {(tailoredData?.tailoredCV?.certifications || baseCV.certifications).slice(0, 5).map((cert, idx) => (
                         <div key={idx}>• {cert}</div>
                       ))}
@@ -900,9 +915,9 @@ function App() {
 
                   {/* Fortalezas */}
                   {(tailoredData?.tailoredCV?.strengths && tailoredData.tailoredCV.strengths.length > 0) && (
-                    <div style={{ marginBottom: '10px' }}>
+                    <div style={{ marginBottom: '6px' }}>
                       <h3 style={{ fontSize: '8pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 6px 0' }}>Fortalezas</h3>
-                      <div style={{ fontSize: '8pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.3' }}>
+                      <div style={{ fontSize: '8pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.2' }}>
                         {tailoredData.tailoredCV.strengths.slice(0, 5).map((str, i) => (
                           <div key={i} style={{ marginBottom: '2px' }}>▸ {str}</div>
                         ))}
@@ -911,9 +926,9 @@ function App() {
                   )}
 
                   {/* Habilidades */}
-                  <div style={{ marginBottom: '10px' }}>
+                  <div style={{ marginBottom: '6px' }}>
                     <h3 style={{ fontSize: '8pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 6px 0' }}>Habilidades</h3>
-                    <div style={{ fontSize: '8pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.3' }}>
+                    <div style={{ fontSize: '8pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.2' }}>
                       {(tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5).map((skill, i) => (
                         <div key={i} style={{ marginBottom: '2px' }}>▸ {skill}</div>
                       ))}
@@ -921,9 +936,9 @@ function App() {
                   </div>
 
                   {/* Competencias */}
-                  <div style={{ marginBottom: '10px' }}>
+                  <div style={{ marginBottom: '6px' }}>
                     <h3 style={{ fontSize: '8pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 6px 0' }}>Competencias</h3>
-                    <div style={{ fontSize: '8pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.3' }}>
+                    <div style={{ fontSize: '8pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.2' }}>
                       {(() => {
                         const currentSkills = (tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5);
                         const hasLeadershipSkill = currentSkills.some(s => s.toLowerCase().includes('liderazgo'));
@@ -950,7 +965,7 @@ function App() {
                     </div>
                   </div>
                   {/* Educación / Estudios */}
-                  <div style={{ marginBottom: '10px' }}>
+                  <div style={{ marginBottom: '6px' }}>
                     <h3 style={{ fontSize: '8pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 6px 0' }}>Estudios</h3>
                     {baseCV.education.map((edu, idx) => (
                       <div key={idx} style={{ marginBottom: '8px' }}>
