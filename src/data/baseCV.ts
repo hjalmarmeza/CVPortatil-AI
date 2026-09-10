@@ -130,18 +130,16 @@ export const defaultBaseCV: BaseCV = {
     { language: "Inglés", level: "A1" }
   ],
   skills: [
-    "Resolución de Problemas",
-    "Toma de Decisiones",
-    "Análisis y Decisión Técnica",
-    "Productividad de IA",
-    "Agilidad Estratégica",
-    "Análisis de Tendencias",
-    "Empatía / CX",
-    "Creatividad e Innovación",
-    "Adaptabilidad",
-    "Pensamiento Crítico",
-    "Orquestación de Media",
-    "Filtros de Integridad IA"
+    "Resolución de problemas",
+    "Toma de decisiones",
+    "Adaptabilidad al cambio",
+    "Gestión del tiempo",
+    "Comunicación efectiva",
+    "Negociación",
+    "Atención al detalle",
+    "Trabajo en equipo",
+    "Pensamiento analítico",
+    "Liderazgo de personal"
   ],
   certifications: [
     "Liderazgo en la Era Digital - Tecnológico de Monterrey, edx",
@@ -207,32 +205,24 @@ export const defaultBaseCV: BaseCV = {
 
   domainAreas: [
     {
-      title: "Liderazgo Organizacional",
-      skills: ["Liderazgo Transformador", "Dirección de Equipos", "Culturas de Alto Desempeño", "Conflictología"]
+      title: "Liderazgo y Gestión",
+      skills: ["Dirección de Equipos", "Motivación", "Resolución de Conflictos"]
     },
     {
-      title: "Transformación & IA",
-      skills: ["Transformación Digital", "IA Generativa & Agentes", "Ingeniería de Prompts", "Ecosistemas Cloud (Azure)"]
+      title: "Operaciones y Procesos",
+      skills: ["Optimización", "Control de Calidad", "Logística"]
     },
     {
-      title: "Gestión de Operaciones",
-      skills: ["Rentabilidad de Negocios", "Optimización de KPIs", "Mitigación de Riesgos", "Gestión de Proyectos", "Coordinación Logística"]
+      title: "Ventas y Negocios B2B",
+      skills: ["Estrategia Comercial", "Negociación", "Cumplimiento de Metas"]
     },
     {
-      title: "Desarrollo Comercial",
-      skills: ["Estrategia Comercial", "Negociación", "Prospección de Ventas", "Marketing Digital", "Eficacia de Ventas"]
+      title: "Atención al Cliente",
+      skills: ["Satisfacción del Cliente", "Fidelización", "Manejo de Reclamos"]
     },
     {
-      title: "Experiencia del Cliente (CX)",
-      skills: ["Satisfacción del Cliente", "Relaciones CRM", "Gestión de Conflictos", "Comunicación Profesional", "Atención al Cliente"]
-    },
-    {
-      title: "Habilidades Humanas",
-      skills: ["Inteligencia Emocional", "Pensamiento Crítico", "Comunicación Interpersonal", "Gestión del Tiempo"]
-    },
-    {
-      title: "IA Ministerial & Narrativa",
-      skills: ["Motion Comic Autónomo", "Narrativa Profética IA", "Dirección Cinematográfica", "Despliegue Cloud Forge"]
+      title: "Tecnología Práctica",
+      skills: ["Automatización", "Herramientas de IA", "Análisis de Datos"]
     }
   ],
   portfolio: [
