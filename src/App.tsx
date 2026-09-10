@@ -300,17 +300,28 @@ function App() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <button 
-                  onClick={handleGenerate}
-                  disabled={isGenerating || isGeneratingLetter || !jobDescription.trim()}
-                  className="w-full group relative inline-flex items-center justify-center gap-2 px-5 py-3.5 font-bold text-slate-950 bg-amber-500 rounded-xl overflow-hidden transition-all duration-300 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.5)] text-sm"
-                >
-                  {isGenerating ? (
-                    <><Loader2 className="animate-spin" size={16} /> Procesando CV...</>
-                  ) : (
-                    <><FileText size={16} className="transition-transform group-hover:scale-110" /> Adaptar CV con IA</>
-                  )}
-                </button>
+                <div className="flex gap-2">
+                  <button 
+                    onClick={handleGenerate}
+                    disabled={isGenerating || isGeneratingLetter || !jobDescription.trim()}
+                    className="flex-1 group relative inline-flex items-center justify-center gap-2 px-5 py-3.5 font-bold text-slate-950 bg-amber-500 rounded-xl overflow-hidden transition-all duration-300 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.5)] text-sm"
+                  >
+                    {isGenerating ? (
+                      <><Loader2 className="animate-spin" size={16} /> Procesando CV...</>
+                    ) : (
+                      <><FileText size={16} className="transition-transform group-hover:scale-110" /> Adaptar CV con IA</>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setTailoredData({ tailoredCV: { ...baseCV, experience: baseCV.experience.slice(0, 3) }, coverLetter: ["Párrafo de prueba generado sin gastar API."] });
+                    }}
+                    className="px-4 py-3.5 bg-slate-800 text-slate-300 font-bold rounded-xl border border-slate-700 hover:bg-slate-700 transition-all duration-300 text-sm whitespace-nowrap"
+                    title="Probar diseño sin gastar API"
+                  >
+                    Prueba Gratis
+                  </button>
+                </div>
 
                 <button 
                   onClick={handleGenerateCoverLetter}
