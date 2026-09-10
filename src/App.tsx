@@ -735,32 +735,39 @@ function App() {
             display: none;
           }
           @media print {
-            body {
+            body, html {
               background: white !important;
+              margin: 0 !important;
+              padding: 0 !important;
             }
-            #root > div:not(.print-wrapper-cv):not(.print-wrapper-letter) {
+            /* Esconder la interfaz de usuario */
+            header, main {
               display: none !important;
             }
+            
             body.printing-cv .print-wrapper-cv {
               display: block !important;
+              position: absolute;
+              left: 0;
+              top: 0;
             }
             body.printing-cv .print-wrapper-letter {
               display: none !important;
             }
+            
             body.printing-letter .print-wrapper-letter {
               display: block !important;
+              position: absolute;
+              left: 0;
+              top: 0;
             }
             body.printing-letter .print-wrapper-cv {
               display: none !important;
             }
-            /* Reset all margins and paddings for the print page */
+            
             @page {
               margin: 0;
-            }
-            body {
-              margin: 0;
-              -webkit-print-color-adjust: exact !important;
-              print-color-adjust: exact !important;
+              size: A4;
             }
           }
         `}</style>
