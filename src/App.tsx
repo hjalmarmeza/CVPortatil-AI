@@ -157,9 +157,13 @@ function App() {
   };
 
   const handleDownloadPDF = () => {
-    // Para compatibilidad ATS, usamos el print nativo del navegador que genera texto real
+    // Para compatibilidad ATS, usamos el print nativo del navegador
     document.title = `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored`;
-    window.print();
+    document.body.classList.add('printing-cv');
+    setTimeout(() => {
+      window.print();
+      document.body.classList.remove('printing-cv');
+    }, 100);
   };
 
   const handleDownloadCoverLetterPDF = () => {
@@ -727,26 +731,44 @@ function App() {
       </main>
 
         <style>{`
-          .print-wrapper {
+          .print-wrapper-cv, .print-wrapper-letter {
             display: none;
           }
           @media print {
-            .print-wrapper {
-              display: block !important;
-            }
             body {
               background: white !important;
             }
-            #root > div:not(.print-wrapper) {
+            #root > div:not(.print-wrapper-cv):not(.print-wrapper-letter) {
               display: none !important;
+            }
+            body.printing-cv .print-wrapper-cv {
+              display: block !important;
+            }
+            body.printing-cv .print-wrapper-letter {
+              display: none !important;
+            }
+            body.printing-letter .print-wrapper-letter {
+              display: block !important;
+            }
+            body.printing-letter .print-wrapper-cv {
+              display: none !important;
+            }
+            /* Reset all margins and paddings for the print page */
+            @page {
+              margin: 0;
+            }
+            body {
+              margin: 0;
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
             }
           }
         `}</style>
 
 
       {/* Renderizado Oculto para el PDF */}
-      <div className="print-wrapper">
-        <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '1122px', height: '1122px', boxSizing: 'border-box' }}>
+      <div>
+        <div id="cv-pdf-content" className="print-wrapper-cv" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '1122px', height: '1122px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -969,8 +991,8 @@ function App() {
 
       {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
       {/* Margen externo 0 en html2pdf + ancho fijo 794px + contenedor centrado 630px garantizan margen derecho impecable sin cortes */}
-      <div className="print-wrapper">
-        <div id="cover-letter-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
+      <div>
+        <div id="cover-letter-pdf-content" className="print-wrapper-letter" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
         <style>{`
           #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
