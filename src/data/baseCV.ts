@@ -205,24 +205,24 @@ export const defaultBaseCV: BaseCV = {
 
   domainAreas: [
     {
-      title: "Gestión de Equipos",
-      skills: ["Motivación de personal", "Resolución de conflictos", "Trabajo colaborativo"]
+      title: "Liderazgo y Desarrollo de Equipos",
+      skills: ["Construcción de equipos motivados", "Mediación y resolución de conflictos", "Fomento de un clima colaborativo"]
     },
     {
-      title: "Operaciones Comerciales",
-      skills: ["Organización de procesos", "Logística diaria", "Control de calidad"]
+      title: "Optimización de Operaciones",
+      skills: ["Mejora continua de procesos diarios", "Coordinación logística ágil", "Aseguramiento de la calidad"]
     },
     {
-      title: "Ventas B2B",
-      skills: ["Estrategia de ventas", "Negociación con clientes", "Cumplimiento de metas"]
+      title: "Estrategia de Ventas B2B",
+      skills: ["Atracción de clientes corporativos", "Negociaciones de alto impacto", "Superación constante de metas"]
     },
     {
-      title: "Atención al Cliente",
-      skills: ["Fidelización", "Manejo de situaciones difíciles", "Satisfacción del cliente"]
+      title: "Experiencia y Fidelización de Clientes",
+      skills: ["Atención resolutiva y personalizada", "Manejo de situaciones críticas", "Construcción de relaciones a largo plazo"]
     },
     {
       title: "Competencias Digitales",
-      skills: ["Herramientas de IA", "Automatización de tareas", "Análisis de datos"]
+      skills: ["Adopción de Inteligencia Artificial", "Automatización para ahorrar tiempo", "Análisis de métricas y datos"]
     }
   ],
   portfolio: [
