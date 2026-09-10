@@ -805,7 +805,7 @@ function App() {
               {/* LEFT COLUMN (White) - 516px */}
               <td style={{ width: '516px', padding: 0, backgroundColor: '#FFFFFF', verticalAlign: 'top' }}>
                 {/* --- Contenido izquierdo: 1 sola hoja A4 --- */}
-                <div style={{ padding: '28px 28px 20px 28px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                <div style={{ padding: '28px 28px 20px 28px', width: '100%', boxSizing: 'border-box', height: '100%', overflow: 'hidden' }}>
                   {/* Header / Name */}
                   <div style={{ marginBottom: '12px' }}>
                     <h1 style={{ fontSize: '22pt', margin: '0 0 4px', color: '#333333', fontWeight: '900', letterSpacing: 'normal', textTransform: 'uppercase', lineHeight: '1.1' }}>{baseCV.name}</h1>
@@ -887,7 +887,7 @@ function App() {
               {/* RIGHT COLUMN (Teal) */}
               <td style={{ width: '278px', backgroundColor: '#005C53', padding: 0, color: '#FFFFFF', verticalAlign: 'top' }}>
                 {/* --- HOJA 1 RIGHT --- */}
-                <div style={{ padding: '28px 20px 20px 20px', width: '100%', boxSizing: 'border-box', height: '1122px', overflow: 'hidden' }}>
+                <div style={{ padding: '28px 20px 20px 20px', width: '100%', boxSizing: 'border-box', height: '100%', overflow: 'hidden' }}>
                   {/* Photo - centrada perfectamente */}
                   <div style={{ marginBottom: '25px', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <img src={photoBase64 || baseCV.contact?.photoUrl || ''} style={{ width: '110px', height: '110px', borderRadius: '4px', border: '3px solid rgba(255,255,255,0.4)', backgroundColor: '#fff', objectFit: 'cover', objectPosition: 'top center', display: 'block', margin: '0 auto' }} crossOrigin="anonymous" alt="Perfil" />
