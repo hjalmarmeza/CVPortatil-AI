@@ -735,25 +735,7 @@ function App() {
             display: none;
           }
           @media print {
-            body.printing-cv {
-              -webkit-print-color-adjust: exact !important;
-              print-color-adjust: exact !important;
-            }
-            .fixed-print-bg {
-              display: none;
-            }
-            body.printing-cv .fixed-print-bg {
-              display: block !important;
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100vw;
-              height: 100vh;
-              z-index: -1;
-              background: linear-gradient(to right, #FFFFFF 64.98%, #005C53 64.98%) !important;
-              -webkit-print-color-adjust: exact !important;
-              print-color-adjust: exact !important;
-            }
+            
             body, html {
               background: white !important;
               margin: 0 !important;
@@ -794,8 +776,7 @@ function App() {
 
       {/* Renderizado Oculto para el PDF */}
       <div>
-        <div className="fixed-print-bg"></div>
-        <div id="cv-pdf-content" className="print-wrapper-cv" style={{ background: 'linear-gradient(to right, #FFFFFF 516px, #005C53 516px)', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
+        <div id="cv-pdf-content" className="print-wrapper-cv" style={{ background: 'linear-gradient(to right, #FFFFFF 516px, #005C53 516px)', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '1122px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
@@ -905,7 +886,7 @@ function App() {
               </td>
 
               {/* RIGHT COLUMN (Teal) */}
-              <td style={{ width: '278px', backgroundColor: 'transparent', padding: 0, color: '#FFFFFF', verticalAlign: 'top' }}>
+              <td style={{ width: '278px', backgroundColor: '#005C53', padding: 0, color: '#FFFFFF', verticalAlign: 'top' }}>
                 {/* --- HOJA 1 RIGHT --- */}
                 <div style={{ padding: '24px 20px 15px 20px', width: '100%', boxSizing: 'border-box' }}>
                   {/* Photo - centrada perfectamente */}
@@ -1000,7 +981,7 @@ function App() {
       {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
       {/* Margen externo 0 en html2pdf + ancho fijo 794px + contenedor centrado 630px garantizan margen derecho impecable sin cortes */}
       <div>
-        <div id="cover-letter-pdf-content" className="print-wrapper-letter" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
+        <div id="cover-letter-pdf-content" className="print-wrapper-letter" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '1122px', boxSizing: 'border-box' }}>
         <style>{`
           #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
