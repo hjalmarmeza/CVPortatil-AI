@@ -157,7 +157,9 @@ function App() {
   };
 
   const handleDownloadPDF = () => {
-    generatePdfWithDomToImage('cv-pdf-content', `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored.pdf`);
+    // Para compatibilidad ATS, usamos el print nativo del navegador que genera texto real
+    document.title = `CV_${baseCV.name.replace(/\s+/g, '_')}_Tailored`;
+    window.print();
   };
 
   const handleDownloadCoverLetterPDF = () => {
@@ -724,13 +726,55 @@ function App() {
         )}
       </main>
 
+        <style>{`
+          .print-wrapper {
+            display: none;
+          }
+          @media print {
+            .print-wrapper {
+              display: block !important;
+            }
+            body {
+              background: white !important;
+            }
+            #root > div:not(.print-wrapper) {
+              display: none !important;
+            }
+          }
+        `}</style>
+
+
       {/* Renderizado Oculto para el PDF */}
-      <div style={{ display: 'none' }}>
+      <div className="print-wrapper">
         <div id="cv-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', minHeight: '1122px', height: '1122px', boxSizing: 'border-box' }}>
         <style>{`
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+          @media print {
+            body * {
+              visibility: hidden;
+            }
+            #cv-pdf-content, #cv-pdf-content * {
+              visibility: visible;
+            }
+            #cv-pdf-content {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 210mm !important;
+              height: 297mm !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              box-shadow: none !important;
+              transform: none !important;
+            }
+            @page {
+              size: A4;
+              margin: 0;
+            }
+          }
+
             letter-spacing: 0px !important;
             word-spacing: 0px !important;
             text-rendering: optimizeLegibility !important;
@@ -925,7 +969,7 @@ function App() {
 
       {/* Renderizado Oculto para PDF - CARTA DE PRESENTACION */}
       {/* Margen externo 0 en html2pdf + ancho fijo 794px + contenedor centrado 630px garantizan margen derecho impecable sin cortes */}
-      <div style={{ display: 'none' }}>
+      <div className="print-wrapper">
         <div id="cover-letter-pdf-content" style={{ backgroundColor: '#FFFFFF', color: '#333333', fontFamily: 'Arial, Helvetica, sans-serif', margin: 0, padding: 0, width: '794px', boxSizing: 'border-box' }}>
         <style>{`
           #cover-letter-pdf-content, #cover-letter-pdf-content * {
