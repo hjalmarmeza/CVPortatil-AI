@@ -908,10 +908,10 @@ function App() {
                   {/* Fortalezas */}
                   {(tailoredData?.tailoredCV?.strengths && tailoredData.tailoredCV.strengths.length > 0) && (
                     <div style={{ marginBottom: '16px' }}>
-                      <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '10px', margin: '0 0 6px 0' }}>Fortalezas</h3>
+                      <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 4px 0' }}>Fortalezas</h3>
                       <div style={{ fontSize: '8.5pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.4' }}>
                         {tailoredData.tailoredCV.strengths.slice(0, 5).map((str, i) => (
-                          <div key={i} style={{ marginBottom: '6px' }}>▸ {str}</div>
+                          <div key={i} style={{ marginBottom: '4px' }}>▸ {str}</div>
                         ))}
                       </div>
                     </div>
@@ -919,17 +919,17 @@ function App() {
 
                   {/* Habilidades */}
                   <div style={{ marginBottom: '16px' }}>
-                    <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '10px', margin: '0 0 6px 0' }}>Habilidades</h3>
+                    <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 4px 0' }}>Habilidades</h3>
                     <div style={{ fontSize: '8.5pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.4' }}>
                       {(tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5).map((skill, i) => (
-                        <div key={i} style={{ marginBottom: '6px' }}>▸ {skill}</div>
+                        <div key={i} style={{ marginBottom: '4px' }}>▸ {skill}</div>
                       ))}
                     </div>
                   </div>
 
                   {/* Competencias */}
                   <div style={{ marginBottom: '16px' }}>
-                    <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '10px', margin: '0 0 6px 0' }}>Competencias</h3>
+                    <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 4px 0' }}>Competencias</h3>
                     <div style={{ fontSize: '8.5pt', color: 'rgba(255,255,255,0.95)', lineHeight: '1.4' }}>
                       {(() => {
                         const currentSkills = (tailoredData?.tailoredCV?.skills || baseCV.skills).slice(0, 5);
@@ -949,7 +949,7 @@ function App() {
                         }
 
                         return cleanAreas.slice(0, 5).map((area, i) => (
-                          <div key={i} style={{ marginBottom: '6px' }}>
+                          <div key={i} style={{ marginBottom: '4px' }}>
                             <span style={{ fontWeight: '700', color: '#FFFFFF' }}>▸ {area.title}</span>
                             {area.skills && area.skills.length > 0 && (
                               <div style={{ paddingLeft: '10px', fontSize: '7.5pt', color: 'rgba(255,255,255,0.75)', lineHeight: '1.2', marginTop: '2px', fontWeight: '400' }}>
@@ -963,7 +963,7 @@ function App() {
                   </div>
                   {/* Educación / Estudios */}
                   <div style={{ marginBottom: '16px' }}>
-                    <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '10px', margin: '0 0 6px 0' }}>Estudios</h3>
+                    <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 4px 0' }}>Estudios</h3>
                     {baseCV.education.map((edu, idx) => (
                       <div key={idx} style={{ marginBottom: '10px' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', marginBottom: '2px' }}>
@@ -976,7 +976,7 @@ function App() {
                   </div>
                   {/* Idiomas */}
                   <div style={{ marginBottom: '15px' }}>
-                    <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '10px', margin: '0 0 6px 0' }}>Idiomas</h3>
+                    <h3 style={{ fontSize: '8.5pt', color: '#FFFFFF', fontWeight: '800', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '4px', margin: '0 0 4px 0' }}>Idiomas</h3>
                     <div style={{ marginTop: '6px' }}>
                       {baseCV.languages?.map((lang, idx) => (
                         <div key={idx} style={{ marginBottom: '22px', fontSize: '8.5pt', color: 'rgba(255,255,255,0.95)' }}>
