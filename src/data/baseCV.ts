@@ -130,16 +130,14 @@ export const defaultBaseCV: BaseCV = {
     { language: "Inglés", level: "A1" }
   ],
   skills: [
-    "Resolución de problemas",
-    "Toma de decisiones",
-    "Adaptabilidad al cambio",
-    "Gestión del tiempo",
-    "Comunicación efectiva",
-    "Negociación",
-    "Atención al detalle",
-    "Trabajo en equipo",
-    "Pensamiento analítico",
-    "Liderazgo de personal"
+    "Liderazgo",
+    "Toma de Decisiones",
+    "Resolución de Conflictos",
+    "Comunicación y Escucha Activa",
+    "Adaptación al Cambio",
+    "Proactividad e Iniciativa",
+    "Trabajo en Equipo",
+    "Atención al Cliente"
   ],
   certifications: [
     "Liderazgo en la Era Digital - Tecnológico de Monterrey, edx",
