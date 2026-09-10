@@ -190,28 +190,127 @@ function App() {
           </div>
           
           <nav className="flex items-center gap-1 bg-[#0f172a] p-1 rounded-xl border border-slate-800/80 shadow-inner w-full sm:w-auto">
-            <div className="flex gap-2">
+            <button 
+              onClick={() => setActiveTab('generator')}
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === 'generator' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
+            >
+              <Briefcase size={15} />
+              <span>Analizador</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab('base')}
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === 'base' ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700/50' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
+            >
+              <Settings size={15} />
+              <span>Datos Base</span>
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* Main Content Area */}
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
+        {activeTab === 'generator' ? (
+          <div className="grid lg:grid-cols-12 gap-6 sm:gap-10">
+            {/* Left Column: Input (5 cols) */}
+            <div className="lg:col-span-5 space-y-6 sm:space-y-8">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight flex items-center gap-2">
+                  <Sparkles className="text-amber-500" size={22} />
+                  Adaptación Inteligente
+                </h2>
+                <p className="text-slate-400 text-xs sm:text-sm mt-1.5 sm:mt-2 leading-relaxed">
+                  Pega el requerimiento del puesto. Nuestra IA analizará las palabras clave, adaptará tu experiencia y redactará una carta persuasiva.
+                </p>
+              </div>
+
+              {/* Optional Company Input */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5 pl-1">
+                  <Building2 size={13} className="text-amber-500" /> Empresa u Organización (Opcional)
+                </label>
+                <input
+                  type="text"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  placeholder="Ej: Inditex, Telefónica (O dejar en blanco si es agencia/ETT como Grafton)..."
+                  className="w-full bg-[#0f172a] border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all shadow-inner"
+                />
+              </div>
+
+              {/* Seniority Calibration Selector */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5 pl-1">
+                  <Target size={13} className="text-amber-500" /> Calibración de Senioridad (Anti-Sobrecualificación)
+                </label>
+                <div className="grid grid-cols-2 gap-2 p-1.5 bg-[#0f172a] border border-slate-800 rounded-xl">
                   <button
-                    onClick={handleGenerate}
-                    disabled={isGenerating || isGeneratingLetter || !jobDescription.trim()}
-                    className="flex-1 group relative inline-flex items-center justify-center gap-2 px-5 py-3.5 font-bold text-slate-950 bg-amber-500 rounded-xl overflow-hidden transition-all duration-300 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.5)] text-sm"
+                    type="button"
+                    onClick={() => setSeniorityLevel('auto')}
+                    className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left flex flex-col justify-center ${seniorityLevel === 'auto' ? 'bg-slate-800 text-amber-400 border border-slate-700/50 shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
                   >
-                    {isGenerating ? (
-                      <><Loader2 className="animate-spin" size={16} /> Procesando...</>
-                    ) : (
-                      <><Sparkles size={16} className="transition-transform group-hover:scale-110" /> Adaptar CV</>
-                    )}
+                    <span>⚡ Auto-Detectar</span>
+                    <span className="text-[9px] font-normal text-slate-500">Según la oferta</span>
                   </button>
                   <button
-                    onClick={() => {
-                      setTailoredData({ tailoredCV: { ...baseCV, experience: baseCV.experience.slice(0, 3) }, coverLetter: ["Párrafo de prueba."] });
-                    }}
-                    className="flex-none px-4 py-3.5 bg-slate-800 text-slate-300 font-bold rounded-xl border border-slate-700 hover:bg-slate-700 transition-all duration-300 text-sm"
-                    title="Probar diseño sin gastar API"
+                    type="button"
+                    onClick={() => setSeniorityLevel('operational')}
+                    className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left flex flex-col justify-center ${seniorityLevel === 'operational' ? 'bg-slate-800 text-amber-400 border border-slate-700/50 shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
                   >
-                    Prueba Gratis
+                    <span>🛒 Operativo / Tienda</span>
+                    <span className="text-[9px] font-normal text-slate-500">Dependiente, Caja, Reposición</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSeniorityLevel('middle')}
+                    className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left flex flex-col justify-center ${seniorityLevel === 'middle' ? 'bg-slate-800 text-amber-400 border border-slate-700/50 shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                  >
+                    <span>👔 Mando Medio</span>
+                    <span className="text-[9px] font-normal text-slate-500">Encargado, Coordinador</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSeniorityLevel('executive')}
+                    className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left flex flex-col justify-center ${seniorityLevel === 'executive' ? 'bg-slate-800 text-amber-400 border border-slate-700/50 shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                  >
+                    <span>📊 Ejecutivo / Directivo</span>
+                    <span className="text-[9px] font-normal text-slate-500">Estrategia & IA</span>
                   </button>
                 </div>
+              </div>
+              
+              <div className="relative group">
+                <div className="absolute -inset-0.5 bg-gradient-to-b from-amber-500/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur"></div>
+                <div className="relative bg-[#0f172a] border border-slate-800 rounded-2xl p-1 shadow-2xl">
+                  <div className="flex items-center px-4 py-3 border-b border-slate-800/50 bg-slate-900/50 rounded-t-xl">
+                    <div className="flex gap-2">
+                      <div className="w-3 h-3 rounded-full bg-slate-700"></div>
+                      <div className="w-3 h-3 rounded-full bg-slate-700"></div>
+                      <div className="w-3 h-3 rounded-full bg-slate-700"></div>
+                    </div>
+                    <span className="ml-4 text-xs font-semibold text-slate-500 tracking-wider uppercase">Job Description</span>
+                  </div>
+                  <textarea 
+                    value={jobDescription}
+                    onChange={(e) => setJobDescription(e.target.value)}
+                    placeholder="Ej: Buscamos un Gerente de Operaciones con 5 años de experiencia en el sector tecnológico..."
+                    className="w-full h-56 sm:h-80 bg-transparent text-slate-200 placeholder-slate-600 p-4 sm:p-5 focus:outline-none resize-none text-sm leading-relaxed custom-scrollbar"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button 
+                  onClick={handleGenerate}
+                  disabled={isGenerating || isGeneratingLetter || !jobDescription.trim()}
+                  className="w-full group relative inline-flex items-center justify-center gap-2 px-5 py-3.5 font-bold text-slate-950 bg-amber-500 rounded-xl overflow-hidden transition-all duration-300 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.5)] text-sm"
+                >
+                  {isGenerating ? (
+                    <><Loader2 className="animate-spin" size={16} /> Procesando CV...</>
+                  ) : (
+                    <><FileText size={16} className="transition-transform group-hover:scale-110" /> Adaptar CV con IA</>
+                  )}
+                </button>
 
                 <button 
                   onClick={handleGenerateCoverLetter}
