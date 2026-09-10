@@ -780,29 +780,7 @@ function App() {
           #cv-pdf-content, #cv-pdf-content *, #cover-letter-pdf-content, #cover-letter-pdf-content * {
             box-sizing: border-box !important;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-          @media print {
-            body * {
-              visibility: hidden;
-            }
-            #cv-pdf-content, #cv-pdf-content * {
-              visibility: visible;
-            }
-            #cv-pdf-content {
-              position: absolute;
-              left: 0;
-              top: 0;
-              width: 210mm !important;
-              height: 297mm !important;
-              margin: 0 !important;
-              padding: 0 !important;
-              box-shadow: none !important;
-              transform: none !important;
-            }
-            @page {
-              size: A4;
-              margin: 0;
-            }
-          }
+
 
             letter-spacing: 0px !important;
             word-spacing: 0px !important;
