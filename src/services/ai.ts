@@ -1,7 +1,7 @@
 import type { BaseCV } from '../data/baseCV';
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
-const MODEL = 'meta-llama/Llama-3.3-70B-Instruct';
+const MODEL = 'Qwen/Qwen2.5-72B-Instruct';
 
 // Función sanitizadora de gramática española para corregir cacofonías (ej. "y implementé" -> "e implementé")
 const fixSpanishCacophony = (text: string): string => {
