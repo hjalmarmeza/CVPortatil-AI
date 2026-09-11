@@ -55,6 +55,10 @@ export const generateTailoredCV = async (
   }
 
   const promptBaseCV = JSON.parse(JSON.stringify(baseCV));
+  // ELIMINAR LA FOTO EN BASE64 DEL PROMPT PARA NO EXCEDER EL LÍMITE DE TOKENS (75,000+ caracteres)
+  if (promptBaseCV.contact && promptBaseCV.contact.photoUrl) {
+    delete promptBaseCV.contact.photoUrl;
+  }
   if (promptBaseCV.certifications && Array.isArray(promptBaseCV.certifications)) {
     promptBaseCV.certifications = promptBaseCV.certifications.sort(() => Math.random() - 0.5);
   }
