@@ -87,7 +87,7 @@ TAREA:
    - LA REDACCIÓN DEBE SER HUMANA, REALISTA, AUTÉNTICA Y SOBRIA.
 
 2. ADAPTACIÓN Y CALIBRACIÓN DE SENIORIDAD DEL CV (REGLA CRÍTICA ANTI-SOBRECUALIFICACIÓN):
-   - DEBES INCLUIR TODAS LAS EXPERIENCIAS LABORALES EXACTAS del CV Base. ESTÁ ESTRICTAMENTE PROHIBIDO ELIMINAR O DUPLICAR CARGOS.
+   - INCLUYE ESTRICTAMENTE LAS 3 EXPERIENCIAS LABORALES EXACTAS del CV Base. NO ELIMINES NINGUNA, NO INVENTES NINGUNA NUEVA.
    - PROHIBIDO INVENTAR O CAMBIAR LOS NOMBRES DE LAS EMPRESAS (company). Sin embargo, TIENES PERMISO DE ADAPTAR el nombre del puesto (title) para resaltar tu función real según el nivel del puesto (ej. si eres 'Gestor de Negocio Familiar & Consultor IA' y aplicas a tienda, puedes poner 'Gestor de Tienda y Atención al Cliente' siempre que no sea mentira). PROHIBIDO inventar tareas absurdas.
    - REGLA DE CALIBRACIÓN DE SENIORIDAD:
 ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TRABAJO DE CAMPO / ATENCIÓN FÍSICA:
@@ -113,7 +113,7 @@ ${seniorityLevel === 'operational' ? `      * PUESTO OPERATIVO / TRABAJO DE CAMP
    - CERTIFICACIONES: Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 certificaciones del listado real del CV base que sean las MÁS RELEVANTES para el puesto ofertado. ESTÁ ESTRICTAMENTE PROHIBIDO ELEGIR LAS PRIMERAS DE LA LISTA POR DEFECTO. Analiza toda la lista y elige las 5 que tengan MÁS RELACIÓN con las funciones del puesto.
    - Resumen Profesional (summary): Debe empezar obligatoriamente con el título PROFESIONAL REAL DEL CANDIDATO (Ej. "Supervisor de Operaciones", "Ejecutivo"). REGLA DE ORO: DEBE INCLUIR EXPLÍCITAMENTE la frase "con más de 18 años de experiencia" (o similar) en la primera oración. PROHIBIDO inventar conocimientos falsos. REGLA SAGRADA: Queda ESTRICTAMENTE PROHIBIDO mencionar sectores ajenos. Escribe un resumen corto y contundente de OBLIGATORIAMENTE ENTRE 30 Y 45 PALABRAS (2 frases fluidas y persuasivas directamente enfocadas al rol). ESTRICTAMENTE PROHIBIDO repetir las tareas de la experiencia.
    - Dominios Técnicos y Competencias (domainAreas): ESTRICTAMENTE OBLIGATORIO seleccionar y adaptar EXACTAMENTE 5 áreas clave (competencias) del CV base que mejor respondan a las necesidades de la oferta. PROHIBIDO DEVOLVER MENOS O MÁS DE 5.
-   - Experiencia (experience): INCLUIR ÚNICAMENTE LAS 3 EXPERIENCIAS MÁS RECIENTES DEL CV BASE (OMITIR la primera experiencia "Gestor de Negocio Familiar & Consultor IA"). REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser CONCISAS pero IMPACTANTES (MÁXIMO 20 PALABRAS POR VIÑETA).
+   - Experiencia (experience): INCLUIR OBLIGATORIAMENTE LAS 3 EXPERIENCIAS DEL CV BASE. ESTÁ ESTRICTAMENTE PROHIBIDO OMITIR O BORRAR ALGUNA DE LAS 3 EXPERIENCIAS. REGLA CRÍTICA: Cada cargo DEBE tener EXACTAMENTE 3 viñetas (descriptions). Las viñetas deben ser CONCISAS pero IMPACTANTES (MÁXIMO 20 PALABRAS POR VIÑETA).
    - Fortalezas (strengths): Selecciona OBLIGATORIAMENTE EXACTAMENTE 5 fortalezas del listado real del CV base que sean las MÁS RELEVANTES para la oferta.
    - Proyectos (portfolio): INCLUIR EXACTAMENTE 2 proyectos del CV base (solo title y description) que demuestren valor para la oferta.
 
