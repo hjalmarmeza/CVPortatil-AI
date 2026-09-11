@@ -243,7 +243,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     }
 
     // ESCUDO DE SEGURIDAD 1: Solo las 3 experiencias más recientes (omitir la 1ra: Negocio Familiar)
-    const relevantBaseExperiences = baseCV.experience.slice(1); // Skip index 0 (Gestor de Negocio Familiar)
+    const relevantBaseExperiences = baseCV.experience;
     const aiExperiences = parsedData?.tailoredCV?.experience || [];
     parsedData.tailoredCV = parsedData.tailoredCV || {};
     parsedData.tailoredCV.experience = relevantBaseExperiences.map((baseExp, index) => {
