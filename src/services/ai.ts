@@ -196,7 +196,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
 
     const data = await response.json();
     let cleanContent = data.choices[0].message.content.trim();
-    cleanContent = cleanContent.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '');
+    cleanContent = (cleanContent.match(/\{[\s\S]*\}/) ? cleanContent.match(/\{[\s\S]*\}/)[0] : cleanContent).replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '');
 
     let parsedData: any;
     try {
