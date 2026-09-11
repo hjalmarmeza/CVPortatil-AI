@@ -1,7 +1,7 @@
 import type { BaseCV } from '../data/baseCV';
 
 const DEEPINFRA_API_URL = 'https://api.deepinfra.com/v1/openai/chat/completions';
-const MODEL = 'meta-llama/Llama-3.3-70B-Instruct';
+const MODEL = 'meta-llama/Meta-Llama-3.1-70B-Instruct';
 
 // Función sanitizadora de gramática española para corregir cacofonías (ej. "y implementé" -> "e implementé")
 const fixSpanishCacophony = (text: string): string => {
@@ -159,7 +159,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     let attempt = 0;
     while (attempt < retries) {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 45000); // 120s por intento
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 120s por intento
       
       try {
         response = await fetch(DEEPINFRA_API_URL, {
@@ -334,7 +334,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
     let attempt = 0;
     while (attempt < retries) {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 45000); // 90s por intento
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 90s por intento
       
       try {
         response = await fetch(DEEPINFRA_API_URL, {
