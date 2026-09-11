@@ -333,9 +333,6 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
     let retries = 2;
     let attempt = 0;
     while (attempt < retries) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 90000); // 90s por intento
-      
       try {
         response = await fetch(DEEPINFRA_API_URL, {
           method: 'POST',
@@ -348,11 +345,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
             messages: [{ role: 'user', content: prompt }],
             temperature: 0.3,
             max_tokens: 1500
-          }),
-          signal: controller.signal
+          })
         });
-
-        clearTimeout(timeoutId);
 
         if (response.ok) break;
         if (response.status === 429 || response.status >= 500) {
