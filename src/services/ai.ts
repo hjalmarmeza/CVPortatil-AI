@@ -331,14 +331,15 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
     let attempt = 0;
     while (attempt < retries) {
       try {
-        response = await fetch('/api/generate', {
+        response = await fetch(DEEPINFRA_API_URL, {
           method: 'POST',
           headers: {
+            'Authorization': `Bearer ${apiKey}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            prompt: prompt,
             model: MODEL,
+            messages: [{ role: 'user', content: prompt }],
             temperature: 0.3,
             max_tokens: 1500
           })
