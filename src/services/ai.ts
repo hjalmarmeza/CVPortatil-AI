@@ -63,6 +63,10 @@ export const generateTailoredCV = async (
     promptBaseCV.certifications = promptBaseCV.certifications.sort(() => Math.random() - 0.5);
   }
 
+  // PREVENCIÓN HOLÍSTICA: Recortar textos extremadamente largos del usuario
+  const safeJobDesc = jobDescription.substring(0, 15000);
+  const safeCompany = companyName.substring(0, 500);
+
   const prompt = `
 Eres un experto redactor de CVs y cartas de presentación profesionales.
 A continuación te proporciono el CV base de un candidato, la descripción de una oferta laboral y la información de la empresa objetivo.
@@ -71,10 +75,10 @@ CV BASE:
 ${JSON.stringify(promptBaseCV, null, 2)}
 
 OFERTA LABORAL:
-${jobDescription}
+${safeJobDesc}
 
 EMPRESA A LA QUE SE POSTULA / AGENCIA DE SELECCIÓN:
-${companyName.trim() ? companyName : 'Si no se especifica, redacta el CV de forma imparcial enfocado en la posición solicitada.'}
+${safeCompany.trim() ? safeCompany : 'Si no se especifica, redacta el CV de forma imparcial enfocado en la posición solicitada.'}
 
 CALIBRACIÓN DE SENIORIDAD Y NIVEL REQUERIDO:
 ${seniorityLevel === 'operational' 
