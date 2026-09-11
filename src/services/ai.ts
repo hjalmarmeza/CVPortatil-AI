@@ -169,7 +169,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
             model: MODEL,
             messages: [{ role: 'user', content: prompt }],
             temperature: 0.2,
-            max_tokens: 2048
+            max_tokens: 4000
           }),
           
         });
@@ -190,10 +190,8 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
       }
     }
 
-        if (!response || !response.ok) {
-      let errTxt = 'Desconocido';
-      try { if (response) errTxt = await response.text(); } catch(e) {}
-      throw new Error(\`Error en la API de DeepInfra (\${response ? response.status : 'N/A'}): \${errTxt}\`);
+    if (!response || !response.ok) {
+      throw new Error(`Error en la API de DeepInfra: ${response ? response.status : 'Desconocido'}`);
     }
 
     const data = await response.json();
