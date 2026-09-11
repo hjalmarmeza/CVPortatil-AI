@@ -847,7 +847,7 @@ function App() {
                   <div style={{ marginBottom: '20px' }}>
                     <h3 style={{ fontSize: '8.5pt', color: '#333333', fontWeight: '700', marginBottom: '22px', textTransform: 'uppercase', borderBottom: '1px solid #CCC', paddingBottom: '2px' }}>Experiencia</h3>
                     <div style={{ width: '100%' }}>
-                      {(tailoredData?.tailoredCV?.experience || baseCV.experience.slice(1)).slice(0, 3).map((exp, idx) => {
+                      {(tailoredData?.tailoredCV?.experience || baseCV.experience).slice(0, 3).map((exp, idx) => {
                         return (
                           <div key={idx} style={{ paddingBottom: '10px', width: '100%' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1px', width: '100%' }}>
