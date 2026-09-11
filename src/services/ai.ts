@@ -155,11 +155,11 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
 
   try {
     let response;
-    let retries = 3;
+    let retries = 2;
     let attempt = 0;
     while (attempt < retries) {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 180000); // 120s por intento
+      const timeoutId = setTimeout(() => controller.abort(), 45000); // 120s por intento
       
       try {
         response = await fetch(DEEPINFRA_API_URL, {
@@ -330,11 +330,11 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
 
   try {
     let response;
-    let retries = 3;
+    let retries = 2;
     let attempt = 0;
     while (attempt < retries) {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 180000); // 90s por intento
+      const timeoutId = setTimeout(() => controller.abort(), 45000); // 90s por intento
       
       try {
         response = await fetch(DEEPINFRA_API_URL, {
