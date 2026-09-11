@@ -158,9 +158,6 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
     let retries = 2;
     let attempt = 0;
     while (attempt < retries) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 90000); // 120s por intento
-      
       try {
         response = await fetch(DEEPINFRA_API_URL, {
           method: 'POST',
@@ -174,10 +171,10 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
             temperature: 0.2,
             max_tokens: 4000
           }),
-          signal: controller.signal
+          
         });
         
-        clearTimeout(timeoutId);
+        
 
         if (response.ok) break;
         if (response.status === 429 || response.status >= 500) {
@@ -186,7 +183,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON, sin texto adicio
           break; // Don't retry on 400 Bad Request
         }
       } catch (err) {
-        clearTimeout(timeoutId);
+        
         attempt++;
         if (attempt >= retries) throw err;
         await new Promise(r => setTimeout(r, attempt * 3000));
@@ -355,7 +352,7 @@ Devuelve la respuesta ÚNICAMENTE en el siguiente formato JSON sin markdown:
           break; // Don't retry on 400 Bad Request
         }
       } catch (err) {
-        clearTimeout(timeoutId);
+        
         attempt++;
         if (attempt >= retries) throw err;
         await new Promise(r => setTimeout(r, attempt * 3000));
